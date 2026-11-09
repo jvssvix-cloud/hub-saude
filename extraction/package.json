@@ -1,0 +1,19 @@
+{
+  "name": "hub-saude-extraction",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "extrair": "tsx src/cli-extrair.ts",
+    "acuracia": "tsx src/acuracia.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
