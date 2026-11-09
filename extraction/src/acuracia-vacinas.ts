@@ -22,7 +22,11 @@ const DIR_RES = REAIS ? path.join(RAIZ, "dados-reais/resultados") : path.join(RA
 const DIR_CACHE = path.join(DIR_RES, "cache");
 const SUFIXO = `${MODELO_PADRAO.replace("claude-", "")}_medium_${PROMPT_VERSAO}`;
 
-type DoseGab = { vacina: string; nome_impresso: string; dose: string; data: string; lote: string | null; pagina: number };
+type DoseGab = {
+  vacina: string; nome_impresso: string; dose: string; data: string; lote: string | null; pagina: number;
+  /** leituras alternativas aceitas (ex.: dose não impressa, lote com fabricante) */
+  aceitos?: { dose?: string[]; lote?: string[]; nome?: string[] };
+};
 type Gab = {
   documento_id: string; arquivo_pdf: string; fotos: { arquivo: string; pagina: number }[];
   documento: { nome_paciente_impresso: string; paciente?: PacienteCadastro }; doses: DoseGab[];
@@ -71,9 +75,9 @@ async function main() {
       achadas++;
       const d: DoseNormalizada = n.doses[k];
       const cmp: Record<string, [boolean, string, string]> = {
-        dose: [d.dose === e.dose, e.dose, d.dose],
-        lote: [t(d.lote) === t(e.lote), e.lote ?? "-", d.lote ?? "-"],
-        nome: [t(d.nome_impresso) === t(e.nome_impresso), e.nome_impresso, d.nome_impresso],
+        dose: [(e.aceitos?.dose ?? [e.dose]).includes(d.dose), e.dose, d.dose],
+        lote: [(e.aceitos?.lote ?? [e.lote]).some((l) => t(d.lote) === t(l)), e.lote ?? "-", d.lote ?? "-"],
+        nome: [(e.aceitos?.nome ?? [e.nome_impresso]).some((n) => t(d.nome_impresso) === t(n)), e.nome_impresso, d.nome_impresso],
         pagina: [d.pagina === e.pagina, String(e.pagina), String(d.pagina)],
       };
       for (const c of CAMPOS) {

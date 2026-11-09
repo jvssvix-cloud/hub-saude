@@ -26,6 +26,8 @@ export type SituacaoVacina = {
 };
 
 export const FONTE_CALENDARIO = "Calendário Nacional de Vacinação 2026 (Ministério da Saúde)";
+/** Doses da infância raramente estão em documentos digitais: avisar em vez de afirmar que não existem. */
+const SEM_REGISTRO = "Nenhuma dose nos documentos enviados. Doses da infância podem estar só na caderneta de papel.";
 
 export const NOMES_VACINA: Record<string, string> = {
   hepatite_b: "Hepatite B", dt: "Dupla adulto (dT)", dtpa: "dTpa", febre_amarela: "Febre amarela",
@@ -72,12 +74,12 @@ export function situacaoVacinal(doses: DoseVacina[], paciente: Paciente, hoje: s
       ? s("hepatite_b", "em_dia", "em_dia", `Esquema completo (${hb.length} doses registradas).`)
       : s("hepatite_b", "atencao", hb.length ? "incompleta" : "sem_registro",
         hb.length ? `Esquema incompleto: ${hb.length} de 3 doses registradas (última em ${mesAno(hb.at(-1)!.data)}).`
-          : "Nenhuma dose registrada. O calendário recomenda 3 doses."));
+          : `${SEM_REGISTRO} O calendário recomenda 3 doses.`));
     // dT/dTpa: reforço a cada 10 anos
     const dt = [...de("dt"), ...de("dtpa")].sort((a, b) => a.data.localeCompare(b.data));
     if (!dt.length) {
       out.push(s("dt", "atencao", "sem_registro",
-        "Nenhuma dose de dT registrada. O esquema básico costuma ser feito na infância; o reforço é a cada 10 anos.", dt));
+        `${SEM_REGISTRO} O reforço de dT é a cada 10 anos.`, dt));
     } else {
       const ultima = dt.at(-1)!.data, vence = somaAnos(ultima, 10);
       out.push(hoje > vence
@@ -88,13 +90,13 @@ export function situacaoVacinal(doses: DoseVacina[], paciente: Paciente, hoje: s
     const fa = de("febre_amarela");
     out.push(fa.length
       ? s("febre_amarela", "em_dia", "em_dia", `Dose registrada em ${dataBr(fa[0].data)} (dose única).`)
-      : s("febre_amarela", "atencao", "sem_registro", "Nenhuma dose registrada. O calendário recomenda 1 dose."));
+      : s("febre_amarela", "atencao", "sem_registro", `${SEM_REGISTRO} O calendário recomenda 1 dose.`));
     // Tríplice viral: 2 doses até 29 anos, 1 dose de 30 a 59
     const scr = de("triplice_viral"), precisa = idade <= 29 ? 2 : 1;
     out.push(scr.length >= precisa
       ? s("triplice_viral", "em_dia", "em_dia", `${scr.length} dose(s) registrada(s); recomendado ${precisa} na sua idade.`)
       : s("triplice_viral", "atencao", scr.length ? "incompleta" : "sem_registro",
-        `${scr.length} de ${precisa} dose(s) recomendada(s) para ${idade <= 29 ? "até 29 anos" : "30 a 59 anos"}.`));
+        `${scr.length ? `${scr.length} de ${precisa}` : `${SEM_REGISTRO} Recomendadas ${precisa}`} dose(s) para ${idade <= 29 ? "até 29 anos" : "30 a 59 anos"}.`));
   }
   // Campanhas: só informa a última dose
   for (const v of ["influenza", "covid19"]) {
