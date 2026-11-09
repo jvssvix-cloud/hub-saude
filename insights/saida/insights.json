@@ -1,0 +1,4475 @@
+{
+  "paciente": {
+    "nome": "Roberto Almeida Siqueira",
+    "nascimento": "1968-05-14",
+    "sexo": "M"
+  },
+  "hoje": "2026-11-09",
+  "periodo": {
+    "inicio": "2016-03-09",
+    "fim": "2026-03-12",
+    "laudos": 12,
+    "laboratorios": [
+      "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+      "Laboratório Alfa Diagnósticos",
+      "Diagnóstica Beta Medicina Laboratorial",
+      "Gama Análises Clínicas"
+    ]
+  },
+  "series": [
+    {
+      "analito": "glicose",
+      "nome": "Glicose em jejum",
+      "unidade": "mg/dL",
+      "area": "glicemia",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 88,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": false,
+          "valor_impresso": "88",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: 70 A 99 MG/DL",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 90,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": false,
+          "valor_impresso": "90",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: 70 A 99 MG/DL",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 93,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": false,
+          "valor_impresso": "93",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "70 a 99 mg/dL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 96,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": false,
+          "valor_impresso": "96",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "70 a 99 mg/dL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 100,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": true,
+          "valor_impresso": "100",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "70 a 99 mg/dL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 100,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": true,
+          "valor_impresso": "100",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Normal: 70 a 99 mg/dL\nGlicemia de jejum alterada: 100 a 125 mg/dL\nDiabetes: igual ou superior a 126 mg/dL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 105,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": true,
+          "valor_impresso": "105",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Normal: 70 a 99 mg/dL\nGlicemia de jejum alterada: 100 a 125 mg/dL\nDiabetes: igual ou superior a 126 mg/dL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 106,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": true,
+          "valor_impresso": "106",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Normal: 70 a 99 mg/dL\nGlicemia de jejum alterada: 100 a 125 mg/dL\nDiabetes: igual ou superior a 126 mg/dL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 109,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": true,
+          "valor_impresso": "109",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(70 a 99)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 111,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": true,
+          "valor_impresso": "111",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(70 a 99)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-05-27",
+          "valor": 111,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": true,
+          "valor_impresso": "111",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "70 a 99 mg/dL",
+          "fonte": {
+            "laudo_id": "2025-05",
+            "arquivo": "laudos/2025-05_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 112,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": true,
+          "valor_impresso": "112",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(70 a 99)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 112,
+        "ref_min": 70,
+        "ref_max": 99,
+        "fora_da_faixa": true,
+        "valor_impresso": "112",
+        "unidade_impressa": "mg/dL",
+        "referencia_impressa": "(70 a 99)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": true,
+      "sentido": "acima",
+      "fora_seguidos": 8,
+      "persistente": true,
+      "tendencia": {
+        "direcao": "subindo",
+        "variacao_pct": 27.3,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 88,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": false,
+          "valor_impresso": "88",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: 70 A 99 MG/DL",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 112,
+          "ref_min": 70,
+          "ref_max": 99,
+          "fora_da_faixa": true,
+          "valor_impresso": "112",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(70 a 99)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": "2020-09-03",
+        "texto": "subiu 27% em 10 anos (88 → 112 mg/dL); acima da referência desde set/2020"
+      }
+    },
+    {
+      "analito": "hba1c",
+      "nome": "Hemoglobina glicada (HbA1c)",
+      "unidade": "%",
+      "area": "glicemia",
+      "pontos": [
+        {
+          "data": "2020-09-03",
+          "valor": 5.7,
+          "ref_min": null,
+          "ref_max": 5.7,
+          "fora_da_faixa": true,
+          "valor_impresso": "5,7",
+          "unidade_impressa": "%",
+          "referencia_impressa": "Normal: < 5,7%\nPré-diabetes: 5,7 a 6,4%\nDiabetes: 6,5% ou mais",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 5.8,
+          "ref_min": null,
+          "ref_max": 5.7,
+          "fora_da_faixa": true,
+          "valor_impresso": "5,8",
+          "unidade_impressa": "%",
+          "referencia_impressa": "Normal: inferior a 5,7%\nPré-diabetes: 5,7% a 6,4%\nDiabetes: igual ou superior a 6,5%",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 5.9,
+          "ref_min": null,
+          "ref_max": 5.7,
+          "fora_da_faixa": true,
+          "valor_impresso": "5,9",
+          "unidade_impressa": "%",
+          "referencia_impressa": "Normal: inferior a 5,7%\nPré-diabetes: 5,7% a 6,4%\nDiabetes: igual ou superior a 6,5%",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 6,
+          "ref_min": null,
+          "ref_max": 5.7,
+          "fora_da_faixa": true,
+          "valor_impresso": "6,0",
+          "unidade_impressa": "%",
+          "referencia_impressa": "Normal: inferior a 5,7%\nPré-diabetes: 5,7% a 6,4%\nDiabetes: igual ou superior a 6,5%",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 6,
+          "ref_min": null,
+          "ref_max": 5.7,
+          "fora_da_faixa": true,
+          "valor_impresso": "6,0",
+          "unidade_impressa": "%",
+          "referencia_impressa": "(< 5,7)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 6.2,
+          "ref_min": null,
+          "ref_max": 5.7,
+          "fora_da_faixa": true,
+          "valor_impresso": "6,2",
+          "unidade_impressa": "%",
+          "referencia_impressa": "(< 5,7)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 6.2,
+          "ref_min": null,
+          "ref_max": 5.7,
+          "fora_da_faixa": true,
+          "valor_impresso": "6,2",
+          "unidade_impressa": "%",
+          "referencia_impressa": "(< 5,7)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 6.2,
+        "ref_min": null,
+        "ref_max": 5.7,
+        "fora_da_faixa": true,
+        "valor_impresso": "6,2",
+        "unidade_impressa": "%",
+        "referencia_impressa": "(< 5,7)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": true,
+      "sentido": "acima",
+      "fora_seguidos": 7,
+      "persistente": true,
+      "tendencia": {
+        "direcao": "estavel",
+        "variacao_pct": 8.8,
+        "anos": 5.5,
+        "primeiro": {
+          "data": "2020-09-03",
+          "valor": 5.7,
+          "ref_min": null,
+          "ref_max": 5.7,
+          "fora_da_faixa": true,
+          "valor_impresso": "5,7",
+          "unidade_impressa": "%",
+          "referencia_impressa": "Normal: < 5,7%\nPré-diabetes: 5,7 a 6,4%\nDiabetes: 6,5% ou mais",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 6.2,
+          "ref_min": null,
+          "ref_max": 5.7,
+          "fora_da_faixa": true,
+          "valor_impresso": "6,2",
+          "unidade_impressa": "%",
+          "referencia_impressa": "(< 5,7)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": "2020-09-03",
+        "texto": "estável em 6 anos (5,7 → 6,2 %); acima da referência desde set/2020"
+      }
+    },
+    {
+      "analito": "colesterol_total",
+      "nome": "Colesterol total",
+      "unidade": "mg/dL",
+      "area": "colesterol",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 190,
+          "ref_min": null,
+          "ref_max": 200,
+          "fora_da_faixa": false,
+          "valor_impresso": "190",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: DESEJAVEL: < 200\n    LIMITROFE: 200 A 239\n    ALTO.....: >= 240",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 197,
+          "ref_min": null,
+          "ref_max": 200,
+          "fora_da_faixa": false,
+          "valor_impresso": "197",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: DESEJAVEL: < 200\n    LIMITROFE: 200 A 239\n    ALTO.....: >= 240",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 202,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "202",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: < 190 mg/dL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 204,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "204",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: < 190 mg/dL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 210,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "210",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: < 190 mg/dL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 220,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "220",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: inferior a 190 mg/dL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 223,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "223",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: inferior a 190 mg/dL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 227,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "227",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: inferior a 190 mg/dL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 231,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "231",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(< 190)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 236,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "236",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(< 190)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-05-27",
+          "valor": 236,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "236",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: < 190 mg/dL",
+          "fonte": {
+            "laudo_id": "2025-05",
+            "arquivo": "laudos/2025-05_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 238,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "238",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(< 190)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 238,
+        "ref_min": null,
+        "ref_max": 190,
+        "fora_da_faixa": true,
+        "valor_impresso": "238",
+        "unidade_impressa": "mg/dL",
+        "referencia_impressa": "(< 190)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": true,
+      "sentido": "acima",
+      "fora_seguidos": 10,
+      "persistente": true,
+      "tendencia": {
+        "direcao": "subindo",
+        "variacao_pct": 25.3,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 190,
+          "ref_min": null,
+          "ref_max": 200,
+          "fora_da_faixa": false,
+          "valor_impresso": "190",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: DESEJAVEL: < 200\n    LIMITROFE: 200 A 239\n    ALTO.....: >= 240",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 238,
+          "ref_min": null,
+          "ref_max": 190,
+          "fora_da_faixa": true,
+          "valor_impresso": "238",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(< 190)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": "2018-03-22",
+        "texto": "subiu 25% em 10 anos (190 → 238 mg/dL); acima da referência desde mar/2018"
+      }
+    },
+    {
+      "analito": "hdl",
+      "nome": "HDL",
+      "unidade": "mg/dL",
+      "area": "colesterol",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 48,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "48",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: > 40 MG/DL",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 47,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "47",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: > 40 MG/DL",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 47,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "47",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: > 40 mg/dL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 45,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "45",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: > 40 mg/dL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 45,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "45",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: > 40 mg/dL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 44,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "44",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: superior a 40 mg/dL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 44,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "44",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: superior a 40 mg/dL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 43,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "43",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: superior a 40 mg/dL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 43,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "43",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(> 40)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 41,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "41",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(> 40)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-05-27",
+          "valor": 41,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "41",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: > 40 mg/dL",
+          "fonte": {
+            "laudo_id": "2025-05",
+            "arquivo": "laudos/2025-05_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 42,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "42",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(> 40)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 42,
+        "ref_min": 40,
+        "ref_max": null,
+        "fora_da_faixa": false,
+        "valor_impresso": "42",
+        "unidade_impressa": "mg/dL",
+        "referencia_impressa": "(> 40)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "caindo",
+        "variacao_pct": -12.5,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 48,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "48",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: > 40 MG/DL",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 42,
+          "ref_min": 40,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "42",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(> 40)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "caiu 12% em 10 anos (48 → 42 mg/dL)"
+      }
+    },
+    {
+      "analito": "ldl",
+      "nome": "LDL",
+      "unidade": "mg/dL",
+      "area": "colesterol",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 112,
+          "ref_min": null,
+          "ref_max": 129,
+          "fora_da_faixa": false,
+          "valor_impresso": "112",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: OTIMO............: < 100\n    DESEJAVEL........: 100 A 129\n    LIMITROFE........: 130 A 159\n    ALTO.............: 160 A 189\n    MUITO ALTO.......: >= 190",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 118,
+          "ref_min": null,
+          "ref_max": 129,
+          "fora_da_faixa": false,
+          "valor_impresso": "118",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: OTIMO............: < 100\n    DESEJAVEL........: 100 A 129\n    LIMITROFE........: 130 A 159\n    ALTO.............: 160 A 189\n    MUITO ALTO.......: >= 190",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 124,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": false,
+          "valor_impresso": "124",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Risco baixo: < 130 mg/dL\nRisco intermediário: < 100 mg/dL\nRisco alto: < 70 mg/dL\nRisco muito alto: < 50 mg/dL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 128,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": false,
+          "valor_impresso": "128",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Risco baixo: < 130 mg/dL\nRisco intermediário: < 100 mg/dL\nRisco alto: < 70 mg/dL\nRisco muito alto: < 50 mg/dL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 134,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": true,
+          "valor_impresso": "134",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Risco baixo: < 130 mg/dL\nRisco intermediário: < 100 mg/dL\nRisco alto: < 70 mg/dL\nRisco muito alto: < 50 mg/dL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 140,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": true,
+          "valor_impresso": "140",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Meta conforme categoria de risco:\nBaixo: inferior a 130 mg/dL\nIntermediário: inferior a 100 mg/dL\nAlto: inferior a 70 mg/dL\nMuito alto: inferior a 50 mg/dL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 147,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": true,
+          "valor_impresso": "147",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Meta conforme categoria de risco:\nBaixo: inferior a 130 mg/dL\nIntermediário: inferior a 100 mg/dL\nAlto: inferior a 70 mg/dL\nMuito alto: inferior a 50 mg/dL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 152,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": true,
+          "valor_impresso": "152",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Meta conforme categoria de risco:\nBaixo: inferior a 130 mg/dL\nIntermediário: inferior a 100 mg/dL\nAlto: inferior a 70 mg/dL\nMuito alto: inferior a 50 mg/dL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 153,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": true,
+          "valor_impresso": "153",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(baixo <130; interm. <100; alto <70; muito alto <50)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 158,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": true,
+          "valor_impresso": "158",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(baixo <130; interm. <100; alto <70; muito alto <50)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-05-27",
+          "valor": 161,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": true,
+          "valor_impresso": "161",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Risco baixo: < 130 mg/dL\nRisco intermediário: < 100 mg/dL\nRisco alto: < 70 mg/dL\nRisco muito alto: < 50 mg/dL",
+          "fonte": {
+            "laudo_id": "2025-05",
+            "arquivo": "laudos/2025-05_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 164,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": true,
+          "valor_impresso": "164",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(baixo <130; interm. <100; alto <70; muito alto <50)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 164,
+        "ref_min": null,
+        "ref_max": 130,
+        "fora_da_faixa": true,
+        "valor_impresso": "164",
+        "unidade_impressa": "mg/dL",
+        "referencia_impressa": "(baixo <130; interm. <100; alto <70; muito alto <50)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": true,
+      "sentido": "acima",
+      "fora_seguidos": 8,
+      "persistente": true,
+      "tendencia": {
+        "direcao": "subindo",
+        "variacao_pct": 46.4,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 112,
+          "ref_min": null,
+          "ref_max": 129,
+          "fora_da_faixa": false,
+          "valor_impresso": "112",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: OTIMO............: < 100\n    DESEJAVEL........: 100 A 129\n    LIMITROFE........: 130 A 159\n    ALTO.............: 160 A 189\n    MUITO ALTO.......: >= 190",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 164,
+          "ref_min": null,
+          "ref_max": 130,
+          "fora_da_faixa": true,
+          "valor_impresso": "164",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(baixo <130; interm. <100; alto <70; muito alto <50)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": "2020-09-03",
+        "texto": "subiu 46% em 10 anos (112 → 164 mg/dL); acima da referência desde set/2020"
+      }
+    },
+    {
+      "analito": "triglicerides",
+      "nome": "Triglicérides",
+      "unidade": "mg/dL",
+      "area": "colesterol",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 125,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": false,
+          "valor_impresso": "125",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: DESEJAVEL.: < 150\n    LIMITROFE.: 150 A 199\n    ALTO......: 200 A 499\n    MUITO ALTO: >= 500",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 134,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": false,
+          "valor_impresso": "134",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: DESEJAVEL.: < 150\n    LIMITROFE.: 150 A 199\n    ALTO......: 200 A 499\n    MUITO ALTO: >= 500",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 144,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": false,
+          "valor_impresso": "144",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: < 150 mg/dL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 147,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": false,
+          "valor_impresso": "147",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: < 150 mg/dL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 159,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": true,
+          "valor_impresso": "159",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: < 150 mg/dL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 162,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": true,
+          "valor_impresso": "162",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável (com jejum): inferior a 150 mg/dL\nDesejável (sem jejum): inferior a 175 mg/dL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 165,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": true,
+          "valor_impresso": "165",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável (com jejum): inferior a 150 mg/dL\nDesejável (sem jejum): inferior a 175 mg/dL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 168,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": true,
+          "valor_impresso": "168",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável (com jejum): inferior a 150 mg/dL\nDesejável (sem jejum): inferior a 175 mg/dL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 177,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": true,
+          "valor_impresso": "177",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(< 150)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 182,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": true,
+          "valor_impresso": "182",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(< 150)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-05-27",
+          "valor": 187,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": true,
+          "valor_impresso": "187",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Desejável: < 150 mg/dL",
+          "fonte": {
+            "laudo_id": "2025-05",
+            "arquivo": "laudos/2025-05_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 180,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": true,
+          "valor_impresso": "180",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(< 150)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 180,
+        "ref_min": null,
+        "ref_max": 150,
+        "fora_da_faixa": true,
+        "valor_impresso": "180",
+        "unidade_impressa": "mg/dL",
+        "referencia_impressa": "(< 150)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": true,
+      "sentido": "acima",
+      "fora_seguidos": 8,
+      "persistente": true,
+      "tendencia": {
+        "direcao": "subindo",
+        "variacao_pct": 44,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 125,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": false,
+          "valor_impresso": "125",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: DESEJAVEL.: < 150\n    LIMITROFE.: 150 A 199\n    ALTO......: 200 A 499\n    MUITO ALTO: >= 500",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 180,
+          "ref_min": null,
+          "ref_max": 150,
+          "fora_da_faixa": true,
+          "valor_impresso": "180",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(< 150)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": "2020-09-03",
+        "texto": "subiu 44% em 10 anos (125 → 180 mg/dL); acima da referência desde set/2020"
+      }
+    },
+    {
+      "analito": "creatinina",
+      "nome": "Creatinina",
+      "unidade": "mg/dL",
+      "area": "rins",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 0.95,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "0.95",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: 0.70 A 1.30 MG/DL",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 1,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "1.00",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: 0.70 A 1.30 MG/DL",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 0.99,
+          "ref_min": 0.7,
+          "ref_max": 1.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "0,99",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "0,70 a 1,20 mg/dL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 1,
+          "ref_min": 0.7,
+          "ref_max": 1.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,00",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "0,70 a 1,20 mg/dL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 1.07,
+          "ref_min": 0.7,
+          "ref_max": 1.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,07",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "0,70 a 1,20 mg/dL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 1.01,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,01",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Homens: 0,70 a 1,30 mg/dL\nMulheres: 0,50 a 1,10 mg/dL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 1.07,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,07",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Homens: 0,70 a 1,30 mg/dL\nMulheres: 0,50 a 1,10 mg/dL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 1.02,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,02",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Homens: 0,70 a 1,30 mg/dL\nMulheres: 0,50 a 1,10 mg/dL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 1.07,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,07",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(0,70 a 1,30)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 1.05,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,05",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(0,70 a 1,30)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 1.05,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,05",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(0,70 a 1,30)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 1.05,
+        "ref_min": 0.7,
+        "ref_max": 1.3,
+        "fora_da_faixa": false,
+        "valor_impresso": "1,05",
+        "unidade_impressa": "mg/dL",
+        "referencia_impressa": "(0,70 a 1,30)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "subindo",
+        "variacao_pct": 10.5,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 0.95,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "0.95",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: 0.70 A 1.30 MG/DL",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 1.05,
+          "ref_min": 0.7,
+          "ref_max": 1.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,05",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(0,70 a 1,30)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "subiu 11% em 10 anos (0,95 → 1,05 mg/dL)"
+      }
+    },
+    {
+      "analito": "acido_urico",
+      "nome": "Ácido úrico",
+      "unidade": "mg/dL",
+      "area": "rins",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 6.1,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "6.1",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: 3.5 A 7.2 MG/DL",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 6.3,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "6.3",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: 3.5 A 7.2 MG/DL",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 6.3,
+          "ref_min": 3.4,
+          "ref_max": 7,
+          "fora_da_faixa": false,
+          "valor_impresso": "6,3",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "3,4 a 7,0 mg/dL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 6.6,
+          "ref_min": 3.4,
+          "ref_max": 7,
+          "fora_da_faixa": false,
+          "valor_impresso": "6,6",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "3,4 a 7,0 mg/dL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 6.7,
+          "ref_min": 3.4,
+          "ref_max": 7,
+          "fora_da_faixa": false,
+          "valor_impresso": "6,7",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "3,4 a 7,0 mg/dL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 6.8,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "6,8",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Homens: 3,5 a 7,2 mg/dL\nMulheres: 2,6 a 6,0 mg/dL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 7.1,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "7,1",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Homens: 3,5 a 7,2 mg/dL\nMulheres: 2,6 a 6,0 mg/dL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 7.1,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "7,1",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "Homens: 3,5 a 7,2 mg/dL\nMulheres: 2,6 a 6,0 mg/dL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 7.2,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "7,2",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(3,5 a 7,2)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 7.3,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": true,
+          "valor_impresso": "7,3",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(3,5 a 7,2)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 7.3,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": true,
+          "valor_impresso": "7,3",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(3,5 a 7,2)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 7.3,
+        "ref_min": 3.5,
+        "ref_max": 7.2,
+        "fora_da_faixa": true,
+        "valor_impresso": "7,3",
+        "unidade_impressa": "mg/dL",
+        "referencia_impressa": "(3,5 a 7,2)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": true,
+      "sentido": "acima",
+      "fora_seguidos": 2,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "subindo",
+        "variacao_pct": 19.7,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 6.1,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "6.1",
+          "unidade_impressa": "MG/DL",
+          "referencia_impressa": "VR: 3.5 A 7.2 MG/DL",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 7.3,
+          "ref_min": 3.5,
+          "ref_max": 7.2,
+          "fora_da_faixa": true,
+          "valor_impresso": "7,3",
+          "unidade_impressa": "mg/dL",
+          "referencia_impressa": "(3,5 a 7,2)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": "2025-03-11",
+        "texto": "subiu 20% em 10 anos (6,1 → 7,3 mg/dL); acima da referência desde mar/2025"
+      }
+    },
+    {
+      "analito": "tgo",
+      "nome": "TGO (AST)",
+      "unidade": "U/L",
+      "area": "figado",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 26,
+          "ref_min": 5,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "26",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "VR: 5 A 40 U/L",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 27,
+          "ref_min": 5,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "27",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "VR: 5 A 40 U/L",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 23,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "23",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Até 40 U/L",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 25,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "25",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Até 40 U/L",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 24,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "24",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Até 40 U/L",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 28,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "28",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Homens: até 40 U/L\nMulheres: até 32 U/L",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 29,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "29",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Homens: até 40 U/L\nMulheres: até 32 U/L",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 27,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "27",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Homens: até 40 U/L\nMulheres: até 32 U/L",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 28,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "28",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "(até 40)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 29,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "29",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "(até 40)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 27,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "27",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "(até 40)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 27,
+        "ref_min": null,
+        "ref_max": 40,
+        "fora_da_faixa": false,
+        "valor_impresso": "27",
+        "unidade_impressa": "U/L",
+        "referencia_impressa": "(até 40)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "estavel",
+        "variacao_pct": 3.8,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 26,
+          "ref_min": 5,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "26",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "VR: 5 A 40 U/L",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 2
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 27,
+          "ref_min": null,
+          "ref_max": 40,
+          "fora_da_faixa": false,
+          "valor_impresso": "27",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "(até 40)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "estável em 10 anos (26 → 27 U/L)"
+      }
+    },
+    {
+      "analito": "tgp",
+      "nome": "TGP (ALT)",
+      "unidade": "U/L",
+      "area": "figado",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 26,
+          "ref_min": 7,
+          "ref_max": 56,
+          "fora_da_faixa": false,
+          "valor_impresso": "26",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "VR: 7 A 56 U/L",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 31,
+          "ref_min": 7,
+          "ref_max": 56,
+          "fora_da_faixa": false,
+          "valor_impresso": "31",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "VR: 7 A 56 U/L",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 27,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "27",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Até 41 U/L",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 30,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "30",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Até 41 U/L",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 33,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "33",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Até 41 U/L",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 29,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "29",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Homens: até 41 U/L\nMulheres: até 33 U/L",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 35,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "35",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Homens: até 41 U/L\nMulheres: até 33 U/L",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 32,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "32",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "Homens: até 41 U/L\nMulheres: até 33 U/L",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 29,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "29",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "(até 41)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 33,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "33",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "(até 41)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 35,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "35",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "(até 41)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 35,
+        "ref_min": null,
+        "ref_max": 41,
+        "fora_da_faixa": false,
+        "valor_impresso": "35",
+        "unidade_impressa": "U/L",
+        "referencia_impressa": "(até 41)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "subindo",
+        "variacao_pct": 34.6,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 26,
+          "ref_min": 7,
+          "ref_max": 56,
+          "fora_da_faixa": false,
+          "valor_impresso": "26",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "VR: 7 A 56 U/L",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 2
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 35,
+          "ref_min": null,
+          "ref_max": 41,
+          "fora_da_faixa": false,
+          "valor_impresso": "35",
+          "unidade_impressa": "U/L",
+          "referencia_impressa": "(até 41)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "subiu 35% em 10 anos (26 → 35 U/L)"
+      }
+    },
+    {
+      "analito": "tsh",
+      "nome": "TSH",
+      "unidade": "µUI/mL",
+      "area": "tireoide",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 2.45,
+          "ref_min": 0.4,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "2.45",
+          "unidade_impressa": "UUI/ML",
+          "referencia_impressa": "VR: 0.40 A 4.00 UUI/ML",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 2.44,
+          "ref_min": 0.4,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "2.44",
+          "unidade_impressa": "UUI/ML",
+          "referencia_impressa": "VR: 0.40 A 4.00 UUI/ML",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 1.98,
+          "ref_min": 0.27,
+          "ref_max": 4.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,98",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "0,27 a 4,20 µUI/mL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 2.5,
+          "ref_min": 0.27,
+          "ref_max": 4.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "2,50",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "0,27 a 4,20 µUI/mL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 1.99,
+          "ref_min": 0.27,
+          "ref_max": 4.2,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,99",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "0,27 a 4,20 µUI/mL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 2.32,
+          "ref_min": 0.4,
+          "ref_max": 4.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "2,32",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "Adultos: 0,40 a 4,30 µUI/mL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 2.5,
+          "ref_min": 0.4,
+          "ref_max": 4.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "2,50",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "Adultos: 0,40 a 4,30 µUI/mL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 2.27,
+          "ref_min": 0.4,
+          "ref_max": 4.3,
+          "fora_da_faixa": false,
+          "valor_impresso": "2,27",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "Adultos: 0,40 a 4,30 µUI/mL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 2
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 2.27,
+          "ref_min": 0.45,
+          "ref_max": 4.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "2,27",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "(0,45 a 4,50)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 2.12,
+          "ref_min": 0.45,
+          "ref_max": 4.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "2,12",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "(0,45 a 4,50)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 2.2,
+          "ref_min": 0.45,
+          "ref_max": 4.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "2,20",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "(0,45 a 4,50)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 2.2,
+        "ref_min": 0.45,
+        "ref_max": 4.5,
+        "fora_da_faixa": false,
+        "valor_impresso": "2,20",
+        "unidade_impressa": "µUI/mL",
+        "referencia_impressa": "(0,45 a 4,50)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "caindo",
+        "variacao_pct": -10.2,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 2.45,
+          "ref_min": 0.4,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "2.45",
+          "unidade_impressa": "UUI/ML",
+          "referencia_impressa": "VR: 0.40 A 4.00 UUI/ML",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 2
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 2.2,
+          "ref_min": 0.45,
+          "ref_max": 4.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "2,20",
+          "unidade_impressa": "µUI/mL",
+          "referencia_impressa": "(0,45 a 4,50)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "caiu 10% em 10 anos (2,45 → 2,2 µUI/mL)"
+      }
+    },
+    {
+      "analito": "hemacias",
+      "nome": "Hemácias",
+      "unidade": "milhões/mm³",
+      "area": "sangue",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 4.99,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4.99",
+          "unidade_impressa": "MILHOES/MM3",
+          "referencia_impressa": "VR: 4.50 A 5.90",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 4.99,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4.99",
+          "unidade_impressa": "MILHOES/MM3",
+          "referencia_impressa": "VR: 4.50 A 5.90",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 5.06,
+          "ref_min": 4.3,
+          "ref_max": 5.7,
+          "fora_da_faixa": false,
+          "valor_impresso": "5,06",
+          "unidade_impressa": "milhões/mm³",
+          "referencia_impressa": "4,30 a 5,70 milhões/mm³",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 5.1,
+          "ref_min": 4.3,
+          "ref_max": 5.7,
+          "fora_da_faixa": false,
+          "valor_impresso": "5,10",
+          "unidade_impressa": "milhões/mm³",
+          "referencia_impressa": "4,30 a 5,70 milhões/mm³",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 4.99,
+          "ref_min": 4.3,
+          "ref_max": 5.7,
+          "fora_da_faixa": false,
+          "valor_impresso": "4,99",
+          "unidade_impressa": "milhões/mm³",
+          "referencia_impressa": "4,30 a 5,70 milhões/mm³",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 4.9,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4,90",
+          "unidade_impressa": "milhões/µL",
+          "referencia_impressa": "Homens: 4,50 a 5,90 milhões/µL\nMulheres: 4,00 a 5,20 milhões/µL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 4.95,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4,95",
+          "unidade_impressa": "milhões/µL",
+          "referencia_impressa": "Homens: 4,50 a 5,90 milhões/µL\nMulheres: 4,00 a 5,20 milhões/µL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 4.93,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4,93",
+          "unidade_impressa": "milhões/µL",
+          "referencia_impressa": "Homens: 4,50 a 5,90 milhões/µL\nMulheres: 4,00 a 5,20 milhões/µL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 4.99,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4,99",
+          "unidade_impressa": "x10¹²/L",
+          "referencia_impressa": "(4,50 a 5,90)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 4.91,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4,91",
+          "unidade_impressa": "x10¹²/L",
+          "referencia_impressa": "(4,50 a 5,90)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 4.94,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4,94",
+          "unidade_impressa": "x10¹²/L",
+          "referencia_impressa": "(4,50 a 5,90)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 4.94,
+        "ref_min": 4.5,
+        "ref_max": 5.9,
+        "fora_da_faixa": false,
+        "valor_impresso": "4,94",
+        "unidade_impressa": "x10¹²/L",
+        "referencia_impressa": "(4,50 a 5,90)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "estavel",
+        "variacao_pct": -1,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 4.99,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4.99",
+          "unidade_impressa": "MILHOES/MM3",
+          "referencia_impressa": "VR: 4.50 A 5.90",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 4.94,
+          "ref_min": 4.5,
+          "ref_max": 5.9,
+          "fora_da_faixa": false,
+          "valor_impresso": "4,94",
+          "unidade_impressa": "x10¹²/L",
+          "referencia_impressa": "(4,50 a 5,90)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "estável em 10 anos (4,99 → 4,94 milhões/mm³)"
+      }
+    },
+    {
+      "analito": "hemoglobina",
+      "nome": "Hemoglobina",
+      "unidade": "g/dL",
+      "area": "sangue",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 15.5,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "15.5",
+          "unidade_impressa": "G/DL",
+          "referencia_impressa": "VR: 13.5 A 17.5",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 15.4,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "15.4",
+          "unidade_impressa": "G/DL",
+          "referencia_impressa": "VR: 13.5 A 17.5",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 15.1,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "15,1",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "13,5 a 17,5 g/dL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 14.8,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "14,8",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "13,5 a 17,5 g/dL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 15,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "15,0",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "13,5 a 17,5 g/dL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 14.9,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "14,9",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "Homens: 13,5 a 17,5 g/dL\nMulheres: 12,0 a 15,5 g/dL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 14.7,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "14,7",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "Homens: 13,5 a 17,5 g/dL\nMulheres: 12,0 a 15,5 g/dL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 14.8,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "14,8",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "Homens: 13,5 a 17,5 g/dL\nMulheres: 12,0 a 15,5 g/dL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 14.9,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "14,9",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "(13,5 a 17,5)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 14.6,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "14,6",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "(13,5 a 17,5)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 14.8,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "14,8",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "(13,5 a 17,5)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 14.8,
+        "ref_min": 13.5,
+        "ref_max": 17.5,
+        "fora_da_faixa": false,
+        "valor_impresso": "14,8",
+        "unidade_impressa": "g/dL",
+        "referencia_impressa": "(13,5 a 17,5)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "estavel",
+        "variacao_pct": -4.5,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 15.5,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "15.5",
+          "unidade_impressa": "G/DL",
+          "referencia_impressa": "VR: 13.5 A 17.5",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 14.8,
+          "ref_min": 13.5,
+          "ref_max": 17.5,
+          "fora_da_faixa": false,
+          "valor_impresso": "14,8",
+          "unidade_impressa": "g/dL",
+          "referencia_impressa": "(13,5 a 17,5)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "estável em 10 anos (15,5 → 14,8 g/dL)"
+      }
+    },
+    {
+      "analito": "hematocrito",
+      "nome": "Hematócrito",
+      "unidade": "%",
+      "area": "sangue",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 45.5,
+          "ref_min": 39,
+          "ref_max": 50,
+          "fora_da_faixa": false,
+          "valor_impresso": "45.5",
+          "unidade_impressa": "%",
+          "referencia_impressa": "VR: 39.0 A 50.0",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 44.6,
+          "ref_min": 39,
+          "ref_max": 50,
+          "fora_da_faixa": false,
+          "valor_impresso": "44.6",
+          "unidade_impressa": "%",
+          "referencia_impressa": "VR: 39.0 A 50.0",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 45.3,
+          "ref_min": 39,
+          "ref_max": 50,
+          "fora_da_faixa": false,
+          "valor_impresso": "45,3",
+          "unidade_impressa": "%",
+          "referencia_impressa": "39,0 a 50,0 %",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 44.9,
+          "ref_min": 39,
+          "ref_max": 50,
+          "fora_da_faixa": false,
+          "valor_impresso": "44,9",
+          "unidade_impressa": "%",
+          "referencia_impressa": "39,0 a 50,0 %",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 44.6,
+          "ref_min": 39,
+          "ref_max": 50,
+          "fora_da_faixa": false,
+          "valor_impresso": "44,6",
+          "unidade_impressa": "%",
+          "referencia_impressa": "39,0 a 50,0 %",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 44.9,
+          "ref_min": 41,
+          "ref_max": 53,
+          "fora_da_faixa": false,
+          "valor_impresso": "44,9",
+          "unidade_impressa": "%",
+          "referencia_impressa": "Homens: 41 a 53 %\nMulheres: 36 a 46 %",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 45,
+          "ref_min": 41,
+          "ref_max": 53,
+          "fora_da_faixa": false,
+          "valor_impresso": "45,0",
+          "unidade_impressa": "%",
+          "referencia_impressa": "Homens: 41 a 53 %\nMulheres: 36 a 46 %",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 44.8,
+          "ref_min": 41,
+          "ref_max": 53,
+          "fora_da_faixa": false,
+          "valor_impresso": "44,8",
+          "unidade_impressa": "%",
+          "referencia_impressa": "Homens: 41 a 53 %\nMulheres: 36 a 46 %",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 43.8,
+          "ref_min": 40,
+          "ref_max": 52,
+          "fora_da_faixa": false,
+          "valor_impresso": "43,8",
+          "unidade_impressa": "%",
+          "referencia_impressa": "(40 a 52)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 43.3,
+          "ref_min": 40,
+          "ref_max": 52,
+          "fora_da_faixa": false,
+          "valor_impresso": "43,3",
+          "unidade_impressa": "%",
+          "referencia_impressa": "(40 a 52)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 43.5,
+          "ref_min": 40,
+          "ref_max": 52,
+          "fora_da_faixa": false,
+          "valor_impresso": "43,5",
+          "unidade_impressa": "%",
+          "referencia_impressa": "(40 a 52)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 43.5,
+        "ref_min": 40,
+        "ref_max": 52,
+        "fora_da_faixa": false,
+        "valor_impresso": "43,5",
+        "unidade_impressa": "%",
+        "referencia_impressa": "(40 a 52)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "estavel",
+        "variacao_pct": -4.4,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 45.5,
+          "ref_min": 39,
+          "ref_max": 50,
+          "fora_da_faixa": false,
+          "valor_impresso": "45.5",
+          "unidade_impressa": "%",
+          "referencia_impressa": "VR: 39.0 A 50.0",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 43.5,
+          "ref_min": 40,
+          "ref_max": 52,
+          "fora_da_faixa": false,
+          "valor_impresso": "43,5",
+          "unidade_impressa": "%",
+          "referencia_impressa": "(40 a 52)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "estável em 10 anos (45,5 → 43,5 %)"
+      }
+    },
+    {
+      "analito": "leucocitos",
+      "nome": "Leucócitos",
+      "unidade": "/mm³",
+      "area": "sangue",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 7270,
+          "ref_min": 4000,
+          "ref_max": 10000,
+          "fora_da_faixa": false,
+          "valor_impresso": "7270",
+          "unidade_impressa": "/MM3",
+          "referencia_impressa": "VR: 4000 A 10000",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 7110,
+          "ref_min": 4000,
+          "ref_max": 10000,
+          "fora_da_faixa": false,
+          "valor_impresso": "7110",
+          "unidade_impressa": "/MM3",
+          "referencia_impressa": "VR: 4000 A 10000",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 7210,
+          "ref_min": 3500,
+          "ref_max": 10500,
+          "fora_da_faixa": false,
+          "valor_impresso": "7.210",
+          "unidade_impressa": "/mm³",
+          "referencia_impressa": "3.500 a 10.500 /mm³",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 7390,
+          "ref_min": 3500,
+          "ref_max": 10500,
+          "fora_da_faixa": false,
+          "valor_impresso": "7.390",
+          "unidade_impressa": "/mm³",
+          "referencia_impressa": "3.500 a 10.500 /mm³",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 6980,
+          "ref_min": 3500,
+          "ref_max": 10500,
+          "fora_da_faixa": false,
+          "valor_impresso": "6.980",
+          "unidade_impressa": "/mm³",
+          "referencia_impressa": "3.500 a 10.500 /mm³",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 6750,
+          "ref_min": 4000,
+          "ref_max": 11000,
+          "fora_da_faixa": false,
+          "valor_impresso": "6.750",
+          "unidade_impressa": "/µL",
+          "referencia_impressa": "4.000 a 11.000 /µL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 7460,
+          "ref_min": 4000,
+          "ref_max": 11000,
+          "fora_da_faixa": false,
+          "valor_impresso": "7.460",
+          "unidade_impressa": "/µL",
+          "referencia_impressa": "4.000 a 11.000 /µL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 6960,
+          "ref_min": 4000,
+          "ref_max": 11000,
+          "fora_da_faixa": false,
+          "valor_impresso": "6.960",
+          "unidade_impressa": "/µL",
+          "referencia_impressa": "4.000 a 11.000 /µL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 7040,
+          "ref_min": 4000,
+          "ref_max": 10000,
+          "fora_da_faixa": false,
+          "valor_impresso": "7,04",
+          "unidade_impressa": "mil/mm³",
+          "referencia_impressa": "(4,00 a 10,00)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 6940,
+          "ref_min": 4000,
+          "ref_max": 10000,
+          "fora_da_faixa": false,
+          "valor_impresso": "6,94",
+          "unidade_impressa": "mil/mm³",
+          "referencia_impressa": "(4,00 a 10,00)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 7170,
+          "ref_min": 4000,
+          "ref_max": 10000,
+          "fora_da_faixa": false,
+          "valor_impresso": "7,17",
+          "unidade_impressa": "mil/mm³",
+          "referencia_impressa": "(4,00 a 10,00)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 7170,
+        "ref_min": 4000,
+        "ref_max": 10000,
+        "fora_da_faixa": false,
+        "valor_impresso": "7,17",
+        "unidade_impressa": "mil/mm³",
+        "referencia_impressa": "(4,00 a 10,00)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "estavel",
+        "variacao_pct": -1.4,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 7270,
+          "ref_min": 4000,
+          "ref_max": 10000,
+          "fora_da_faixa": false,
+          "valor_impresso": "7270",
+          "unidade_impressa": "/MM3",
+          "referencia_impressa": "VR: 4000 A 10000",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 7170,
+          "ref_min": 4000,
+          "ref_max": 10000,
+          "fora_da_faixa": false,
+          "valor_impresso": "7,17",
+          "unidade_impressa": "mil/mm³",
+          "referencia_impressa": "(4,00 a 10,00)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "estável em 10 anos (7.270 → 7.170 /mm³)"
+      }
+    },
+    {
+      "analito": "plaquetas",
+      "nome": "Plaquetas",
+      "unidade": "/mm³",
+      "area": "sangue",
+      "pontos": [
+        {
+          "data": "2016-03-09",
+          "valor": 250000,
+          "ref_min": 150000,
+          "ref_max": 400000,
+          "fora_da_faixa": false,
+          "valor_impresso": "250000",
+          "unidade_impressa": "/MM3",
+          "referencia_impressa": "VR: 150000 A 400000",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2017-04-18",
+          "valor": 241000,
+          "ref_min": 150000,
+          "ref_max": 400000,
+          "fora_da_faixa": false,
+          "valor_impresso": "241000",
+          "unidade_impressa": "/MM3",
+          "referencia_impressa": "VR: 150000 A 400000",
+          "fonte": {
+            "laudo_id": "2017-04",
+            "arquivo": "laudos/2017-04_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2018-03-22",
+          "valor": 256000,
+          "ref_min": 150000,
+          "ref_max": 450000,
+          "fora_da_faixa": false,
+          "valor_impresso": "256.000",
+          "unidade_impressa": "/mm³",
+          "referencia_impressa": "150.000 a 450.000 /mm³",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 233000,
+          "ref_min": 150000,
+          "ref_max": 450000,
+          "fora_da_faixa": false,
+          "valor_impresso": "233.000",
+          "unidade_impressa": "/mm³",
+          "referencia_impressa": "150.000 a 450.000 /mm³",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 225000,
+          "ref_min": 150000,
+          "ref_max": 450000,
+          "fora_da_faixa": false,
+          "valor_impresso": "225.000",
+          "unidade_impressa": "/mm³",
+          "referencia_impressa": "150.000 a 450.000 /mm³",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 235000,
+          "ref_min": 150000,
+          "ref_max": 450000,
+          "fora_da_faixa": false,
+          "valor_impresso": "235",
+          "unidade_impressa": "mil/µL",
+          "referencia_impressa": "150 a 450 mil/µL",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 223000,
+          "ref_min": 150000,
+          "ref_max": 450000,
+          "fora_da_faixa": false,
+          "valor_impresso": "223",
+          "unidade_impressa": "mil/µL",
+          "referencia_impressa": "150 a 450 mil/µL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 226000,
+          "ref_min": 150000,
+          "ref_max": 450000,
+          "fora_da_faixa": false,
+          "valor_impresso": "226",
+          "unidade_impressa": "mil/µL",
+          "referencia_impressa": "150 a 450 mil/µL",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 243000,
+          "ref_min": 150000,
+          "ref_max": 400000,
+          "fora_da_faixa": false,
+          "valor_impresso": "243",
+          "unidade_impressa": "mil/mm³",
+          "referencia_impressa": "(150 a 400)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 225000,
+          "ref_min": 150000,
+          "ref_max": 400000,
+          "fora_da_faixa": false,
+          "valor_impresso": "225",
+          "unidade_impressa": "mil/mm³",
+          "referencia_impressa": "(150 a 400)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 239000,
+          "ref_min": 150000,
+          "ref_max": 400000,
+          "fora_da_faixa": false,
+          "valor_impresso": "239",
+          "unidade_impressa": "mil/mm³",
+          "referencia_impressa": "(150 a 400)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 239000,
+        "ref_min": 150000,
+        "ref_max": 400000,
+        "fora_da_faixa": false,
+        "valor_impresso": "239",
+        "unidade_impressa": "mil/mm³",
+        "referencia_impressa": "(150 a 400)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "estavel",
+        "variacao_pct": -4.4,
+        "anos": 10,
+        "primeiro": {
+          "data": "2016-03-09",
+          "valor": 250000,
+          "ref_min": 150000,
+          "ref_max": 400000,
+          "fora_da_faixa": false,
+          "valor_impresso": "250000",
+          "unidade_impressa": "/MM3",
+          "referencia_impressa": "VR: 150000 A 400000",
+          "fonte": {
+            "laudo_id": "2016-03",
+            "arquivo": "laudos/2016-03_delta.pdf",
+            "laboratorio": "LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 239000,
+          "ref_min": 150000,
+          "ref_max": 400000,
+          "fora_da_faixa": false,
+          "valor_impresso": "239",
+          "unidade_impressa": "mil/mm³",
+          "referencia_impressa": "(150 a 400)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "estável em 10 anos (250.000 → 239.000 /mm³)"
+      }
+    },
+    {
+      "analito": "psa",
+      "nome": "PSA",
+      "unidade": "ng/mL",
+      "area": "prostata",
+      "pontos": [
+        {
+          "data": "2018-03-22",
+          "valor": 0.84,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "0,84",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "Até 4,00 ng/mL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2019-03-14",
+          "valor": 0.98,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "0,98",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "Até 4,00 ng/mL",
+          "fonte": {
+            "laudo_id": "2019-03",
+            "arquivo": "laudos/2019-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2020-09-03",
+          "valor": 1,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,00",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "Até 4,00 ng/mL",
+          "fonte": {
+            "laudo_id": "2020-09",
+            "arquivo": "laudos/2020-09_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2021-08-26",
+          "valor": 1.15,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,15",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "Até 4,0 ng/mL\n(o valor de corte pode variar com a idade)",
+          "fonte": {
+            "laudo_id": "2021-08",
+            "arquivo": "laudos/2021-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 3
+          }
+        },
+        {
+          "data": "2022-08-17",
+          "valor": 1.16,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,16",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "Até 4,0 ng/mL\n(o valor de corte pode variar com a idade)",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 3
+          }
+        },
+        {
+          "data": "2023-09-05",
+          "valor": 1.28,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,28",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "Até 4,0 ng/mL\n(o valor de corte pode variar com a idade)",
+          "fonte": {
+            "laudo_id": "2023-09",
+            "arquivo": "laudos/2023-09_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 3
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 1.31,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,31",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "(< 4,0)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2025-03-11",
+          "valor": 1.34,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,34",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "(< 4,0)",
+          "fonte": {
+            "laudo_id": "2025-03",
+            "arquivo": "laudos/2025-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        {
+          "data": "2026-03-12",
+          "valor": 1.42,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,42",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "(< 4,0)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2026-03-12",
+        "valor": 1.42,
+        "ref_min": null,
+        "ref_max": 4,
+        "fora_da_faixa": false,
+        "valor_impresso": "1,42",
+        "unidade_impressa": "ng/mL",
+        "referencia_impressa": "(< 4,0)",
+        "fonte": {
+          "laudo_id": "2026-03",
+          "arquivo": "laudos/2026-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": {
+        "direcao": "subindo",
+        "variacao_pct": 69,
+        "anos": 8,
+        "primeiro": {
+          "data": "2018-03-22",
+          "valor": 0.84,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "0,84",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "Até 4,00 ng/mL",
+          "fonte": {
+            "laudo_id": "2018-03",
+            "arquivo": "laudos/2018-03_alfa.pdf",
+            "laboratorio": "Laboratório Alfa Diagnósticos",
+            "pagina": 1
+          }
+        },
+        "ultimo": {
+          "data": "2026-03-12",
+          "valor": 1.42,
+          "ref_min": null,
+          "ref_max": 4,
+          "fora_da_faixa": false,
+          "valor_impresso": "1,42",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "(< 4,0)",
+          "fonte": {
+            "laudo_id": "2026-03",
+            "arquivo": "laudos/2026-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        },
+        "fora_desde": null,
+        "texto": "subiu 69% em 8 anos (0,84 → 1,42 ng/mL)"
+      }
+    },
+    {
+      "analito": "vitamina_d",
+      "nome": "Vitamina D",
+      "unidade": "ng/mL",
+      "area": "vitaminas",
+      "pontos": [
+        {
+          "data": "2022-08-17",
+          "valor": 22.4,
+          "ref_min": 30,
+          "ref_max": 100,
+          "fora_da_faixa": true,
+          "valor_impresso": "22,4",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "Deficiência: inferior a 20 ng/mL\nInsuficiência: 20 a 29 ng/mL\nSuficiência: 30 a 100 ng/mL\nRisco de toxicidade: superior a 100 ng/mL",
+          "fonte": {
+            "laudo_id": "2022-08",
+            "arquivo": "laudos/2022-08_beta.pdf",
+            "laboratorio": "Diagnóstica Beta Medicina Laboratorial",
+            "pagina": 3
+          }
+        },
+        {
+          "data": "2024-03-20",
+          "valor": 31.8,
+          "ref_min": 20,
+          "ref_max": null,
+          "fora_da_faixa": false,
+          "valor_impresso": "31,8",
+          "unidade_impressa": "ng/mL",
+          "referencia_impressa": "(> 20)",
+          "fonte": {
+            "laudo_id": "2024-03",
+            "arquivo": "laudos/2024-03_gama.pdf",
+            "laboratorio": "Gama Análises Clínicas",
+            "pagina": 1
+          }
+        }
+      ],
+      "ultimo": {
+        "data": "2024-03-20",
+        "valor": 31.8,
+        "ref_min": 20,
+        "ref_max": null,
+        "fora_da_faixa": false,
+        "valor_impresso": "31,8",
+        "unidade_impressa": "ng/mL",
+        "referencia_impressa": "(> 20)",
+        "fonte": {
+          "laudo_id": "2024-03",
+          "arquivo": "laudos/2024-03_gama.pdf",
+          "laboratorio": "Gama Análises Clínicas",
+          "pagina": 1
+        }
+      },
+      "alterado": false,
+      "sentido": null,
+      "fora_seguidos": 0,
+      "persistente": false,
+      "tendencia": null
+    }
+  ],
+  "areas": [
+    {
+      "id": "glicemia",
+      "nome": "Glicemia",
+      "status": "atencao",
+      "motivos": [
+        "Glicose em jejum 112 mg/dL em mar/2026, acima da referência (70 a 99 mg/dL); alterado nos últimos 8 exames",
+        "Hemoglobina glicada (HbA1c) 6,2 % em mar/2026, acima da referência (até 5,7 %); alterado nos últimos 7 exames"
+      ],
+      "analitos": [
+        "glicose",
+        "hba1c"
+      ],
+      "ultimo_exame": "2026-03-12"
+    },
+    {
+      "id": "colesterol",
+      "nome": "Colesterol",
+      "status": "atencao",
+      "motivos": [
+        "Colesterol total 238 mg/dL em mar/2026, acima da referência (até 190 mg/dL); alterado nos últimos 10 exames",
+        "LDL 164 mg/dL em mar/2026, acima da referência (até 130 mg/dL); alterado nos últimos 8 exames",
+        "Triglicérides 180 mg/dL em mar/2026, acima da referência (até 150 mg/dL); alterado nos últimos 8 exames"
+      ],
+      "analitos": [
+        "colesterol_total",
+        "hdl",
+        "ldl",
+        "triglicerides"
+      ],
+      "ultimo_exame": "2026-03-12"
+    },
+    {
+      "id": "rins",
+      "nome": "Rins e ácido úrico",
+      "status": "atencao",
+      "motivos": [
+        "Ácido úrico 7,3 mg/dL em mar/2026, acima da referência (3,5 a 7,2 mg/dL)"
+      ],
+      "analitos": [
+        "creatinina",
+        "acido_urico"
+      ],
+      "ultimo_exame": "2026-03-12"
+    },
+    {
+      "id": "figado",
+      "nome": "Fígado",
+      "status": "em_dia",
+      "motivos": [
+        "Todos os exames dentro da referência no último resultado (mar/2026)"
+      ],
+      "analitos": [
+        "tgo",
+        "tgp"
+      ],
+      "ultimo_exame": "2026-03-12"
+    },
+    {
+      "id": "tireoide",
+      "nome": "Tireoide",
+      "status": "em_dia",
+      "motivos": [
+        "Todos os exames dentro da referência no último resultado (mar/2026)"
+      ],
+      "analitos": [
+        "tsh"
+      ],
+      "ultimo_exame": "2026-03-12"
+    },
+    {
+      "id": "sangue",
+      "nome": "Sangue (hemograma)",
+      "status": "em_dia",
+      "motivos": [
+        "Todos os exames dentro da referência no último resultado (mar/2026)"
+      ],
+      "analitos": [
+        "hemacias",
+        "hemoglobina",
+        "hematocrito",
+        "leucocitos",
+        "plaquetas"
+      ],
+      "ultimo_exame": "2026-03-12"
+    },
+    {
+      "id": "prostata",
+      "nome": "Próstata",
+      "status": "em_dia",
+      "motivos": [
+        "Todos os exames dentro da referência no último resultado (mar/2026)"
+      ],
+      "analitos": [
+        "psa"
+      ],
+      "ultimo_exame": "2026-03-12"
+    },
+    {
+      "id": "vitaminas",
+      "nome": "Vitaminas",
+      "status": "em_dia",
+      "motivos": [
+        "Todos os exames dentro da referência no último resultado (mar/2024)"
+      ],
+      "analitos": [
+        "vitamina_d"
+      ],
+      "ultimo_exame": "2024-03-20"
+    }
+  ],
+  "repeticoes": [
+    {
+      "dias": 77,
+      "analitos": [
+        "glicose",
+        "colesterol_total",
+        "hdl",
+        "ldl",
+        "triglicerides"
+      ],
+      "de": {
+        "laudo_id": "2025-03",
+        "arquivo": "laudos/2025-03_gama.pdf",
+        "laboratorio": "Gama Análises Clínicas",
+        "pagina": 1,
+        "data": "2025-03-11"
+      },
+      "para": {
+        "laudo_id": "2025-05",
+        "arquivo": "laudos/2025-05_alfa.pdf",
+        "laboratorio": "Laboratório Alfa Diagnósticos",
+        "pagina": 1,
+        "data": "2025-05-27"
+      },
+      "texto": "Glicose em jejum, Colesterol total, HDL, LDL e Triglicérides refeitos 77 dias depois (Gama Análises Clínicas, 11/03/2025 → Laboratório Alfa Diagnósticos, 27/05/2025)"
+    }
+  ],
+  "proximos": [
+    {
+      "analito": "glicose",
+      "nome": "Glicose em jejum",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "hba1c",
+      "nome": "Hemoglobina glicada (HbA1c)",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "colesterol_total",
+      "nome": "Colesterol total",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "hdl",
+      "nome": "HDL",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "ldl",
+      "nome": "LDL",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "triglicerides",
+      "nome": "Triglicérides",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "creatinina",
+      "nome": "Creatinina",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "tgo",
+      "nome": "TGO (AST)",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "tgp",
+      "nome": "TGP (ALT)",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "tsh",
+      "nome": "TSH",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "hemacias",
+      "nome": "Hemácias",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "hemoglobina",
+      "nome": "Hemoglobina",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "hematocrito",
+      "nome": "Hematócrito",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "leucocitos",
+      "nome": "Leucócitos",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "plaquetas",
+      "nome": "Plaquetas",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    },
+    {
+      "analito": "psa",
+      "nome": "PSA",
+      "ultimo": "2026-03-12",
+      "previsto": "2027-03-12",
+      "situacao": "em_dia"
+    }
+  ],
+  "resumo_medico": [
+    "Roberto Almeida Siqueira, 58 anos, masculino.",
+    "Histórico: 12 laudos de mar/2016 a mar/2026, 4 laboratórios (LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS, Laboratório Alfa Diagnósticos, Diagnóstica Beta Medicina Laboratorial e Gama Análises Clínicas).",
+    "",
+    "Alterados no último resultado:",
+    "- Glicose em jejum: 112 mg/dL (ref. 70 a 99 mg/dL), alterado nos últimos 8 exames; subiu 27% em 10 anos (88 → 112 mg/dL); acima da referência desde set/2020 [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- Hemoglobina glicada (HbA1c): 6,2 % (ref. até 5,7 %), alterado nos últimos 7 exames [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- Colesterol total: 238 mg/dL (ref. até 190 mg/dL), alterado nos últimos 10 exames; subiu 25% em 10 anos (190 → 238 mg/dL); acima da referência desde mar/2018 [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- LDL: 164 mg/dL (ref. até 130 mg/dL), alterado nos últimos 8 exames; subiu 46% em 10 anos (112 → 164 mg/dL); acima da referência desde set/2020 [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- Triglicérides: 180 mg/dL (ref. até 150 mg/dL), alterado nos últimos 8 exames; subiu 44% em 10 anos (125 → 180 mg/dL); acima da referência desde set/2020 [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- Ácido úrico: 7,3 mg/dL (ref. 3,5 a 7,2 mg/dL); subiu 20% em 10 anos (6,1 → 7,3 mg/dL); acima da referência desde mar/2025 [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "",
+    "Mudanças relevantes dentro da referência:",
+    "- HDL: caiu 12% em 10 anos (48 → 42 mg/dL) [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- Creatinina: subiu 11% em 10 anos (0,95 → 1,05 mg/dL) [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- TGP (ALT): subiu 35% em 10 anos (26 → 35 U/L) [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- TSH: caiu 10% em 10 anos (2,45 → 2,2 µUI/mL) [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- PSA: subiu 69% em 8 anos (0,84 → 1,42 ng/mL) [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "",
+    "Exames repetidos em curto intervalo:",
+    "- Glicose em jejum, Colesterol total, HDL, LDL e Triglicérides refeitos 77 dias depois (Gama Análises Clínicas, 11/03/2025 → Laboratório Alfa Diagnósticos, 27/05/2025)",
+    "",
+    "Exames de rotina em dia; próximo check-up previsto para mar/2027.",
+    "",
+    "Cada valor indica o laudo e a página de origem. Resumo gerado por regras a partir dos laudos; não é diagnóstico."
+  ]
+}
