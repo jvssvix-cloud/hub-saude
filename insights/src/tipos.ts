@@ -47,6 +47,8 @@ export type Ponto = {
 
 export type Tendencia = {
   direcao: "subindo" | "caindo" | "estavel";
+  /** 0 a 1: quanto os pontos seguem a linha de tendência (R²). */
+  consistencia: number;
   variacao_pct: number;
   anos: number;
   primeiro: Ponto;

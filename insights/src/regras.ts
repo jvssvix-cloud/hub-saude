@@ -12,7 +12,8 @@ export const PARAMETROS = {
   persistente_min_seguidos: 3,  // fora da referência em N exames seguidos = persistente
   tendencia_min_pontos: 3,      // tendência só com pelo menos N resultados...
   tendencia_min_anos: 2,        // ...cobrindo pelo menos N anos
-  tendencia_estavel_pct: 10,    // variação abaixo disso = estável
+  tendencia_min_consistencia: 0.6, // R² da linha de tendência: abaixo disso é oscilação, não tendência
+  tendencia_estavel_pct: 5,     // variação da linha abaixo disso = estável
   repeticao_max_dias: 90,       // mesmo exame em laudos diferentes com menos de N dias = repetido
   rotina_previsto_meses: 12,    // exame de rotina: próximo previsto N meses após o último
   rotina_atrasado_meses: 18,    // passou disso = atrasado
@@ -110,8 +111,21 @@ function calcularTendencia(s: Serie): Tendencia | null {
   const primeiro = p[0], ultimo = p.at(-1)!;
   const anos = dias(primeiro.data, ultimo.data) / 365.25;
   if (anos < PARAMETROS.tendencia_min_anos || primeiro.valor === 0) return null;
+  // Linha que melhor passa por TODOS os pontos (mínimos quadrados, tempo em anos).
+  // consistencia (R²) = quanto os pontos seguem a linha: 1 = perfeitamente, 0 = oscilação sem direção.
+  const xs = p.map((q) => dias(primeiro.data, q.data) / 365.25), ys = p.map((q) => q.valor);
+  const mx = xs.reduce((a, b) => a + b) / xs.length, my = ys.reduce((a, b) => a + b) / ys.length;
+  const sxx = xs.reduce((a, x) => a + (x - mx) ** 2, 0);
+  const sxy = xs.reduce((a, x, k) => a + (x - mx) * (ys[k] - my), 0);
+  const syy = ys.reduce((a, y) => a + (y - my) ** 2, 0);
+  const incl = sxy / sxx;
+  const consistencia = syy === 0 ? 0 : (sxy * sxy) / (sxx * syy);
+  const inicioLinha = my - incl * mx, fimLinha = inicioLinha + incl * xs.at(-1)!;
+  const variacaoLinha = inicioLinha === 0 ? 0 : ((fimLinha - inicioLinha) / Math.abs(inicioLinha)) * 100;
+  const direcao = consistencia < PARAMETROS.tendencia_min_consistencia
+    || Math.abs(variacaoLinha) < PARAMETROS.tendencia_estavel_pct ? "estavel" : incl > 0 ? "subindo" : "caindo";
+  // No texto, a variação usa os valores reais (primeiro e último), que a pessoa consegue conferir no laudo
   const variacao = ((ultimo.valor - primeiro.valor) / primeiro.valor) * 100;
-  const direcao = Math.abs(variacao) < PARAMETROS.tendencia_estavel_pct ? "estavel" : variacao > 0 ? "subindo" : "caindo";
   // Fora da referência desde: início da sequência atual de resultados alterados (se houve normal antes)
   let fora_desde: string | null = null;
   if (s.fora_seguidos > 0 && s.fora_seguidos < p.length) fora_desde = p[p.length - s.fora_seguidos].data;
@@ -119,10 +133,10 @@ function calcularTendencia(s: Serie): Tendencia | null {
   const a = Math.round(anos);
   const de = `${num(primeiro.valor)} → ${num(ultimo.valor)} ${s.unidade}`;
   let texto = direcao === "estavel"
-    ? `estável em ${a} ${a === 1 ? "ano" : "anos"} (${de})`
+    ? `sem tendência em ${a} ${a === 1 ? "ano" : "anos"} (oscilou entre ${num(Math.min(...ys))} e ${num(Math.max(...ys))} ${s.unidade})`
     : `${direcao === "subindo" ? "subiu" : "caiu"} ${Math.abs(Math.round(variacao))}% em ${a} anos (${de})`;
   if (fora_desde) texto += `; ${s.sentido} da referência desde ${mesAno(fora_desde)}`;
-  return { direcao, variacao_pct: Math.round(variacao * 10) / 10, anos: Math.round(anos * 10) / 10, primeiro, ultimo, fora_desde, texto };
+  return { direcao, consistencia: Math.round(consistencia * 100) / 100, variacao_pct: Math.round(variacao * 10) / 10, anos: Math.round(anos * 10) / 10, primeiro, ultimo, fora_desde, texto };
 }
 
 // ---------------- regra 3: status por área ----------------

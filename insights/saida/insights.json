@@ -238,6 +238,7 @@
       "persistente": true,
       "tendencia": {
         "direcao": "subindo",
+        "consistencia": 0.99,
         "variacao_pct": 27.3,
         "anos": 10,
         "primeiro": {
@@ -416,7 +417,8 @@
       "fora_seguidos": 7,
       "persistente": true,
       "tendencia": {
-        "direcao": "estavel",
+        "direcao": "subindo",
+        "consistencia": 0.97,
         "variacao_pct": 8.8,
         "anos": 5.5,
         "primeiro": {
@@ -452,7 +454,7 @@
           }
         },
         "fora_desde": "2020-09-03",
-        "texto": "estável em 6 anos (5,7 → 6,2 %); acima da referência desde set/2020"
+        "texto": "subiu 9% em 6 anos (5,7 → 6,2 %); acima da referência desde set/2020"
       }
     },
     {
@@ -676,6 +678,7 @@
       "persistente": true,
       "tendencia": {
         "direcao": "subindo",
+        "consistencia": 0.99,
         "variacao_pct": 25.3,
         "anos": 10,
         "primeiro": {
@@ -935,6 +938,7 @@
       "persistente": false,
       "tendencia": {
         "direcao": "caindo",
+        "consistencia": 0.94,
         "variacao_pct": -12.5,
         "anos": 10,
         "primeiro": {
@@ -1194,6 +1198,7 @@
       "persistente": true,
       "tendencia": {
         "direcao": "subindo",
+        "consistencia": 1,
         "variacao_pct": 46.4,
         "anos": 10,
         "primeiro": {
@@ -1453,6 +1458,7 @@
       "persistente": true,
       "tendencia": {
         "direcao": "subindo",
+        "consistencia": 0.97,
         "variacao_pct": 44,
         "anos": 10,
         "primeiro": {
@@ -1695,7 +1701,8 @@
       "fora_seguidos": 0,
       "persistente": false,
       "tendencia": {
-        "direcao": "subindo",
+        "direcao": "estavel",
+        "consistencia": 0.58,
         "variacao_pct": 10.5,
         "anos": 10,
         "primeiro": {
@@ -1731,7 +1738,7 @@
           }
         },
         "fora_desde": null,
-        "texto": "subiu 11% em 10 anos (0,95 → 1,05 mg/dL)"
+        "texto": "sem tendência em 10 anos (oscilou entre 0,95 e 1,07 mg/dL)"
       }
     },
     {
@@ -1939,6 +1946,7 @@
       "persistente": false,
       "tendencia": {
         "direcao": "subindo",
+        "consistencia": 0.97,
         "variacao_pct": 19.7,
         "anos": 10,
         "primeiro": {
@@ -2182,6 +2190,7 @@
       "persistente": false,
       "tendencia": {
         "direcao": "estavel",
+        "consistencia": 0.33,
         "variacao_pct": 3.8,
         "anos": 10,
         "primeiro": {
@@ -2217,7 +2226,7 @@
           }
         },
         "fora_desde": null,
-        "texto": "estável em 10 anos (26 → 27 U/L)"
+        "texto": "sem tendência em 10 anos (oscilou entre 23 e 29 U/L)"
       }
     },
     {
@@ -2424,7 +2433,8 @@
       "fora_seguidos": 0,
       "persistente": false,
       "tendencia": {
-        "direcao": "subindo",
+        "direcao": "estavel",
+        "consistencia": 0.45,
         "variacao_pct": 34.6,
         "anos": 10,
         "primeiro": {
@@ -2460,7 +2470,7 @@
           }
         },
         "fora_desde": null,
-        "texto": "subiu 35% em 10 anos (26 → 35 U/L)"
+        "texto": "sem tendência em 10 anos (oscilou entre 26 e 35 U/L)"
       }
     },
     {
@@ -2667,7 +2677,8 @@
       "fora_seguidos": 0,
       "persistente": false,
       "tendencia": {
-        "direcao": "caindo",
+        "direcao": "estavel",
+        "consistencia": 0.07,
         "variacao_pct": -10.2,
         "anos": 10,
         "primeiro": {
@@ -2703,7 +2714,7 @@
           }
         },
         "fora_desde": null,
-        "texto": "caiu 10% em 10 anos (2,45 → 2,2 µUI/mL)"
+        "texto": "sem tendência em 10 anos (oscilou entre 1,98 e 2,5 µUI/mL)"
       }
     },
     {
@@ -2911,6 +2922,7 @@
       "persistente": false,
       "tendencia": {
         "direcao": "estavel",
+        "consistencia": 0.36,
         "variacao_pct": -1,
         "anos": 10,
         "primeiro": {
@@ -2946,7 +2958,7 @@
           }
         },
         "fora_desde": null,
-        "texto": "estável em 10 anos (4,99 → 4,94 milhões/mm³)"
+        "texto": "sem tendência em 10 anos (oscilou entre 4,9 e 5,1 milhões/mm³)"
       }
     },
     {
@@ -3154,6 +3166,7 @@
       "persistente": false,
       "tendencia": {
         "direcao": "estavel",
+        "consistencia": 0.68,
         "variacao_pct": -4.5,
         "anos": 10,
         "primeiro": {
@@ -3189,7 +3202,7 @@
           }
         },
         "fora_desde": null,
-        "texto": "estável em 10 anos (15,5 → 14,8 g/dL)"
+        "texto": "sem tendência em 10 anos (oscilou entre 14,6 e 15,5 g/dL)"
       }
     },
     {
@@ -3397,6 +3410,7 @@
       "persistente": false,
       "tendencia": {
         "direcao": "estavel",
+        "consistencia": 0.62,
         "variacao_pct": -4.4,
         "anos": 10,
         "primeiro": {
@@ -3432,7 +3446,7 @@
           }
         },
         "fora_desde": null,
-        "texto": "estável em 10 anos (45,5 → 43,5 %)"
+        "texto": "sem tendência em 10 anos (oscilou entre 43,3 e 45,5 %)"
       }
     },
     {
@@ -3640,6 +3654,7 @@
       "persistente": false,
       "tendencia": {
         "direcao": "estavel",
+        "consistencia": 0.1,
         "variacao_pct": -1.4,
         "anos": 10,
         "primeiro": {
@@ -3675,7 +3690,7 @@
           }
         },
         "fora_desde": null,
-        "texto": "estável em 10 anos (7.270 → 7.170 /mm³)"
+        "texto": "sem tendência em 10 anos (oscilou entre 6.750 e 7.460 /mm³)"
       }
     },
     {
@@ -3883,6 +3898,7 @@
       "persistente": false,
       "tendencia": {
         "direcao": "estavel",
+        "consistencia": 0.27,
         "variacao_pct": -4.4,
         "anos": 10,
         "primeiro": {
@@ -3918,7 +3934,7 @@
           }
         },
         "fora_desde": null,
-        "texto": "estável em 10 anos (250.000 → 239.000 /mm³)"
+        "texto": "sem tendência em 10 anos (oscilou entre 223.000 e 256.000 /mm³)"
       }
     },
     {
@@ -4094,6 +4110,7 @@
       "persistente": false,
       "tendencia": {
         "direcao": "subindo",
+        "consistencia": 0.97,
         "variacao_pct": 69,
         "anos": 8,
         "primeiro": {
@@ -4452,7 +4469,7 @@
     "",
     "Alterados no último resultado:",
     "- Glicose em jejum: 112 mg/dL (ref. 70 a 99 mg/dL), alterado nos últimos 8 exames; subiu 27% em 10 anos (88 → 112 mg/dL); acima da referência desde set/2020 [Gama Análises Clínicas, 12/03/2026, p. 1]",
-    "- Hemoglobina glicada (HbA1c): 6,2 % (ref. até 5,7 %), alterado nos últimos 7 exames [Gama Análises Clínicas, 12/03/2026, p. 1]",
+    "- Hemoglobina glicada (HbA1c): 6,2 % (ref. até 5,7 %), alterado nos últimos 7 exames; subiu 9% em 6 anos (5,7 → 6,2 %); acima da referência desde set/2020 [Gama Análises Clínicas, 12/03/2026, p. 1]",
     "- Colesterol total: 238 mg/dL (ref. até 190 mg/dL), alterado nos últimos 10 exames; subiu 25% em 10 anos (190 → 238 mg/dL); acima da referência desde mar/2018 [Gama Análises Clínicas, 12/03/2026, p. 1]",
     "- LDL: 164 mg/dL (ref. até 130 mg/dL), alterado nos últimos 8 exames; subiu 46% em 10 anos (112 → 164 mg/dL); acima da referência desde set/2020 [Gama Análises Clínicas, 12/03/2026, p. 1]",
     "- Triglicérides: 180 mg/dL (ref. até 150 mg/dL), alterado nos últimos 8 exames; subiu 44% em 10 anos (125 → 180 mg/dL); acima da referência desde set/2020 [Gama Análises Clínicas, 12/03/2026, p. 1]",
@@ -4460,9 +4477,6 @@
     "",
     "Mudanças relevantes dentro da referência:",
     "- HDL: caiu 12% em 10 anos (48 → 42 mg/dL) [Gama Análises Clínicas, 12/03/2026, p. 1]",
-    "- Creatinina: subiu 11% em 10 anos (0,95 → 1,05 mg/dL) [Gama Análises Clínicas, 12/03/2026, p. 1]",
-    "- TGP (ALT): subiu 35% em 10 anos (26 → 35 U/L) [Gama Análises Clínicas, 12/03/2026, p. 1]",
-    "- TSH: caiu 10% em 10 anos (2,45 → 2,2 µUI/mL) [Gama Análises Clínicas, 12/03/2026, p. 1]",
     "- PSA: subiu 69% em 8 anos (0,84 → 1,42 ng/mL) [Gama Análises Clínicas, 12/03/2026, p. 1]",
     "",
     "Exames repetidos em curto intervalo:",
