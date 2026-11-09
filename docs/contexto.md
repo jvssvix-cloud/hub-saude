@@ -1,10 +1,10 @@
 # CONTEXTO — Hackathon Gama House × Desafio Rivio
 > Arquivo vivo. Fica no Projeto "hackathon Rivio"; cole em novas conversas e mantenha em `docs/contexto.md` no repositório.
-> Última atualização: 09/11/2026 (seg), time reduzido para 2 pessoas, estratégia e cronograma refeitos.
+> Última atualização: 09/11/2026 (seg, noite): extração + insights + vacinas prontos; relógio volta (sintético); os 2 constroem juntos; plano das 6h de hoje.
 
 ## 1. O básico
 - **Quem:** João Vitor (Eng. Civil POLI-USP), organizador (LEPoli × Mohashees) e também participante.
-- **Time:** **2 pessoas**: João + 1 amigo (nome a preencher). Papéis na seção 6.
+- **Time:** **2 pessoas**: João + 1 amigo (nome a preencher), **construindo juntos** com o Claude Code (seção 6).
 - **Evento:** Hackathon Gama House. Desafio proposto pela **Rivio**.
 - **Entrega:** **sábado 14/11/2026, na Gama House**. **Live demo de 10 min** para a Rivio.
 - **Tempo disponível (a partir de seg 09/11):** ~3,5 dias de construção (seg à noite → qui à noite) + sexta de ensaio.
@@ -46,17 +46,18 @@ Uma plataforma com IA que junta o histórico de saúde de cada pessoa, do exame 
 - Competência central: **agentes de IA que leem documentos médicos bagunçados.** Vão julgar a QUALIDADE DA EXTRAÇÃO.
 - **Hipótese de ponte (só pitch):** histórico estruturado e consentido = menos exames repetidos, documentação melhor, menos glosa.
 
-## 4. Tese e estratégia (revista em 09/11 para 2 pessoas)
-**Diferencial = EXTRAÇÃO BOA + RASTREABILIDADE.** Com 2 pessoas não dá para fazer os 3 pilares bem. Escolha: **fazer o pilar 1 (estruturar) muito bem e o pilar 3 (médico) simples**; o pilar 2 (relógio) vira slide/protótipo. É exatamente onde a Rivio é forte e vai julgar: ler documento bagunçado.
+## 4. Tese e estratégia (revista em 09/11 à noite)
+**Diferencial = EXTRAÇÃO BOA + RASTREABILIDADE + CRUZAMENTO.** Pilar 1 (estruturar) está pronto e testado; pilar 3 (médico) simples; **pilar 2 (relógio) volta em versão sintética** (dados da persona + regras de alerta), porque cruzar relógio com exames é o diferencial que nenhum app de relógio tem. Integração real com Apple/Google não é viável em 4 dias (exige app nativo): fica como "próximo passo" (opcional: importar a exportação do Apple Saúde, se houver tempo e relógio com histórico).
 
 **Roteiro da demo (10 min) — momentos "uau" em ordem de prioridade:**
 1. **Foto de exame em papel ao vivo** → vira dado no app, com link para a foto original (exame REAL do João).
 2. **Tendência de 10 anos** de um exame (LDL, glicose) juntando 4 laboratórios diferentes, com faixa de referência (persona).
 3. **Métrica de acurácia:** "X% dos campos extraídos corretamente em 12 laudos e 8 fotos" (gabarito automático do gerador) + teste em laudos reais.
 4. **Link para o médico:** consentimento com validade → médico abre resumo de 1 tela, cada número citando o laudo.
-5. *(se sobrar tempo)* alerta explicável: "exame repetido em 2025" ou "glicose fora da faixa há X anos — procure um médico".
+5. **Relógio + exames:** "5 avisos de ritmo irregular em 14 dias e FC de repouso subindo → procure um cardiologista", ao lado de LDL/glicose alterados (persona, dados sintéticos).
+6. **Vacinação:** carteira consolidada de vários documentos; "dT vencida desde 2024".
 
-**Cortado do MVP (vira slide de "próximos passos"):** relógio/wearable, chat, vacinas, remédios, FHIR/RNDS, login/Auth, RLS, PWA.
+**Cortado do MVP (slide de "próximos passos"):** integração real com relógio, chat, remédios, laudos de imagem (ultrassom), FHIR/RNDS, login/Auth, RLS, PWA.
 
 ### 4.0 Dados de teste: persona sintética + exames reais do João
 - **Persona (fictícia):** Roberto Almeida Siqueira, 58 anos (nasc. 14/05/1968), masculino, SP. 12 laudos entre 2016 e 2026 em 4 laboratórios fictícios (Delta 2016-17 papel antigo; Alfa 2018-20 + repetição mai/2025; Beta 2021-23; Gama 2024-26). História: LDL 112 → 163, HDL caindo, TG subindo, glicose subindo e fora da faixa nos últimos anos, HbA1c até 6,2% (pré-diabetes), ácido úrico levemente alto nos últimos 2 anos, vitamina D baixa em 2022, **exame repetido em 2025** (novo médico sem o anterior).
@@ -66,7 +67,7 @@ Uma plataforma com IA que junta o histórico de saúde de cada pessoa, do exame 
 - Fácil de expandir se precisar: mais exames, layouts mais difíceis (carimbo, tabela torta, foto pior), outra persona.
 
 ### 4.1 Telas do produto ideal (canvas)
-Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; aprovado pelo João). **Para o MVP de 2 pessoas, só 4 telas:**
+Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; aprovado pelo João). **Telas do MVP (09/11 à noite):** Início, Detalhe do exame, Documentos, Vacinação, Relógio, Enviar exame, Visão do médico.
 1. **Início / linha do tempo:** lista de exames por data e laboratório + cards de status por área (Em dia/Atenção).
 2. **Detalhe do exame:** gráfico da série com faixa de referência; cada ponto abre o documento original.
 3. **Enviar exame:** upload de PDF ou foto (câmera do celular) → mostra o que foi extraído para conferir.
@@ -78,11 +79,27 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - **Fluxo:** upload (Storage) → rota de API chama Claude (visão) → JSON no formato do gabarito → normalização (nome canônico, unidade canônica) → validação (valor plausível? unidade conhecida?) → grava `observation` com link para documento + página.
 - **Banco: Supabase** (Postgres + Storage), região São Paulo. Sem Auth/RLS no MVP (1 usuário de demo; só dados sintéticos/próprios).
 - **Front:** Next.js + TypeScript, Tailwind, Recharts, mobile-first, Vercel.
+- **Lovable** (parceiro, 100 créditos até sábado). **Recomendação (09/11, a confirmar):** construir o app no Claude Code (mesmo código da extração e dos insights, sem limite de créditos, rastreabilidade sob controle) e usar o Lovable só para a **landing page do pitch** (QR code para a demo). Motivo: os créditos acabam em poucas horas de iteração e o Lovable cria um projeto separado, longe do código testado.
 - **Repositório:** `jvssvix-cloud/hub-saude`. Estrutura no `CLAUDE.md`.
 - **Modelo de dados (mínimo):** `source_document` (arquivo, laboratório, data de coleta, páginas), `observation` (analito canônico, nome impresso, valor, unidade, ref_min/max, fora_da_faixa, data, documento + página, confiança), `share_link` (token, validade, criado_em, revogado), `access_log`.
 - **Contrato extração ↔ app:** mesmo formato do gabarito do gerador. O app usa os JSONs do gabarito como dados de mentira até a extração estar pronta.
 
-## 6. TIME: 2 papéis (09/11)
+## 6. TIME (09/11)
+**Atualização 09/11 à noite:** o amigo ainda não tinha começado; decisão de **construir juntos** (6h hoje) com o Claude Code. A tabela de papéis abaixo é a original; o plano em vigor é o "Plano 09/11 à noite".
+
+**Plano 09/11 à noite (6h juntos):**
+| Hora | Entrega |
+|---|---|
+| 1 | Next.js no ar na Vercel (link no celular) + **Início** (áreas da persona via `insights.json`) |
+| 2 | **Detalhe do exame**: gráfico 10 anos + faixa de referência; ponto abre o laudo original |
+| 3 | **Relógio**: dados sintéticos da persona + regras de alerta + tela |
+| 4 | **Vacinação** + **Documentos** (linha do tempo) |
+| 5 | **Enviar exame**: foto/PDF → extração → conferir |
+| 6 | **Visão do médico** (link) + polimento |
+
+**Depois:** Ter: Supabase (tabelas + carga) e envio gravando no banco; link do médico com validade. Qua: ponta a ponta + landing no Lovable. Qui: polimento, **congelar à noite**. Sex: deck, roteiro, ensaios, vídeo de backup.
+
+**Papéis originais:**
 | Papel | Quem | Constrói |
 |---|---|---|
 | **A · Dados e IA** | João | Prompt + schema de extração, chamada à API do Claude, normalização (dicionário de nomes e unidades), script de acurácia contra o gabarito, regras (status por área, exame repetido, "o que falta"), resumo do médico, **pitch e roteiro** |
@@ -119,9 +136,12 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11: **vacinação entra no MVP (versão enxuta):** extração de carteira (a IA identifica laudo × carteira), carteira consolidada (mesma vacina + data = 1 dose com várias fontes) e situação pelo **Calendário Nacional de Vacinação 2026 (MS)**, 20–59 anos. Sintéticos: 34/34 doses. **Carteira real do João (Meu SUS Digital, CIVP, certificado COVID): 11/11 doses, 11 → 7 consolidadas.** Doses da infância raramente estão no digital: o app avisa em vez de afirmar que faltam.
 - 09/11: **laudo real de terceira (com consentimento), usado só para aprender e apagado:** 29/29 valores e referências femininas corretas. Lições viraram código + caso sintético permanente (`caso-misto`): 14 exames novos, hemácias em número inteiro, "microUI/mL", **data de coleta por exame**, resultados com sinal ("< 0,2", "> 90") e em texto ("NÃO REAGENTE") → **prompt v5**. Laudos de imagem (ultrassom): fora do MVP. Regra: dados de terceiros nunca ficam guardados.
 - 09/11: **dados reais ficam em `dados-reais/`** (fora do Git): laudos, gabaritos manuais, cache e relatórios. `npm run acuracia -- --conjunto=reais`.
+- 09/11 noite: **os 2 constroem juntos** (6h hoje); **relógio volta ao MVP** em versão sintética + regras; telas do MVP: Início, Detalhe do exame, Documentos, Vacinação, Relógio, Enviar exame, Visão do médico. Recomendação a confirmar: app no Claude Code, Lovable só para landing do pitch.
+- 09/11 noite: **regra de trabalho:** toda mudança estrutural é registrada no `CLAUDE.md` e neste arquivo na hora.
 
 ## 8. Perguntas em aberto
-- Nome do amigo e se ele topa o papel B (front) ou prefere trocar.
-- Créditos de API de LLM (chave da Anthropic para a extração)?
+- Nome do amigo e papel dele daqui para frente (sugestão: dono do pitch/deck + visual).
+- Confirmar: app no Claude Code e Lovable só para landing?
+- Alguém tem relógio com histórico (Apple Saúde) para a importação opcional?
 - Critérios de avaliação dos jurados?
-- Quantos laudos reais conseguimos juntar até terça?
+- (resolvido) Chave da API: criada; fica em `.env.local` e no painel da Vercel. Gasto até 09/11: ~US$ 1,75.
