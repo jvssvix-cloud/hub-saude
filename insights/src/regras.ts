@@ -25,13 +25,16 @@ export const NOMES: Record<string, string> = {
   hba1c: "Hemoglobina glicada (HbA1c)", colesterol_total: "Colesterol total", hdl: "HDL",
   ldl: "LDL", triglicerides: "Triglicérides", creatinina: "Creatinina", acido_urico: "Ácido úrico",
   tgo: "TGO (AST)", tgp: "TGP (ALT)", tsh: "TSH", psa: "PSA", vitamina_d: "Vitamina D",
+  insulina: "Insulina", colesterol_nao_hdl: "Colesterol não-HDL", vldl: "VLDL",
+  fosfatase_alcalina: "Fosfatase alcalina", ggt: "GGT (gama GT)", bilirrubina_total: "Bilirrubina total",
+  bilirrubina_direta: "Bilirrubina direta", bilirrubina_indireta: "Bilirrubina indireta",
 };
 
 export const AREAS: { id: string; nome: string; analitos: string[] }[] = [
-  { id: "glicemia", nome: "Glicemia", analitos: ["glicose", "hba1c"] },
-  { id: "colesterol", nome: "Colesterol", analitos: ["colesterol_total", "hdl", "ldl", "triglicerides"] },
+  { id: "glicemia", nome: "Glicemia", analitos: ["glicose", "hba1c", "insulina"] },
+  { id: "colesterol", nome: "Colesterol", analitos: ["colesterol_total", "hdl", "ldl", "colesterol_nao_hdl", "vldl", "triglicerides"] },
   { id: "rins", nome: "Rins e ácido úrico", analitos: ["creatinina", "acido_urico"] },
-  { id: "figado", nome: "Fígado", analitos: ["tgo", "tgp"] },
+  { id: "figado", nome: "Fígado", analitos: ["tgo", "tgp", "ggt", "fosfatase_alcalina", "bilirrubina_total", "bilirrubina_direta", "bilirrubina_indireta"] },
   { id: "tireoide", nome: "Tireoide", analitos: ["tsh"] },
   { id: "sangue", nome: "Sangue (hemograma)", analitos: ["hemacias", "hemoglobina", "hematocrito", "leucocitos", "plaquetas"] },
   { id: "prostata", nome: "Próstata", analitos: ["psa"] },

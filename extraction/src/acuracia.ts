@@ -6,28 +6,34 @@
  *   npm run acuracia -- --modelo=claude-haiku-5-5   # outro modelo (cache separado)
  *   npm run acuracia -- --esforco=high     # outro nível de esforço (cache separado)
  *   npm run acuracia -- --refazer          # ignora o cache e chama a API de novo
+ *   npm run acuracia -- --conjunto=reais   # laudos reais com gabarito manual (pasta dados-reais/, fora do Git)
+ *   npm run acuracia -- --versao=v1        # reavalia leituras feitas com um prompt antigo (só cache)
  *
- * Cada extração fica salva em extraction/resultados/cache/ e só é paga uma vez.
- * Relatório: extraction/resultados/relatorio_<modelo>_<esforco>.md
+ * Cada extração fica salva em resultados/cache/ e só é paga uma vez (cache separado por modelo,
+ * esforço e versão do prompt). Relatório: resultados/relatorio_<modelo>_<esforco>_<versao>.md
+ * Sintéticos: extraction/resultados/. Reais: dados-reais/resultados/ (nunca vai para o GitHub).
  */
 import { exigirChave, RAIZ } from "./env";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { extrairDocumento, MODELO_PADRAO, mimeDoArquivo, type Esforco, type ResultadoExtracao } from "./extrair";
+import { extrairDocumento, MODELO_PADRAO, mimeDoArquivo, type Esforco, type PacienteCadastro, type ResultadoExtracao } from "./extrair";
+import { PROMPT_VERSAO } from "./prompt";
 import { chaveUnidade, normalizar } from "./normalizar";
 import type { ResultadoNormalizado } from "./schema";
 
-const DIR_GERADOR = path.join(RAIZ, "tools/gerador-laudos/saida");
-const DIR_RES = path.join(RAIZ, "extraction/resultados");
-const DIR_CACHE = path.join(DIR_RES, "cache");
-
 const args = process.argv.slice(2);
 const opcao = (n: string) => args.find((a) => a.startsWith(`--${n}=`))?.split("=")[1];
+const REAIS = opcao("conjunto") === "reais";
+// Base dos laudos + gabaritos, e onde ficam cache/relatórios
+const DIR_BASE = REAIS ? path.join(RAIZ, "dados-reais") : path.join(RAIZ, "tools/gerador-laudos/saida");
+const DIR_RES = REAIS ? path.join(RAIZ, "dados-reais/resultados") : path.join(RAIZ, "extraction/resultados");
+const DIR_CACHE = path.join(DIR_RES, "cache");
 const MODO = opcao("modo") ?? "todos";
 const SOMENTE = opcao("somente")?.split(",");
 const ESFORCO = (opcao("esforco") ?? "medium") as Esforco;
 const MODELO = opcao("modelo") ?? MODELO_PADRAO;
-const SUFIXO = `${MODELO.replace("claude-", "")}_${ESFORCO}`;
+const VERSAO = opcao("versao") ?? PROMPT_VERSAO;
+const SUFIXO = `${MODELO.replace("claude-", "")}_${ESFORCO}_${VERSAO}`;
 const REFAZER = args.includes("--refazer");
 const PARALELO = 4;
 
@@ -38,10 +44,10 @@ type ResultadoGabarito = {
 };
 type Gabarito = {
   laudo_id: string; arquivo_pdf: string; fotos: { arquivo: string; pagina: number }[];
-  documento: { layout: string; data_coleta: string; nome_paciente_impresso: string };
+  documento: { layout: string; data_coleta: string; nome_paciente_impresso: string; paciente?: PacienteCadastro };
   resultados: ResultadoGabarito[];
 };
-type Tarefa = { gab: Gabarito; modo: "pdf" | "foto"; arquivos: string[] };
+type Tarefa = { gab: Gabarito; modo: "pdf" | "foto"; arquivos: string[]; paciente?: PacienteCadastro };
 
 const CAMPOS = ["valor", "unidade", "nome", "referencia", "fora_da_faixa", "pagina"] as const;
 type Campo = (typeof CAMPOS)[number];
@@ -71,9 +77,10 @@ function comparar(esp: ResultadoGabarito, obt: ResultadoNormalizado): Record<Cam
 async function extrairComCache(t: Tarefa): Promise<ResultadoExtracao> {
   const arq = path.join(DIR_CACHE, `${t.gab.laudo_id}_${t.modo}_${SUFIXO}.json`);
   if (!REFAZER && existsSync(arq)) return JSON.parse(readFileSync(arq, "utf-8"));
+  if (VERSAO !== PROMPT_VERSAO) throw new Error(`sem cache da versão ${VERSAO} (o prompt atual é ${PROMPT_VERSAO})`);
   const r = await extrairDocumento(
     t.arquivos.map((a) => ({ dados: readFileSync(a), mime: mimeDoArquivo(a) })),
-    { esforco: ESFORCO, modelo: MODELO },
+    { esforco: ESFORCO, modelo: MODELO, paciente: t.paciente },
   );
   writeFileSync(arq, JSON.stringify(r, null, 2));
   return r;
@@ -97,22 +104,26 @@ function pct(a: number, b: number) {
 
 async function main() {
   mkdirSync(DIR_CACHE, { recursive: true });
-  const gabaritos: Gabarito[] = readdirSync(path.join(DIR_GERADOR, "gabarito"))
+  const gabaritos: Gabarito[] = readdirSync(path.join(DIR_BASE, "gabarito"))
     .filter((f) => f.endsWith(".json")).sort()
-    .map((f) => JSON.parse(readFileSync(path.join(DIR_GERADOR, "gabarito", f), "utf-8")))
+    .map((f) => JSON.parse(readFileSync(path.join(DIR_BASE, "gabarito", f), "utf-8")))
     .filter((g: Gabarito) => !SOMENTE || SOMENTE.includes(g.laudo_id));
 
+  // Sexo e nascimento "do cadastro": nos sintéticos vêm da persona; nos reais, do gabarito manual
+  const persona = REAIS ? undefined : JSON.parse(readFileSync(path.join(DIR_BASE, "persona.json"), "utf-8"));
   const tarefas: Tarefa[] = [];
   for (const g of gabaritos) {
-    if (MODO !== "foto") tarefas.push({ gab: g, modo: "pdf", arquivos: [path.join(DIR_GERADOR, g.arquivo_pdf)] });
+    const paciente: PacienteCadastro | undefined = g.documento.paciente
+      ?? (persona ? { sexo: persona.sexo, nascimento: persona.nascimento } : undefined);
+    if (MODO !== "foto") tarefas.push({ gab: g, modo: "pdf", arquivos: [path.join(DIR_BASE, g.arquivo_pdf)], paciente });
     if (MODO !== "pdf" && g.fotos.length) {
-      const fotos = [...g.fotos].sort((a, b) => a.pagina - b.pagina).map((f) => path.join(DIR_GERADOR, f.arquivo));
-      tarefas.push({ gab: g, modo: "foto", arquivos: fotos });
+      const fotos = [...g.fotos].sort((a, b) => a.pagina - b.pagina).map((f) => path.join(DIR_BASE, f.arquivo));
+      tarefas.push({ gab: g, modo: "foto", arquivos: fotos, paciente });
     }
   }
   const faltam = tarefas.filter((t) => REFAZER || !existsSync(path.join(DIR_CACHE, `${t.gab.laudo_id}_${t.modo}_${SUFIXO}.json`)));
   if (faltam.length) exigirChave();
-  console.log(`${tarefas.length} extrações (${faltam.length} novas na API, ${tarefas.length - faltam.length} do cache), modelo ${MODELO}, esforço ${ESFORCO}...`);
+  console.log(`${tarefas.length} extrações (${faltam.length} novas na API, ${tarefas.length - faltam.length} do cache), modelo ${MODELO}, esforço ${ESFORCO}, prompt ${VERSAO}...`);
 
   const resultados = await emParalelo(tarefas, PARALELO, extrairComCache);
 
@@ -172,7 +183,7 @@ async function main() {
   const tot = pegar("total");
   const camposOk = CAMPOS.reduce((s, c) => s + tot.campos[c], 0);
   L.push(`# Acurácia da extração`, ``);
-  L.push(`Modelo ${resultados.find((r): r is ResultadoExtracao => !(r instanceof Error))?.modelo ?? "-"}, esforço \`${ESFORCO}\`. ` +
+  L.push(`Modelo ${resultados.find((r): r is ResultadoExtracao => !(r instanceof Error))?.modelo ?? "-"}, esforço \`${ESFORCO}\`, prompt \`${VERSAO}\`. ` +
     `${tarefas.length - falhas.length} extrações (${gabaritos.length} laudos). Custo original das extrações: ~US$ ${custo.toFixed(2)} (pago uma vez; ${tarefas.length - faltam.length} vieram do cache, sem custo nesta rodada).`, ``);
   L.push(`**Valores corretos: ${pct(tot.campos.valor, tot.esperados)}** (${tot.campos.valor} de ${tot.esperados}). ` +
     `Todos os campos: ${pct(camposOk, tot.esperados * CAMPOS.length)}. Exames extras/duplicados: ${tot.extras}. Alertas da normalização: ${alertas}.`, ``);
@@ -193,7 +204,7 @@ async function main() {
   writeFileSync(path.join(DIR_RES, `relatorio_${SUFIXO}.md`), L.join("\n") + "\n");
   writeFileSync(path.join(DIR_RES, `erros_${SUFIXO}.json`), JSON.stringify({ erros, falhas, docErros }, null, 2));
   console.log(L.slice(0, 8 + placares.size).join("\n"));
-  console.log(`\nRelatório completo: extraction/resultados/relatorio_${SUFIXO}.md`);
+  console.log(`\nRelatório completo: ${path.relative(RAIZ, path.join(DIR_RES, `relatorio_${SUFIXO}.md`))}`);
 }
 
 await main();

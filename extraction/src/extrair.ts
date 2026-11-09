@@ -9,6 +9,9 @@ import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { normalizar } from "./normalizar";
 import { INSTRUCAO_USUARIO, PROMPT_SISTEMA } from "./prompt";
+
+/** Dados do cadastro do app que ajudam a escolher a referência certa (sexo e idade). */
+export type PacienteCadastro = { sexo: "M" | "F"; nascimento: string };
 import { Extracao, type ExtracaoNormalizada } from "./schema";
 
 // Haiku: 100% dos valores nos sintéticos por ~US$ 0,003/laudo (Opus: mesmo resultado, 30x mais caro)
@@ -53,9 +56,17 @@ function blocosDoArquivo(arquivos: Arquivo[]): Anthropic.Beta.BetaContentBlockPa
   return blocos;
 }
 
+function instrucao(p?: PacienteCadastro): string {
+  if (!p) return `${INSTRUCAO_USUARIO}
+Cadastro do paciente: não informado.`;
+  const [a, m, d] = p.nascimento.split("-");
+  return `${INSTRUCAO_USUARIO}
+Cadastro do paciente: sexo ${p.sexo === "M" ? "masculino" : "feminino"}, nascimento ${d}/${m}/${a}.`;
+}
+
 export async function extrairDocumento(
   arquivos: Arquivo[],
-  opcoes: { esforco?: Esforco; modelo?: string } = {},
+  opcoes: { esforco?: Esforco; modelo?: string; paciente?: PacienteCadastro } = {},
 ): Promise<ResultadoExtracao> {
   const inicio = Date.now();
   const modelo = opcoes.modelo ?? MODELO_PADRAO;
@@ -63,7 +74,7 @@ export async function extrairDocumento(
     model: modelo,
     max_tokens: 16000,
     system: PROMPT_SISTEMA,
-    messages: [{ role: "user", content: [...blocosDoArquivo(arquivos), { type: "text", text: INSTRUCAO_USUARIO }] }],
+    messages: [{ role: "user", content: [...blocosDoArquivo(arquivos), { type: "text", text: instrucao(opcoes.paciente) }] }],
     output_config: { format: betaZodOutputFormat(Extracao), effort: opcoes.esforco ?? "medium" },
     // Se o modelo recusar por política, o servidor tenta um modelo reserva na mesma chamada
     betas: ["server-side-fallback-2026-07-01"],

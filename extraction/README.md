@@ -29,6 +29,7 @@ O `.env.local` é ignorado pelo Git. **Nunca cole a chave em código, commit, is
 # Extrair qualquer laudo (PDF, ou várias fotos do mesmo laudo na ordem das páginas)
 npm run extrair -- ../tools/gerador-laudos/saida/laudos/2025-03_gama.pdf
 npm run extrair -- foto_p1.jpg foto_p2.jpg --saida=resultado.json
+npm run extrair -- laudo.pdf --sexo=M --nascimento=2006-02-10   # dados do cadastro (referência por sexo/idade)
 
 # Medir acurácia contra o gabarito (12 PDFs + fotos de 4 laudos)
 npm run acuracia                          # tudo
@@ -36,6 +37,8 @@ npm run acuracia -- --modo=pdf --somente=2016-03,2025-03
 npm run acuracia -- --modelo=claude-opus-5-5   # comparar com outro modelo
 npm run acuracia -- --esforco=high        # comparar níveis de esforço
 npm run acuracia -- --refazer             # ignorar o cache
+npm run acuracia -- --conjunto=reais      # laudos REAIS com gabarito manual (dados-reais/, fora do Git)
+npm run acuracia -- --versao=v1           # reavaliar leituras de um prompt antigo (só cache, grátis)
 ```
 
 `acuracia` salva cada extração em `resultados/cache/` (só paga uma vez) e escreve `resultados/relatorio_<modelo>_<esforço>.md`:
@@ -52,6 +55,12 @@ Padrão: **Claude Haiku 5.5**. Resultado nos 12 laudos + fotos de 4 laudos (253 
 
 Regras de gasto: testes completos só quando o prompt mudar; no dia a dia, 1–2 laudos (`--somente=`).
 Nunca use `--refazer` sem necessidade.
+
+## Laudos reais
+
+Ficam em `dados-reais/` na raiz (ignorada pelo Git: **nunca vão para o GitHub**):
+`laudos/` (PDF/fotos), `gabarito/` (gabarito manual, mesmo formato do sintético + `documento.paciente`
+com sexo e nascimento) e `resultados/` (cache e relatórios). 1º laudo real (09/11): 20/20 valores corretos.
 
 ## Como melhorar
 

@@ -1,6 +1,6 @@
 # Acurácia da extração
 
-Modelo claude-opus-5-5, esforço `medium`. 16 extrações (12 laudos). Custo original das extrações: ~US$ 1.35 (pago uma vez; 16 vieram do cache, sem custo nesta rodada).
+Modelo claude-opus-5-5, esforço `medium`, prompt `v1`. 16 extrações (12 laudos). Custo original das extrações: ~US$ 1.35 (pago uma vez; 16 vieram do cache, sem custo nesta rodada).
 
 **Valores corretos: 100.0%** (253 de 253). Todos os campos: 100.0%. Exames extras/duplicados: 0. Alertas da normalização: 0.
 

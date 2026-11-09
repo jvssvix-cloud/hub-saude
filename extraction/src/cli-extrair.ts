@@ -2,7 +2,8 @@
  * Extrai um laudo e imprime o resultado normalizado.
  *   npm run extrair -- laudo.pdf
  *   npm run extrair -- foto_p1.jpg foto_p2.jpg      (várias fotos = um laudo, na ordem das páginas)
- *   npm run extrair -- laudo.pdf --modelo=claude-haiku-5-5 --esforco=high --saida=resultado.json
+ *   npm run extrair -- laudo.pdf --sexo=M --nascimento=2006-02-10   (dados do cadastro)
+ *   npm run extrair -- laudo.pdf --modelo=claude-opus-5-5 --esforco=high --saida=resultado.json
  */
 import { exigirChave } from "./env";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -19,7 +20,12 @@ exigirChave();
 
 const r = await extrairDocumento(
   caminhos.map((c) => ({ dados: readFileSync(c), mime: mimeDoArquivo(c) })),
-  { esforco: (opcao("esforco") as Esforco) ?? "medium", modelo: opcao("modelo") },
+  {
+    esforco: (opcao("esforco") as Esforco) ?? "medium",
+    modelo: opcao("modelo"),
+    paciente: opcao("sexo") && opcao("nascimento")
+      ? { sexo: opcao("sexo") as "M" | "F", nascimento: opcao("nascimento")! } : undefined,
+  },
 );
 
 const saida = opcao("saida");

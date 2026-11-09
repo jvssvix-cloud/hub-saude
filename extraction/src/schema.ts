@@ -8,6 +8,9 @@ export const ANALITOS = [
   "hemacias", "hemoglobina", "hematocrito", "leucocitos", "plaquetas",
   "glicose", "hba1c", "colesterol_total", "hdl", "ldl", "triglicerides",
   "creatinina", "acido_urico", "tgo", "tgp", "tsh", "psa", "vitamina_d",
+  // incluídos após o 1º laudo real (09/11)
+  "insulina", "colesterol_nao_hdl", "vldl", "fosfatase_alcalina", "ggt",
+  "bilirrubina_total", "bilirrubina_direta", "bilirrubina_indireta",
 ] as const;
 export type Analito = (typeof ANALITOS)[number];
 

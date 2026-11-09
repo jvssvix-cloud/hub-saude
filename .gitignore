@@ -152,3 +152,6 @@ vite.config.ts.timestamp-*
 __pycache__/
 *.pyc
 .venv/
+
+# Dados de saúde REAIS: nunca vão para o GitHub
+dados-reais/
