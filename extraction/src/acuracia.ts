@@ -41,6 +41,8 @@ type ResultadoGabarito = {
   analito: string; nome_impresso: string; valor_impresso: string; valor_canonico: number;
   unidade_impressa: string; ref_min_canonico: number | null; ref_max_canonico: number | null;
   fora_da_faixa: boolean; pagina: number;
+  /** Quando mais de uma leitura da unidade é correta (ex.: unidade só no cabeçalho da coluna). */
+  unidades_aceitas?: string[];
 };
 type Gabarito = {
   laudo_id: string; arquivo_pdf: string; fotos: { arquivo: string; pagina: number }[];
@@ -62,7 +64,7 @@ function comparar(esp: ResultadoGabarito, obt: ResultadoNormalizado): Record<Cam
   const ref = (min: number | null, max: number | null) => `${min ?? "-"}..${max ?? "-"}`;
   return {
     valor: [igualNum(obt.valor_canonico, esp.valor_canonico), String(esp.valor_canonico), `${obt.valor_canonico} (lido "${obt.valor_impresso}")`],
-    unidade: [chaveUnidade(obt.unidade_impressa) === chaveUnidade(esp.unidade_impressa), esp.unidade_impressa, obt.unidade_impressa],
+    unidade: [(esp.unidades_aceitas ?? [esp.unidade_impressa]).some((u) => chaveUnidade(obt.unidade_impressa) === chaveUnidade(u)), esp.unidade_impressa, obt.unidade_impressa],
     nome: [texto(obt.nome_impresso) === texto(esp.nome_impresso), esp.nome_impresso, obt.nome_impresso],
     referencia: [
       igualNum(obt.ref_min_canonico, esp.ref_min_canonico) && igualNum(obt.ref_max_canonico, esp.ref_max_canonico),
@@ -157,6 +159,7 @@ async function main() {
       if (!t.gab.resultados.some((e) => e.analito === o)) chaves.forEach((k) => pegar(k).extras++);
     }
     const d = norm.documento;
+    if (norm.tipo_documento !== "laudo_exame") docErros.push(`${id}: tipo_documento ${norm.tipo_documento} (esperado laudo_exame)`);
     if (d.data_coleta !== t.gab.documento.data_coleta) docErros.push(`${id}: data ${d.data_coleta} (esperado ${t.gab.documento.data_coleta})`);
     if (texto(d.nome_paciente_impresso ?? "") !== texto(t.gab.documento.nome_paciente_impresso))
       docErros.push(`${id}: paciente "${d.nome_paciente_impresso}" (esperado "${t.gab.documento.nome_paciente_impresso}")`);

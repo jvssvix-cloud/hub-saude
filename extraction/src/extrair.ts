@@ -95,7 +95,7 @@ export async function extrairDocumento(
   const saida = resposta.usage.output_tokens;
   return {
     bruto,
-    normalizado: normalizar(bruto),
+    normalizado: normalizar(bruto, opcoes.paciente?.nascimento),
     uso: {
       entrada,
       saida,

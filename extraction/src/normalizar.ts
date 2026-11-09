@@ -3,7 +3,7 @@
  * Nada aqui usa IA: toda conversão é uma regra explicável.
  */
 import type {
-  Analito, Extracao, ExtracaoNormalizada, ResultadoExtraido, ResultadoNormalizado,
+  Analito, DoseExtraida, DoseNormalizada, Extracao, ExtracaoNormalizada, ResultadoExtraido, ResultadoNormalizado,
 } from "./schema";
 
 export const UNIDADE_CANONICA: Record<Analito, string> = {
@@ -101,7 +101,14 @@ export function normalizarResultado(original: ResultadoExtraido): ResultadoNorma
   if (r.analito === "outro") {
     return { ...r, unidade_canonica: null, valor_canonico: null, ref_min_canonico: null, ref_max_canonico: null, alertas: ["exame fora do dicionário"] };
   }
-  const fator = FATOR[r.analito][chaveUnidade(r.unidade_impressa)];
+  let fator: number | undefined = FATOR[r.analito][chaveUnidade(r.unidade_impressa)];
+  if (fator === undefined && r.unidade_impressa.trim() === "" && r.valor_numerico !== null) {
+    // Unidade não impressa na linha (ex.: plaquetas "167.000" sob cabeçalho de coluna):
+    // deduz pela ordem de grandeza, testando fator 1 e depois 1000 (contagens em "mil").
+    const [lo, hi] = PLAUSIVEL[r.analito];
+    fator = [1, 1000].find((f) => r.valor_numerico! * f >= lo && r.valor_numerico! * f <= hi);
+    if (fator !== undefined) alertas.push(`unidade não impressa; deduzida pela ordem de grandeza (${fator === 1 ? "" : "× 1000 → "}${UNIDADE_CANONICA[r.analito]})`);
+  }
   if (fator === undefined) alertas.push(`unidade desconhecida para ${r.analito}: "${r.unidade_impressa}"`);
   const conv = (x: number | null) => (x === null || fator === undefined ? null : vezes(x, fator));
   const valor = conv(r.valor_numerico);
@@ -137,6 +144,25 @@ export function normalizarResultado(original: ResultadoExtraido): ResultadoNorma
   };
 }
 
-export function normalizar(e: Extracao): ExtracaoNormalizada {
-  return { ...e, resultados: e.resultados.map(normalizarResultado) };
+/** Dose de vacina: só validações (data válida, não futura, depois do nascimento). */
+export function normalizarDose(d: DoseExtraida, nascimento?: string): DoseNormalizada {
+  const alertas: string[] = [];
+  if (d.vacina === "outra") alertas.push("vacina fora do dicionário");
+  if (!d.data || !/^\d{4}-\d{2}-\d{2}$/.test(d.data) || Number.isNaN(Date.parse(d.data))) {
+    alertas.push("data ilegível ou inválida");
+  } else {
+    if (d.data > new Date().toISOString().slice(0, 10)) alertas.push("data no futuro: conferir leitura");
+    if (nascimento && d.data < nascimento) alertas.push("data antes do nascimento: conferir leitura");
+  }
+  if (d.confianca === "baixa") alertas.push("leitura com baixa confiança");
+  return { ...d, alertas };
+}
+
+export function normalizar(e: Extracao, nascimento?: string): ExtracaoNormalizada {
+  return {
+    ...e,
+    tipo_documento: e.tipo_documento ?? "laudo_exame", // leituras antigas (prompt v1-v3) não tinham o campo
+    resultados: (e.resultados ?? []).map(normalizarResultado),
+    doses: (e.doses ?? []).map((d) => normalizarDose(d, nascimento)),
+  };
 }

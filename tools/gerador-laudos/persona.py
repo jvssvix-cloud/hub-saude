@@ -100,3 +100,33 @@ def valores_da_visita(visita):
         keep = {"glicose", "colesterol_total", "ldl", "hdl", "triglicerides"}
         v = {k: x for k, x in v.items() if k in keep}
     return v
+
+
+# ---------------------------------------------------------------------------
+# Vacinas (fictício). Cada dose aparece em 1 ou 2 documentos:
+#   "caderneta": caderneta de papel com carimbos e letra de mão (doses até 2019)
+#   "comprovante": comprovante digital impresso de um sistema municipal fictício (2018+)
+# A febre amarela de 2018 está nos DOIS (registro migrado): testa a consolidação sem duplicar.
+# História: dT vencida (último reforço 2014), hepatite B incompleta (2 de 3), resto em dia.
+# ---------------------------------------------------------------------------
+VACINAS = [
+    {"vacina": "dt", "dose": "reforco", "data": "2004-06-15", "lote": "DT0412A", "docs": ["caderneta"]},
+    {"vacina": "hepatite_b", "dose": "1", "data": "2009-03-10", "lote": "HB0903", "docs": ["caderneta"]},
+    {"vacina": "hepatite_b", "dose": "2", "data": "2009-04-14", "lote": "HB0904", "docs": ["caderneta"]},
+    {"vacina": "dt", "dose": "reforco", "data": "2014-08-20", "lote": "DT1408C", "docs": ["caderneta"]},
+    {"vacina": "febre_amarela", "dose": "unica", "data": "2018-02-05", "lote": "FA1802X", "docs": ["caderneta", "comprovante"]},
+    {"vacina": "triplice_viral", "dose": "1", "data": "2019-08-20", "lote": "SCR1908", "docs": ["caderneta"]},
+    {"vacina": "influenza", "dose": "anual", "data": "2019-04-22", "lote": "FLU19B", "docs": ["caderneta"]},
+    {"vacina": "influenza", "dose": "anual", "data": "2021-05-10", "lote": "FLU21A", "docs": ["comprovante"]},
+    {"vacina": "covid19", "dose": "1", "data": "2021-07-15", "lote": "CV2107K", "docs": ["comprovante"]},
+    {"vacina": "covid19", "dose": "2", "data": "2021-10-07", "lote": "CV2110M", "docs": ["comprovante"]},
+    {"vacina": "covid19", "dose": "reforco", "data": "2022-01-20", "lote": "CV2201R", "docs": ["comprovante"]},
+    {"vacina": "influenza", "dose": "anual", "data": "2022-05-03", "lote": "FLU22C", "docs": ["comprovante"]},
+    {"vacina": "covid19", "dose": "reforco", "data": "2023-04-10", "lote": "CVB2304", "docs": ["comprovante"]},
+    {"vacina": "influenza", "dose": "anual", "data": "2023-04-28", "lote": "FLU23D", "docs": ["comprovante"]},
+    {"vacina": "influenza", "dose": "anual", "data": "2024-04-15", "lote": "FLU24A", "docs": ["comprovante"]},
+    {"vacina": "influenza", "dose": "anual", "data": "2025-05-12", "lote": "FLU25F", "docs": ["comprovante"]},
+]
+
+# Locais de aplicação fictícios (nenhum imita unidade real)
+POSTOS = ["UBS Jardim Fictício", "UBS Vila Modelo", "AMA Parque Exemplo", "Drogaria Saúde Fictícia"]

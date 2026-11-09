@@ -1,0 +1,99 @@
+{
+  "documento_id": "vacinas-caderneta",
+  "tipo": "carteira_vacinacao",
+  "arquivo_pdf": "vacinas/vacinas-caderneta.pdf",
+  "fotos": [
+    {
+      "arquivo": "fotos/vacinas-caderneta_p1.jpg",
+      "pagina": 1
+    }
+  ],
+  "documento": {
+    "emissor": "Cartão de vacinação do adulto (papel)",
+    "nome_paciente_impresso": "Roberto A. Siqueira",
+    "paginas": 1,
+    "paciente": {
+      "sexo": "M",
+      "nascimento": "1968-05-14"
+    }
+  },
+  "doses": [
+    {
+      "vacina": "dt",
+      "nome_impresso": "DUPLA ADULTO (dT) - DIFTERIA E TÉTANO",
+      "dose": "reforco",
+      "dose_impressa": "Ref.",
+      "data": "2004-06-15",
+      "data_impressa": "15/06/04",
+      "lote": "DT0412A",
+      "local": "AMA Parque Exemplo",
+      "pagina": 1
+    },
+    {
+      "vacina": "hepatite_b",
+      "nome_impresso": "HEPATITE B",
+      "dose": "1",
+      "dose_impressa": "1ª dose",
+      "data": "2009-03-10",
+      "data_impressa": "10/03/09",
+      "lote": "HB0903",
+      "local": "Drogaria Saúde Fictícia",
+      "pagina": 1
+    },
+    {
+      "vacina": "hepatite_b",
+      "nome_impresso": "HEPATITE B",
+      "dose": "2",
+      "dose_impressa": "2ª dose",
+      "data": "2009-04-14",
+      "data_impressa": "14/04/09",
+      "lote": "HB0904",
+      "local": "AMA Parque Exemplo",
+      "pagina": 1
+    },
+    {
+      "vacina": "dt",
+      "nome_impresso": "DUPLA ADULTO (dT) - DIFTERIA E TÉTANO",
+      "dose": "reforco",
+      "dose_impressa": "Ref.",
+      "data": "2014-08-20",
+      "data_impressa": "20/08/14",
+      "lote": "DT1408C",
+      "local": "AMA Parque Exemplo",
+      "pagina": 1
+    },
+    {
+      "vacina": "febre_amarela",
+      "nome_impresso": "FEBRE AMARELA",
+      "dose": "unica",
+      "dose_impressa": "Dose única",
+      "data": "2018-02-05",
+      "data_impressa": "05/02/18",
+      "lote": "FA1802X",
+      "local": "UBS Vila Modelo",
+      "pagina": 1
+    },
+    {
+      "vacina": "influenza",
+      "nome_impresso": "GRIPE (INFLUENZA)",
+      "dose": "anual",
+      "dose_impressa": "Dose anual",
+      "data": "2019-04-22",
+      "data_impressa": "22/04/19",
+      "lote": "FLU19B",
+      "local": "Drogaria Saúde Fictícia",
+      "pagina": 1
+    },
+    {
+      "vacina": "triplice_viral",
+      "nome_impresso": "TRÍPLICE VIRAL (SARAMPO, CAXUMBA, RUBÉOLA)",
+      "dose": "1",
+      "dose_impressa": "1ª dose",
+      "data": "2019-08-20",
+      "data_impressa": "20/08/19",
+      "lote": "SCR1908",
+      "local": "Drogaria Saúde Fictícia",
+      "pagina": 1
+    }
+  ]
+}

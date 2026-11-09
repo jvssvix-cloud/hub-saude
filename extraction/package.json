@@ -5,7 +5,8 @@
   "scripts": {
     "extrair": "tsx src/cli-extrair.ts",
     "acuracia": "tsx src/acuracia.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "acuracia-vacinas": "tsx src/acuracia-vacinas.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.6.0",

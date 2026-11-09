@@ -29,7 +29,28 @@ export const ResultadoExtraido = z.object({
 });
 export type ResultadoExtraido = z.infer<typeof ResultadoExtraido>;
 
+export const VACINAS = [
+  "hepatite_b", "dt", "dtpa", "febre_amarela", "triplice_viral", "influenza", "covid19", "hpv",
+  "meningococica", "pneumococica", "varicela", "dengue", "herpes_zoster",
+] as const;
+export type Vacina = (typeof VACINAS)[number];
+
+export const DoseExtraida = z.object({
+  vacina: z.enum([...VACINAS, "outra"]),
+  nome_impresso: z.string(),
+  dose: z.enum(["1", "2", "3", "reforco", "unica", "anual", "outra"]),
+  dose_impressa: z.string(),
+  data: z.string().nullable(),
+  data_impressa: z.string(),
+  lote: z.string().nullable(),
+  local: z.string().nullable(),
+  pagina: z.number().int(),
+  confianca: z.enum(["alta", "media", "baixa"]),
+});
+export type DoseExtraida = z.infer<typeof DoseExtraida>;
+
 export const Extracao = z.object({
+  tipo_documento: z.enum(["laudo_exame", "carteira_vacinacao", "outro"]),
   documento: z.object({
     laboratorio: z.string(),
     data_coleta: z.string().nullable(),
@@ -39,6 +60,7 @@ export const Extracao = z.object({
     paginas: z.number().int(),
   }),
   resultados: z.array(ResultadoExtraido),
+  doses: z.array(DoseExtraida),
   observacoes: z.string().nullable(),
 });
 export type Extracao = z.infer<typeof Extracao>;
@@ -53,6 +75,9 @@ export type ResultadoNormalizado = ResultadoExtraido & {
   alertas: string[];
 };
 
-export type ExtracaoNormalizada = Omit<Extracao, "resultados"> & {
+export type DoseNormalizada = DoseExtraida & { alertas: string[] };
+
+export type ExtracaoNormalizada = Omit<Extracao, "resultados" | "doses"> & {
   resultados: ResultadoNormalizado[];
+  doses: DoseNormalizada[];
 };

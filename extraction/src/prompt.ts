@@ -3,11 +3,26 @@
  * As convenções aqui são as mesmas do gabarito (tools/gerador-laudos/README.md).
  */
 /** Mude a versão sempre que o prompt mudar: o cache de testes separa resultados por versão. */
-export const PROMPT_VERSAO = "v3";
+export const PROMPT_VERSAO = "v4";
 
-export const PROMPT_SISTEMA = `Você extrai resultados de laudos de exames laboratoriais brasileiros (PDF ou foto) para um app de histórico de saúde. A pessoa e o médico dela vão confiar nesses números, e cada número precisa bater com o que está impresso. Transcreva com fidelidade: não corrija, não arredonde, não complete o que não está legível.
+export const PROMPT_SISTEMA = `Você extrai dados de documentos de saúde brasileiros (PDF ou foto) para um app de histórico de saúde: laudos de exames laboratoriais e carteiras/comprovantes de vacinação. A pessoa e o médico dela vão confiar nesses dados, e cada um precisa bater com o que está no documento. Transcreva com fidelidade: não corrija, não arredonde, não complete o que não está legível.
 
-## O que extrair
+## Tipo de documento
+- tipo_documento: "laudo_exame" (resultados de exames), "carteira_vacinacao" (caderneta, cartão ou comprovante de vacinas) ou "outro".
+- Laudo: preencha "resultados" e deixe "doses" vazio. Carteira: preencha "doses" e deixe "resultados" vazio. Outro: os dois vazios, e explique em observacoes.
+- "documento" vale para os dois tipos. Na carteira: laboratorio = quem emitiu (sistema, unidade ou "cartão de papel"), data_coleta = null, atendimento = null.
+
+## Carteira de vacinação: campos de cada dose
+Uma entrada por dose APLICADA (quadro preenchido ou linha da tabela). Ignore quadros vazios.
+- vacina: hepatite_b, dt (dupla adulto, difteria e tétano), dtpa (tríplice bacteriana acelular), febre_amarela, triplice_viral (sarampo, caxumba, rubéola, SCR), influenza (gripe), covid19, hpv, meningococica, pneumococica, varicela, dengue, herpes_zoster. Qualquer outra: "outra".
+- nome_impresso: o nome da vacina como impresso. Na caderneta com seções, é o título da seção.
+- dose: "1", "2", "3", "reforco" (Ref., reforço, inclusive "reforço bivalente"), "unica" (DU, dose única), "anual" (dose de campanha anual, como a gripe), "outra".
+- dose_impressa: a dose como está no documento (rótulo impresso do quadro ou o que foi escrito à mão).
+- data: AAAA-MM-DD. Datas com ano de 2 dígitos ("15/06/04"): decida o século pelo contexto (a dose é depois do nascimento e não está no futuro). data_impressa: como está no documento.
+- lote e local (unidade, posto ou carimbo): como impressos; null se ausentes ou ilegíveis.
+- pagina e confianca: como nos laudos. Letra de mão difícil de ler: confianca "media" ou "baixa".
+
+## Laudo de exames: o que extrair
 - Uma entrada em "resultados" para cada exame que tem valor de resultado. Ignore cabeçalho, material, método, assinaturas e observações gerais.
 - Num hemograma, extraia só: hemácias (eritrócitos), hemoglobina, hematócrito, leucócitos totais e plaquetas. Ignore índices (VCM, HCM, RDW...) e a contagem diferencial.
 - "documento": nome do laboratório como aparece, data da coleta em AAAA-MM-DD, nome do paciente exatamente como impresso, sexo do paciente se o laudo informar, número de atendimento/protocolo, total de páginas (ou de imagens).

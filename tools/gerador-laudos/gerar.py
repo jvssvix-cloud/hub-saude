@@ -896,6 +896,10 @@ def main():
             print(f"  foto  {nome_foto}")
         fotos_por_laudo[ctx["id"]] = lista
 
+    # Carteiras de vacinação (vacinas.py)
+    import vacinas
+    vacinas.gerar_todas(SAIDA, fotografar)
+
     # Gabaritos
     campos = None
     linhas_csv = []

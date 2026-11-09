@@ -32,12 +32,16 @@ const saida = opcao("saida");
 if (saida) writeFileSync(saida, JSON.stringify(r, null, 2));
 
 const d = r.normalizado.documento;
-console.log(`${d.laboratorio} | coleta ${d.data_coleta} | ${d.nome_paciente_impresso} | ${d.paginas} pág.`);
+console.log(`[${r.normalizado.tipo_documento}] ${d.laboratorio} | coleta ${d.data_coleta} | ${d.nome_paciente_impresso} | ${d.paginas} pág.`);
 for (const x of r.normalizado.resultados) {
   const canon = x.valor_canonico === null ? "?" : `${x.valor_canonico} ${x.unidade_canonica}`;
   const flag = x.fora_da_faixa ? " *ALTERADO*" : "";
   const alerta = x.alertas.length ? `  ! ${x.alertas.join("; ")}` : "";
   console.log(`  [p${x.pagina}] ${x.nome_impresso}: ${x.valor_impresso} ${x.unidade_impressa} -> ${canon}${flag}${alerta}`);
+}
+for (const v of r.normalizado.doses) {
+  const alerta = v.alertas.length ? `  ! ${v.alertas.join("; ")}` : "";
+  console.log(`  [p${v.pagina}] VACINA ${v.nome_impresso} | ${v.dose_impressa} (${v.dose}) | ${v.data} | lote ${v.lote ?? "-"} | ${v.local ?? "-"}${alerta}`);
 }
 if (r.normalizado.observacoes) console.log(`Observações: ${r.normalizado.observacoes}`);
 console.log(`\n${r.modelo} | ${r.uso.entrada} tokens entrada, ${r.uso.saida} saída | ~US$ ${r.uso.custo_usd.toFixed(3)} | ${r.uso.segundos.toFixed(1)} s`);
