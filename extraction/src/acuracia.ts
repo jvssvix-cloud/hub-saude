@@ -14,7 +14,7 @@ import { exigirChave, RAIZ } from "./env";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { extrairDocumento, MODELO_PADRAO, mimeDoArquivo, type Esforco, type ResultadoExtracao } from "./extrair";
-import { chaveUnidade } from "./normalizar";
+import { chaveUnidade, normalizar } from "./normalizar";
 import type { ResultadoNormalizado } from "./schema";
 
 const DIR_GERADOR = path.join(RAIZ, "tools/gerador-laudos/saida");
@@ -134,8 +134,10 @@ async function main() {
     custo += r.uso.custo_usd;
     const layout = t.gab.documento.layout;
     const chaves = ["total", `modo ${t.modo}`, `layout ${layout}`, `layout ${layout} / ${t.modo}`];
+    // Normaliza de novo a partir do que a IA leu: mudanças nas regras são medidas sem chamar a API
+    const norm = normalizar(r.bruto);
     const obtidos = new Map<string, ResultadoNormalizado>();
-    for (const o of r.normalizado.resultados) {
+    for (const o of norm.resultados) {
       alertas += o.alertas.length;
       if (o.analito === "outro" || obtidos.has(o.analito)) { chaves.forEach((k) => pegar(k).extras++); continue; }
       obtidos.set(o.analito, o);
@@ -143,7 +145,7 @@ async function main() {
     for (const o of obtidos.keys()) {
       if (!t.gab.resultados.some((e) => e.analito === o)) chaves.forEach((k) => pegar(k).extras++);
     }
-    const d = r.normalizado.documento;
+    const d = norm.documento;
     if (d.data_coleta !== t.gab.documento.data_coleta) docErros.push(`${id}: data ${d.data_coleta} (esperado ${t.gab.documento.data_coleta})`);
     if (texto(d.nome_paciente_impresso ?? "") !== texto(t.gab.documento.nome_paciente_impresso))
       docErros.push(`${id}: paciente "${d.nome_paciente_impresso}" (esperado "${t.gab.documento.nome_paciente_impresso}")`);
@@ -171,7 +173,7 @@ async function main() {
   const camposOk = CAMPOS.reduce((s, c) => s + tot.campos[c], 0);
   L.push(`# Acurácia da extração`, ``);
   L.push(`Modelo ${resultados.find((r): r is ResultadoExtracao => !(r instanceof Error))?.modelo ?? "-"}, esforço \`${ESFORCO}\`. ` +
-    `${tarefas.length - falhas.length} extrações (${gabaritos.length} laudos). Custo das extrações: ~US$ ${custo.toFixed(2)}.`, ``);
+    `${tarefas.length - falhas.length} extrações (${gabaritos.length} laudos). Custo original das extrações: ~US$ ${custo.toFixed(2)} (pago uma vez; ${tarefas.length - faltam.length} vieram do cache, sem custo nesta rodada).`, ``);
   L.push(`**Valores corretos: ${pct(tot.campos.valor, tot.esperados)}** (${tot.campos.valor} de ${tot.esperados}). ` +
     `Todos os campos: ${pct(camposOk, tot.esperados * CAMPOS.length)}. Exames extras/duplicados: ${tot.extras}. Alertas da normalização: ${alertas}.`, ``);
   L.push(`| Recorte | Exames | Encontrados | ${CAMPOS.join(" | ")} | Extras |`);

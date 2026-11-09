@@ -79,18 +79,25 @@ export function normalizarResultado(r: ResultadoExtraido): ResultadoNormalizado 
     const [lo, hi] = PLAUSIVEL[r.analito];
     if (valor < lo || valor > hi) alertas.push(`valor implausível (${valor} ${UNIDADE_CANONICA[r.analito]}): conferir leitura`);
   }
-  // Coerência entre o marcador fora_da_faixa e os limites lidos (só aponta divergência clara).
+  // Coerência entre o marcador fora_da_faixa e os limites lidos.
+  // Regra: valor claramente fora da referência => alterado, mesmo que a IA não tenha marcado.
+  // O contrário (marcado, mas dentro) só vira alerta: a marcação pode vir do próprio laboratório.
+  let fora = r.fora_da_faixa;
   if (r.valor_numerico !== null) {
     const v = r.valor_numerico;
     const claramenteFora = (r.ref_min !== null && v < r.ref_min) || (r.ref_max !== null && v > r.ref_max);
     const claramenteDentro = (r.ref_min === null || v > r.ref_min) && (r.ref_max === null || v < r.ref_max)
       && (r.ref_min !== null || r.ref_max !== null);
-    if (claramenteFora && !r.fora_da_faixa) alertas.push("valor fora da referência lida, mas não marcado como alterado");
-    if (claramenteDentro && r.fora_da_faixa) alertas.push("marcado como alterado, mas dentro da referência lida");
+    if (claramenteFora && !fora) {
+      fora = true;
+      alertas.push("marcado como alterado pela regra: valor fora da referência lida");
+    }
+    if (claramenteDentro && fora) alertas.push("marcado como alterado, mas dentro da referência lida");
   }
   if (r.confianca === "baixa") alertas.push("leitura com baixa confiança");
   return {
     ...r,
+    fora_da_faixa: fora,
     unidade_canonica: UNIDADE_CANONICA[r.analito],
     valor_canonico: valor,
     ref_min_canonico: conv(r.ref_min),
