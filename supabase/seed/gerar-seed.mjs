@@ -25,6 +25,8 @@ const linha = (vals) => `  (${vals.map(q).join(", ")})`;
 
 const persona = ler(path.join(SAIDA, "persona.json"));
 const PID = persona.id;
+// Telefone fictício da demo (o médico digita este número para pedir acesso)
+const TELEFONE_DEMO = "5511987654321";
 
 const documentos = [];
 const observacoes = [];
@@ -63,8 +65,8 @@ const sql = `-- GERADO por supabase/seed/gerar-seed.mjs a partir de tools/gerado
 
 delete from paciente where id = ${q(PID)};  -- cascade: documentos, observações, consentimentos, logs
 
-insert into paciente (id, nome, nascimento, sexo) values
-${linha([PID, persona.nome, persona.nascimento, persona.sexo])};
+insert into paciente (id, nome, nascimento, sexo, telefone) values
+${linha([PID, persona.nome, persona.nascimento, persona.sexo, TELEFONE_DEMO])};
 
 insert into documento (id, paciente_id, tipo, origem, emissor, data, arquivo, paginas) values
 ${documentos.map(linha).join(",\n")};

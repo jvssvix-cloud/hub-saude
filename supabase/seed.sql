@@ -3,8 +3,8 @@
 
 delete from paciente where id = 'persona-roberto';  -- cascade: documentos, observações, consentimentos, logs
 
-insert into paciente (id, nome, nascimento, sexo) values
-  ('persona-roberto', 'Roberto Almeida Siqueira', '1968-05-14', 'M');
+insert into paciente (id, nome, nascimento, sexo, telefone) values
+  ('persona-roberto', 'Roberto Almeida Siqueira', '1968-05-14', 'M', '5511987654321');
 
 insert into documento (id, paciente_id, tipo, origem, emissor, data, arquivo, paginas) values
   ('2016-03', 'persona-roberto', 'laudo_exame', 'seed', 'LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS', '2016-03-09', 'laudos/2016-03_delta.pdf', 2),

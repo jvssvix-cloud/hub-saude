@@ -11,6 +11,7 @@ export type Paciente = {
   nome: string;
   nascimento: string; // AAAA-MM-DD
   sexo: Sexo;
+  telefone: string | null; // só dígitos, com DDI: "5511987654321"
 };
 
 export type TipoDocumento = "laudo_exame" | "carteira_vacinacao" | "wearable" | "outro";
@@ -70,21 +71,58 @@ export type NovaObservacao = Omit<Observacao, "id"> & { paciente_id: string };
 
 export type DestinatarioTipo = "medico" | "ia" | "app_terceiro";
 
+/** "qr": o paciente gerou (já nasce aprovado). "solicitacao": o médico pediu pelo telefone. */
+export type CanalConsentimento = "qr" | "solicitacao";
+export type StatusConsentimento = "pendente" | "aprovado" | "recusado";
+
 export type Consentimento = {
   id: string;
-  paciente_id: string;
-  token: string; // segredo do QR / link / config do MCP
+  /** null só em pedido para telefone sem cadastro (fica pendente até expirar). */
+  paciente_id: string | null;
+  token: string; // segredo do QR / link / config do MCP; num pedido, só funciona depois de aprovado
   destinatario_tipo: DestinatarioTipo;
   destinatario_nome: string;
+  canal: CanalConsentimento;
+  status: StatusConsentimento;
+  motivo: string | null; // "Consulta de cardiologia em 14/11"
   categorias: Categoria[] | null; // null = todas
   codigos: string[] | null; // null = todos
   desde: string | null;
+  validade: string | null; // intervalo pedido pelo médico ("24:00:00")
   criado_em: string;
+  /** Pendente: prazo para o paciente responder. Aprovado: fim do acesso. */
   expira_em: string;
+  respondido_em: string | null;
   revogado_em: string | null;
 };
 
-export type MotivoAcesso = "ok" | "token_invalido" | "revogado" | "expirado";
+/** rpc("solicitar_acesso"): a tela do médico chama com a chave anon. */
+export type SolicitarAcessoParams = {
+  p_telefone: string;
+  p_destinatario_nome: string;
+  p_motivo?: string | null;
+  p_destinatario_tipo?: DestinatarioTipo;
+  p_validade?: string; // intervalo Postgres: "24 hours"
+  p_categorias?: Categoria[] | null;
+  p_codigos?: string[] | null;
+  p_desde?: string | null;
+};
+/** Mesma resposta exista ou não o telefone (não revela quem usa o app). */
+export type RespostaSolicitacao =
+  | { id: string; token: string; prazo_resposta: string }
+  | { erro: "telefone_invalido" };
+
+/** rpc("responder_solicitacao"): só o servidor do app do paciente (service_role). Escopo só estreita. */
+export type ResponderSolicitacaoParams = {
+  p_id: string;
+  p_aprovar: boolean;
+  p_categorias?: Categoria[] | null;
+  p_codigos?: string[] | null;
+  p_desde?: string | null;
+  p_validade?: string | null;
+};
+
+export type MotivoAcesso = "ok" | "token_invalido" | "revogado" | "expirado" | "recusado";
 
 export type LogAcesso = {
   id: number;
@@ -110,11 +148,13 @@ export type AcessarHistoricoParams = {
 /** Resposta de rpc("acessar_historico"): o que médico, MCP e API recebem. */
 export type RespostaHistorico =
   | { ok: false; motivo: Exclude<MotivoAcesso, "ok"> }
+  /** Pedido ainda sem resposta do paciente: a tela do médico continua esperando. */
+  | { ok: false; motivo: "pendente"; prazo_resposta: string }
   | {
       ok: true;
       motivo: "ok";
       consentimento: Pick<Consentimento, "destinatario_tipo" | "destinatario_nome" | "categorias" | "codigos" | "desde" | "expira_em">;
-      paciente: Omit<Paciente, "id">;
+      paciente: Omit<Paciente, "id" | "telefone">;
       documentos: Omit<Documento, "paciente_id">[];
       observacoes: Observacao[];
     };
