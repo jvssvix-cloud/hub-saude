@@ -1,0 +1,3 @@
+reportlab>=4.0
+Pillow>=10.0
+pymupdf>=1.24  # só para rasterizar o PDF antes de virar foto

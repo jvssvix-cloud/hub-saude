@@ -1,0 +1,11 @@
+{
+  "id": "persona-roberto",
+  "nome": "Roberto Almeida Siqueira",
+  "nascimento": "1968-05-14",
+  "sexo": "M",
+  "altura_cm": 174,
+  "cidade": "São Paulo - SP",
+  "historia": "Homem de 58 anos, sem diagnóstico prévio. Fez check-up quase todo ano entre 2016 e 2026, em 4 laboratórios diferentes (trocou de plano duas vezes). Nenhum médico viu a série inteira. Juntando tudo: LDL subindo devagar há 10 anos (112 -> 163 mg/dL), HDL caindo, triglicerídeos subindo, glicose de jejum saindo da faixa desde 2024 e HbA1c chegando a 6,2% (faixa de pré-diabetes), ácido úrico levemente alto nos últimos 2 anos e vitamina D baixa em 2022. Em 2025 repetiu o perfil lipídico 2 meses depois do check-up porque o novo médico não tinha o anterior (exemplo de exame repetido). Em out-nov/2026 o relógio registra episódios de ritmo irregular (dados do relógio = tarefa da pessoa 4).",
+  "remedios": [],
+  "alergias": []
+}

@@ -1,0 +1,275 @@
+﻿laudo_id,arquivo_pdf,laboratorio,layout,data_coleta,analito,nome_impresso,valor_impresso,valor_numerico,unidade_impressa,unidade_canonica,valor_canonico,referencia_impressa,ref_min,ref_max,ref_min_canonico,ref_max_canonico,fora_da_faixa,pagina
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,hemacias,HEMACIAS,4.99,4.99,MILHOES/MM3,milhões/mm³,4.99,VR: 4.50 A 5.90,4.5,5.9,4.5,5.9,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,hemoglobina,HEMOGLOBINA,15.5,15.5,G/DL,g/dL,15.5,VR: 13.5 A 17.5,13.5,17.5,13.5,17.5,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,hematocrito,HEMATOCRITO,45.5,45.5,%,%,45.5,VR: 39.0 A 50.0,39.0,50.0,39.0,50.0,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,leucocitos,LEUCOCITOS,7270,7270,/MM3,/mm³,7270,VR: 4000 A 10000,4000,10000,4000,10000,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,plaquetas,PLAQUETAS,250000,250000,/MM3,/mm³,250000,VR: 150000 A 400000,150000,400000,150000,400000,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,glicose,GLICEMIA,88,88,MG/DL,mg/dL,88,VR: 70 A 99 MG/DL,70,99,70,99,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,colesterol_total,COLESTEROL TOTAL,190,190,MG/DL,mg/dL,190,"VR: DESEJAVEL: < 200
+    LIMITROFE: 200 A 239
+    ALTO.....: >= 240",,200,,200,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,hdl,COLEST. HDL,48,48,MG/DL,mg/dL,48,VR: > 40 MG/DL,40,,40,,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,ldl,COLEST. LDL,112,112,MG/DL,mg/dL,112,"VR: OTIMO............: < 100
+    DESEJAVEL........: 100 A 129
+    LIMITROFE........: 130 A 159
+    ALTO.............: 160 A 189
+    MUITO ALTO.......: >= 190",,129,,129,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,triglicerides,TRIGLICERIDES,125,125,MG/DL,mg/dL,125,"VR: DESEJAVEL.: < 150
+    LIMITROFE.: 150 A 199
+    ALTO......: 200 A 499
+    MUITO ALTO: >= 500",,150,,150,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,creatinina,CREATININA,0.95,0.95,MG/DL,mg/dL,0.95,VR: 0.70 A 1.30 MG/DL,0.7,1.3,0.7,1.3,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,acido_urico,ACIDO URICO,6.1,6.1,MG/DL,mg/dL,6.1,VR: 3.5 A 7.2 MG/DL,3.5,7.2,3.5,7.2,False,1
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,tgo,TRANSAMINASE OXALACETICA - TGO,26,26,U/L,U/L,26,VR: 5 A 40 U/L,5,40,5,40,False,2
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,tgp,TRANSAMINASE PIRUVICA - TGP,26,26,U/L,U/L,26,VR: 7 A 56 U/L,7,56,7,56,False,2
+2016-03,laudos/2016-03_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2016-03-09,tsh,TSH - HORMONIO TIREOESTIMULANTE,2.45,2.45,UUI/ML,µUI/mL,2.45,VR: 0.40 A 4.00 UUI/ML,0.4,4.0,0.4,4.0,False,2
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,hemacias,HEMACIAS,4.99,4.99,MILHOES/MM3,milhões/mm³,4.99,VR: 4.50 A 5.90,4.5,5.9,4.5,5.9,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,hemoglobina,HEMOGLOBINA,15.4,15.4,G/DL,g/dL,15.4,VR: 13.5 A 17.5,13.5,17.5,13.5,17.5,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,hematocrito,HEMATOCRITO,44.6,44.6,%,%,44.6,VR: 39.0 A 50.0,39.0,50.0,39.0,50.0,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,leucocitos,LEUCOCITOS,7110,7110,/MM3,/mm³,7110,VR: 4000 A 10000,4000,10000,4000,10000,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,plaquetas,PLAQUETAS,241000,241000,/MM3,/mm³,241000,VR: 150000 A 400000,150000,400000,150000,400000,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,glicose,GLICEMIA,90,90,MG/DL,mg/dL,90,VR: 70 A 99 MG/DL,70,99,70,99,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,colesterol_total,COLESTEROL TOTAL,197,197,MG/DL,mg/dL,197,"VR: DESEJAVEL: < 200
+    LIMITROFE: 200 A 239
+    ALTO.....: >= 240",,200,,200,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,hdl,COLEST. HDL,47,47,MG/DL,mg/dL,47,VR: > 40 MG/DL,40,,40,,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,ldl,COLEST. LDL,118,118,MG/DL,mg/dL,118,"VR: OTIMO............: < 100
+    DESEJAVEL........: 100 A 129
+    LIMITROFE........: 130 A 159
+    ALTO.............: 160 A 189
+    MUITO ALTO.......: >= 190",,129,,129,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,triglicerides,TRIGLICERIDES,134,134,MG/DL,mg/dL,134,"VR: DESEJAVEL.: < 150
+    LIMITROFE.: 150 A 199
+    ALTO......: 200 A 499
+    MUITO ALTO: >= 500",,150,,150,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,creatinina,CREATININA,1.00,1.0,MG/DL,mg/dL,1.0,VR: 0.70 A 1.30 MG/DL,0.7,1.3,0.7,1.3,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,acido_urico,ACIDO URICO,6.3,6.3,MG/DL,mg/dL,6.3,VR: 3.5 A 7.2 MG/DL,3.5,7.2,3.5,7.2,False,1
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,tgo,TRANSAMINASE OXALACETICA - TGO,27,27,U/L,U/L,27,VR: 5 A 40 U/L,5,40,5,40,False,2
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,tgp,TRANSAMINASE PIRUVICA - TGP,31,31,U/L,U/L,31,VR: 7 A 56 U/L,7,56,7,56,False,2
+2017-04,laudos/2017-04_delta.pdf,LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS,D,2017-04-18,tsh,TSH - HORMONIO TIREOESTIMULANTE,2.44,2.44,UUI/ML,µUI/mL,2.44,VR: 0.40 A 4.00 UUI/ML,0.4,4.0,0.4,4.0,False,2
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,hemacias,Hemácias,"5,06",5.06,milhões/mm³,milhões/mm³,5.06,"4,30 a 5,70 milhões/mm³",4.3,5.7,4.3,5.7,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,hemoglobina,Hemoglobina,"15,1",15.1,g/dL,g/dL,15.1,"13,5 a 17,5 g/dL",13.5,17.5,13.5,17.5,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,hematocrito,Hematócrito,"45,3",45.3,%,%,45.3,"39,0 a 50,0 %",39.0,50.0,39.0,50.0,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,leucocitos,Leucócitos,7.210,7210,/mm³,/mm³,7210,3.500 a 10.500 /mm³,3500,10500,3500,10500,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,plaquetas,Plaquetas,256.000,256000,/mm³,/mm³,256000,150.000 a 450.000 /mm³,150000,450000,150000,450000,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,glicose,Glicemia de jejum,93,93,mg/dL,mg/dL,93,70 a 99 mg/dL,70,99,70,99,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,colesterol_total,Colesterol total,202,202,mg/dL,mg/dL,202,Desejável: < 190 mg/dL,,190,,190,True,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,hdl,Colesterol HDL,47,47,mg/dL,mg/dL,47,Desejável: > 40 mg/dL,40,,40,,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,ldl,Colesterol LDL (calculado - Friedewald),124,124,mg/dL,mg/dL,124,"Risco baixo: < 130 mg/dL
+Risco intermediário: < 100 mg/dL
+Risco alto: < 70 mg/dL
+Risco muito alto: < 50 mg/dL",,130,,130,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,triglicerides,Triglicerídeos,144,144,mg/dL,mg/dL,144,Desejável: < 150 mg/dL,,150,,150,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,creatinina,Creatinina,"0,99",0.99,mg/dL,mg/dL,0.99,"0,70 a 1,20 mg/dL",0.7,1.2,0.7,1.2,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,acido_urico,Ácido úrico,"6,3",6.3,mg/dL,mg/dL,6.3,"3,4 a 7,0 mg/dL",3.4,7.0,3.4,7.0,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,tgo,TGO (AST),23,23,U/L,U/L,23,Até 40 U/L,,40,,40,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,tgp,TGP (ALT),27,27,U/L,U/L,27,Até 41 U/L,,41,,41,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,tsh,TSH,"1,98",1.98,µUI/mL,µUI/mL,1.98,"0,27 a 4,20 µUI/mL",0.27,4.2,0.27,4.2,False,1
+2018-03,laudos/2018-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2018-03-22,psa,PSA total,"0,84",0.84,ng/mL,ng/mL,0.84,"Até 4,00 ng/mL",,4.0,,4.0,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,hemacias,Hemácias,"5,10",5.1,milhões/mm³,milhões/mm³,5.1,"4,30 a 5,70 milhões/mm³",4.3,5.7,4.3,5.7,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,hemoglobina,Hemoglobina,"14,8",14.8,g/dL,g/dL,14.8,"13,5 a 17,5 g/dL",13.5,17.5,13.5,17.5,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,hematocrito,Hematócrito,"44,9",44.9,%,%,44.9,"39,0 a 50,0 %",39.0,50.0,39.0,50.0,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,leucocitos,Leucócitos,7.390,7390,/mm³,/mm³,7390,3.500 a 10.500 /mm³,3500,10500,3500,10500,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,plaquetas,Plaquetas,233.000,233000,/mm³,/mm³,233000,150.000 a 450.000 /mm³,150000,450000,150000,450000,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,glicose,Glicemia de jejum,96,96,mg/dL,mg/dL,96,70 a 99 mg/dL,70,99,70,99,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,colesterol_total,Colesterol total,204,204,mg/dL,mg/dL,204,Desejável: < 190 mg/dL,,190,,190,True,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,hdl,Colesterol HDL,45,45,mg/dL,mg/dL,45,Desejável: > 40 mg/dL,40,,40,,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,ldl,Colesterol LDL (calculado - Friedewald),128,128,mg/dL,mg/dL,128,"Risco baixo: < 130 mg/dL
+Risco intermediário: < 100 mg/dL
+Risco alto: < 70 mg/dL
+Risco muito alto: < 50 mg/dL",,130,,130,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,triglicerides,Triglicerídeos,147,147,mg/dL,mg/dL,147,Desejável: < 150 mg/dL,,150,,150,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,creatinina,Creatinina,"1,00",1.0,mg/dL,mg/dL,1.0,"0,70 a 1,20 mg/dL",0.7,1.2,0.7,1.2,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,acido_urico,Ácido úrico,"6,6",6.6,mg/dL,mg/dL,6.6,"3,4 a 7,0 mg/dL",3.4,7.0,3.4,7.0,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,tgo,TGO (AST),25,25,U/L,U/L,25,Até 40 U/L,,40,,40,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,tgp,TGP (ALT),30,30,U/L,U/L,30,Até 41 U/L,,41,,41,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,tsh,TSH,"2,50",2.5,µUI/mL,µUI/mL,2.5,"0,27 a 4,20 µUI/mL",0.27,4.2,0.27,4.2,False,1
+2019-03,laudos/2019-03_alfa.pdf,Laboratório Alfa Diagnósticos,A,2019-03-14,psa,PSA total,"0,98",0.98,ng/mL,ng/mL,0.98,"Até 4,00 ng/mL",,4.0,,4.0,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,hemacias,Hemácias,"4,99",4.99,milhões/mm³,milhões/mm³,4.99,"4,30 a 5,70 milhões/mm³",4.3,5.7,4.3,5.7,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,hemoglobina,Hemoglobina,"15,0",15.0,g/dL,g/dL,15.0,"13,5 a 17,5 g/dL",13.5,17.5,13.5,17.5,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,hematocrito,Hematócrito,"44,6",44.6,%,%,44.6,"39,0 a 50,0 %",39.0,50.0,39.0,50.0,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,leucocitos,Leucócitos,6.980,6980,/mm³,/mm³,6980,3.500 a 10.500 /mm³,3500,10500,3500,10500,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,plaquetas,Plaquetas,225.000,225000,/mm³,/mm³,225000,150.000 a 450.000 /mm³,150000,450000,150000,450000,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,glicose,Glicemia de jejum,100,100,mg/dL,mg/dL,100,70 a 99 mg/dL,70,99,70,99,True,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,hba1c,Hemoglobina glicada (HbA1c),"5,7",5.7,%,%,5.7,"Normal: < 5,7%
+Pré-diabetes: 5,7 a 6,4%
+Diabetes: 6,5% ou mais",,5.7,,5.7,True,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,colesterol_total,Colesterol total,210,210,mg/dL,mg/dL,210,Desejável: < 190 mg/dL,,190,,190,True,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,hdl,Colesterol HDL,45,45,mg/dL,mg/dL,45,Desejável: > 40 mg/dL,40,,40,,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,ldl,Colesterol LDL (calculado - Friedewald),134,134,mg/dL,mg/dL,134,"Risco baixo: < 130 mg/dL
+Risco intermediário: < 100 mg/dL
+Risco alto: < 70 mg/dL
+Risco muito alto: < 50 mg/dL",,130,,130,True,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,triglicerides,Triglicerídeos,159,159,mg/dL,mg/dL,159,Desejável: < 150 mg/dL,,150,,150,True,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,creatinina,Creatinina,"1,07",1.07,mg/dL,mg/dL,1.07,"0,70 a 1,20 mg/dL",0.7,1.2,0.7,1.2,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,acido_urico,Ácido úrico,"6,7",6.7,mg/dL,mg/dL,6.7,"3,4 a 7,0 mg/dL",3.4,7.0,3.4,7.0,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,tgo,TGO (AST),24,24,U/L,U/L,24,Até 40 U/L,,40,,40,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,tgp,TGP (ALT),33,33,U/L,U/L,33,Até 41 U/L,,41,,41,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,tsh,TSH,"1,99",1.99,µUI/mL,µUI/mL,1.99,"0,27 a 4,20 µUI/mL",0.27,4.2,0.27,4.2,False,1
+2020-09,laudos/2020-09_alfa.pdf,Laboratório Alfa Diagnósticos,A,2020-09-03,psa,PSA total,"1,00",1.0,ng/mL,ng/mL,1.0,"Até 4,00 ng/mL",,4.0,,4.0,False,1
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,hemacias,ERITRÓCITOS,"4,90",4.9,milhões/µL,milhões/mm³,4.9,"Homens: 4,50 a 5,90 milhões/µL
+Mulheres: 4,00 a 5,20 milhões/µL",4.5,5.9,4.5,5.9,False,1
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,hemoglobina,HEMOGLOBINA,"14,9",14.9,g/dL,g/dL,14.9,"Homens: 13,5 a 17,5 g/dL
+Mulheres: 12,0 a 15,5 g/dL",13.5,17.5,13.5,17.5,False,1
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,hematocrito,HEMATÓCRITO,"44,9",44.9,%,%,44.9,"Homens: 41 a 53 %
+Mulheres: 36 a 46 %",41,53,41,53,False,1
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,leucocitos,LEUCÓCITOS TOTAIS,6.750,6750,/µL,/mm³,6750,4.000 a 11.000 /µL,4000,11000,4000,11000,False,1
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,plaquetas,CONTAGEM DE PLAQUETAS,235,235,mil/µL,/mm³,235000,150 a 450 mil/µL,150,450,150000,450000,False,1
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,glicose,GLICOSE,100,100,mg/dL,mg/dL,100,"Normal: 70 a 99 mg/dL
+Glicemia de jejum alterada: 100 a 125 mg/dL
+Diabetes: igual ou superior a 126 mg/dL",70,99,70,99,True,1
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,hba1c,HEMOGLOBINA GLICADA - HbA1c,"5,8",5.8,%,%,5.8,"Normal: inferior a 5,7%
+Pré-diabetes: 5,7% a 6,4%
+Diabetes: igual ou superior a 6,5%",,5.7,,5.7,True,1
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,colesterol_total,COLESTEROL TOTAL,220,220,mg/dL,mg/dL,220,Desejável: inferior a 190 mg/dL,,190,,190,True,1
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,hdl,HDL-COLESTEROL,44,44,mg/dL,mg/dL,44,Desejável: superior a 40 mg/dL,40,,40,,False,2
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,ldl,LDL-COLESTEROL,140,140,mg/dL,mg/dL,140,"Meta conforme categoria de risco:
+Baixo: inferior a 130 mg/dL
+Intermediário: inferior a 100 mg/dL
+Alto: inferior a 70 mg/dL
+Muito alto: inferior a 50 mg/dL",,130,,130,True,2
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,triglicerides,TRIGLICÉRIDES,162,162,mg/dL,mg/dL,162,"Desejável (com jejum): inferior a 150 mg/dL
+Desejável (sem jejum): inferior a 175 mg/dL",,150,,150,True,2
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,creatinina,CREATININA,"1,01",1.01,mg/dL,mg/dL,1.01,"Homens: 0,70 a 1,30 mg/dL
+Mulheres: 0,50 a 1,10 mg/dL",0.7,1.3,0.7,1.3,False,2
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,acido_urico,ÁCIDO ÚRICO,"6,8",6.8,mg/dL,mg/dL,6.8,"Homens: 3,5 a 7,2 mg/dL
+Mulheres: 2,6 a 6,0 mg/dL",3.5,7.2,3.5,7.2,False,2
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,tgo,ASPARTATO AMINOTRANSFERASE,28,28,U/L,U/L,28,"Homens: até 40 U/L
+Mulheres: até 32 U/L",,40,,40,False,2
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,tgp,ALANINA AMINOTRANSFERASE,29,29,U/L,U/L,29,"Homens: até 41 U/L
+Mulheres: até 33 U/L",,41,,41,False,2
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,tsh,HORMÔNIO TIREOESTIMULANTE (TSH),"2,32",2.32,µUI/mL,µUI/mL,2.32,"Adultos: 0,40 a 4,30 µUI/mL",0.4,4.3,0.4,4.3,False,2
+2021-08,laudos/2021-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2021-08-26,psa,ANTÍGENO PROSTÁTICO ESPECÍFICO (PSA) TOTAL,"1,15",1.15,ng/mL,ng/mL,1.15,"Até 4,0 ng/mL
+(o valor de corte pode variar com a idade)",,4.0,,4.0,False,3
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,hemacias,ERITRÓCITOS,"4,95",4.95,milhões/µL,milhões/mm³,4.95,"Homens: 4,50 a 5,90 milhões/µL
+Mulheres: 4,00 a 5,20 milhões/µL",4.5,5.9,4.5,5.9,False,1
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,hemoglobina,HEMOGLOBINA,"14,7",14.7,g/dL,g/dL,14.7,"Homens: 13,5 a 17,5 g/dL
+Mulheres: 12,0 a 15,5 g/dL",13.5,17.5,13.5,17.5,False,1
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,hematocrito,HEMATÓCRITO,"45,0",45.0,%,%,45.0,"Homens: 41 a 53 %
+Mulheres: 36 a 46 %",41,53,41,53,False,1
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,leucocitos,LEUCÓCITOS TOTAIS,7.460,7460,/µL,/mm³,7460,4.000 a 11.000 /µL,4000,11000,4000,11000,False,1
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,plaquetas,CONTAGEM DE PLAQUETAS,223,223,mil/µL,/mm³,223000,150 a 450 mil/µL,150,450,150000,450000,False,1
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,glicose,GLICOSE,105,105,mg/dL,mg/dL,105,"Normal: 70 a 99 mg/dL
+Glicemia de jejum alterada: 100 a 125 mg/dL
+Diabetes: igual ou superior a 126 mg/dL",70,99,70,99,True,1
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,hba1c,HEMOGLOBINA GLICADA - HbA1c,"5,9",5.9,%,%,5.9,"Normal: inferior a 5,7%
+Pré-diabetes: 5,7% a 6,4%
+Diabetes: igual ou superior a 6,5%",,5.7,,5.7,True,1
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,colesterol_total,COLESTEROL TOTAL,223,223,mg/dL,mg/dL,223,Desejável: inferior a 190 mg/dL,,190,,190,True,1
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,hdl,HDL-COLESTEROL,44,44,mg/dL,mg/dL,44,Desejável: superior a 40 mg/dL,40,,40,,False,2
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,ldl,LDL-COLESTEROL,147,147,mg/dL,mg/dL,147,"Meta conforme categoria de risco:
+Baixo: inferior a 130 mg/dL
+Intermediário: inferior a 100 mg/dL
+Alto: inferior a 70 mg/dL
+Muito alto: inferior a 50 mg/dL",,130,,130,True,2
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,triglicerides,TRIGLICÉRIDES,165,165,mg/dL,mg/dL,165,"Desejável (com jejum): inferior a 150 mg/dL
+Desejável (sem jejum): inferior a 175 mg/dL",,150,,150,True,2
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,creatinina,CREATININA,"1,07",1.07,mg/dL,mg/dL,1.07,"Homens: 0,70 a 1,30 mg/dL
+Mulheres: 0,50 a 1,10 mg/dL",0.7,1.3,0.7,1.3,False,2
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,acido_urico,ÁCIDO ÚRICO,"7,1",7.1,mg/dL,mg/dL,7.1,"Homens: 3,5 a 7,2 mg/dL
+Mulheres: 2,6 a 6,0 mg/dL",3.5,7.2,3.5,7.2,False,2
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,tgo,ASPARTATO AMINOTRANSFERASE,29,29,U/L,U/L,29,"Homens: até 40 U/L
+Mulheres: até 32 U/L",,40,,40,False,2
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,tgp,ALANINA AMINOTRANSFERASE,35,35,U/L,U/L,35,"Homens: até 41 U/L
+Mulheres: até 33 U/L",,41,,41,False,2
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,tsh,HORMÔNIO TIREOESTIMULANTE (TSH),"2,50",2.5,µUI/mL,µUI/mL,2.5,"Adultos: 0,40 a 4,30 µUI/mL",0.4,4.3,0.4,4.3,False,2
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,psa,ANTÍGENO PROSTÁTICO ESPECÍFICO (PSA) TOTAL,"1,16",1.16,ng/mL,ng/mL,1.16,"Até 4,0 ng/mL
+(o valor de corte pode variar com a idade)",,4.0,,4.0,False,3
+2022-08,laudos/2022-08_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2022-08-17,vitamina_d,25-HIDROXIVITAMINA D,"22,4",22.4,ng/mL,ng/mL,22.4,"Deficiência: inferior a 20 ng/mL
+Insuficiência: 20 a 29 ng/mL
+Suficiência: 30 a 100 ng/mL
+Risco de toxicidade: superior a 100 ng/mL",30,100,30,100,True,3
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,hemacias,ERITRÓCITOS,"4,93",4.93,milhões/µL,milhões/mm³,4.93,"Homens: 4,50 a 5,90 milhões/µL
+Mulheres: 4,00 a 5,20 milhões/µL",4.5,5.9,4.5,5.9,False,1
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,hemoglobina,HEMOGLOBINA,"14,8",14.8,g/dL,g/dL,14.8,"Homens: 13,5 a 17,5 g/dL
+Mulheres: 12,0 a 15,5 g/dL",13.5,17.5,13.5,17.5,False,1
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,hematocrito,HEMATÓCRITO,"44,8",44.8,%,%,44.8,"Homens: 41 a 53 %
+Mulheres: 36 a 46 %",41,53,41,53,False,1
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,leucocitos,LEUCÓCITOS TOTAIS,6.960,6960,/µL,/mm³,6960,4.000 a 11.000 /µL,4000,11000,4000,11000,False,1
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,plaquetas,CONTAGEM DE PLAQUETAS,226,226,mil/µL,/mm³,226000,150 a 450 mil/µL,150,450,150000,450000,False,1
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,glicose,GLICOSE,106,106,mg/dL,mg/dL,106,"Normal: 70 a 99 mg/dL
+Glicemia de jejum alterada: 100 a 125 mg/dL
+Diabetes: igual ou superior a 126 mg/dL",70,99,70,99,True,1
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,hba1c,HEMOGLOBINA GLICADA - HbA1c,"6,0",6.0,%,%,6.0,"Normal: inferior a 5,7%
+Pré-diabetes: 5,7% a 6,4%
+Diabetes: igual ou superior a 6,5%",,5.7,,5.7,True,1
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,colesterol_total,COLESTEROL TOTAL,227,227,mg/dL,mg/dL,227,Desejável: inferior a 190 mg/dL,,190,,190,True,1
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,hdl,HDL-COLESTEROL,43,43,mg/dL,mg/dL,43,Desejável: superior a 40 mg/dL,40,,40,,False,2
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,ldl,LDL-COLESTEROL,152,152,mg/dL,mg/dL,152,"Meta conforme categoria de risco:
+Baixo: inferior a 130 mg/dL
+Intermediário: inferior a 100 mg/dL
+Alto: inferior a 70 mg/dL
+Muito alto: inferior a 50 mg/dL",,130,,130,True,2
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,triglicerides,TRIGLICÉRIDES,168,168,mg/dL,mg/dL,168,"Desejável (com jejum): inferior a 150 mg/dL
+Desejável (sem jejum): inferior a 175 mg/dL",,150,,150,True,2
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,creatinina,CREATININA,"1,02",1.02,mg/dL,mg/dL,1.02,"Homens: 0,70 a 1,30 mg/dL
+Mulheres: 0,50 a 1,10 mg/dL",0.7,1.3,0.7,1.3,False,2
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,acido_urico,ÁCIDO ÚRICO,"7,1",7.1,mg/dL,mg/dL,7.1,"Homens: 3,5 a 7,2 mg/dL
+Mulheres: 2,6 a 6,0 mg/dL",3.5,7.2,3.5,7.2,False,2
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,tgo,ASPARTATO AMINOTRANSFERASE,27,27,U/L,U/L,27,"Homens: até 40 U/L
+Mulheres: até 32 U/L",,40,,40,False,2
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,tgp,ALANINA AMINOTRANSFERASE,32,32,U/L,U/L,32,"Homens: até 41 U/L
+Mulheres: até 33 U/L",,41,,41,False,2
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,tsh,HORMÔNIO TIREOESTIMULANTE (TSH),"2,27",2.27,µUI/mL,µUI/mL,2.27,"Adultos: 0,40 a 4,30 µUI/mL",0.4,4.3,0.4,4.3,False,2
+2023-09,laudos/2023-09_beta.pdf,Diagnóstica Beta Medicina Laboratorial,B,2023-09-05,psa,ANTÍGENO PROSTÁTICO ESPECÍFICO (PSA) TOTAL,"1,28",1.28,ng/mL,ng/mL,1.28,"Até 4,0 ng/mL
+(o valor de corte pode variar com a idade)",,4.0,,4.0,False,3
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,hemacias,Hemácias,"4,99",4.99,x10¹²/L,milhões/mm³,4.99,"(4,50 a 5,90)",4.5,5.9,4.5,5.9,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,hemoglobina,Hb,"14,9",14.9,g/dL,g/dL,14.9,"(13,5 a 17,5)",13.5,17.5,13.5,17.5,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,hematocrito,Ht,"43,8",43.8,%,%,43.8,(40 a 52),40,52,40,52,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,leucocitos,Leucócitos,"7,04",7.04,mil/mm³,/mm³,7040,"(4,00 a 10,00)",4.0,10.0,4000,10000,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,plaquetas,Plaquetas,243,243,mil/mm³,/mm³,243000,(150 a 400),150,400,150000,400000,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,glicose,Glicose - jejum,109,109,mg/dL,mg/dL,109,(70 a 99),70,99,70,99,True,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,hba1c,HbA1c,"6,0",6.0,%,%,6.0,"(< 5,7)",,5.7,,5.7,True,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,colesterol_total,Colesterol Total,231,231,mg/dL,mg/dL,231,(< 190),,190,,190,True,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,hdl,HDL Colesterol,43,43,mg/dL,mg/dL,43,(> 40),40,,40,,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,ldl,LDL Colesterol,153,153,mg/dL,mg/dL,153,(baixo <130; interm. <100; alto <70; muito alto <50),,130,,130,True,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,triglicerides,Triglicérides,177,177,mg/dL,mg/dL,177,(< 150),,150,,150,True,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,creatinina,Creatinina sérica,"1,07",1.07,mg/dL,mg/dL,1.07,"(0,70 a 1,30)",0.7,1.3,0.7,1.3,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,acido_urico,Ácido Úrico,"7,2",7.2,mg/dL,mg/dL,7.2,"(3,5 a 7,2)",3.5,7.2,3.5,7.2,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,tgo,AST/TGO,28,28,U/L,U/L,28,(até 40),,40,,40,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,tgp,ALT/TGP,29,29,U/L,U/L,29,(até 41),,41,,41,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,tsh,TSH ultrassensível,"2,27",2.27,µUI/mL,µUI/mL,2.27,"(0,45 a 4,50)",0.45,4.5,0.45,4.5,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,psa,PSA Total,"1,31",1.31,ng/mL,ng/mL,1.31,"(< 4,0)",,4.0,,4.0,False,1
+2024-03,laudos/2024-03_gama.pdf,Gama Análises Clínicas,C,2024-03-20,vitamina_d,Vitamina D (25-OH),"31,8",31.8,ng/mL,ng/mL,31.8,(> 20),20,,20,,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,hemacias,Hemácias,"4,91",4.91,x10¹²/L,milhões/mm³,4.91,"(4,50 a 5,90)",4.5,5.9,4.5,5.9,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,hemoglobina,Hb,"14,6",14.6,g/dL,g/dL,14.6,"(13,5 a 17,5)",13.5,17.5,13.5,17.5,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,hematocrito,Ht,"43,3",43.3,%,%,43.3,(40 a 52),40,52,40,52,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,leucocitos,Leucócitos,"6,94",6.94,mil/mm³,/mm³,6940,"(4,00 a 10,00)",4.0,10.0,4000,10000,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,plaquetas,Plaquetas,225,225,mil/mm³,/mm³,225000,(150 a 400),150,400,150000,400000,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,glicose,Glicose - jejum,111,111,mg/dL,mg/dL,111,(70 a 99),70,99,70,99,True,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,hba1c,HbA1c,"6,2",6.2,%,%,6.2,"(< 5,7)",,5.7,,5.7,True,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,colesterol_total,Colesterol Total,236,236,mg/dL,mg/dL,236,(< 190),,190,,190,True,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,hdl,HDL Colesterol,41,41,mg/dL,mg/dL,41,(> 40),40,,40,,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,ldl,LDL Colesterol,158,158,mg/dL,mg/dL,158,(baixo <130; interm. <100; alto <70; muito alto <50),,130,,130,True,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,triglicerides,Triglicérides,182,182,mg/dL,mg/dL,182,(< 150),,150,,150,True,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,creatinina,Creatinina sérica,"1,05",1.05,mg/dL,mg/dL,1.05,"(0,70 a 1,30)",0.7,1.3,0.7,1.3,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,acido_urico,Ácido Úrico,"7,3",7.3,mg/dL,mg/dL,7.3,"(3,5 a 7,2)",3.5,7.2,3.5,7.2,True,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,tgo,AST/TGO,29,29,U/L,U/L,29,(até 40),,40,,40,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,tgp,ALT/TGP,33,33,U/L,U/L,33,(até 41),,41,,41,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,tsh,TSH ultrassensível,"2,12",2.12,µUI/mL,µUI/mL,2.12,"(0,45 a 4,50)",0.45,4.5,0.45,4.5,False,1
+2025-03,laudos/2025-03_gama.pdf,Gama Análises Clínicas,C,2025-03-11,psa,PSA Total,"1,34",1.34,ng/mL,ng/mL,1.34,"(< 4,0)",,4.0,,4.0,False,1
+2025-05,laudos/2025-05_alfa.pdf,Laboratório Alfa Diagnósticos,A,2025-05-27,glicose,Glicemia de jejum,111,111,mg/dL,mg/dL,111,70 a 99 mg/dL,70,99,70,99,True,1
+2025-05,laudos/2025-05_alfa.pdf,Laboratório Alfa Diagnósticos,A,2025-05-27,colesterol_total,Colesterol total,236,236,mg/dL,mg/dL,236,Desejável: < 190 mg/dL,,190,,190,True,1
+2025-05,laudos/2025-05_alfa.pdf,Laboratório Alfa Diagnósticos,A,2025-05-27,hdl,Colesterol HDL,41,41,mg/dL,mg/dL,41,Desejável: > 40 mg/dL,40,,40,,False,1
+2025-05,laudos/2025-05_alfa.pdf,Laboratório Alfa Diagnósticos,A,2025-05-27,ldl,Colesterol LDL (calculado - Friedewald),161,161,mg/dL,mg/dL,161,"Risco baixo: < 130 mg/dL
+Risco intermediário: < 100 mg/dL
+Risco alto: < 70 mg/dL
+Risco muito alto: < 50 mg/dL",,130,,130,True,1
+2025-05,laudos/2025-05_alfa.pdf,Laboratório Alfa Diagnósticos,A,2025-05-27,triglicerides,Triglicerídeos,187,187,mg/dL,mg/dL,187,Desejável: < 150 mg/dL,,150,,150,True,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,hemacias,Hemácias,"4,94",4.94,x10¹²/L,milhões/mm³,4.94,"(4,50 a 5,90)",4.5,5.9,4.5,5.9,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,hemoglobina,Hb,"14,8",14.8,g/dL,g/dL,14.8,"(13,5 a 17,5)",13.5,17.5,13.5,17.5,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,hematocrito,Ht,"43,5",43.5,%,%,43.5,(40 a 52),40,52,40,52,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,leucocitos,Leucócitos,"7,17",7.17,mil/mm³,/mm³,7170,"(4,00 a 10,00)",4.0,10.0,4000,10000,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,plaquetas,Plaquetas,239,239,mil/mm³,/mm³,239000,(150 a 400),150,400,150000,400000,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,glicose,Glicose - jejum,112,112,mg/dL,mg/dL,112,(70 a 99),70,99,70,99,True,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,hba1c,HbA1c,"6,2",6.2,%,%,6.2,"(< 5,7)",,5.7,,5.7,True,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,colesterol_total,Colesterol Total,238,238,mg/dL,mg/dL,238,(< 190),,190,,190,True,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,hdl,HDL Colesterol,42,42,mg/dL,mg/dL,42,(> 40),40,,40,,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,ldl,LDL Colesterol,164,164,mg/dL,mg/dL,164,(baixo <130; interm. <100; alto <70; muito alto <50),,130,,130,True,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,triglicerides,Triglicérides,180,180,mg/dL,mg/dL,180,(< 150),,150,,150,True,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,creatinina,Creatinina sérica,"1,05",1.05,mg/dL,mg/dL,1.05,"(0,70 a 1,30)",0.7,1.3,0.7,1.3,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,acido_urico,Ácido Úrico,"7,3",7.3,mg/dL,mg/dL,7.3,"(3,5 a 7,2)",3.5,7.2,3.5,7.2,True,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,tgo,AST/TGO,27,27,U/L,U/L,27,(até 40),,40,,40,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,tgp,ALT/TGP,35,35,U/L,U/L,35,(até 41),,41,,41,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,tsh,TSH ultrassensível,"2,20",2.2,µUI/mL,µUI/mL,2.2,"(0,45 a 4,50)",0.45,4.5,0.45,4.5,False,1
+2026-03,laudos/2026-03_gama.pdf,Gama Análises Clínicas,C,2026-03-12,psa,PSA Total,"1,42",1.42,ng/mL,ng/mL,1.42,"(< 4,0)",,4.0,,4.0,False,1
