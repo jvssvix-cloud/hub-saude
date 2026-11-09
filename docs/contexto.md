@@ -87,7 +87,9 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 ## 6. TIME (09/11)
 **Atualização 09/11 à noite:** o amigo ainda não tinha começado; decisão de **construir juntos** (6h hoje) com o Claude Code. A tabela de papéis abaixo é a original; o plano em vigor é o "Plano 09/11 à noite".
 
-**Plano 09/11 à noite (6h juntos):**
+**Divisão 09/11 à noite:** **João** faz as horas 1 e 2 (branch `a/app`, pasta `app/`); **amigo** faz a hora 3, o relógio (branch `b/relogio`, pasta `wearable/`, prompt pronto em `docs/prompts/02-relogio.md`, sem chave da API). Contrato: `wearable/saida/relogio.json` (formato no prompt). Só o João edita `CLAUDE.md` e este arquivo; o amigo registra decisões no `wearable/README.md`. Em ~2h: merge das duas branches na `main` e horas 4, 5 e 6 juntos.
+
+**Plano 09/11 à noite (6h):**
 | Hora | Entrega |
 |---|---|
 | 1 | Next.js no ar na Vercel (link no celular) + **Início** (áreas da persona via `insights.json`) |
@@ -137,6 +139,7 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11: **laudo real de terceira (com consentimento), usado só para aprender e apagado:** 29/29 valores e referências femininas corretas. Lições viraram código + caso sintético permanente (`caso-misto`): 14 exames novos, hemácias em número inteiro, "microUI/mL", **data de coleta por exame**, resultados com sinal ("< 0,2", "> 90") e em texto ("NÃO REAGENTE") → **prompt v5**. Laudos de imagem (ultrassom): fora do MVP. Regra: dados de terceiros nunca ficam guardados.
 - 09/11: **dados reais ficam em `dados-reais/`** (fora do Git): laudos, gabaritos manuais, cache e relatórios. `npm run acuracia -- --conjunto=reais`.
 - 09/11 noite: **os 2 constroem juntos** (6h hoje); **relógio volta ao MVP** em versão sintética + regras; telas do MVP: Início, Detalhe do exame, Documentos, Vacinação, Relógio, Enviar exame, Visão do médico. Recomendação a confirmar: app no Claude Code, Lovable só para landing do pitch.
+- 09/11 noite: **divisão:** João = horas 1–2 (app base: Início + Detalhe do exame); amigo = hora 3 (relógio, `docs/prompts/02-relogio.md`); horas 4–6 juntos. Contrato do relógio: `wearable/saida/relogio.json`.
 - 09/11 noite: **regra de trabalho:** toda mudança estrutural é registrada no `CLAUDE.md` e neste arquivo na hora.
 
 ## 8. Perguntas em aberto

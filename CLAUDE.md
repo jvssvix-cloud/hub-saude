@@ -22,7 +22,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 app/                  # Next.js (telas e rotas de API) — a criar
 extraction/           # documento -> dados: prompt (versionado), schema, normalização, testes de acurácia  [PRONTO]
 insights/             # dados -> informação: séries, áreas, tendência, repetição, vacinação, resumo do médico [PRONTO]
-wearable/             # relógio: dados sintéticos + regras de alerta — a criar
+wearable/             # relógio: dados sintéticos + regras de alerta — em construção (prompt: docs/prompts/02-relogio.md)
 supabase/migrations/  # SQL das tabelas — a criar
 tools/gerador-laudos/ # laudos, carteiras de vacinação e casos sintéticos + gabaritos [PRONTO]
 dados-reais/          # NUNCA vai para o GitHub (.gitignore): laudos/carteiras reais do time + gabaritos manuais
@@ -37,6 +37,10 @@ Cada pasta pronta tem README com comandos. Resumo:
 ## Contrato entre as partes
 - Extração → app/banco: formato do gabarito (`tools/gerador-laudos/README.md`) + campos v5 (`qualificador`, `resultado_texto`, `data_coleta` por resultado) e `doses` de vacina.
 - Insights → app: `insights/saida/insights.json` (tipos em `insights/src/tipos.ts`).
+- Relógio → app: `wearable/saida/relogio.json` (formato em `docs/prompts/02-relogio.md`).
+
+## Divisão atual (09/11 à noite)
+- João: `app/` (branch `a/app`). Amigo: `wearable/` (branch `b/relogio`). Só o João edita este arquivo e o `docs/contexto.md`.
 
 ## Regras de trabalho
 - **Mudou o prompt de extração?** Suba `PROMPT_VERSAO` em `extraction/src/prompt.ts` e rode todos os testes (sintéticos, reais e vacinas) antes de juntar na `main`.
