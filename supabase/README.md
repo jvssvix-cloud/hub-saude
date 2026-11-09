@@ -61,10 +61,25 @@ Funções:
 para o navegador do médico e para o MCP) não lê nada direto, só via `acessar_historico` com token válido.
 O servidor do app usa a service_role para gravar e para as telas do paciente. Nunca mande a service_role para o navegador.
 
-## Subir
+## Projeto no ar
 
-1. Supabase na nuvem (região São Paulo) → SQL Editor → cole as migrations **em ordem**:
-   `20261109000000_contrato.sql` e depois `20261109010000_solicitacao_medico.sql`.
+**Supabase `hub-saude`** (`eimnpafybehiylzukoja`, organização LEPoli, São Paulo), criado em 09/11 com as
+3 migrations e o seed do Roberto já aplicados. URL e chave publicável em `.env.example`; a service_role
+fica só no `.env.local` de cada um (Project Settings > API Keys).
+
+Testado no projeto real com a chave pública: leitura direta da tabela devolve `[]`; criar/aprovar
+consentimento é negado; médico pede pelo telefone → `pendente` → paciente aprova só exames → médico
+recebe 188 exames (LDL 2016–2026) → revogado → `revogado`. Verificador de segurança do Supabase: só os
+avisos esperados (tabelas sem políticas e as 2 funções públicas, ambos de propósito).
+
+**Pegadinha do Supabase:** funções novas no schema public ganham EXECUTE automático para anon. Por isso a
+migration `20261109020000_permissoes_supabase.sql` tira esse padrão. Função nova que deva ser pública
+precisa de `grant execute ... to anon` explícito.
+
+## Subir em outro projeto
+
+1. SQL Editor → cole as migrations **em ordem**: `20261109000000_contrato.sql`,
+   `20261109010000_solicitacao_medico.sql`, `20261109020000_permissoes_supabase.sql`.
 2. Cole `seed.sql` (Roberto: 14 documentos, 188 resultados de exame, 17 doses de vacina).
    Para regerar depois que o gabarito mudar: `node supabase/seed/gerar-seed.mjs`.
 3. Com Supabase CLI local: `supabase db reset` aplica os dois.
