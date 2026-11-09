@@ -63,7 +63,7 @@ O servidor do app usa a service_role para gravar e para as telas do paciente. Nu
 
 ## Projeto no ar
 
-**Supabase `hub-saude`** (`eimnpafybehiylzukoja`, organização LEPoli, São Paulo), criado em 09/11 com as
+**Supabase `hub-saude`** (`eimnpafybehiylzukoja`, São Paulo), numa organização só do projeto (separada da LEPoli desde 09/11), criado em 09/11 com as
 3 migrations e o seed do Roberto já aplicados. URL e chave publicável em `.env.example`; a service_role
 fica só no `.env.local` de cada um (Project Settings > API Keys).
 
