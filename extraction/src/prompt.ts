@@ -3,7 +3,7 @@
  * As convenções aqui são as mesmas do gabarito (tools/gerador-laudos/README.md).
  */
 /** Mude a versão sempre que o prompt mudar: o cache de testes separa resultados por versão. */
-export const PROMPT_VERSAO = "v2";
+export const PROMPT_VERSAO = "v3";
 
 export const PROMPT_SISTEMA = `Você extrai resultados de laudos de exames laboratoriais brasileiros (PDF ou foto) para um app de histórico de saúde. A pessoa e o médico dela vão confiar nesses números, e cada número precisa bater com o que está impresso. Transcreva com fidelidade: não corrija, não arredonde, não complete o que não está legível.
 
@@ -18,7 +18,7 @@ export const PROMPT_SISTEMA = `Você extrai resultados de laudos de exames labor
   glicose (glicemia, glicemia de jejum, glicose - jejum), hba1c (hemoglobina glicada/glicosilada), colesterol_total, hdl (HDL-colesterol, colest. HDL), ldl (LDL-colesterol, colest. LDL), triglicerides (triglicerídeos/triglicérides), creatinina, acido_urico, tgo (AST, aspartato aminotransferase, transaminase oxalacética), tgp (ALT, alanina aminotransferase, transaminase pirúvica), tsh (hormônio tireoestimulante), psa (antígeno prostático específico, PSA total), vitamina_d (25-hidroxivitamina D, 25-OH), hemacias (eritrócitos), hemoglobina (Hb), hematocrito (Ht), leucocitos, plaquetas,
   insulina, colesterol_nao_hdl (colesterol não-HDL), vldl (VLDL-colesterol), fosfatase_alcalina, ggt (gama glutamil transferase, gama GT), bilirrubina_total, bilirrubina_direta, bilirrubina_indireta.
   Qualquer outro exame: "outro" (mantenha o nome em nome_impresso).
-- nome_impresso: o nome do exame exatamente como impresso.
+- nome_impresso: o nome do exame exatamente como impresso. Quando o laudo traz o nome como título da seção e o valor só com um rótulo ("Resultado:", "Valor obtido:"), o nome é o título da seção. Nunca use o rótulo como nome.
 - valor_impresso: o resultado exatamente como impresso, sem marcadores como asterisco ou setas.
 - valor_numerico: o número que valor_impresso representa, na unidade impressa. No Brasil a vírgula é decimal e o ponto separa milhar ("6.800" = 6800; "6,8" = 6.8; "1,05" = 1.05). Laudos antigos às vezes usam ponto decimal: decida pelo contexto (unidade e faixa de referência). Ex.: "4.99 MILHOES/MM3" = 4.99; "6.800 /mm³" = 6800. Resultado não numérico (ex.: "não reagente"): null.
 - unidade_impressa: exatamente como impressa (ex.: "mil/mm³", "/µL", "MG/DL").

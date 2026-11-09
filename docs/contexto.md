@@ -115,7 +115,7 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11: laudos reais do time passam a ser também **teste** da extração (não só demo), porque os sintéticos são mais limpos que os reais.
 - 09/11: **extração v1 pronta** (`extraction/`, TypeScript): IA lê, código normaliza unidades e valida. Acurácia nos sintéticos: 100% dos valores (253/253).
 - 09/11: **modelo padrão = Claude Haiku 5.5** (~US$ 0,003/laudo; Opus 5.5 deu o mesmo resultado a ~US$ 0,084/laudo). Custo é restrição: testes pagos só com estimativa e ok antes; resultados ficam em cache. Laudos reais para teste: adiado.
-- 09/11: **1º laudo real** (João, One Life/Einstein, 10 pág., US$ 0,006): leitura 20/20 valores e referências corretas (inclusive faixas por idade). Problemas eram do nosso dicionário: 3 unidades e 9 exames novos (insulina, não-HDL, VLDL, fosfatase alcalina, GGT, bilirrubinas) → incluídos. Erro de página (referência em outra página) → prompt v2. Sexo vem do cadastro do app.
+- 09/11: **1º laudo real** (João, One Life/Einstein, 10 pág., US$ 0,006): leitura 20/20 valores e referências corretas (inclusive faixas por idade). Problemas eram do nosso dicionário: 3 unidades e 9 exames novos (insulina, não-HDL, VLDL, fosfatase alcalina, GGT, bilirrubinas) → incluídos. Erro de página (referência em outra página) → prompt v2; nome "Resultado (glicose)" → prompt v3. **Prompt v3: 100% em todos os campos nos sintéticos (253) e no laudo real (20).** Sexo vem do cadastro do app.
 - 09/11: **dados reais ficam em `dados-reais/`** (fora do Git): laudos, gabaritos manuais, cache e relatórios. `npm run acuracia -- --conjunto=reais`.
 
 ## 8. Perguntas em aberto
