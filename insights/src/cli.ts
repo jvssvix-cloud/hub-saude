@@ -6,12 +6,12 @@
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { carregarDoGabarito, RAIZ } from "./carregar";
+import { carregarDoGabarito, carregarVacinasDoGabarito, RAIZ } from "./carregar";
 import { gerarInsights, mesAno } from "./regras";
 
 const hoje = process.argv.find((a) => a.startsWith("--hoje="))?.split("=")[1] ?? new Date().toISOString().slice(0, 10);
 const { laudos, paciente } = carregarDoGabarito();
-const i = gerarInsights(laudos, paciente, hoje);
+const i = gerarInsights(laudos, paciente, hoje, carregarVacinasDoGabarito());
 
 const ROTULO = { atencao: "ATENÇÃO", em_dia: "Em dia", sem_dados_recentes: "Sem dados recentes" };
 console.log(`\n=== ${paciente.nome} | hoje ${hoje} | ${i.periodo.laudos} laudos ===\n`);
@@ -37,6 +37,12 @@ console.log("\nPRÓXIMOS EXAMES (regra 6)");
 const pend = i.proximos.filter((p) => p.situacao !== "em_dia");
 console.log(pend.length ? pend.map((p) => `  - ${p.nome}: ${p.situacao}`).join("\n")
   : `  todos em dia (próximo previsto: ${mesAno(i.proximos.map((p) => p.previsto).sort()[0])})`);
+
+if (i.vacinacao) {
+  console.log(`\nVACINAÇÃO (${i.vacinacao.doses.length} doses consolidadas; ${i.vacinacao.fonte})`);
+  const R = { em_dia: "Em dia", atencao: "ATENÇÃO", informativo: "Info", fora_do_calendario: "-" };
+  for (const v of i.vacinacao.situacao) console.log(`  [${R[v.status]}] ${v.nome}: ${v.texto}`);
+}
 
 console.log("\nRESUMO PARA O MÉDICO (regra 7)\n");
 for (const l of i.resumo_medico) console.log(`  ${l}`);

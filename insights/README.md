@@ -21,6 +21,7 @@ Lê os laudos da persona (`tools/gerador-laudos/saida/gabarito/`, mesmo formato 
 | 4. Tendência | Linha que passa por todos os pontos: "subindo/caindo" só se os pontos a seguem (R² ≥ 0,6) e ela varia ≥ 5%; senão "sem tendência" | 3 resultados, 2 anos, 0,6, 5% |
 | 5. Exame repetido | Mesmo exame em laudos diferentes com menos de N dias | 90 dias |
 | 6. Próximo exame | Rotina: previsto 12 meses após o último; atrasado após 18 | 12 / 18 meses |
+| 8. Vacinação | Carteira consolidada (mesma vacina + data = 1 dose, com todas as fontes) e situação pelo Calendário Nacional de Vacinação 2026 (MS), 20–59 anos: hepatite B 3 doses; dT reforço a cada 10 anos; febre amarela 1 dose; tríplice viral 2 doses até 29 anos, 1 dose de 30–59. Gripe e COVID: só a última dose (campanha). Atenção sempre com "confirme com seu médico" | `src/vacinas.ts` |
 | 7. Resumo do médico | Texto por modelo fixo com as regras acima e a fonte de cada número | — |
 
 Parâmetros em `src/regras.ts` (`PARAMETROS`, `AREAS`, `rotina`).

@@ -4463,6 +4463,525 @@
       "situacao": "em_dia"
     }
   ],
+  "vacinacao": {
+    "fonte": "Calendário Nacional de Vacinação 2026 (Ministério da Saúde)",
+    "doses": [
+      {
+        "vacina": "dt",
+        "dose": "reforco",
+        "data": "2004-06-15",
+        "lote": "DT0412A",
+        "local": "AMA Parque Exemplo",
+        "fontes": [
+          {
+            "documento_id": "vacinas-caderneta",
+            "arquivo": "vacinas/vacinas-caderneta.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "hepatite_b",
+        "dose": "1",
+        "data": "2009-03-10",
+        "lote": "HB0903",
+        "local": "Drogaria Saúde Fictícia",
+        "fontes": [
+          {
+            "documento_id": "vacinas-caderneta",
+            "arquivo": "vacinas/vacinas-caderneta.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "hepatite_b",
+        "dose": "2",
+        "data": "2009-04-14",
+        "lote": "HB0904",
+        "local": "AMA Parque Exemplo",
+        "fontes": [
+          {
+            "documento_id": "vacinas-caderneta",
+            "arquivo": "vacinas/vacinas-caderneta.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "dt",
+        "dose": "reforco",
+        "data": "2014-08-20",
+        "lote": "DT1408C",
+        "local": "AMA Parque Exemplo",
+        "fontes": [
+          {
+            "documento_id": "vacinas-caderneta",
+            "arquivo": "vacinas/vacinas-caderneta.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "febre_amarela",
+        "dose": "unica",
+        "data": "2018-02-05",
+        "lote": "FA1802X",
+        "local": "UBS Vila Modelo",
+        "fontes": [
+          {
+            "documento_id": "vacinas-caderneta",
+            "arquivo": "vacinas/vacinas-caderneta.pdf",
+            "pagina": 1
+          },
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "influenza",
+        "dose": "anual",
+        "data": "2019-04-22",
+        "lote": "FLU19B",
+        "local": "Drogaria Saúde Fictícia",
+        "fontes": [
+          {
+            "documento_id": "vacinas-caderneta",
+            "arquivo": "vacinas/vacinas-caderneta.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "triplice_viral",
+        "dose": "1",
+        "data": "2019-08-20",
+        "lote": "SCR1908",
+        "local": "Drogaria Saúde Fictícia",
+        "fontes": [
+          {
+            "documento_id": "vacinas-caderneta",
+            "arquivo": "vacinas/vacinas-caderneta.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "influenza",
+        "dose": "anual",
+        "data": "2021-05-10",
+        "lote": "FLU21A",
+        "local": "UBS Jardim Fictício",
+        "fontes": [
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "covid19",
+        "dose": "1",
+        "data": "2021-07-15",
+        "lote": "CV2107K",
+        "local": "Drogaria Saúde Fictícia",
+        "fontes": [
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "covid19",
+        "dose": "2",
+        "data": "2021-10-07",
+        "lote": "CV2110M",
+        "local": "Drogaria Saúde Fictícia",
+        "fontes": [
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "covid19",
+        "dose": "reforco",
+        "data": "2022-01-20",
+        "lote": "CV2201R",
+        "local": "UBS Vila Modelo",
+        "fontes": [
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "influenza",
+        "dose": "anual",
+        "data": "2022-05-03",
+        "lote": "FLU22C",
+        "local": "UBS Jardim Fictício",
+        "fontes": [
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "covid19",
+        "dose": "reforco",
+        "data": "2023-04-10",
+        "lote": "CVB2304",
+        "local": "AMA Parque Exemplo",
+        "fontes": [
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "influenza",
+        "dose": "anual",
+        "data": "2023-04-28",
+        "lote": "FLU23D",
+        "local": "UBS Vila Modelo",
+        "fontes": [
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "influenza",
+        "dose": "anual",
+        "data": "2024-04-15",
+        "lote": "FLU24A",
+        "local": "UBS Vila Modelo",
+        "fontes": [
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      },
+      {
+        "vacina": "influenza",
+        "dose": "anual",
+        "data": "2025-05-12",
+        "lote": "FLU25F",
+        "local": "Drogaria Saúde Fictícia",
+        "fontes": [
+          {
+            "documento_id": "vacinas-comprovante",
+            "arquivo": "vacinas/vacinas-comprovante.pdf",
+            "pagina": 1
+          }
+        ]
+      }
+    ],
+    "situacao": [
+      {
+        "vacina": "hepatite_b",
+        "nome": "Hepatite B",
+        "status": "atencao",
+        "detalhe": "incompleta",
+        "doses": [
+          {
+            "vacina": "hepatite_b",
+            "dose": "1",
+            "data": "2009-03-10",
+            "lote": "HB0903",
+            "local": "Drogaria Saúde Fictícia",
+            "fontes": [
+              {
+                "documento_id": "vacinas-caderneta",
+                "arquivo": "vacinas/vacinas-caderneta.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "hepatite_b",
+            "dose": "2",
+            "data": "2009-04-14",
+            "lote": "HB0904",
+            "local": "AMA Parque Exemplo",
+            "fontes": [
+              {
+                "documento_id": "vacinas-caderneta",
+                "arquivo": "vacinas/vacinas-caderneta.pdf",
+                "pagina": 1
+              }
+            ]
+          }
+        ],
+        "texto": "Esquema incompleto: 2 de 3 doses registradas (última em abr/2009). Confirme com seu médico ou na unidade de saúde."
+      },
+      {
+        "vacina": "dt",
+        "nome": "Dupla adulto (dT)",
+        "status": "atencao",
+        "detalhe": "vencida",
+        "doses": [
+          {
+            "vacina": "dt",
+            "dose": "reforco",
+            "data": "2004-06-15",
+            "lote": "DT0412A",
+            "local": "AMA Parque Exemplo",
+            "fontes": [
+              {
+                "documento_id": "vacinas-caderneta",
+                "arquivo": "vacinas/vacinas-caderneta.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "dt",
+            "dose": "reforco",
+            "data": "2014-08-20",
+            "lote": "DT1408C",
+            "local": "AMA Parque Exemplo",
+            "fontes": [
+              {
+                "documento_id": "vacinas-caderneta",
+                "arquivo": "vacinas/vacinas-caderneta.pdf",
+                "pagina": 1
+              }
+            ]
+          }
+        ],
+        "texto": "Último reforço em ago/2014; o calendário recomenda a cada 10 anos (vencido desde ago/2024). Confirme com seu médico ou na unidade de saúde."
+      },
+      {
+        "vacina": "febre_amarela",
+        "nome": "Febre amarela",
+        "status": "em_dia",
+        "detalhe": "em_dia",
+        "doses": [
+          {
+            "vacina": "febre_amarela",
+            "dose": "unica",
+            "data": "2018-02-05",
+            "lote": "FA1802X",
+            "local": "UBS Vila Modelo",
+            "fontes": [
+              {
+                "documento_id": "vacinas-caderneta",
+                "arquivo": "vacinas/vacinas-caderneta.pdf",
+                "pagina": 1
+              },
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          }
+        ],
+        "texto": "Dose registrada em 05/02/2018 (dose única)."
+      },
+      {
+        "vacina": "triplice_viral",
+        "nome": "Tríplice viral (sarampo, caxumba, rubéola)",
+        "status": "em_dia",
+        "detalhe": "em_dia",
+        "doses": [
+          {
+            "vacina": "triplice_viral",
+            "dose": "1",
+            "data": "2019-08-20",
+            "lote": "SCR1908",
+            "local": "Drogaria Saúde Fictícia",
+            "fontes": [
+              {
+                "documento_id": "vacinas-caderneta",
+                "arquivo": "vacinas/vacinas-caderneta.pdf",
+                "pagina": 1
+              }
+            ]
+          }
+        ],
+        "texto": "1 dose(s) registrada(s); recomendado 1 na sua idade."
+      },
+      {
+        "vacina": "influenza",
+        "nome": "Gripe (influenza)",
+        "status": "informativo",
+        "detalhe": "campanha",
+        "doses": [
+          {
+            "vacina": "influenza",
+            "dose": "anual",
+            "data": "2019-04-22",
+            "lote": "FLU19B",
+            "local": "Drogaria Saúde Fictícia",
+            "fontes": [
+              {
+                "documento_id": "vacinas-caderneta",
+                "arquivo": "vacinas/vacinas-caderneta.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "influenza",
+            "dose": "anual",
+            "data": "2021-05-10",
+            "lote": "FLU21A",
+            "local": "UBS Jardim Fictício",
+            "fontes": [
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "influenza",
+            "dose": "anual",
+            "data": "2022-05-03",
+            "lote": "FLU22C",
+            "local": "UBS Jardim Fictício",
+            "fontes": [
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "influenza",
+            "dose": "anual",
+            "data": "2023-04-28",
+            "lote": "FLU23D",
+            "local": "UBS Vila Modelo",
+            "fontes": [
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "influenza",
+            "dose": "anual",
+            "data": "2024-04-15",
+            "lote": "FLU24A",
+            "local": "UBS Vila Modelo",
+            "fontes": [
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "influenza",
+            "dose": "anual",
+            "data": "2025-05-12",
+            "lote": "FLU25F",
+            "local": "Drogaria Saúde Fictícia",
+            "fontes": [
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          }
+        ],
+        "texto": "Última dose em 12/05/2025 (6 no total). Vacinação por campanha."
+      },
+      {
+        "vacina": "covid19",
+        "nome": "COVID-19",
+        "status": "informativo",
+        "detalhe": "campanha",
+        "doses": [
+          {
+            "vacina": "covid19",
+            "dose": "1",
+            "data": "2021-07-15",
+            "lote": "CV2107K",
+            "local": "Drogaria Saúde Fictícia",
+            "fontes": [
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "covid19",
+            "dose": "2",
+            "data": "2021-10-07",
+            "lote": "CV2110M",
+            "local": "Drogaria Saúde Fictícia",
+            "fontes": [
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "covid19",
+            "dose": "reforco",
+            "data": "2022-01-20",
+            "lote": "CV2201R",
+            "local": "UBS Vila Modelo",
+            "fontes": [
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          },
+          {
+            "vacina": "covid19",
+            "dose": "reforco",
+            "data": "2023-04-10",
+            "lote": "CVB2304",
+            "local": "AMA Parque Exemplo",
+            "fontes": [
+              {
+                "documento_id": "vacinas-comprovante",
+                "arquivo": "vacinas/vacinas-comprovante.pdf",
+                "pagina": 1
+              }
+            ]
+          }
+        ],
+        "texto": "Última dose em 10/04/2023 (4 no total). Vacinação por campanha."
+      }
+    ]
+  },
   "resumo_medico": [
     "Roberto Almeida Siqueira, 58 anos, masculino.",
     "Histórico: 12 laudos de mar/2016 a mar/2026, 4 laboratórios (LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS, Laboratório Alfa Diagnósticos, Diagnóstica Beta Medicina Laboratorial e Gama Análises Clínicas).",
@@ -4481,6 +5000,12 @@
     "",
     "Exames repetidos em curto intervalo:",
     "- Glicose em jejum, Colesterol total, HDL, LDL e Triglicérides refeitos 77 dias depois (Gama Análises Clínicas, 11/03/2025 → Laboratório Alfa Diagnósticos, 27/05/2025)",
+    "",
+    "Vacinação, pendências pelo calendário oficial:",
+    "- Hepatite B: Esquema incompleto: 2 de 3 doses registradas (última em abr/2009). Confirme com seu médico ou na unidade de saúde. [vacinas-caderneta, p. 1]",
+    "- Dupla adulto (dT): Último reforço em ago/2014; o calendário recomenda a cada 10 anos (vencido desde ago/2024). Confirme com seu médico ou na unidade de saúde. [vacinas-caderneta, p. 1]",
+    "- Gripe (influenza): Última dose em 12/05/2025 (6 no total). Vacinação por campanha.",
+    "- COVID-19: Última dose em 10/04/2023 (4 no total). Vacinação por campanha.",
     "",
     "Exames de rotina em dia; próximo check-up previsto para mar/2027.",
     "",

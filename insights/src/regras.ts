@@ -3,6 +3,7 @@
  * Tudo determinístico e explicável. NUNCA diagnóstico: só descreve o que os laudos mostram.
  * "Normal" e "alterado" vêm sempre da referência impressa no próprio laudo.
  */
+import { consolidar, FONTE_CALENDARIO, situacaoVacinal, type DoseVacina } from "./vacinas";
 import type {
   Area, Insights, Laudo, Paciente, Ponto, ProximoExame, Repeticao, Serie, StatusArea, Tendencia,
 } from "./tipos";
@@ -234,6 +235,16 @@ export function resumoMedico(i: Omit<Insights, "resumo_medico">): string[] {
     L.push("", "Exames repetidos em curto intervalo:");
     for (const r of i.repeticoes) L.push(`- ${r.texto}`);
   }
+  if (i.vacinacao) {
+    const at = i.vacinacao.situacao.filter((v) => v.status === "atencao");
+    L.push("", at.length ? "Vacinação, pendências pelo calendário oficial:" : "Vacinação: em dia pelo calendário oficial.");
+    for (const v of at) {
+      const f = v.doses.at(-1)?.fontes[0];
+      L.push(`- ${v.nome}: ${v.texto}${f ? ` [${f.documento_id}, p. ${f.pagina}]` : ""}`);
+    }
+    const camp = i.vacinacao.situacao.filter((v) => v.detalhe === "campanha");
+    for (const v of camp) L.push(`- ${v.nome}: ${v.texto}`);
+  }
   const pendentes = i.proximos.filter((p) => p.situacao !== "em_dia");
   L.push("", pendentes.length
     ? `Exames de rotina vencidos: ${lista(pendentes.map((p) => `${p.nome} (último ${mesAno(p.ultimo)})`))}.`
@@ -243,7 +254,7 @@ export function resumoMedico(i: Omit<Insights, "resumo_medico">): string[] {
 }
 
 // ---------------- tudo junto ----------------
-export function gerarInsights(laudos: Laudo[], paciente: Paciente, hoje: string): Insights {
+export function gerarInsights(laudos: Laudo[], paciente: Paciente, hoje: string, dosesVacina?: DoseVacina[]): Insights {
   const ordenados = [...laudos].sort((a, b) => a.data_coleta.localeCompare(b.data_coleta));
   const series = montarSeries(ordenados);
   const base = {
@@ -259,6 +270,10 @@ export function gerarInsights(laudos: Laudo[], paciente: Paciente, hoje: string)
     areas: montarAreas(series, paciente, hoje),
     repeticoes: acharRepeticoes(series),
     proximos: proximosExames(series, paciente, hoje),
+    vacinacao: dosesVacina ? (() => {
+      const doses = consolidar(dosesVacina);
+      return { fonte: FONTE_CALENDARIO, doses, situacao: situacaoVacinal(doses, paciente, hoje) };
+    })() : null,
   };
   return { ...base, resumo_medico: resumoMedico(base) };
 }

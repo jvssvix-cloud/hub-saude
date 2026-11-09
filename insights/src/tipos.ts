@@ -110,5 +110,10 @@ export type Insights = {
   areas: Area[];
   repeticoes: Repeticao[];
   proximos: ProximoExame[];
+  vacinacao: {
+    fonte: string;
+    doses: import("./vacinas").DoseVacina[];
+    situacao: import("./vacinas").SituacaoVacina[];
+  } | null;
   resumo_medico: string[];
 };
