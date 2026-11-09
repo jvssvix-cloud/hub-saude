@@ -23,7 +23,7 @@ PERSONA = {
         "ácido úrico levemente alto nos últimos 2 anos e vitamina D baixa em 2022. "
         "Em 2025 repetiu o perfil lipídico 2 meses depois do check-up porque o novo médico não tinha o anterior "
         "(exemplo de exame repetido). Em out-nov/2026 o relógio registra episódios de ritmo irregular "
-        "(dados do relógio = tarefa da pessoa 4)."
+        "(dados do relógio: fora do MVP, só no pitch)."
     ),
     "remedios": [],
     "alergias": [],
