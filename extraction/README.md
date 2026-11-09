@@ -33,14 +33,25 @@ npm run extrair -- foto_p1.jpg foto_p2.jpg --saida=resultado.json
 # Medir acurácia contra o gabarito (12 PDFs + fotos de 4 laudos)
 npm run acuracia                          # tudo
 npm run acuracia -- --modo=pdf --somente=2016-03,2025-03
+npm run acuracia -- --modelo=claude-opus-5-5   # comparar com outro modelo
 npm run acuracia -- --esforco=high        # comparar níveis de esforço
 npm run acuracia -- --refazer             # ignorar o cache
 ```
 
-`acuracia` salva cada extração em `resultados/cache/` (só paga uma vez) e escreve `resultados/relatorio.md`:
+`acuracia` salva cada extração em `resultados/cache/` (só paga uma vez) e escreve `resultados/relatorio_<modelo>_<esforço>.md`:
 % de valores corretos (a métrica do pitch), % por campo, por layout e PDF vs foto, e a lista de cada erro.
 
-Custo estimado (Claude Opus 5.5): ~US$ 0,05–0,15 por laudo; rodada completa ~US$ 1–2.
+## Modelo e custo
+
+Padrão: **Claude Haiku 5.5**. Resultado nos 12 laudos + fotos de 4 laudos (253 resultados):
+
+| Modelo | Valores corretos | Todos os campos | Custo por laudo | Rodada completa |
+|---|---|---|---|---|
+| Haiku 5.5 (padrão) | 100% | 99,9% | ~US$ 0,003 | ~US$ 0,04 |
+| Opus 5.5 | 100% | 100% | ~US$ 0,084 | ~US$ 1,35 |
+
+Regras de gasto: testes completos só quando o prompt mudar; no dia a dia, 1–2 laudos (`--somente=`).
+Nunca use `--refazer` sem necessidade.
 
 ## Como melhorar
 

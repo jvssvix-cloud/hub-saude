@@ -112,6 +112,8 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11: gerador de laudos pronto (branch `p1/gerador-laudos`); kit movido para a raiz do repositório.
 - 09/11: **time reduzido para 2 pessoas.** Foco no pilar 1 (extração + linha do tempo) e no pilar 3 simples (link para o médico). Relógio, chat, vacinas, remédios, FHIR, Auth e RLS fora do MVP (só no pitch).
 - 09/11: laudos reais do time passam a ser também **teste** da extração (não só demo), porque os sintéticos são mais limpos que os reais.
+- 09/11: **extração v1 pronta** (`extraction/`, TypeScript): IA lê, código normaliza unidades e valida. Acurácia nos sintéticos: 100% dos valores (253/253).
+- 09/11: **modelo padrão = Claude Haiku 5.5** (~US$ 0,003/laudo; Opus 5.5 deu o mesmo resultado a ~US$ 0,084/laudo). Custo é restrição: testes pagos só com estimativa e ok antes; resultados ficam em cache. Laudos reais para teste: adiado.
 
 ## 8. Perguntas em aberto
 - Nome do amigo e se ele topa o papel B (front) ou prefere trocar.

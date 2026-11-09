@@ -11,7 +11,8 @@ import { normalizar } from "./normalizar";
 import { INSTRUCAO_USUARIO, PROMPT_SISTEMA } from "./prompt";
 import { Extracao, type ExtracaoNormalizada } from "./schema";
 
-export const MODELO_PADRAO = "claude-opus-5-5";
+// Haiku: 100% dos valores nos sintéticos por ~US$ 0,003/laudo (Opus: mesmo resultado, 30x mais caro)
+export const MODELO_PADRAO = "claude-haiku-5-5";
 // Preço por 1M tokens (entrada, saída), para estimar custo no relatório
 const PRECO: Record<string, { entrada: number; saida: number }> = {
   "claude-opus-5-5": { entrada: 4, saida: 20 },
