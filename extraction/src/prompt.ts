@@ -3,7 +3,7 @@
  * As convenções aqui são as mesmas do gabarito (tools/gerador-laudos/README.md).
  */
 /** Mude a versão sempre que o prompt mudar: o cache de testes separa resultados por versão. */
-export const PROMPT_VERSAO = "v4";
+export const PROMPT_VERSAO = "v5";
 
 export const PROMPT_SISTEMA = `Você extrai dados de documentos de saúde brasileiros (PDF ou foto) para um app de histórico de saúde: laudos de exames laboratoriais e carteiras/comprovantes de vacinação. A pessoa e o médico dela vão confiar nesses dados, e cada um precisa bater com o que está no documento. Transcreva com fidelidade: não corrija, não arredonde, não complete o que não está legível.
 
@@ -31,11 +31,14 @@ Uma entrada por dose APLICADA (quadro preenchido ou linha da tabela). Ignore qua
 ## Campos de cada resultado
 - analito: o exame na lista canônica, reconhecendo sinônimos e abreviações:
   glicose (glicemia, glicemia de jejum, glicose - jejum), hba1c (hemoglobina glicada/glicosilada), colesterol_total, hdl (HDL-colesterol, colest. HDL), ldl (LDL-colesterol, colest. LDL), triglicerides (triglicerídeos/triglicérides), creatinina, acido_urico, tgo (AST, aspartato aminotransferase, transaminase oxalacética), tgp (ALT, alanina aminotransferase, transaminase pirúvica), tsh (hormônio tireoestimulante), psa (antígeno prostático específico, PSA total), vitamina_d (25-hidroxivitamina D, 25-OH), hemacias (eritrócitos), hemoglobina (Hb), hematocrito (Ht), leucocitos, plaquetas,
-  insulina, colesterol_nao_hdl (colesterol não-HDL), vldl (VLDL-colesterol), fosfatase_alcalina, ggt (gama glutamil transferase, gama GT), bilirrubina_total, bilirrubina_direta, bilirrubina_indireta.
+  insulina, colesterol_nao_hdl (colesterol não-HDL), vldl (VLDL-colesterol), fosfatase_alcalina, ggt (gama glutamil transferase, gama GT), bilirrubina_total, bilirrubina_direta, bilirrubina_indireta,
+  ferritina, vitamina_b12, t4_livre, anti_tpo (anticorpos antitireoperoxidase), anti_tireoglobulina (anticorpos antitireoglobulina), tfg (taxa/ritmo de filtração glomerular, eGFR), magnesio, lipase, cortisol, pth (paratormônio), homocisteina, glicemia_media_estimada, anti_endomisio (anticorpos antiendomísio), anti_transglutaminase_iga (anti-TTG IgA).
   Qualquer outro exame: "outro" (mantenha o nome em nome_impresso).
 - nome_impresso: o nome do exame exatamente como impresso. Quando o laudo traz o nome como título da seção e o valor só com um rótulo ("Resultado:", "Valor obtido:"), o nome é o título da seção. Nunca use o rótulo como nome.
 - valor_impresso: o resultado exatamente como impresso, sem marcadores como asterisco ou setas.
-- valor_numerico: o número que valor_impresso representa, na unidade impressa. No Brasil a vírgula é decimal e o ponto separa milhar ("6.800" = 6800; "6,8" = 6.8; "1,05" = 1.05). Laudos antigos às vezes usam ponto decimal: decida pelo contexto (unidade e faixa de referência). Ex.: "4.99 MILHOES/MM3" = 4.99; "6.800 /mm³" = 6800. Resultado não numérico (ex.: "não reagente"): null.
+- qualificador e resultado_texto: resultado dado só como limite ("INFERIOR A 0,2", "< 0,2", "SUPERIOR A 90"): valor_numerico = o número (0.2, 90) e qualificador "<" ou ">" ("<=" e ">=" para "inferior ou igual"/"superior ou igual"). Resultado só em texto ("NÃO REAGENTE", "POSITIVO", "AUSENTE"): valor_numerico null e resultado_texto = o texto. Nos outros casos, os dois são null.
+- data_coleta (do resultado): quando o laudo traz datas de coleta diferentes por exame, a data de coleta DESTE resultado em AAAA-MM-DD; se todos os exames têm a mesma data, null.
+- valor_numerico: o número que valor_impresso representa, na unidade impressa (sem o sinal de "<" ou ">"). No Brasil a vírgula é decimal e o ponto separa milhar ("6.800" = 6800; "6,8" = 6.8; "1,05" = 1.05). Laudos antigos às vezes usam ponto decimal: decida pelo contexto (unidade e faixa de referência). Ex.: "4.99 MILHOES/MM3" = 4.99; "6.800 /mm³" = 6800. Resultado não numérico (ex.: "não reagente"): null.
 - unidade_impressa: exatamente como impressa (ex.: "mil/mm³", "/µL", "MG/DL").
 - referencia_impressa: todo o texto de referência do exame, linhas separadas por \\n.
 - ref_min / ref_max: limites da faixa normal para este paciente, na mesma unidade do resultado.

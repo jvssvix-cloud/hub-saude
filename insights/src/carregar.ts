@@ -13,7 +13,8 @@ const SAIDA_GERADOR = path.join(RAIZ, "tools/gerador-laudos/saida");
 
 export function carregarDoGabarito(): { laudos: Laudo[]; paciente: Paciente } {
   const dir = path.join(SAIDA_GERADOR, "gabarito");
-  const laudos: Laudo[] = readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => {
+  // "caso-*" são casos de teste da extração (outra paciente fictícia), não fazem parte do histórico da persona
+  const laudos: Laudo[] = readdirSync(dir).filter((f) => f.endsWith(".json") && !f.startsWith("caso-")).map((f) => {
     const g = JSON.parse(readFileSync(path.join(dir, f), "utf-8"));
     return {
       id: g.laudo_id,

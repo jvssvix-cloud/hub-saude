@@ -11,6 +11,10 @@ export const ANALITOS = [
   // incluídos após o 1º laudo real (09/11)
   "insulina", "colesterol_nao_hdl", "vldl", "fosfatase_alcalina", "ggt",
   "bilirrubina_total", "bilirrubina_direta", "bilirrubina_indireta",
+  // incluídos após o laudo real de outro laboratório (09/11, 2ª rodada)
+  "ferritina", "vitamina_b12", "t4_livre", "anti_tpo", "anti_tireoglobulina", "tfg", "magnesio",
+  "lipase", "cortisol", "pth", "homocisteina", "glicemia_media_estimada", "anti_endomisio",
+  "anti_transglutaminase_iga",
 ] as const;
 export type Analito = (typeof ANALITOS)[number];
 
@@ -19,6 +23,12 @@ export const ResultadoExtraido = z.object({
   nome_impresso: z.string(),
   valor_impresso: z.string(),
   valor_numerico: z.number().nullable(),
+  /** "<" ou ">" quando o laudo dá só um limite ("INFERIOR A 0,2" = "<" 0.2). */
+  qualificador: z.enum(["<", ">", "<=", ">="]).nullable(),
+  /** Resultado só em texto ("NÃO REAGENTE", "POSITIVO"); null quando numérico. */
+  resultado_texto: z.string().nullable(),
+  /** Data de coleta DESTE resultado, quando o laudo traz datas diferentes por exame. */
+  data_coleta: z.string().nullable(),
   unidade_impressa: z.string(),
   referencia_impressa: z.string(),
   ref_min: z.number().nullable(),

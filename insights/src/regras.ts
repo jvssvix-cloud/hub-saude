@@ -5,6 +5,7 @@
  */
 import { consolidar, FONTE_CALENDARIO, situacaoVacinal, type DoseVacina } from "./vacinas";
 import type {
+  ResultadoTexto,
   Area, Insights, Laudo, Paciente, Ponto, ProximoExame, Repeticao, Serie, StatusArea, Tendencia,
 } from "./tipos";
 
@@ -27,19 +28,25 @@ export const NOMES: Record<string, string> = {
   ldl: "LDL", triglicerides: "Triglicérides", creatinina: "Creatinina", acido_urico: "Ácido úrico",
   tgo: "TGO (AST)", tgp: "TGP (ALT)", tsh: "TSH", psa: "PSA", vitamina_d: "Vitamina D",
   insulina: "Insulina", colesterol_nao_hdl: "Colesterol não-HDL", vldl: "VLDL",
+  ferritina: "Ferritina", vitamina_b12: "Vitamina B12", t4_livre: "T4 livre", anti_tpo: "Anti-TPO",
+  anti_tireoglobulina: "Antitireoglobulina", tfg: "Filtração glomerular (TFG)", magnesio: "Magnésio",
+  lipase: "Lipase", cortisol: "Cortisol", pth: "Paratormônio (PTH)", homocisteina: "Homocisteína",
+  glicemia_media_estimada: "Glicemia média estimada", anti_endomisio: "Anti-endomísio",
+  anti_transglutaminase_iga: "Anti-transglutaminase IgA",
   fosfatase_alcalina: "Fosfatase alcalina", ggt: "GGT (gama GT)", bilirrubina_total: "Bilirrubina total",
   bilirrubina_direta: "Bilirrubina direta", bilirrubina_indireta: "Bilirrubina indireta",
 };
 
 export const AREAS: { id: string; nome: string; analitos: string[] }[] = [
-  { id: "glicemia", nome: "Glicemia", analitos: ["glicose", "hba1c", "insulina"] },
+  { id: "glicemia", nome: "Glicemia", analitos: ["glicose", "hba1c", "insulina", "glicemia_media_estimada"] },
   { id: "colesterol", nome: "Colesterol", analitos: ["colesterol_total", "hdl", "ldl", "colesterol_nao_hdl", "vldl", "triglicerides"] },
-  { id: "rins", nome: "Rins e ácido úrico", analitos: ["creatinina", "acido_urico"] },
-  { id: "figado", nome: "Fígado", analitos: ["tgo", "tgp", "ggt", "fosfatase_alcalina", "bilirrubina_total", "bilirrubina_direta", "bilirrubina_indireta"] },
-  { id: "tireoide", nome: "Tireoide", analitos: ["tsh"] },
+  { id: "rins", nome: "Rins e ácido úrico", analitos: ["creatinina", "tfg", "acido_urico"] },
+  { id: "figado", nome: "Fígado e pâncreas", analitos: ["tgo", "tgp", "ggt", "fosfatase_alcalina", "bilirrubina_total", "bilirrubina_direta", "bilirrubina_indireta", "lipase"] },
+  { id: "tireoide", nome: "Tireoide", analitos: ["tsh", "t4_livre", "anti_tpo", "anti_tireoglobulina"] },
   { id: "sangue", nome: "Sangue (hemograma)", analitos: ["hemacias", "hemoglobina", "hematocrito", "leucocitos", "plaquetas"] },
   { id: "prostata", nome: "Próstata", analitos: ["psa"] },
-  { id: "vitaminas", nome: "Vitaminas", analitos: ["vitamina_d"] },
+  { id: "vitaminas", nome: "Vitaminas e ferro", analitos: ["vitamina_d", "vitamina_b12", "ferritina"] },
+  { id: "outros", nome: "Outros exames", analitos: ["magnesio", "cortisol", "pth", "homocisteina", "anti_endomisio", "anti_transglutaminase_iga"] },
 ];
 
 /** Exames de check-up com repetição esperada (vitamina D fica fora: não é rotina). */
@@ -69,6 +76,18 @@ export function textoRef(p: Ponto, unidade: string) {
 const lista = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} e ${xs.at(-1)}`);
 
 // ---------------- regra 1: séries ----------------
+/** Resultados só em texto ("NÃO REAGENTE"): lista à parte, com a fonte. */
+export function resultadosTexto(laudos: Laudo[]): ResultadoTexto[] {
+  return laudos.flatMap((l) => l.resultados
+    .filter((r) => r.valor_canonico === null && r.resultado_texto && NOMES[r.analito])
+    .map((r) => ({
+      analito: r.analito, nome: NOMES[r.analito], data: r.data_coleta ?? l.data_coleta, texto: r.resultado_texto!,
+      fora_da_faixa: r.fora_da_faixa, referencia_impressa: r.referencia_impressa,
+      fonte: { laudo_id: l.id, arquivo: l.arquivo, laboratorio: l.laboratorio, pagina: r.pagina },
+    })))
+    .sort((a, b) => a.data.localeCompare(b.data));
+}
+
 export function montarSeries(laudos: Laudo[]): Serie[] {
   const porAnalito = new Map<string, Ponto[]>();
   const unidades = new Map<string, string>();
@@ -78,7 +97,8 @@ export function montarSeries(laudos: Laudo[]): Serie[] {
       unidades.set(r.analito, r.unidade_canonica ?? "");
       const pontos = porAnalito.get(r.analito) ?? [];
       pontos.push({
-        data: l.data_coleta, valor: r.valor_canonico, ref_min: r.ref_min_canonico, ref_max: r.ref_max_canonico,
+        data: r.data_coleta ?? l.data_coleta, qualificador: r.qualificador ?? null,
+        valor: r.valor_canonico, ref_min: r.ref_min_canonico, ref_max: r.ref_max_canonico,
         fora_da_faixa: r.fora_da_faixa, valor_impresso: r.valor_impresso, unidade_impressa: r.unidade_impressa,
         referencia_impressa: r.referencia_impressa,
         fonte: { laudo_id: l.id, arquivo: l.arquivo, laboratorio: l.laboratorio, pagina: r.pagina },
@@ -110,7 +130,8 @@ export function montarSeries(laudos: Laudo[]): Serie[] {
 
 // ---------------- regra 4: tendência ----------------
 function calcularTendencia(s: Serie): Tendencia | null {
-  const p = s.pontos;
+  // Valores com sinal ("> 90") não são o valor real: ficam fora da tendência
+  const p = s.pontos.filter((q) => !q.qualificador);
   if (p.length < PARAMETROS.tendencia_min_pontos) return null;
   const primeiro = p[0], ultimo = p.at(-1)!;
   const anos = dias(primeiro.data, ultimo.data) / 365.25;
@@ -132,8 +153,9 @@ function calcularTendencia(s: Serie): Tendencia | null {
   const variacao = ((ultimo.valor - primeiro.valor) / primeiro.valor) * 100;
   // Fora da referência desde: início da sequência atual de resultados alterados (se houve normal antes)
   let fora_desde: string | null = null;
-  if (s.fora_seguidos > 0 && s.fora_seguidos < p.length) fora_desde = p[p.length - s.fora_seguidos].data;
-  if (s.fora_seguidos === p.length) fora_desde = primeiro.data;
+  const todos = s.pontos;
+  if (s.fora_seguidos > 0 && s.fora_seguidos < todos.length) fora_desde = todos[todos.length - s.fora_seguidos].data;
+  if (s.fora_seguidos === todos.length) fora_desde = todos[0].data;
   const a = Math.round(anos);
   const de = `${num(primeiro.valor)} → ${num(ultimo.valor)} ${s.unidade}`;
   let texto = direcao === "estavel"
@@ -151,28 +173,32 @@ function motivoAlterado(s: Serie): string {
   return t;
 }
 
-export function montarAreas(series: Serie[], paciente: Paciente, hoje: string): Area[] {
+export function montarAreas(series: Serie[], paciente: Paciente, hoje: string, textos: ResultadoTexto[] = []): Area[] {
   const rot = rotina(paciente);
   const out: Area[] = [];
   for (const a of AREAS) {
     const ss = series.filter((s) => a.analitos.includes(s.analito));
-    if (!ss.length) continue;
-    const ultimo = ss.map((s) => s.ultimo.data).sort().at(-1)!;
+    // último resultado em texto de cada exame da área
+    const tx = [...new Map(textos.filter((t) => a.analitos.includes(t.analito)).map((t) => [t.analito, t])).values()];
+    if (!ss.length && !tx.length) continue;
+    const ultimo = [...ss.map((s) => s.ultimo.data), ...tx.map((t) => t.data)].sort().at(-1)!;
     const alterados = ss.filter((s) => s.alterado);
+    const txAlterados = tx.filter((t) => t.fora_da_faixa);
     const antigos = ss.filter((s) => rot.includes(s.analito)
       && hoje > somaMeses(s.ultimo.data, PARAMETROS.rotina_atrasado_meses));
     let status: StatusArea = "em_dia";
     let motivos: string[];
-    if (alterados.length) {
+    if (alterados.length || txAlterados.length) {
       status = "atencao";
-      motivos = alterados.map(motivoAlterado);
+      motivos = [...alterados.map(motivoAlterado),
+        ...txAlterados.map((t) => `${t.nome}: ${t.texto} em ${mesAno(t.data)} (referência: ${t.referencia_impressa.split("\n")[0]})`)];
     } else if (antigos.length) {
       status = "sem_dados_recentes";
       motivos = antigos.map((s) => `${s.nome}: último exame em ${mesAno(s.ultimo.data)}`);
     } else {
       motivos = [`Todos os exames dentro da referência no último resultado (${mesAno(ultimo)})`];
     }
-    out.push({ id: a.id, nome: a.nome, status, motivos, analitos: ss.map((s) => s.analito), ultimo_exame: ultimo });
+    out.push({ id: a.id, nome: a.nome, status, motivos, analitos: [...ss.map((s) => s.analito), ...tx.map((t) => t.analito)], ultimo_exame: ultimo });
   }
   return out;
 }
@@ -267,7 +293,8 @@ export function gerarInsights(laudos: Laudo[], paciente: Paciente, hoje: string,
       laboratorios: [...new Set(ordenados.map((l) => l.laboratorio))],
     },
     series,
-    areas: montarAreas(series, paciente, hoje),
+    resultados_texto: resultadosTexto(ordenados),
+    areas: montarAreas(series, paciente, hoje, resultadosTexto(ordenados)),
     repeticoes: acharRepeticoes(series),
     proximos: proximosExames(series, paciente, hoje),
     vacinacao: dosesVacina ? (() => {

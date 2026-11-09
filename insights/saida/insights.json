@@ -25,6 +25,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 88,
           "ref_min": 70,
           "ref_max": 99,
@@ -41,6 +42,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 90,
           "ref_min": 70,
           "ref_max": 99,
@@ -57,6 +59,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 93,
           "ref_min": 70,
           "ref_max": 99,
@@ -73,6 +76,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 96,
           "ref_min": 70,
           "ref_max": 99,
@@ -89,6 +93,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 100,
           "ref_min": 70,
           "ref_max": 99,
@@ -105,6 +110,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 100,
           "ref_min": 70,
           "ref_max": 99,
@@ -121,6 +127,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 105,
           "ref_min": 70,
           "ref_max": 99,
@@ -137,6 +144,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 106,
           "ref_min": 70,
           "ref_max": 99,
@@ -153,6 +161,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 109,
           "ref_min": 70,
           "ref_max": 99,
@@ -169,6 +178,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 111,
           "ref_min": 70,
           "ref_max": 99,
@@ -185,6 +195,7 @@
         },
         {
           "data": "2025-05-27",
+          "qualificador": null,
           "valor": 111,
           "ref_min": 70,
           "ref_max": 99,
@@ -201,6 +212,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 112,
           "ref_min": 70,
           "ref_max": 99,
@@ -218,6 +230,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 112,
         "ref_min": 70,
         "ref_max": 99,
@@ -243,6 +256,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 88,
           "ref_min": 70,
           "ref_max": 99,
@@ -259,6 +273,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 112,
           "ref_min": 70,
           "ref_max": 99,
@@ -285,6 +300,7 @@
       "pontos": [
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 5.7,
           "ref_min": null,
           "ref_max": 5.7,
@@ -301,6 +317,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 5.8,
           "ref_min": null,
           "ref_max": 5.7,
@@ -317,6 +334,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 5.9,
           "ref_min": null,
           "ref_max": 5.7,
@@ -333,6 +351,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 6,
           "ref_min": null,
           "ref_max": 5.7,
@@ -349,6 +368,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 6,
           "ref_min": null,
           "ref_max": 5.7,
@@ -365,6 +385,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 6.2,
           "ref_min": null,
           "ref_max": 5.7,
@@ -381,6 +402,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 6.2,
           "ref_min": null,
           "ref_max": 5.7,
@@ -398,6 +420,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 6.2,
         "ref_min": null,
         "ref_max": 5.7,
@@ -423,6 +446,7 @@
         "anos": 5.5,
         "primeiro": {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 5.7,
           "ref_min": null,
           "ref_max": 5.7,
@@ -439,6 +463,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 6.2,
           "ref_min": null,
           "ref_max": 5.7,
@@ -465,6 +490,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 190,
           "ref_min": null,
           "ref_max": 200,
@@ -481,6 +507,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 197,
           "ref_min": null,
           "ref_max": 200,
@@ -497,6 +524,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 202,
           "ref_min": null,
           "ref_max": 190,
@@ -513,6 +541,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 204,
           "ref_min": null,
           "ref_max": 190,
@@ -529,6 +558,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 210,
           "ref_min": null,
           "ref_max": 190,
@@ -545,6 +575,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 220,
           "ref_min": null,
           "ref_max": 190,
@@ -561,6 +592,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 223,
           "ref_min": null,
           "ref_max": 190,
@@ -577,6 +609,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 227,
           "ref_min": null,
           "ref_max": 190,
@@ -593,6 +626,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 231,
           "ref_min": null,
           "ref_max": 190,
@@ -609,6 +643,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 236,
           "ref_min": null,
           "ref_max": 190,
@@ -625,6 +660,7 @@
         },
         {
           "data": "2025-05-27",
+          "qualificador": null,
           "valor": 236,
           "ref_min": null,
           "ref_max": 190,
@@ -641,6 +677,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 238,
           "ref_min": null,
           "ref_max": 190,
@@ -658,6 +695,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 238,
         "ref_min": null,
         "ref_max": 190,
@@ -683,6 +721,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 190,
           "ref_min": null,
           "ref_max": 200,
@@ -699,6 +738,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 238,
           "ref_min": null,
           "ref_max": 190,
@@ -725,6 +765,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 48,
           "ref_min": 40,
           "ref_max": null,
@@ -741,6 +782,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 47,
           "ref_min": 40,
           "ref_max": null,
@@ -757,6 +799,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 47,
           "ref_min": 40,
           "ref_max": null,
@@ -773,6 +816,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 45,
           "ref_min": 40,
           "ref_max": null,
@@ -789,6 +833,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 45,
           "ref_min": 40,
           "ref_max": null,
@@ -805,6 +850,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 44,
           "ref_min": 40,
           "ref_max": null,
@@ -821,6 +867,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 44,
           "ref_min": 40,
           "ref_max": null,
@@ -837,6 +884,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 43,
           "ref_min": 40,
           "ref_max": null,
@@ -853,6 +901,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 43,
           "ref_min": 40,
           "ref_max": null,
@@ -869,6 +918,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 41,
           "ref_min": 40,
           "ref_max": null,
@@ -885,6 +935,7 @@
         },
         {
           "data": "2025-05-27",
+          "qualificador": null,
           "valor": 41,
           "ref_min": 40,
           "ref_max": null,
@@ -901,6 +952,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 42,
           "ref_min": 40,
           "ref_max": null,
@@ -918,6 +970,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 42,
         "ref_min": 40,
         "ref_max": null,
@@ -943,6 +996,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 48,
           "ref_min": 40,
           "ref_max": null,
@@ -959,6 +1013,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 42,
           "ref_min": 40,
           "ref_max": null,
@@ -985,6 +1040,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 112,
           "ref_min": null,
           "ref_max": 129,
@@ -1001,6 +1057,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 118,
           "ref_min": null,
           "ref_max": 129,
@@ -1017,6 +1074,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 124,
           "ref_min": null,
           "ref_max": 130,
@@ -1033,6 +1091,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 128,
           "ref_min": null,
           "ref_max": 130,
@@ -1049,6 +1108,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 134,
           "ref_min": null,
           "ref_max": 130,
@@ -1065,6 +1125,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 140,
           "ref_min": null,
           "ref_max": 130,
@@ -1081,6 +1142,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 147,
           "ref_min": null,
           "ref_max": 130,
@@ -1097,6 +1159,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 152,
           "ref_min": null,
           "ref_max": 130,
@@ -1113,6 +1176,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 153,
           "ref_min": null,
           "ref_max": 130,
@@ -1129,6 +1193,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 158,
           "ref_min": null,
           "ref_max": 130,
@@ -1145,6 +1210,7 @@
         },
         {
           "data": "2025-05-27",
+          "qualificador": null,
           "valor": 161,
           "ref_min": null,
           "ref_max": 130,
@@ -1161,6 +1227,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 164,
           "ref_min": null,
           "ref_max": 130,
@@ -1178,6 +1245,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 164,
         "ref_min": null,
         "ref_max": 130,
@@ -1203,6 +1271,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 112,
           "ref_min": null,
           "ref_max": 129,
@@ -1219,6 +1288,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 164,
           "ref_min": null,
           "ref_max": 130,
@@ -1245,6 +1315,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 125,
           "ref_min": null,
           "ref_max": 150,
@@ -1261,6 +1332,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 134,
           "ref_min": null,
           "ref_max": 150,
@@ -1277,6 +1349,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 144,
           "ref_min": null,
           "ref_max": 150,
@@ -1293,6 +1366,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 147,
           "ref_min": null,
           "ref_max": 150,
@@ -1309,6 +1383,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 159,
           "ref_min": null,
           "ref_max": 150,
@@ -1325,6 +1400,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 162,
           "ref_min": null,
           "ref_max": 150,
@@ -1341,6 +1417,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 165,
           "ref_min": null,
           "ref_max": 150,
@@ -1357,6 +1434,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 168,
           "ref_min": null,
           "ref_max": 150,
@@ -1373,6 +1451,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 177,
           "ref_min": null,
           "ref_max": 150,
@@ -1389,6 +1468,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 182,
           "ref_min": null,
           "ref_max": 150,
@@ -1405,6 +1485,7 @@
         },
         {
           "data": "2025-05-27",
+          "qualificador": null,
           "valor": 187,
           "ref_min": null,
           "ref_max": 150,
@@ -1421,6 +1502,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 180,
           "ref_min": null,
           "ref_max": 150,
@@ -1438,6 +1520,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 180,
         "ref_min": null,
         "ref_max": 150,
@@ -1463,6 +1546,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 125,
           "ref_min": null,
           "ref_max": 150,
@@ -1479,6 +1563,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 180,
           "ref_min": null,
           "ref_max": 150,
@@ -1505,6 +1590,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 0.95,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1521,6 +1607,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 1,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1537,6 +1624,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 0.99,
           "ref_min": 0.7,
           "ref_max": 1.2,
@@ -1553,6 +1641,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 1,
           "ref_min": 0.7,
           "ref_max": 1.2,
@@ -1569,6 +1658,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 1.07,
           "ref_min": 0.7,
           "ref_max": 1.2,
@@ -1585,6 +1675,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 1.01,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1601,6 +1692,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 1.07,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1617,6 +1709,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 1.02,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1633,6 +1726,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 1.07,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1649,6 +1743,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 1.05,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1665,6 +1760,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 1.05,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1682,6 +1778,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 1.05,
         "ref_min": 0.7,
         "ref_max": 1.3,
@@ -1707,6 +1804,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 0.95,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1723,6 +1821,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 1.05,
           "ref_min": 0.7,
           "ref_max": 1.3,
@@ -1749,6 +1848,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 6.1,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1765,6 +1865,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 6.3,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1781,6 +1882,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 6.3,
           "ref_min": 3.4,
           "ref_max": 7,
@@ -1797,6 +1899,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 6.6,
           "ref_min": 3.4,
           "ref_max": 7,
@@ -1813,6 +1916,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 6.7,
           "ref_min": 3.4,
           "ref_max": 7,
@@ -1829,6 +1933,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 6.8,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1845,6 +1950,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 7.1,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1861,6 +1967,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 7.1,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1877,6 +1984,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 7.2,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1893,6 +2001,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 7.3,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1909,6 +2018,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 7.3,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1926,6 +2036,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 7.3,
         "ref_min": 3.5,
         "ref_max": 7.2,
@@ -1951,6 +2062,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 6.1,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1967,6 +2079,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 7.3,
           "ref_min": 3.5,
           "ref_max": 7.2,
@@ -1993,6 +2106,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 26,
           "ref_min": 5,
           "ref_max": 40,
@@ -2009,6 +2123,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 27,
           "ref_min": 5,
           "ref_max": 40,
@@ -2025,6 +2140,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 23,
           "ref_min": null,
           "ref_max": 40,
@@ -2041,6 +2157,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 25,
           "ref_min": null,
           "ref_max": 40,
@@ -2057,6 +2174,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 24,
           "ref_min": null,
           "ref_max": 40,
@@ -2073,6 +2191,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 28,
           "ref_min": null,
           "ref_max": 40,
@@ -2089,6 +2208,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 29,
           "ref_min": null,
           "ref_max": 40,
@@ -2105,6 +2225,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 27,
           "ref_min": null,
           "ref_max": 40,
@@ -2121,6 +2242,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 28,
           "ref_min": null,
           "ref_max": 40,
@@ -2137,6 +2259,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 29,
           "ref_min": null,
           "ref_max": 40,
@@ -2153,6 +2276,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 27,
           "ref_min": null,
           "ref_max": 40,
@@ -2170,6 +2294,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 27,
         "ref_min": null,
         "ref_max": 40,
@@ -2195,6 +2320,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 26,
           "ref_min": 5,
           "ref_max": 40,
@@ -2211,6 +2337,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 27,
           "ref_min": null,
           "ref_max": 40,
@@ -2237,6 +2364,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 26,
           "ref_min": 7,
           "ref_max": 56,
@@ -2253,6 +2381,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 31,
           "ref_min": 7,
           "ref_max": 56,
@@ -2269,6 +2398,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 27,
           "ref_min": null,
           "ref_max": 41,
@@ -2285,6 +2415,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 30,
           "ref_min": null,
           "ref_max": 41,
@@ -2301,6 +2432,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 33,
           "ref_min": null,
           "ref_max": 41,
@@ -2317,6 +2449,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 29,
           "ref_min": null,
           "ref_max": 41,
@@ -2333,6 +2466,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 35,
           "ref_min": null,
           "ref_max": 41,
@@ -2349,6 +2483,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 32,
           "ref_min": null,
           "ref_max": 41,
@@ -2365,6 +2500,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 29,
           "ref_min": null,
           "ref_max": 41,
@@ -2381,6 +2517,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 33,
           "ref_min": null,
           "ref_max": 41,
@@ -2397,6 +2534,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 35,
           "ref_min": null,
           "ref_max": 41,
@@ -2414,6 +2552,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 35,
         "ref_min": null,
         "ref_max": 41,
@@ -2439,6 +2578,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 26,
           "ref_min": 7,
           "ref_max": 56,
@@ -2455,6 +2595,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 35,
           "ref_min": null,
           "ref_max": 41,
@@ -2481,6 +2622,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 2.45,
           "ref_min": 0.4,
           "ref_max": 4,
@@ -2497,6 +2639,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 2.44,
           "ref_min": 0.4,
           "ref_max": 4,
@@ -2513,6 +2656,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 1.98,
           "ref_min": 0.27,
           "ref_max": 4.2,
@@ -2529,6 +2673,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 2.5,
           "ref_min": 0.27,
           "ref_max": 4.2,
@@ -2545,6 +2690,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 1.99,
           "ref_min": 0.27,
           "ref_max": 4.2,
@@ -2561,6 +2707,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 2.32,
           "ref_min": 0.4,
           "ref_max": 4.3,
@@ -2577,6 +2724,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 2.5,
           "ref_min": 0.4,
           "ref_max": 4.3,
@@ -2593,6 +2741,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 2.27,
           "ref_min": 0.4,
           "ref_max": 4.3,
@@ -2609,6 +2758,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 2.27,
           "ref_min": 0.45,
           "ref_max": 4.5,
@@ -2625,6 +2775,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 2.12,
           "ref_min": 0.45,
           "ref_max": 4.5,
@@ -2641,6 +2792,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 2.2,
           "ref_min": 0.45,
           "ref_max": 4.5,
@@ -2658,6 +2810,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 2.2,
         "ref_min": 0.45,
         "ref_max": 4.5,
@@ -2683,6 +2836,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 2.45,
           "ref_min": 0.4,
           "ref_max": 4,
@@ -2699,6 +2853,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 2.2,
           "ref_min": 0.45,
           "ref_max": 4.5,
@@ -2725,6 +2880,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 4.99,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2741,6 +2897,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 4.99,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2757,6 +2914,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 5.06,
           "ref_min": 4.3,
           "ref_max": 5.7,
@@ -2773,6 +2931,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 5.1,
           "ref_min": 4.3,
           "ref_max": 5.7,
@@ -2789,6 +2948,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 4.99,
           "ref_min": 4.3,
           "ref_max": 5.7,
@@ -2805,6 +2965,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 4.9,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2821,6 +2982,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 4.95,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2837,6 +2999,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 4.93,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2853,6 +3016,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 4.99,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2869,6 +3033,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 4.91,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2885,6 +3050,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 4.94,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2902,6 +3068,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 4.94,
         "ref_min": 4.5,
         "ref_max": 5.9,
@@ -2927,6 +3094,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 4.99,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2943,6 +3111,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 4.94,
           "ref_min": 4.5,
           "ref_max": 5.9,
@@ -2969,6 +3138,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 15.5,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -2985,6 +3155,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 15.4,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3001,6 +3172,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 15.1,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3017,6 +3189,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 14.8,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3033,6 +3206,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 15,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3049,6 +3223,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 14.9,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3065,6 +3240,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 14.7,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3081,6 +3257,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 14.8,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3097,6 +3274,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 14.9,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3113,6 +3291,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 14.6,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3129,6 +3308,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 14.8,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3146,6 +3326,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 14.8,
         "ref_min": 13.5,
         "ref_max": 17.5,
@@ -3171,6 +3352,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 15.5,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3187,6 +3369,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 14.8,
           "ref_min": 13.5,
           "ref_max": 17.5,
@@ -3213,6 +3396,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 45.5,
           "ref_min": 39,
           "ref_max": 50,
@@ -3229,6 +3413,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 44.6,
           "ref_min": 39,
           "ref_max": 50,
@@ -3245,6 +3430,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 45.3,
           "ref_min": 39,
           "ref_max": 50,
@@ -3261,6 +3447,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 44.9,
           "ref_min": 39,
           "ref_max": 50,
@@ -3277,6 +3464,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 44.6,
           "ref_min": 39,
           "ref_max": 50,
@@ -3293,6 +3481,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 44.9,
           "ref_min": 41,
           "ref_max": 53,
@@ -3309,6 +3498,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 45,
           "ref_min": 41,
           "ref_max": 53,
@@ -3325,6 +3515,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 44.8,
           "ref_min": 41,
           "ref_max": 53,
@@ -3341,6 +3532,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 43.8,
           "ref_min": 40,
           "ref_max": 52,
@@ -3357,6 +3549,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 43.3,
           "ref_min": 40,
           "ref_max": 52,
@@ -3373,6 +3566,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 43.5,
           "ref_min": 40,
           "ref_max": 52,
@@ -3390,6 +3584,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 43.5,
         "ref_min": 40,
         "ref_max": 52,
@@ -3415,6 +3610,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 45.5,
           "ref_min": 39,
           "ref_max": 50,
@@ -3431,6 +3627,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 43.5,
           "ref_min": 40,
           "ref_max": 52,
@@ -3457,6 +3654,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 7270,
           "ref_min": 4000,
           "ref_max": 10000,
@@ -3473,6 +3671,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 7110,
           "ref_min": 4000,
           "ref_max": 10000,
@@ -3489,6 +3688,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 7210,
           "ref_min": 3500,
           "ref_max": 10500,
@@ -3505,6 +3705,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 7390,
           "ref_min": 3500,
           "ref_max": 10500,
@@ -3521,6 +3722,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 6980,
           "ref_min": 3500,
           "ref_max": 10500,
@@ -3537,6 +3739,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 6750,
           "ref_min": 4000,
           "ref_max": 11000,
@@ -3553,6 +3756,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 7460,
           "ref_min": 4000,
           "ref_max": 11000,
@@ -3569,6 +3773,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 6960,
           "ref_min": 4000,
           "ref_max": 11000,
@@ -3585,6 +3790,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 7040,
           "ref_min": 4000,
           "ref_max": 10000,
@@ -3601,6 +3807,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 6940,
           "ref_min": 4000,
           "ref_max": 10000,
@@ -3617,6 +3824,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 7170,
           "ref_min": 4000,
           "ref_max": 10000,
@@ -3634,6 +3842,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 7170,
         "ref_min": 4000,
         "ref_max": 10000,
@@ -3659,6 +3868,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 7270,
           "ref_min": 4000,
           "ref_max": 10000,
@@ -3675,6 +3885,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 7170,
           "ref_min": 4000,
           "ref_max": 10000,
@@ -3701,6 +3912,7 @@
       "pontos": [
         {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 250000,
           "ref_min": 150000,
           "ref_max": 400000,
@@ -3717,6 +3929,7 @@
         },
         {
           "data": "2017-04-18",
+          "qualificador": null,
           "valor": 241000,
           "ref_min": 150000,
           "ref_max": 400000,
@@ -3733,6 +3946,7 @@
         },
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 256000,
           "ref_min": 150000,
           "ref_max": 450000,
@@ -3749,6 +3963,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 233000,
           "ref_min": 150000,
           "ref_max": 450000,
@@ -3765,6 +3980,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 225000,
           "ref_min": 150000,
           "ref_max": 450000,
@@ -3781,6 +3997,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 235000,
           "ref_min": 150000,
           "ref_max": 450000,
@@ -3797,6 +4014,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 223000,
           "ref_min": 150000,
           "ref_max": 450000,
@@ -3813,6 +4031,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 226000,
           "ref_min": 150000,
           "ref_max": 450000,
@@ -3829,6 +4048,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 243000,
           "ref_min": 150000,
           "ref_max": 400000,
@@ -3845,6 +4065,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 225000,
           "ref_min": 150000,
           "ref_max": 400000,
@@ -3861,6 +4082,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 239000,
           "ref_min": 150000,
           "ref_max": 400000,
@@ -3878,6 +4100,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 239000,
         "ref_min": 150000,
         "ref_max": 400000,
@@ -3903,6 +4126,7 @@
         "anos": 10,
         "primeiro": {
           "data": "2016-03-09",
+          "qualificador": null,
           "valor": 250000,
           "ref_min": 150000,
           "ref_max": 400000,
@@ -3919,6 +4143,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 239000,
           "ref_min": 150000,
           "ref_max": 400000,
@@ -3945,6 +4170,7 @@
       "pontos": [
         {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 0.84,
           "ref_min": null,
           "ref_max": 4,
@@ -3961,6 +4187,7 @@
         },
         {
           "data": "2019-03-14",
+          "qualificador": null,
           "valor": 0.98,
           "ref_min": null,
           "ref_max": 4,
@@ -3977,6 +4204,7 @@
         },
         {
           "data": "2020-09-03",
+          "qualificador": null,
           "valor": 1,
           "ref_min": null,
           "ref_max": 4,
@@ -3993,6 +4221,7 @@
         },
         {
           "data": "2021-08-26",
+          "qualificador": null,
           "valor": 1.15,
           "ref_min": null,
           "ref_max": 4,
@@ -4009,6 +4238,7 @@
         },
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 1.16,
           "ref_min": null,
           "ref_max": 4,
@@ -4025,6 +4255,7 @@
         },
         {
           "data": "2023-09-05",
+          "qualificador": null,
           "valor": 1.28,
           "ref_min": null,
           "ref_max": 4,
@@ -4041,6 +4272,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 1.31,
           "ref_min": null,
           "ref_max": 4,
@@ -4057,6 +4289,7 @@
         },
         {
           "data": "2025-03-11",
+          "qualificador": null,
           "valor": 1.34,
           "ref_min": null,
           "ref_max": 4,
@@ -4073,6 +4306,7 @@
         },
         {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 1.42,
           "ref_min": null,
           "ref_max": 4,
@@ -4090,6 +4324,7 @@
       ],
       "ultimo": {
         "data": "2026-03-12",
+        "qualificador": null,
         "valor": 1.42,
         "ref_min": null,
         "ref_max": 4,
@@ -4115,6 +4350,7 @@
         "anos": 8,
         "primeiro": {
           "data": "2018-03-22",
+          "qualificador": null,
           "valor": 0.84,
           "ref_min": null,
           "ref_max": 4,
@@ -4131,6 +4367,7 @@
         },
         "ultimo": {
           "data": "2026-03-12",
+          "qualificador": null,
           "valor": 1.42,
           "ref_min": null,
           "ref_max": 4,
@@ -4157,6 +4394,7 @@
       "pontos": [
         {
           "data": "2022-08-17",
+          "qualificador": null,
           "valor": 22.4,
           "ref_min": 30,
           "ref_max": 100,
@@ -4173,6 +4411,7 @@
         },
         {
           "data": "2024-03-20",
+          "qualificador": null,
           "valor": 31.8,
           "ref_min": 20,
           "ref_max": null,
@@ -4190,6 +4429,7 @@
       ],
       "ultimo": {
         "data": "2024-03-20",
+        "qualificador": null,
         "valor": 31.8,
         "ref_min": 20,
         "ref_max": null,
@@ -4211,6 +4451,7 @@
       "tendencia": null
     }
   ],
+  "resultados_texto": [],
   "areas": [
     {
       "id": "glicemia",
@@ -4258,7 +4499,7 @@
     },
     {
       "id": "figado",
-      "nome": "Fígado",
+      "nome": "Fígado e pâncreas",
       "status": "em_dia",
       "motivos": [
         "Todos os exames dentro da referência no último resultado (mar/2026)"
@@ -4311,7 +4552,7 @@
     },
     {
       "id": "vitaminas",
-      "nome": "Vitaminas",
+      "nome": "Vitaminas e ferro",
       "status": "em_dia",
       "motivos": [
         "Todos os exames dentro da referência no último resultado (mar/2024)"

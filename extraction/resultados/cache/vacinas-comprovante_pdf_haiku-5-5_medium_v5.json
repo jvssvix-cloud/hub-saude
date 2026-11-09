@@ -1,0 +1,289 @@
+{
+  "bruto": {
+    "tipo_documento": "carteira_vacinacao",
+    "documento": {
+      "laboratorio": "Sistema Municipal de Imunização (fictício) - Secretaria Municipal de Saúde de Cidade Exemplo",
+      "data_coleta": null,
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": null,
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2025-05-12",
+        "data_impressa": "12/05/2025",
+        "lote": "FLU25F",
+        "local": "Drogaria Saúde Fictícia",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2024-04-15",
+        "data_impressa": "15/04/2024",
+        "lote": "FLU24A",
+        "local": "UBS Vila Modelo",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2023-04-28",
+        "data_impressa": "28/04/2023",
+        "lote": "FLU23D",
+        "local": "UBS Vila Modelo",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "covid19",
+        "nome_impresso": "COVID-19 Bivalente (RNAm)",
+        "dose": "reforco",
+        "dose_impressa": "Reforço Bivalente",
+        "data": "2023-04-10",
+        "data_impressa": "10/04/2023",
+        "lote": "CVB2304",
+        "local": "AMA Parque Exemplo",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2022-05-03",
+        "data_impressa": "03/05/2022",
+        "lote": "FLU22C",
+        "local": "UBS Jardim Fictício",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "covid19",
+        "nome_impresso": "COVID-19 (RNAm)",
+        "dose": "reforco",
+        "dose_impressa": "Reforço",
+        "data": "2022-01-20",
+        "data_impressa": "20/01/2022",
+        "lote": "CV2201R",
+        "local": "UBS Vila Modelo",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "covid19",
+        "nome_impresso": "COVID-19 (vetor viral)",
+        "dose": "2",
+        "dose_impressa": "2ª Dose",
+        "data": "2021-10-07",
+        "data_impressa": "07/10/2021",
+        "lote": "CV2110M",
+        "local": "Drogaria Saúde Fictícia",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "covid19",
+        "nome_impresso": "COVID-19 (vetor viral)",
+        "dose": "1",
+        "dose_impressa": "1ª Dose",
+        "data": "2021-07-15",
+        "data_impressa": "15/07/2021",
+        "lote": "CV2107K",
+        "local": "Drogaria Saúde Fictícia",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2021-05-10",
+        "data_impressa": "10/05/2021",
+        "lote": "FLU21A",
+        "local": "UBS Jardim Fictício",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "febre_amarela",
+        "nome_impresso": "Febre Amarela (atenuada)",
+        "dose": "unica",
+        "dose_impressa": "Dose Única",
+        "data": "2018-02-05",
+        "data_impressa": "05/02/2018",
+        "lote": "FA1802X",
+        "local": "Drogaria Saúde Fictícia",
+        "pagina": 1,
+        "confianca": "alta"
+      }
+    ],
+    "observacoes": "O documento enviado é um comprovante de vacinação, não um laudo de exames. Por isso, nenhum resultado de exame laboratorial foi extraído; a lista de doses foi preenchida no lugar. O documento está marcado como teste, sem validade."
+  },
+  "normalizado": {
+    "tipo_documento": "carteira_vacinacao",
+    "documento": {
+      "laboratorio": "Sistema Municipal de Imunização (fictício) - Secretaria Municipal de Saúde de Cidade Exemplo",
+      "data_coleta": null,
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": null,
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2025-05-12",
+        "data_impressa": "12/05/2025",
+        "lote": "FLU25F",
+        "local": "Drogaria Saúde Fictícia",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2024-04-15",
+        "data_impressa": "15/04/2024",
+        "lote": "FLU24A",
+        "local": "UBS Vila Modelo",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2023-04-28",
+        "data_impressa": "28/04/2023",
+        "lote": "FLU23D",
+        "local": "UBS Vila Modelo",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "covid19",
+        "nome_impresso": "COVID-19 Bivalente (RNAm)",
+        "dose": "reforco",
+        "dose_impressa": "Reforço Bivalente",
+        "data": "2023-04-10",
+        "data_impressa": "10/04/2023",
+        "lote": "CVB2304",
+        "local": "AMA Parque Exemplo",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2022-05-03",
+        "data_impressa": "03/05/2022",
+        "lote": "FLU22C",
+        "local": "UBS Jardim Fictício",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "covid19",
+        "nome_impresso": "COVID-19 (RNAm)",
+        "dose": "reforco",
+        "dose_impressa": "Reforço",
+        "data": "2022-01-20",
+        "data_impressa": "20/01/2022",
+        "lote": "CV2201R",
+        "local": "UBS Vila Modelo",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "covid19",
+        "nome_impresso": "COVID-19 (vetor viral)",
+        "dose": "2",
+        "dose_impressa": "2ª Dose",
+        "data": "2021-10-07",
+        "data_impressa": "07/10/2021",
+        "lote": "CV2110M",
+        "local": "Drogaria Saúde Fictícia",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "covid19",
+        "nome_impresso": "COVID-19 (vetor viral)",
+        "dose": "1",
+        "dose_impressa": "1ª Dose",
+        "data": "2021-07-15",
+        "data_impressa": "15/07/2021",
+        "lote": "CV2107K",
+        "local": "Drogaria Saúde Fictícia",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "Influenza Trivalente",
+        "dose": "anual",
+        "dose_impressa": "Dose",
+        "data": "2021-05-10",
+        "data_impressa": "10/05/2021",
+        "lote": "FLU21A",
+        "local": "UBS Jardim Fictício",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "febre_amarela",
+        "nome_impresso": "Febre Amarela (atenuada)",
+        "dose": "unica",
+        "dose_impressa": "Dose Única",
+        "data": "2018-02-05",
+        "data_impressa": "05/02/2018",
+        "lote": "FA1802X",
+        "local": "Drogaria Saúde Fictícia",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      }
+    ],
+    "observacoes": "O documento enviado é um comprovante de vacinação, não um laudo de exames. Por isso, nenhum resultado de exame laboratorial foi extraído; a lista de doses foi preenchida no lugar. O documento está marcado como teste, sem validade."
+  },
+  "uso": {
+    "entrada": 7719,
+    "saida": 2468,
+    "custo_usd": 0.0020059,
+    "segundos": 9.11
+  },
+  "modelo": "claude-haiku-5-5"
+}

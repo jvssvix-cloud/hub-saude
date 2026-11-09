@@ -17,6 +17,10 @@ export type Resultado = {
   ref_max_canonico: number | null;
   fora_da_faixa: boolean;
   pagina: number;
+  /** Extração v5+: sinal ("<", ">"), resultado em texto e data própria do exame (opcionais). */
+  qualificador?: string | null;
+  resultado_texto?: string | null;
+  data_coleta?: string | null;
 };
 
 /** Um laudo (documento de origem) com seus resultados. */
@@ -42,7 +46,14 @@ export type Ponto = {
   valor_impresso: string;
   unidade_impressa: string;
   referencia_impressa: string;
+  /** "<" ou ">" quando o laudo deu só um limite ("SUPERIOR A 90"): fica fora do cálculo de tendência. */
+  qualificador: string | null;
   fonte: Fonte;
+};
+
+/** Resultado só em texto ("NÃO REAGENTE"): não vira série, mas aparece e conta para o status da área. */
+export type ResultadoTexto = {
+  analito: string; nome: string; data: string; texto: string; fora_da_faixa: boolean; referencia_impressa: string; fonte: Fonte;
 };
 
 export type Tendencia = {
@@ -107,6 +118,7 @@ export type Insights = {
   hoje: string;
   periodo: { inicio: string; fim: string; laudos: number; laboratorios: string[] };
   series: Serie[];
+  resultados_texto: ResultadoTexto[];
   areas: Area[];
   repeticoes: Repeticao[];
   proximos: ProximoExame[];

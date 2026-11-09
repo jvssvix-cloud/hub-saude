@@ -43,6 +43,8 @@ type ResultadoGabarito = {
   fora_da_faixa: boolean; pagina: number;
   /** Quando mais de uma leitura da unidade é correta (ex.: unidade só no cabeçalho da coluna). */
   unidades_aceitas?: string[];
+  /** Casos novos (prompt v5+): sinal do resultado, resultado em texto e data por exame. */
+  qualificador?: string | null; resultado_texto?: string | null; data_coleta?: string | null;
 };
 type Gabarito = {
   laudo_id: string; arquivo_pdf: string; fotos: { arquivo: string; pagina: number }[];
@@ -51,7 +53,7 @@ type Gabarito = {
 };
 type Tarefa = { gab: Gabarito; modo: "pdf" | "foto"; arquivos: string[]; paciente?: PacienteCadastro };
 
-const CAMPOS = ["valor", "unidade", "nome", "referencia", "fora_da_faixa", "pagina"] as const;
+const CAMPOS = ["valor", "unidade", "nome", "referencia", "fora_da_faixa", "pagina", "data"] as const;
 type Campo = (typeof CAMPOS)[number];
 type Erro = { laudo: string; modo: string; layout: string; analito: string; campo: string; esperado: string; obtido: string };
 
@@ -60,10 +62,17 @@ const igualNum = (a: number | null, b: number | null) =>
   a === null || b === null ? a === b : Math.abs(a - b) <= 1e-6 * Math.max(1, Math.abs(b));
 const texto = (s: string) => s.trim().replace(/\s+/g, " ").toLowerCase();
 
-function comparar(esp: ResultadoGabarito, obt: ResultadoNormalizado): Record<Campo, [boolean, string, string]> {
+function comparar(esp: ResultadoGabarito, obt: ResultadoNormalizado, dataDocEsp: string, dataDocObt: string | null): Record<Campo, [boolean, string, string]> {
   const ref = (min: number | null, max: number | null) => `${min ?? "-"}..${max ?? "-"}`;
+  // valor = número canônico + sinal ("<", ">") + texto ("NÃO REAGENTE"), quando o gabarito traz esses campos
+  const sinalOk = !("qualificador" in esp) || (obt.qualificador ?? null) === (esp.qualificador ?? null);
+  const textoOk = !esp.resultado_texto || texto(obt.resultado_texto ?? "") === texto(esp.resultado_texto);
+  const fmt = (q: string | null | undefined, v: number | null, t: string | null | undefined) => t ?? `${q ?? ""}${v}`;
+  const dataEsp = esp.data_coleta ?? dataDocEsp, dataObt = obt.data_coleta ?? dataDocObt ?? "-";
   return {
-    valor: [igualNum(obt.valor_canonico, esp.valor_canonico), String(esp.valor_canonico), `${obt.valor_canonico} (lido "${obt.valor_impresso}")`],
+    data: [dataObt === dataEsp, dataEsp, dataObt],
+    valor: [igualNum(obt.valor_canonico, esp.valor_canonico) && sinalOk && textoOk,
+      fmt(esp.qualificador, esp.valor_canonico, esp.resultado_texto), `${fmt(obt.qualificador, obt.valor_canonico, obt.resultado_texto)} (lido "${obt.valor_impresso}")`],
     unidade: [(esp.unidades_aceitas ?? [esp.unidade_impressa]).some((u) => chaveUnidade(obt.unidade_impressa) === chaveUnidade(u)), esp.unidade_impressa, obt.unidade_impressa],
     nome: [texto(obt.nome_impresso) === texto(esp.nome_impresso), esp.nome_impresso, obt.nome_impresso],
     referencia: [
@@ -172,7 +181,7 @@ async function main() {
         continue;
       }
       chaves.forEach((k) => pegar(k).encontrados++);
-      const cmp = comparar(esp, obt);
+      const cmp = comparar(esp, obt, t.gab.documento.data_coleta, norm.documento.data_coleta);
       for (const c of CAMPOS) {
         const [ok, e, o] = cmp[c];
         if (ok) chaves.forEach((k) => pegar(k).campos[c]++);

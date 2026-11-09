@@ -56,6 +56,16 @@ Padrão: **Claude Haiku 5.5**. Resultado nos 12 laudos + fotos de 4 laudos (253 
 Regras de gasto: testes completos só quando o prompt mudar; no dia a dia, 1–2 laudos (`--somente=`).
 Nunca use `--refazer` sem necessidade.
 
+## O que a extração entende (prompt v5)
+
+- Tipo de documento: laudo de exames, carteira de vacinação ou outro (ex.: laudo de imagem, fora do MVP).
+- 40 exames no dicionário (+ "outro", reconhecido pelo nome quando possível); 13 vacinas.
+- Resultado com sinal (`qualificador` "<"/">": "INFERIOR A 0,2") e só em texto (`resultado_texto`: "NÃO REAGENTE").
+- Data de coleta por exame (`data_coleta` do resultado) quando o laudo tem várias datas.
+- Unidade ausente na linha: deduzida pela ordem de grandeza, com aviso.
+
+Casos sintéticos criados a partir de lições de laudos reais (sem guardar os reais): `tools/gerador-laudos/casos.py`.
+
 ## Laudos reais
 
 Ficam em `dados-reais/` na raiz (ignorada pelo Git: **nunca vão para o GitHub**):

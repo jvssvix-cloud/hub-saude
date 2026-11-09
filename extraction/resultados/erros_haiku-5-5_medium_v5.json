@@ -1,0 +1,24 @@
+{
+  "erros": [
+    {
+      "laudo": "2022-08",
+      "modo": "foto",
+      "layout": "B",
+      "analito": "triglicerides",
+      "campo": "referencia",
+      "esperado": "-..150",
+      "obtido": "-..-"
+    },
+    {
+      "laudo": "2022-08",
+      "modo": "foto",
+      "layout": "B",
+      "analito": "triglicerides",
+      "campo": "fora_da_faixa",
+      "esperado": "true",
+      "obtido": "false"
+    }
+  ],
+  "falhas": [],
+  "docErros": []
+}

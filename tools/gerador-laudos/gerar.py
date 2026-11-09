@@ -899,6 +899,8 @@ def main():
     # Carteiras de vacinação (vacinas.py)
     import vacinas
     vacinas.gerar_todas(SAIDA, fotografar)
+    import casos
+    casos.gerar_caso_misto(SAIDA)
 
     # Gabaritos
     campos = None
