@@ -35,6 +35,8 @@ docs/                # contexto, decisões, roteiro da demo, prompts usados
 ## Contrato entre extração e app
 O formato de saída da extração é o mesmo do gabarito do gerador (`tools/gerador-laudos/saida/gabarito/*.json`, documentado no README da pasta). O app pode usar esses JSONs como dados de mentira desde o primeiro dia.
 
+No banco, o contrato é `supabase/README.md` + `lib/types.ts`: a entrada grava `documento` + `observacao`; todo consumidor externo (médico, MCP, API) lê só por `acessar_historico(token)`, que confere o consentimento e grava o log. `supabase/seed.sql` (gerado do gabarito) carrega o Roberto inteiro.
+
 ## Regras de trabalho
 - Uma branch por pessoa/tarefa (`a/extracao`, `b/telas`...). Merge na `main` pelo menos 1x por dia, sempre funcionando.
 - Nunca commitar chaves: use `.env.local` (já no `.gitignore`).
