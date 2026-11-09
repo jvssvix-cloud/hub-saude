@@ -1,0 +1,15 @@
+{
+  "erros": [
+    {
+      "laudo": "2022-08",
+      "modo": "foto",
+      "layout": "B",
+      "analito": "hba1c",
+      "campo": "fora_da_faixa",
+      "esperado": "true",
+      "obtido": "false"
+    }
+  ],
+  "falhas": [],
+  "docErros": []
+}

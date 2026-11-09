@@ -3,16 +3,17 @@
  *   npm run acuracia                       # todos os laudos, PDF e fotos
  *   npm run acuracia -- --modo=pdf         # só PDFs (ou --modo=foto)
  *   npm run acuracia -- --somente=2016-03,2025-03
+ *   npm run acuracia -- --modelo=claude-haiku-5-5   # outro modelo (cache separado)
  *   npm run acuracia -- --esforco=high     # outro nível de esforço (cache separado)
  *   npm run acuracia -- --refazer          # ignora o cache e chama a API de novo
  *
  * Cada extração fica salva em extraction/resultados/cache/ e só é paga uma vez.
- * Relatório: extraction/resultados/relatorio.md
+ * Relatório: extraction/resultados/relatorio_<modelo>_<esforco>.md
  */
 import { exigirChave, RAIZ } from "./env";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { extrairDocumento, mimeDoArquivo, type Esforco, type ResultadoExtracao } from "./extrair";
+import { extrairDocumento, MODELO_PADRAO, mimeDoArquivo, type Esforco, type ResultadoExtracao } from "./extrair";
 import { chaveUnidade } from "./normalizar";
 import type { ResultadoNormalizado } from "./schema";
 
@@ -25,6 +26,8 @@ const opcao = (n: string) => args.find((a) => a.startsWith(`--${n}=`))?.split("=
 const MODO = opcao("modo") ?? "todos";
 const SOMENTE = opcao("somente")?.split(",");
 const ESFORCO = (opcao("esforco") ?? "medium") as Esforco;
+const MODELO = opcao("modelo") ?? MODELO_PADRAO;
+const SUFIXO = `${MODELO.replace("claude-", "")}_${ESFORCO}`;
 const REFAZER = args.includes("--refazer");
 const PARALELO = 4;
 
@@ -66,11 +69,11 @@ function comparar(esp: ResultadoGabarito, obt: ResultadoNormalizado): Record<Cam
 
 // ---------- execução ----------
 async function extrairComCache(t: Tarefa): Promise<ResultadoExtracao> {
-  const arq = path.join(DIR_CACHE, `${t.gab.laudo_id}_${t.modo}_${ESFORCO}.json`);
+  const arq = path.join(DIR_CACHE, `${t.gab.laudo_id}_${t.modo}_${SUFIXO}.json`);
   if (!REFAZER && existsSync(arq)) return JSON.parse(readFileSync(arq, "utf-8"));
   const r = await extrairDocumento(
     t.arquivos.map((a) => ({ dados: readFileSync(a), mime: mimeDoArquivo(a) })),
-    { esforco: ESFORCO },
+    { esforco: ESFORCO, modelo: MODELO },
   );
   writeFileSync(arq, JSON.stringify(r, null, 2));
   return r;
@@ -107,9 +110,9 @@ async function main() {
       tarefas.push({ gab: g, modo: "foto", arquivos: fotos });
     }
   }
-  const faltam = tarefas.filter((t) => REFAZER || !existsSync(path.join(DIR_CACHE, `${t.gab.laudo_id}_${t.modo}_${ESFORCO}.json`)));
+  const faltam = tarefas.filter((t) => REFAZER || !existsSync(path.join(DIR_CACHE, `${t.gab.laudo_id}_${t.modo}_${SUFIXO}.json`)));
   if (faltam.length) exigirChave();
-  console.log(`${tarefas.length} extrações (${faltam.length} novas na API, ${tarefas.length - faltam.length} do cache), esforço ${ESFORCO}...`);
+  console.log(`${tarefas.length} extrações (${faltam.length} novas na API, ${tarefas.length - faltam.length} do cache), modelo ${MODELO}, esforço ${ESFORCO}...`);
 
   const resultados = await emParalelo(tarefas, PARALELO, extrairComCache);
 
@@ -185,10 +188,10 @@ async function main() {
     for (const e of erros) L.push(`| ${e.laudo} | ${e.modo} | ${e.layout} | ${e.analito} | ${e.campo} | ${esc(e.esperado)} | ${esc(e.obtido)} |`);
   } else L.push("Nenhum.");
 
-  writeFileSync(path.join(DIR_RES, "relatorio.md"), L.join("\n") + "\n");
-  writeFileSync(path.join(DIR_RES, "erros.json"), JSON.stringify({ erros, falhas, docErros }, null, 2));
+  writeFileSync(path.join(DIR_RES, `relatorio_${SUFIXO}.md`), L.join("\n") + "\n");
+  writeFileSync(path.join(DIR_RES, `erros_${SUFIXO}.json`), JSON.stringify({ erros, falhas, docErros }, null, 2));
   console.log(L.slice(0, 8 + placares.size).join("\n"));
-  console.log(`\nRelatório completo: extraction/resultados/relatorio.md`);
+  console.log(`\nRelatório completo: extraction/resultados/relatorio_${SUFIXO}.md`);
 }
 
 await main();

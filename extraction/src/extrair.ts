@@ -11,9 +11,13 @@ import { normalizar } from "./normalizar";
 import { INSTRUCAO_USUARIO, PROMPT_SISTEMA } from "./prompt";
 import { Extracao, type ExtracaoNormalizada } from "./schema";
 
-export const MODELO = "claude-opus-5-5";
+export const MODELO_PADRAO = "claude-opus-5-5";
 // Preço por 1M tokens (entrada, saída), para estimar custo no relatório
-const PRECO = { entrada: 4, saida: 20 };
+const PRECO: Record<string, { entrada: number; saida: number }> = {
+  "claude-opus-5-5": { entrada: 4, saida: 20 },
+  "claude-sonnet-5-5": { entrada: 2, saida: 10 },
+  "claude-haiku-5-5": { entrada: 0.1, saida: 0.5 }, // até 100K tokens de entrada
+};
 
 export type Arquivo = { dados: Buffer; mime: string };
 export type Esforco = "low" | "medium" | "high" | "xhigh" | "max";
@@ -50,11 +54,12 @@ function blocosDoArquivo(arquivos: Arquivo[]): Anthropic.Beta.BetaContentBlockPa
 
 export async function extrairDocumento(
   arquivos: Arquivo[],
-  opcoes: { esforco?: Esforco } = {},
+  opcoes: { esforco?: Esforco; modelo?: string } = {},
 ): Promise<ResultadoExtracao> {
   const inicio = Date.now();
+  const modelo = opcoes.modelo ?? MODELO_PADRAO;
   const resposta = await getCliente().beta.messages.parse({
-    model: MODELO,
+    model: modelo,
     max_tokens: 16000,
     system: PROMPT_SISTEMA,
     messages: [{ role: "user", content: [...blocosDoArquivo(arquivos), { type: "text", text: INSTRUCAO_USUARIO }] }],
@@ -82,7 +87,7 @@ export async function extrairDocumento(
     uso: {
       entrada,
       saida,
-      custo_usd: (entrada * PRECO.entrada + saida * PRECO.saida) / 1e6,
+      custo_usd: PRECO[modelo] ? (entrada * PRECO[modelo].entrada + saida * PRECO[modelo].saida) / 1e6 : NaN,
       segundos: (Date.now() - inicio) / 1000,
     },
     modelo: resposta.model,
