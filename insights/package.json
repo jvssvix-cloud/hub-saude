@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "insights": "tsx src/cli.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "conferir-banco": "tsx src/conferir-banco.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",

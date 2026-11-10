@@ -7,10 +7,8 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { carregarDoGabarito, carregarVacinasDoGabarito, RAIZ } from "./carregar";
-import { gerarInsights, mesAno } from "./regras";
+import { gerarInsights, HOJE_PADRAO, mesAno } from "./regras";
 
-// Data fixa (igual ao FIM de wearable/src/gerar.ts) para o resultado não depender do dia em que se roda.
-const HOJE_PADRAO = "2026-11-09";
 const hoje = process.argv.find((a) => a.startsWith("--hoje="))?.split("=")[1] ?? HOJE_PADRAO;
 const { laudos, paciente } = carregarDoGabarito();
 const i = gerarInsights(laudos, paciente, hoje, carregarVacinasDoGabarito());

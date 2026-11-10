@@ -4,11 +4,13 @@ import { GraficoRelogio } from "@/components/GraficoRelogio";
 import {
   FONTE, alertasOrdenados, dataHoraBr, decimal, inteiro, relogio, serieDoContexto, type Alerta,
 } from "@/lib/relogio";
-import { dataBr } from "@/lib/insights";
+import { carregarInsights } from "@/lib/dados";
+import { dataBr, type Serie } from "@/lib/insights";
 
 export const metadata: Metadata = { title: "Relógio · Hub de Saúde" };
 
-export default function Relogio() {
+export default async function Relogio() {
+  const { series } = await carregarInsights();
   const { resumo: r, eventos, dias } = relogio;
   const alertas = alertasOrdenados();
   const atencao = alertas.filter((a) => a.nivel === "atencao");
@@ -73,7 +75,7 @@ export default function Relogio() {
         <section className="space-y-3">
           <h2 className="text-sm font-medium uppercase tracking-wide text-suave">Alertas</h2>
           {alertas.map((a) => (
-            <CartaoAlerta key={a.id} alerta={a} />
+            <CartaoAlerta key={a.id} alerta={a} series={series} />
           ))}
         </section>
       )}
@@ -140,7 +142,7 @@ function Cartao({
   );
 }
 
-function CartaoAlerta({ alerta: a }: { alerta: Alerta }) {
+function CartaoAlerta({ alerta: a, series }: { alerta: Alerta; series: Serie[] }) {
   const atencao = a.nivel === "atencao";
   return (
     <article className="rounded-2xl border border-linha bg-cartao p-4">
@@ -162,7 +164,7 @@ function CartaoAlerta({ alerta: a }: { alerta: Alerta }) {
           <p className="text-xs font-medium uppercase tracking-wide text-suave">O que seus exames mostram</p>
           <ul className="mt-1.5 space-y-1 text-sm">
             {a.contexto_exames.map((c) => {
-              const s = serieDoContexto(c);
+              const s = serieDoContexto(series, c);
               return (
                 <li key={c} className="flex gap-2">
                   <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-atencao" />

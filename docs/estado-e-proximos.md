@@ -8,8 +8,8 @@
 | Extrator dos laudos (API do Claude) | ✅ pronto | `extraction/`, ~US$ 0,003/laudo (Haiku). **Roda só pelo terminal**, ainda não pelo app |
 | Dados do relógio | ✅ pronto | não usa IA: o dado já chega organizado e passa por regras (custo zero) |
 | Interpretador (recomendações) | ✅ pronto | `insights/` (exames + vacinas) e regras do relógio (`wearable/`), que cruzam com os exames |
-| Banco de dados | ✅ no ar | Supabase, Roberto carregado, consentimento do médico. **Ninguém grava nem lê dele ainda** |
-| Site | ✅ 3 telas | Início, Detalhe do exame, Relógio. **Lê arquivos JSON, não o banco** |
+| Banco de dados | ✅ no ar | Supabase, Roberto carregado, consentimento do médico. **O site lê dele (10/11); ninguém grava ainda** |
+| Site | ✅ 3 telas | Início, Detalhe do exame, Relógio. **Exames vêm do banco** (plano B: JSON); relógio ainda pelo JSON |
 
 ## O esqueleto está pronto?
 Os ossos estão prontos, as articulações não. Hoje:
@@ -25,7 +25,7 @@ relógio --> rota de sincronização --> banco          médico (link com consen
 
 ## O que falta (ordem de importância para a demo)
 1. **Enviar exame pelo app:** foto/PDF → extração → tela de conferência → grava no banco. Momento "uau" da demo.
-2. **Site lê do banco** em vez dos JSON (sem isso, exame enviado não aparece na hora).
+2. ~~**Site lê do banco**~~ ✅ feito 10/11 (`app/src/lib/dados.ts`; gravou no banco → `updateTag("historico")`).
 3. **Visão do médico:** link com consentimento, lendo do banco por `acessar_historico(token)`.
 4. **Tela de Vacinação:** os dados já estão no `insights.json`, falta só a tela.
 5. **Rota de sincronização do relógio** (`/api/relogio/sync`) gravando no banco. Na demo, o simulador resolve.

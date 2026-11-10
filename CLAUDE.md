@@ -19,7 +19,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 
 ## Estrutura do repositório
 ```
-app/                  # Next.js: Início + Detalhe do exame + Relógio (lê insights.json e relogio.json, abre o laudo original) [3 TELAS PRONTAS; falta ler do banco, ver app/README.md]
+app/                  # Next.js: Início + Detalhe do exame + Relógio (lê insights.json e relogio.json, abre o laudo original) [3 TELAS PRONTAS; exames lidos do BANCO (plano B: insights.json), ver app/README.md]
 extraction/           # documento -> dados: prompt (versionado), schema, normalização, testes de acurácia  [PRONTO]
 insights/             # dados -> informação: séries, áreas, tendência, repetição, vacinação, resumo do médico [PRONTO]
 wearable/             # relógio: dados sintéticos, 4 regras de alerta, cruzamento com exames, simulador de sincronização [PRONTO]
@@ -32,13 +32,13 @@ docs/                 # contexto, decisões, estado-e-proximos.md (o que temos /
 Cada pasta pronta tem README com comandos. Resumo:
 - `cd extraction && npm run acuracia` (laudos sintéticos), `-- --conjunto=reais`, `npm run acuracia-vacinas`
 - `cd extraction && npm run extrair -- arquivo.pdf --sexo=M --nascimento=AAAA-MM-DD`
-- `cd insights && npm run insights` (gera `insights/saida/insights.json`, que o app consome)
+- `cd insights && npm run insights` (gera `insights/saida/insights.json`, plano B do app), `npm run conferir-banco` (banco = JSON?)
 - `cd tools/gerador-laudos && python gerar.py` (determinístico)
 - `cd wearable && npm run gerar` (gera `relogio.json`), `npm run simular -- --inicio=2026-10-25 --intervalo=5`, `npm test`
 
 ## Contrato entre as partes
 - Extração → app/banco: formato do gabarito (`tools/gerador-laudos/README.md`) + campos v5 (`qualificador`, `resultado_texto`, `data_coleta` por resultado) e `doses` de vacina.
-- Insights → app: `insights/saida/insights.json` (tipos em `insights/src/tipos.ts`).
+- Insights → app: o app roda as regras de `insights/src/regras.ts` sobre o banco (`insights/src/banco.ts`, via `app/src/lib/dados.ts`, etiqueta de cache `historico`); `insights/saida/insights.json` é o plano B (tipos em `insights/src/tipos.ts`). Gravou no banco? `updateTag("historico")`.
 - Relógio → app: `wearable/saida/relogio.json` (tipo `RelogioJson` em `wearable/src/tipos.ts`). Rota futura `/api/relogio/sync` recebe um `Lote` (`{dias, eventos}`) e usa `mesclar` + `montarRelogio`.
 - Banco: entrada grava `documento` + `observacao`; médico, MCP e API leem **só** por `acessar_historico(token)`, que confere o consentimento e grava o log. Tipos em `lib/types.ts`, contrato em `supabase/README.md`.
 

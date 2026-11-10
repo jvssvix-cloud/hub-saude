@@ -3,18 +3,20 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { GraficoSerie } from "@/components/GraficoSerie";
 import { AvisoNaoDiagnostico, SeloStatus } from "@/components/ui";
-import { areaDe, dataBr, faixa, insights, linkLaudo, numero, serie } from "@/lib/insights";
+import { carregarInsights } from "@/lib/dados";
+import { areaDe, dataBr, faixa, linkLaudo, numero, serie } from "@/lib/insights";
 
-export function generateStaticParams() {
-  return insights.series.map((s) => ({ analito: s.analito }));
+export async function generateStaticParams() {
+  const { series } = await carregarInsights();
+  return series.map((s) => ({ analito: s.analito }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/exame/[analito]">) {
-  const s = serie((await params).analito);
+  const s = serie(await carregarInsights(), (await params).analito);
   return { title: s ? `${s.nome} · Hub de Saúde` : "Exame · Hub de Saúde" };
 }
 
-// As 18 páginas são geradas no build (generateStaticParams); o Suspense só satisfaz a regra do Next 16
+// As páginas dos exames que já existem são geradas no build (generateStaticParams); o Suspense só satisfaz a regra do Next 16
 // de não ler o endereço fora de um limite de carregamento.
 export default function DetalheExame({ params }: PageProps<"/exame/[analito]">) {
   return (
@@ -25,9 +27,10 @@ export default function DetalheExame({ params }: PageProps<"/exame/[analito]">) 
 }
 
 async function Conteudo({ params }: { params: Promise<{ analito: string }> }) {
-  const s = serie((await params).analito);
+  const insights = await carregarInsights();
+  const s = serie(insights, (await params).analito);
   if (!s) notFound();
-  const area = areaDe(s);
+  const area = areaDe(insights, s);
   const u = s.ultimo;
   const laboratorios = new Set(s.pontos.map((p) => p.fonte.laboratorio)).size;
   const pontosRecentes = [...s.pontos].reverse();

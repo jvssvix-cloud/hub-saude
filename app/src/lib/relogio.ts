@@ -3,7 +3,7 @@
  * Tipos espelham wearable/src/tipos.ts. Quando a rota /api/relogio/sync gravar no banco, só este arquivo muda.
  */
 import dados from "@/dados/relogio.json";
-import { insights, type Serie } from "@/lib/insights";
+import type { Serie } from "@/lib/insights";
 
 export type Dia = {
   data: string;
@@ -60,8 +60,8 @@ export function alertasOrdenados(): Alerta[] {
 
 /** Frase do contexto de exames ("LDL 164 mg/dL em mar/2026...") → série do exame, para virar link.
  *  Fica com o nome mais longo que bate ("Hemoglobina glicada (HbA1c)" ganha de "Hemoglobina"). */
-export function serieDoContexto(frase: string): Serie | undefined {
-  return insights.series
+export function serieDoContexto(series: Serie[], frase: string): Serie | undefined {
+  return series
     .filter((s) => frase.startsWith(s.nome))
     .sort((a, b) => b.nome.length - a.nome.length)[0];
 }

@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { CartaoRelogio } from "@/components/CartaoRelogio";
 import { AvisoNaoDiagnostico, SeloStatus, SetaTendencia } from "@/components/ui";
+import { carregarInsights } from "@/lib/dados";
 import {
-  areasOrdenadas, dataBr, idade, insights, linkLaudo, mesAno, numero, serie, seriesDaArea,
+  areasOrdenadas, dataBr, idade, linkLaudo, mesAno, numero, serie, seriesDaArea,
 } from "@/lib/insights";
 
-export default function Inicio() {
+export default async function Inicio() {
+  const insights = await carregarInsights();
   const { paciente, periodo, hoje, repeticoes } = insights;
-  const areas = areasOrdenadas();
+  const areas = areasOrdenadas(insights);
   const emAtencao = areas.filter((a) => a.status === "atencao");
 
   return (
@@ -38,7 +40,7 @@ export default function Inicio() {
       <section className="space-y-3">
         <h2 className="text-sm font-medium uppercase tracking-wide text-suave">Suas áreas</h2>
         {areas.map((area) => {
-          const series = seriesDaArea(area);
+          const series = seriesDaArea(insights, area);
           return (
             <article key={area.id} className="rounded-2xl border border-linha bg-cartao p-4">
               <div className="flex items-start justify-between gap-3">
@@ -93,7 +95,7 @@ export default function Inicio() {
           {repeticoes.map((r) => (
             <article key={r.de.laudo_id + r.para.laudo_id} className="rounded-2xl border border-linha bg-cartao p-4 text-sm">
               <p className="font-medium">
-                Refeitos {r.dias} dias depois: {r.analitos.map((a) => serie(a)?.nome ?? a).join(", ")}
+                Refeitos {r.dias} dias depois: {r.analitos.map((a) => serie(insights, a)?.nome ?? a).join(", ")}
               </p>
               <p className="mt-1 text-suave">
                 Com o histórico num lugar só, o médico teria visto o exame anterior.

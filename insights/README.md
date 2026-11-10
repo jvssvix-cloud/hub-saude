@@ -8,10 +8,12 @@ cd insights
 npm install
 npm run insights                       # hoje = 2026-11-09 (fixo, igual ao relógio)
 npm run insights -- --hoje=2026-11-14  # simular outra data
+npm run conferir-banco                 # insights do banco (Supabase) = insights do JSON? (só lê, precisa da chave secreta)
 ```
 
 Lê os laudos da persona (`tools/gerador-laudos/saida/gabarito/`, mesmo formato da extração) e grava
-`saida/insights.json`, o JSON que o app desenha. Quando o banco existir, só `src/carregar.ts` muda.
+`saida/insights.json`. O app usa as mesmas regras, mas lendo do banco: `src/banco.ts` (`carregarDoBanco`) devolve
+a mesma entrada que `src/carregar.ts` (laudos, paciente, doses). O JSON fica como plano B do app.
 
 | Regra | O que faz | Parâmetro |
 |---|---|---|

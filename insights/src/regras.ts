@@ -280,6 +280,9 @@ export function resumoMedico(i: Omit<Insights, "resumo_medico">): string[] {
 }
 
 // ---------------- tudo junto ----------------
+/** "Hoje" padrão dos insights: data fixa, igual ao FIM de wearable/src/gerar.ts (o resultado não depende do dia em que se roda). */
+export const HOJE_PADRAO = "2026-11-09";
+
 export function gerarInsights(laudos: Laudo[], paciente: Paciente, hoje: string, dosesVacina?: DoseVacina[]): Insights {
   const ordenados = [...laudos].sort((a, b) => a.data_coleta.localeCompare(b.data_coleta));
   const series = montarSeries(ordenados);

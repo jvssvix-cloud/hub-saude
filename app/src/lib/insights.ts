@@ -1,8 +1,7 @@
 /**
- * Leitura do insights.json (gerado por insights/, copiado por scripts/copiar-dados.mjs).
- * Tipos: só o que as telas usam, espelhando insights/src/tipos.ts. Quando o banco entrar, só este arquivo muda.
+ * Tipos e funções das telas. Os dados vêm de carregarInsights() (lib/dados.ts): banco ou, sem a chave, insights.json.
+ * Tipos: só o que as telas usam, espelhando insights/src/tipos.ts.
  */
-import dados from "@/dados/insights.json";
 
 export type Fonte = { laudo_id: string; arquivo: string; laboratorio: string; pagina: number };
 
@@ -69,24 +68,22 @@ export type Insights = {
   resumo_medico: string[];
 };
 
-export const insights = dados as unknown as Insights;
-
 const ORDEM_STATUS: Record<Area["status"], number> = { atencao: 0, sem_dados_recentes: 1, em_dia: 2 };
 
 /** Áreas com "atenção" primeiro. */
-export function areasOrdenadas(): Area[] {
+export function areasOrdenadas(insights: Insights): Area[] {
   return [...insights.areas].sort((a, b) => ORDEM_STATUS[a.status] - ORDEM_STATUS[b.status]);
 }
 
-export function serie(analito: string): Serie | undefined {
+export function serie(insights: Insights, analito: string): Serie | undefined {
   return insights.series.find((s) => s.analito === analito);
 }
 
-export function seriesDaArea(area: Area): Serie[] {
-  return area.analitos.map(serie).filter((s): s is Serie => !!s);
+export function seriesDaArea(insights: Insights, area: Area): Serie[] {
+  return area.analitos.map((a) => serie(insights, a)).filter((s): s is Serie => !!s);
 }
 
-export function areaDe(s: Serie): Area | undefined {
+export function areaDe(insights: Insights, s: Serie): Area | undefined {
   return insights.areas.find((a) => a.id === s.area);
 }
 
