@@ -40,7 +40,13 @@ Cada pasta pronta tem README com comandos. Resumo:
 - Relógio → app: `wearable/saida/relogio.json` (formato em `docs/prompts/02-relogio.md`).
 
 ## Divisão atual (09/11 à noite)
-- João: `app/` (branch `a/app`). Amigo: `wearable/` (branch `b/relogio`). Só o João edita este arquivo e o `docs/contexto.md`.
+- João: `app/` (branch `a/app`). Felipe: `wearable/` (branch `b/relogio`).
+- **Acesso total para os dois** (GitHub e Supabase): qualquer um pode editar qualquer arquivo (inclusive este e o `docs/contexto.md`) e fazer merge na `main` sem pedir aprovação.
+
+## Sincronizar sempre (regra do time)
+- **Antes de começar:** `git checkout main && git pull`, depois volte para a sua branch e `git merge main`.
+- **Depois de cada merge/push:** `git fetch && git log --oneline -3 origin/main` para conferir que a versão no GitHub é a esperada, e rode o teste/typecheck da pasta que mudou.
+- Ao editar `CLAUDE.md` ou `docs/contexto.md`, faça pull imediatamente antes e push logo depois (são os arquivos que os dois mexem).
 
 ## Regras de trabalho
 - **Mudou o prompt de extração?** Suba `PROMPT_VERSAO` em `extraction/src/prompt.ts` e rode todos os testes (sintéticos, reais e vacinas) antes de juntar na `main`.
