@@ -11,10 +11,10 @@ export type Conexao = { url: string; chave: string };
 /** Paciente de demonstração do MVP (sem login). */
 export const PACIENTE_DEMO = "persona-roberto";
 
-type LinhaDocumento = {
+export type LinhaDocumento = {
   id: string; tipo: string; emissor: string | null; data: string | null; arquivo: string | null;
 };
-type LinhaObservacao = {
+export type LinhaObservacao = {
   documento_id: string; categoria: string; codigo: string; data: string;
   nome_impresso: string | null; valor_impresso: string | null; unidade_impressa: string | null;
   referencia_impressa: string | null; pagina: number | null;
@@ -46,7 +46,16 @@ export async function carregarDoBanco(c: Conexao, pacienteId = PACIENTE_DEMO): P
     get<LinhaObservacao[]>(c, `observacao?paciente_id=eq.${pid}&categoria=in.(exame,vacina)&select=*&order=id&limit=10000`),
   ]);
   if (!pacientes[0]) throw new Error(`paciente ${pacienteId} não está no banco`);
+  return { ...montarEntrada(documentos, observacoes), paciente: pacientes[0] };
+}
 
+/**
+ * Linhas do banco (documento + observacao) -> entrada das regras (laudos + doses).
+ * Exportada à parte porque a visão do médico recebe essas mesmas linhas de acessar_historico(token).
+ */
+export function montarEntrada(documentos: LinhaDocumento[], observacoes: LinhaObservacao[]): {
+  laudos: Laudo[]; doses: DoseVacina[];
+} {
   const docs = new Map(documentos.map((d) => [d.id, d]));
   const laudos = new Map<string, Laudo>();
   for (const d of documentos) {
@@ -84,7 +93,7 @@ export async function carregarDoBanco(c: Conexao, pacienteId = PACIENTE_DEMO): P
       });
     }
   }
-  return { laudos: [...laudos.values()], paciente: pacientes[0], doses };
+  return { laudos: [...laudos.values()], doses };
 }
 
 /** Conexão a partir das variáveis de ambiente; null se faltar a chave secreta (aí quem chama usa o JSON). */

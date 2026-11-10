@@ -119,6 +119,17 @@ export default async function Inicio() {
         </ul>
       </section>
 
+      <Link
+        href="/compartilhar"
+        className="flex items-center justify-between gap-3 rounded-3xl bg-marca px-5 py-4 text-white transition-colors hover:bg-marca-hover"
+      >
+        <span>
+          <span className="block font-bold">Compartilhar com meu médico</span>
+          <span className="block text-sm text-white/75">Você escolhe o que ele vê e por quanto tempo</span>
+        </span>
+        <span aria-hidden className="text-xl">›</span>
+      </Link>
+
       <p className="text-center text-xs text-suave">
         Gerado por regras a partir dos seus exames e do seu relógio. Não é diagnóstico.
       </p>

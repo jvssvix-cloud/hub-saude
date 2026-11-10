@@ -47,6 +47,7 @@ Funções:
 | `criar_consentimento(...)` | app do paciente (service_role) | QR: consentimento já aprovado |
 | `revogar_consentimento(id)` | app do paciente (service_role) | Corta na hora |
 | `acessar_historico(token, consumidor, ...)` | médico, MCP, API (anon) | Único caminho de leitura |
+| `situacao_acesso(token)` | tela do médico (anon) | Só diz se o acesso vale agora (ok, pendente, revogado...), sem dados e sem log; a tela consulta a cada 3 s |
 
 ## Fluxo principal: o médico pede pelo telefone
 

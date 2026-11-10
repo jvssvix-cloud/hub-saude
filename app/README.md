@@ -41,6 +41,9 @@ regras de `insights/src/regras.ts` na hora. As telas recebem o resultado; nenhum
 | `/exames` | **Paciente** · os laudos originais (data, laboratório, abrir PDF) e o aviso de exame feito duas vezes |
 | `/exame/[analito]` | **Paciente (aprofundar)** · Detalhe: último valor, tendência, gráfico de 10 anos com a faixa de referência **de cada laudo**, pontos fora em destaque, lista de cada resultado com o laudo e a página de origem |
 | `/relogio` | **Paciente** · Relógio: alertas (motivo, recomendação, o que os exames mostram), cartões, gráficos de 6 meses de FC de repouso (com a base e os avisos de ritmo), variabilidade, sono e passos. Lê `wearable/saida/relogio.json` |
+| `/compartilhar` | **Paciente** · pedidos de acesso chegando (atualiza a cada 3 s): escolher o que compartilhar (exames, vacinas, relógio) e Autorizar/Recusar; quem pode ver agora (Encerrar acesso); últimos acessos (log). Precisa da `SUPABASE_SERVICE_ROLE_KEY` no servidor |
+| `/medico` | **Médico** · pedido de acesso pelo telefone do paciente (`solicitar_acesso`, chave pública) |
+| `/medico/acesso/[token]` | **Médico** · espera a aprovação e abre sozinho; painel: indicadores alterados, comparar até 3 séries, correlações relógio × exames, FC de repouso com avisos de ritmo, todos os exames com link para o laudo, resumo pré-consulta. Lê só por `acessar_historico(token)`; `situacao_acesso` a cada 3 s faz a revogação derrubar a tela na hora |
 
 ## Vercel
 
