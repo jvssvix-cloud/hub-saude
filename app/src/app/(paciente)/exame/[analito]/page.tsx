@@ -36,16 +36,16 @@ async function Conteudo({ params }: { params: Promise<{ analito: string }> }) {
   const pontosRecentes = [...s.pontos].reverse();
 
   return (
-    <div className="space-y-5">
-      <Link href="/" className="text-sm text-marca hover:underline">
-        ‹ Início
+    <div className="space-y-5 pt-3">
+      <Link href="/evolucao" className="text-sm font-semibold text-marca hover:underline">
+        ‹ Evolução
       </Link>
 
       <section>
         <div className="flex items-start justify-between gap-3">
           <div>
             {area && <p className="text-sm text-suave">{area.nome}</p>}
-            <h1 className="text-2xl font-semibold tracking-tight">{s.nome}</h1>
+            <h1 className="text-[28px] font-bold leading-tight tracking-tight">{s.nome}</h1>
           </div>
           <SeloStatus status={s.alterado ? "atencao" : "em_dia"} />
         </div>
@@ -78,7 +78,7 @@ async function Conteudo({ params }: { params: Promise<{ analito: string }> }) {
         )}
       </section>
 
-      <section className="rounded-2xl border border-linha bg-cartao p-3 pt-4">
+      <section className="rounded-3xl border border-linha bg-cartao p-3 pt-4">
         <div className="mb-2 flex flex-wrap items-center justify-between gap-2 px-1">
           <h2 className="text-sm font-medium">
             {s.pontos.length} resultados · {laboratorios} {laboratorios === 1 ? "laboratório" : "laboratórios"}
@@ -98,7 +98,7 @@ async function Conteudo({ params }: { params: Promise<{ analito: string }> }) {
 
       <section>
         <h2 className="mb-2 text-sm font-medium uppercase tracking-wide text-suave">Cada resultado e sua origem</h2>
-        <ul className="divide-y divide-linha overflow-hidden rounded-2xl border border-linha bg-cartao">
+        <ul className="divide-y divide-linha overflow-hidden rounded-3xl border border-linha bg-cartao">
           {pontosRecentes.map((p) => (
             <li key={p.fonte.laudo_id + p.data}>
               <a

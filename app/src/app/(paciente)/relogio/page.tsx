@@ -16,13 +16,10 @@ export default async function Relogio() {
   const atencao = alertas.filter((a) => a.nivel === "atencao");
 
   return (
-    <div className="space-y-6">
-      <Link href="/" className="text-sm text-marca hover:underline">
-        ‹ Início
-      </Link>
+    <div className="space-y-6 pt-3">
 
       <section>
-        <h1 className="text-2xl font-semibold tracking-tight">Relógio</h1>
+        <h1 className="text-[28px] font-bold leading-tight tracking-tight">Relógio</h1>
         <p className="mt-1 text-sm text-suave">
           {FONTE[relogio.fonte]} · última sincronização {dataHoraBr(relogio.ultima_sincronizacao)} ·{" "}
           {dias.length} dias desde {dataBr(relogio.periodo.inicio)}
@@ -30,7 +27,7 @@ export default async function Relogio() {
       </section>
 
       {atencao.length > 0 && (
-        <section className="rounded-2xl border border-atencao/25 bg-atencao-fundo p-4">
+        <section className="rounded-3xl border border-atencao/25 bg-atencao-fundo p-4">
           <h2 className="font-semibold text-atencao">
             {atencao.length === 1 ? "1 sinal para levar ao médico" : `${atencao.length} sinais para levar ao médico`}
           </h2>
@@ -109,7 +106,7 @@ export default async function Relogio() {
       {eventos.length > 0 && (
         <section className="space-y-3">
           <h2 className="text-sm font-medium uppercase tracking-wide text-suave">Avisos de ritmo irregular</h2>
-          <ul className="divide-y divide-linha rounded-2xl border border-linha bg-cartao px-4 text-sm">
+          <ul className="divide-y divide-linha rounded-3xl border border-linha bg-cartao px-4 text-sm">
             {[...eventos].reverse().map((e) => (
               <li key={e.data_hora} className="flex items-center justify-between gap-3 py-2.5">
                 <span className="num">{dataHoraBr(e.data_hora)}</span>
@@ -131,7 +128,7 @@ function Cartao({
   titulo, valor, unidade, detalhe, alerta,
 }: { titulo: string; valor: string; unidade: string; detalhe: string; alerta: boolean }) {
   return (
-    <div className={`rounded-2xl border p-4 ${alerta ? "border-atencao/30 bg-atencao-fundo" : "border-linha bg-cartao"}`}>
+    <div className={`rounded-3xl border p-4 ${alerta ? "border-atencao/30 bg-atencao-fundo" : "border-linha bg-cartao"}`}>
       <p className="text-xs text-suave">{titulo}</p>
       <p className="num mt-1">
         <span className={`text-2xl font-semibold ${alerta ? "text-atencao" : ""}`}>{valor}</span>{" "}
@@ -145,7 +142,7 @@ function Cartao({
 function CartaoAlerta({ alerta: a, series }: { alerta: Alerta; series: Serie[] }) {
   const atencao = a.nivel === "atencao";
   return (
-    <article className="rounded-2xl border border-linha bg-cartao p-4">
+    <article className="rounded-3xl border border-linha bg-cartao p-4">
       <div className="flex items-start justify-between gap-3">
         <h3 className="font-semibold">{a.titulo}</h3>
         <span
@@ -189,7 +186,7 @@ function CartaoAlerta({ alerta: a, series }: { alerta: Alerta; series: Serie[] }
 
 function Grafico({ titulo, legenda, children }: { titulo: string; legenda: string; children: React.ReactNode }) {
   return (
-    <article className="rounded-2xl border border-linha bg-cartao p-4">
+    <article className="rounded-3xl border border-linha bg-cartao p-4">
       <h3 className="text-sm font-semibold">{titulo}</h3>
       <p className="mb-2 text-xs text-suave">{legenda}</p>
       {children}

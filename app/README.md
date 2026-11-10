@@ -1,6 +1,6 @@
 # App (Next.js)
 
-Telas do Hub de Saúde. Next.js 16 (App Router, Cache Components), Tailwind 4, Recharts. Mobile-first, pt-BR,
+Telas do Hub de Saúde, em duas áreas: **paciente** (celular, calma, gráficos; layout em `src/app/(paciente)/`) e **médico** (desktop, denso; em construção). Identidade em `src/app/globals.css`: off-white, bege, verdes sálvia, verde profundo, laranja só para atenção, faixa de 4 cores da Rivio no topo. Só tema claro. Next.js 16 (App Router, Cache Components), Tailwind 4, Recharts. Mobile-first, pt-BR,
 tema claro e escuro.
 
 ```bash
@@ -36,9 +36,11 @@ regras de `insights/src/regras.ts` na hora. As telas recebem o resultado; nenhum
 
 | Rota | O que mostra |
 |---|---|
-| `/` | Início: áreas (atenção primeiro, com os motivos), último valor e tendência de cada exame, exames repetidos |
-| `/exame/[analito]` | Detalhe: último valor, tendência, gráfico de 10 anos com a faixa de referência **de cada laudo**, pontos fora em destaque, lista de cada resultado com o laudo e a página de origem |
-| `/relogio` | Relógio: alertas (motivo, recomendação, o que os exames mostram), cartões, gráficos de 6 meses de FC de repouso (com a base e os avisos de ritmo), variabilidade, sono e passos. Lê `wearable/saida/relogio.json` |
+| `/` | **Paciente** · Início: "Como você está" (4 temas em linguagem simples: coração, açúcar, colesterol, sono e movimento), minicurvas dos índices (exames de 10 anos + relógio de 6 meses), outros exames em uma linha. Sem números de cara |
+| `/evolucao` | **Paciente** · todos os índices com minicurva e frase curta, agrupados por tema; toque abre o detalhe |
+| `/exames` | **Paciente** · os laudos originais (data, laboratório, abrir PDF) e o aviso de exame feito duas vezes |
+| `/exame/[analito]` | **Paciente (aprofundar)** · Detalhe: último valor, tendência, gráfico de 10 anos com a faixa de referência **de cada laudo**, pontos fora em destaque, lista de cada resultado com o laudo e a página de origem |
+| `/relogio` | **Paciente** · Relógio: alertas (motivo, recomendação, o que os exames mostram), cartões, gráficos de 6 meses de FC de repouso (com a base e os avisos de ritmo), variabilidade, sono e passos. Lê `wearable/saida/relogio.json` |
 
 ## Vercel
 
