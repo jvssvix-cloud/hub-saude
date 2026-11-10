@@ -14,6 +14,8 @@ export default async function Inicio() {
   const glicose = serie(insights, "glicose");
   const ldl = serie(insights, "ldl");
   const r = relogio.resumo;
+  const fora = insights.series.filter((s) => s.alterado).length;
+  const naFaixa = insights.series.length - fora;
   const anos = Number(periodo.fim.slice(0, 4)) - Number(periodo.inicio.slice(0, 4));
 
   return (
@@ -24,6 +26,15 @@ export default async function Inicio() {
         <p className="mt-1.5 text-[15px] text-suave">
           {anos} anos de exames, {periodo.laboratorios.length} laboratórios e o seu relógio, num lugar só.
         </p>
+        <Link href="/evolucao" className="mt-3 flex flex-wrap items-center gap-2 text-sm">
+          <span className="rounded-full bg-marca-fundo px-3 py-1 font-semibold text-marca">
+            <span className="num">{naFaixa}</span> na faixa
+          </span>
+          <span className="rounded-full bg-atencao-fundo px-3 py-1 font-semibold text-atencao">
+            <span className="num">{fora}</span> fora da faixa
+          </span>
+          <span className="text-suave">de {insights.series.length} exames acompanhados ›</span>
+        </Link>
       </section>
 
       <section className="rounded-3xl bg-bege p-4 sm:p-5">

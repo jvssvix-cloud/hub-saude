@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { GraficoSerie } from "@/components/GraficoSerie";
 import { AvisoNaoDiagnostico, SeloStatus } from "@/components/ui";
 import { carregarInsights } from "@/lib/dados";
+import { EXPLICACOES } from "@/lib/explicacoes";
 import { areaDe, dataBr, faixa, linkLaudo, numero, serie } from "@/lib/insights";
 
 export async function generateStaticParams() {
@@ -34,6 +35,7 @@ async function Conteudo({ params }: { params: Promise<{ analito: string }> }) {
   const u = s.ultimo;
   const laboratorios = new Set(s.pontos.map((p) => p.fonte.laboratorio)).size;
   const pontosRecentes = [...s.pontos].reverse();
+  const explicacao = EXPLICACOES[s.analito];
 
   return (
     <div className="space-y-5 pt-3">
@@ -95,6 +97,29 @@ async function Conteudo({ params }: { params: Promise<{ analito: string }> }) {
         <GraficoSerie pontos={s.pontos} unidade={s.unidade} />
         <p className="px-1 pt-1 text-xs text-suave">Toque num ponto para abrir o laudo original.</p>
       </section>
+
+      {explicacao && (
+        <section className="rounded-3xl bg-bege p-4 sm:p-5">
+          <h2 className="text-lg font-bold tracking-tight">Entender este exame</h2>
+          <dl className="mt-2 space-y-3 text-[15px]">
+            {[
+              ["O que é", explicacao.oQueE],
+              ["Por que importa", explicacao.porQueImporta],
+              ["O que costuma ajudar", explicacao.oQueAjuda],
+            ].map(([t, texto]) => (
+              <div key={t}>
+                <dt className="text-sm font-semibold text-marca">{t}</dt>
+                <dd className="text-tinta">{texto}</dd>
+              </div>
+            ))}
+          </dl>
+          {s.alterado && (
+            <p className="mt-3 rounded-2xl bg-cartao px-3 py-2 text-sm text-atencao">
+              Seu último resultado está fora da referência do laudo: vale levar à próxima consulta.
+            </p>
+          )}
+        </section>
+      )}
 
       <section>
         <h2 className="mb-2 text-sm font-medium uppercase tracking-wide text-suave">Cada resultado e sua origem</h2>
