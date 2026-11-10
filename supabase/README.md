@@ -1,5 +1,17 @@
 # Banco: o contrato entre entrada e saídas
 
+> **Para revisar (João / Claude do João), 09/11 noite.** Feito pelo Felipe; tudo já aplicado no Supabase `hub-saude`.
+> 1. **Decisão a confirmar: RLS ligado sem políticas.** Muda o "sem RLS" do plano original. Não há login nem
+>    regra por usuário: só impede a chave pública (que vai para o navegador do médico e para o MCP) de ler as
+>    tabelas direto. Sem isso a revogação seria só visual. O servidor do app usa a service_role e não é afetado.
+> 2. **Modelo de dados:** `observacao` usa os mesmos nomes de campos da extração (`schema.ts`) e dos insights
+>    (`tipos.ts`); `codigo` = `analito`. O `insights/src/carregar.ts` pode ler do banco sem tradução.
+> 3. **Consentimento pelo telefone:** médico pede, paciente aprova no app (fluxo abaixo). Útil para a hora 6
+>    (Visão do médico): a tela chama `solicitar_acesso` e depois `acessar_historico`.
+> 4. **Onde o relógio entra:** `observacao.categoria = 'wearable'` já existe (ex.: `codigo = 'fc_repouso'`, um
+>    por dia), mas o contrato atual do relógio é o arquivo `wearable/saida/relogio.json`. Gravar no banco é opcional.
+> 5. **Como conferir:** `list_migrations` no Supabase bate com `supabase/migrations/`; o fim deste README lista o que foi testado.
+
 ```
  ENTRADA (A)                            BANCO                              SAÍDAS (B)
  upload PDF/foto ─┐                                                   ┌─► app do paciente (service_role)

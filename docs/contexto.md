@@ -57,7 +57,7 @@ Uma plataforma com IA que junta o histórico de saúde de cada pessoa, do exame 
 5. **Relógio + exames:** "5 avisos de ritmo irregular em 14 dias e FC de repouso subindo → procure um cardiologista", ao lado de LDL/glicose alterados (persona, dados sintéticos).
 6. **Vacinação:** carteira consolidada de vários documentos; "dT vencida desde 2024".
 
-**Cortado do MVP (slide de "próximos passos"):** integração real com relógio, chat, remédios, laudos de imagem (ultrassom), FHIR/RNDS, login/Auth, RLS, PWA.
+**Cortado do MVP (slide de "próximos passos"):** integração real com relógio, chat, remédios, laudos de imagem (ultrassom), FHIR/RNDS, login/Auth, RLS por usuário, PWA.
 
 ### 4.0 Dados de teste: persona sintética + exames reais do João
 - **Persona (fictícia):** Roberto Almeida Siqueira, 58 anos (nasc. 14/05/1968), masculino, SP. 12 laudos entre 2016 e 2026 em 4 laboratórios fictícios (Delta 2016-17 papel antigo; Alfa 2018-20 + repetição mai/2025; Beta 2021-23; Gama 2024-26). História: LDL 112 → 163, HDL caindo, TG subindo, glicose subindo e fora da faixa nos últimos anos, HbA1c até 6,2% (pré-diabetes), ácido úrico levemente alto nos últimos 2 anos, vitamina D baixa em 2022, **exame repetido em 2025** (novo médico sem o anterior).
@@ -77,11 +77,11 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 ## 5. Arquitetura, stack e repositório
 - **Não vamos treinar LLM.** API pronta (Claude) + prompt + formato de saída obrigatório + dicionário de nomes + validações.
 - **Fluxo:** upload (Storage) → rota de API chama Claude (visão) → JSON no formato do gabarito → normalização (nome canônico, unidade canônica) → validação (valor plausível? unidade conhecida?) → grava `observation` com link para documento + página.
-- **Banco: Supabase** (Postgres + Storage), região São Paulo. Sem Auth/RLS no MVP (1 usuário de demo; só dados sintéticos/próprios).
+- **Banco: Supabase `hub-saude`** (Postgres + Storage), região São Paulo, **no ar desde 09/11** com o Roberto carregado. Sem login no MVP (1 usuário de demo); tabelas trancadas para a chave pública (RLS sem políticas, sem regras por usuário) e acesso externo só por `acessar_historico(token)`. Detalhes em `supabase/README.md`.
 - **Front:** Next.js + TypeScript, Tailwind, Recharts, mobile-first, Vercel.
 - **Lovable** (parceiro, 100 créditos até sábado). **Recomendação (09/11, a confirmar):** construir o app no Claude Code (mesmo código da extração e dos insights, sem limite de créditos, rastreabilidade sob controle) e usar o Lovable só para a **landing page do pitch** (QR code para a demo). Motivo: os créditos acabam em poucas horas de iteração e o Lovable cria um projeto separado, longe do código testado.
 - **Repositório:** `jvssvix-cloud/hub-saude`. Estrutura no `CLAUDE.md`.
-- **Modelo de dados (mínimo):** `source_document` (arquivo, laboratório, data de coleta, páginas), `observation` (analito canônico, nome impresso, valor, unidade, ref_min/max, fora_da_faixa, data, documento + página, confiança), `share_link` (token, validade, criado_em, revogado), `access_log`.
+- **Modelo de dados (implementado 09/11):** `paciente`, `documento` (origem/canal, emissor, data, arquivo, páginas), `observacao` (exame, vacina ou agregado de wearable; mesmos nomes de campos da extração e dos insights; documento + página), `consentimento` (escopo, destinatário, validade, status pendente/aprovado/recusado, revogação, token) e `log_acesso`. Tipos em `lib/types.ts`.
 - **Contrato extração ↔ app:** mesmo formato do gabarito do gerador. O app usa os JSONs do gabarito como dados de mentira até a extração estar pronta.
 
 ## 6. TIME (09/11)
@@ -142,9 +142,11 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11 noite: **divisão:** João = horas 1–2 (app base: Início + Detalhe do exame); Felipe = hora 3 (relógio, `docs/prompts/02-relogio.md`); horas 4–6 juntos. Contrato do relógio: `wearable/saida/relogio.json`.
 - 09/11 noite: **acesso total para João e Felipe** no GitHub e no Supabase (Felipe criou o projeto e o banco); sem aprovação para mudanças; sempre `git pull` antes e conferir a versão puxada depois.
 - 09/11 noite: **regra de trabalho:** toda mudança estrutural é registrada no `CLAUDE.md` e neste arquivo na hora.
+- 09/11 noite: **banco no ar** (Supabase `hub-saude`, LEPoli, São Paulo): 3 migrations + seed do Roberto (14 documentos, 188 exames, 17 doses). Consentimento "como no open finance": **o médico pede pelo telefone do paciente** e o paciente aprova no app (pode estreitar escopo); QR continua como alternativa; validade conta da aprovação; **revogar corta médico, MCP e API na hora** porque toda leitura externa passa por `acessar_historico(token)`, que grava log. Pedido para telefone desconhecido responde igual (não revela quem usa o app). Testado no banco real com a chave pública.
+- 09/11 noite: **RLS ligado sem políticas** (muda o "sem RLS" anterior): sem isso a chave pública, que vai para o navegador do médico, leria as tabelas direto e a revogação seria só visual. Não exige login nem regras por usuário; o servidor do app usa a service_role e não muda nada. **João: confirmar.**
 
 ## 8. Perguntas em aberto
-- Região do projeto Supabase (deve ser São Paulo).
+- (resolvido) Região do projeto Supabase: São Paulo (sa-east-1).
 - (resolvido 09/11) **Ninguém do time tem relógio** → relógio 100% sintético; recomendação a confirmar: simular a sincronização periódica pela mesma rota que um relógio real usaria.
 - Confirmar: app no Claude Code e Lovable só para landing?
 - Alguém tem relógio com histórico (Apple Saúde) para a importação opcional?
