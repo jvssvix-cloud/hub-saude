@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* Paleta: calma e clínica. Cor só onde informa (atenção / em dia / fora da faixa). */
+:root {
+  --fundo: #f6f6f3;
+  --cartao: #ffffff;
+  --tinta: #1b1e22;
+  --suave: #5c636b;
+  --linha: #e3e3de;
+  --marca: #0e6b63;
+  --marca-fundo: #e3f1ef;
+  --atencao: #a4480b;
+  --atencao-fundo: #fdf0e3;
+  --ok: #1d6b3a;
+  --ok-fundo: #e5f3ea;
+  --faixa: #d9efe9; /* faixa de referência no gráfico */
+  --fora: #c2410c; /* ponto fora da referência */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #121416;
+    --cartao: #1b1e21;
+    --tinta: #e9eaec;
+    --suave: #a1a7ae;
+    --linha: #2c3035;
+    --marca: #5cc4b8;
+    --marca-fundo: #183330;
+    --atencao: #f3a76a;
+    --atencao-fundo: #3a2615;
+    --ok: #7fd39b;
+    --ok-fundo: #18301f;
+    --faixa: #1f3a35;
+    --fora: #fb8c55;
+  }
+}
+
+@theme inline {
+  --color-fundo: var(--fundo);
+  --color-cartao: var(--cartao);
+  --color-tinta: var(--tinta);
+  --color-suave: var(--suave);
+  --color-linha: var(--linha);
+  --color-marca: var(--marca);
+  --color-marca-fundo: var(--marca-fundo);
+  --color-atencao: var(--atencao);
+  --color-atencao-fundo: var(--atencao-fundo);
+  --color-ok: var(--ok);
+  --color-ok-fundo: var(--ok-fundo);
+  --color-fora: var(--fora);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--fundo);
+  color: var(--tinta);
+}
+
+/* números alinhados em tabelas e cartões */
+.num {
+  font-variant-numeric: tabular-nums;
+}
