@@ -151,6 +151,8 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11 noite: **caminho real do relógio** (próximo passo): Apple Watch → iPhone (Saúde) → app no iPhone (Health Auto Export; depois app próprio) → rota `/api/relogio/sync` na Vercel (chave secreta) → Supabase → tela. O celular nunca fala direto com o banco. Sem relógio no time: dá para testar o caminho com os passos/sono reais do iPhone do João.
 - 09/11 noite: **repositório público** (Vercel Hobby não aceita colaboração em repositório privado). Histórico conferido: só dados fictícios; chaves nunca no Git.
 
+- 09/11 noite: **tela do Relógio no app** (`/relogio` + cartão na Início, lendo `relogio.json`). Estado e o que falta para fechar o esqueleto em `docs/estado-e-proximos.md`: 1) enviar exame pelo app, 2) site lendo do banco, 3) visão do médico, 4) tela de vacinação, 5) rota de sincronização do relógio. Sugestão: João 1 e 5, Felipe 2 e 3.
+
 ## 8. Perguntas em aberto
 - (resolvido) Região do projeto Supabase: São Paulo (sa-east-1).
 - (resolvido 09/11) **Ninguém do time tem relógio** → relógio 100% sintético + simulador de sincronização (feito).

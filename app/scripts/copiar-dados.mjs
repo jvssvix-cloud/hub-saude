@@ -1,5 +1,6 @@
 // Copia para dentro do app os dados que vêm das outras pastas do repositório:
 //   insights/saida/insights.json            -> src/dados/insights.json  (o que as telas desenham)
+//   wearable/saida/relogio.json             -> src/dados/relogio.json   (tela do relógio)
 //   tools/gerador-laudos/saida/laudos/*.pdf -> public/laudos/            (documento original de cada número)
 //   tools/gerador-laudos/saida/vacinas/*.pdf-> public/vacinas/
 // Roda sozinho antes de `npm run dev` e `npm run build` (predev/prebuild). As cópias não vão para o Git.
@@ -13,6 +14,7 @@ const RAIZ = path.resolve(APP, "..");
 
 const copias = [
   ["insights/saida/insights.json", "src/dados/insights.json"],
+  ["wearable/saida/relogio.json", "src/dados/relogio.json"],
   ["tools/gerador-laudos/saida/laudos", "public/laudos"],
   ["tools/gerador-laudos/saida/vacinas", "public/vacinas"],
 ];
@@ -26,4 +28,4 @@ for (const [de, para] of copias) {
   mkdirSync(path.dirname(path.join(APP, para)), { recursive: true });
   cpSync(origem, path.join(APP, para), { recursive: true });
 }
-console.log("[copiar-dados] insights.json e laudos copiados para o app");
+console.log("[copiar-dados] insights.json, relogio.json e laudos copiados para o app");

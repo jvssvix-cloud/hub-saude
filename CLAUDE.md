@@ -19,7 +19,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 
 ## Estrutura do repositório
 ```
-app/                  # Next.js: Início + Detalhe do exame (lê insights.json, abre o laudo original) [EM CONSTRUÇÃO, ver app/README.md]
+app/                  # Next.js: Início + Detalhe do exame + Relógio (lê insights.json e relogio.json, abre o laudo original) [EM CONSTRUÇÃO, ver app/README.md]
 extraction/           # documento -> dados: prompt (versionado), schema, normalização, testes de acurácia  [PRONTO]
 insights/             # dados -> informação: séries, áreas, tendência, repetição, vacinação, resumo do médico [PRONTO]
 wearable/             # relógio: dados sintéticos, 4 regras de alerta, cruzamento com exames, simulador de sincronização [PRONTO]
@@ -27,7 +27,7 @@ supabase/             # banco: migrations, seed do Roberto, README com o contrat
 lib/types.ts          # tipos das tabelas do banco (espelham as migrations)
 tools/gerador-laudos/ # laudos, carteiras de vacinação e casos sintéticos + gabaritos [PRONTO]
 dados-reais/          # NUNCA vai para o GitHub (.gitignore): laudos/carteiras reais do time + gabaritos manuais
-docs/                 # contexto, decisões, roteiro da demo, prompts usados
+docs/                 # contexto, decisões, estado-e-proximos.md (o que temos / o que falta), prompts usados
 ```
 Cada pasta pronta tem README com comandos. Resumo:
 - `cd extraction && npm run acuracia` (laudos sintéticos), `-- --conjunto=reais`, `npm run acuracia-vacinas`

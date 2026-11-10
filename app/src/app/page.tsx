@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CartaoRelogio } from "@/components/CartaoRelogio";
 import { AvisoNaoDiagnostico, SeloStatus, SetaTendencia } from "@/components/ui";
 import {
   areasOrdenadas, dataBr, idade, insights, linkLaudo, mesAno, numero, serie, seriesDaArea,
@@ -31,6 +32,8 @@ export default function Inicio() {
           </p>
         </section>
       )}
+
+      <CartaoRelogio />
 
       <section className="space-y-3">
         <h2 className="text-sm font-medium uppercase tracking-wide text-suave">Suas áreas</h2>
