@@ -1,6 +1,6 @@
 /**
  * Tipos compartilhados entre entrada (A · extraction/, insights/) e saídas (B · app/, MCP, API).
- * Espelham as tabelas de supabase/migrations/20261109000000_contrato.sql.
+ * Espelham as tabelas de supabase/migrations/20261109220119_contrato.sql.
  * Mudou um tipo aqui ou uma coluna lá? Mude os dois e avise o outro.
  */
 
