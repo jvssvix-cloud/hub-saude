@@ -1,6 +1,6 @@
 # CONTEXTO — Hackathon Gama House × Desafio Rivio
 > Arquivo vivo. Fica no Projeto "hackathon Rivio"; cole em novas conversas e mantenha em `docs/contexto.md` no repositório.
-> Última atualização: 09/11/2026 (seg, noite): extração + insights + vacinas prontos; relógio volta (sintético); os 2 constroem juntos; plano das 6h de hoje.
+> Última atualização: 09/11/2026 (seg, noite): extração + insights + vacinas + **relógio** prontos; Supabase no ar; app começou (Felipe); repositório público.
 
 ## 1. O básico
 - **Quem:** João Vitor (Eng. Civil POLI-USP), organizador (LEPoli × Mohashees) e também participante.
@@ -147,10 +147,15 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 
 - 09/11 noite: **troca na divisão:** João faz o relógio (`wearable/`, branch `a/relogio`); Felipe faz o app (`app/`, branch `b/app`: Next.js + Início + Detalhe do exame, depois Visão do médico).
 
+- 09/11 noite: **relógio pronto** (`wearable/`, TypeScript, custo de API zero). A fonte manda o **resumo diário** (FC de repouso calculada pela Apple, variabilidade SDNN, sono, passos) + **eventos** de ritmo irregular um a um; nada de batimento a batimento. 4 regras explicáveis (ritmo ≥ 3 avisos/14 dias; FC de repouso ≥ 5 bpm acima da linha de base de 90–180 dias atrás; sono < 6 h/14 dias; passos −25% em 30 dias), mínimo de 7 dias com dado, cruzamento com LDL/glicose/HbA1c dos insights. Simulador sincroniza 1 dia a cada X s: o alerta de ritmo irregular **nasce ao vivo** na demo (`--inicio=2026-10-25`). 10 testes.
+- 09/11 noite: **caminho real do relógio** (próximo passo): Apple Watch → iPhone (Saúde) → app no iPhone (Health Auto Export; depois app próprio) → rota `/api/relogio/sync` na Vercel (chave secreta) → Supabase → tela. O celular nunca fala direto com o banco. Sem relógio no time: dá para testar o caminho com os passos/sono reais do iPhone do João.
+- 09/11 noite: **repositório público** (Vercel Hobby não aceita colaboração em repositório privado). Histórico conferido: só dados fictícios; chaves nunca no Git.
+
 ## 8. Perguntas em aberto
 - (resolvido) Região do projeto Supabase: São Paulo (sa-east-1).
-- (resolvido 09/11) **Ninguém do time tem relógio** → relógio 100% sintético; recomendação a confirmar: simular a sincronização periódica pela mesma rota que um relógio real usaria.
+- (resolvido 09/11) **Ninguém do time tem relógio** → relógio 100% sintético + simulador de sincronização (feito).
 - Confirmar: app no Claude Code e Lovable só para landing?
-- Alguém tem relógio com histórico (Apple Saúde) para a importação opcional?
+- Exportação do Apple Saúde do iPhone do João (passos e sono reais, sem relógio): João vai procurar.
+- Health Auto Export (assinatura Premium) para o caminho real iPhone → rota → Supabase: vale assinar? Conferir preço e teste grátis.
 - Critérios de avaliação dos jurados?
 - (resolvido) Chave da API: criada; fica em `.env.local` e no painel da Vercel. Gasto até 09/11: ~US$ 1,75.

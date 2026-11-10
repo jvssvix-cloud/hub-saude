@@ -1,0 +1,16 @@
+{
+  "name": "hub-saude-wearable",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gerar": "tsx src/cli-gerar.ts",
+    "simular": "tsx src/simulador.ts",
+    "test": "tsx --test src/regras.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

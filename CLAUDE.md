@@ -22,7 +22,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 app/                  # Next.js: Início + Detalhe do exame (lê insights.json, abre o laudo original) [EM CONSTRUÇÃO, ver app/README.md]
 extraction/           # documento -> dados: prompt (versionado), schema, normalização, testes de acurácia  [PRONTO]
 insights/             # dados -> informação: séries, áreas, tendência, repetição, vacinação, resumo do médico [PRONTO]
-wearable/             # relógio: dados sintéticos + regras de alerta — em construção (prompt: docs/prompts/02-relogio.md)
+wearable/             # relógio: dados sintéticos, 4 regras de alerta, cruzamento com exames, simulador de sincronização [PRONTO]
 supabase/             # banco: migrations, seed do Roberto, README com o contrato [PRONTO, aplicado no Supabase]
 lib/types.ts          # tipos das tabelas do banco (espelham as migrations)
 tools/gerador-laudos/ # laudos, carteiras de vacinação e casos sintéticos + gabaritos [PRONTO]
@@ -34,11 +34,12 @@ Cada pasta pronta tem README com comandos. Resumo:
 - `cd extraction && npm run extrair -- arquivo.pdf --sexo=M --nascimento=AAAA-MM-DD`
 - `cd insights && npm run insights` (gera `insights/saida/insights.json`, que o app consome)
 - `cd tools/gerador-laudos && python gerar.py` (determinístico)
+- `cd wearable && npm run gerar` (gera `relogio.json`), `npm run simular -- --inicio=2026-10-25 --intervalo=5`, `npm test`
 
 ## Contrato entre as partes
 - Extração → app/banco: formato do gabarito (`tools/gerador-laudos/README.md`) + campos v5 (`qualificador`, `resultado_texto`, `data_coleta` por resultado) e `doses` de vacina.
 - Insights → app: `insights/saida/insights.json` (tipos em `insights/src/tipos.ts`).
-- Relógio → app: `wearable/saida/relogio.json` (formato em `docs/prompts/02-relogio.md`).
+- Relógio → app: `wearable/saida/relogio.json` (tipo `RelogioJson` em `wearable/src/tipos.ts`). Rota futura `/api/relogio/sync` recebe um `Lote` (`{dias, eventos}`) e usa `mesclar` + `montarRelogio`.
 - Banco: entrada grava `documento` + `observacao`; médico, MCP e API leem **só** por `acessar_historico(token)`, que confere o consentimento e grava o log. Tipos em `lib/types.ts`, contrato em `supabase/README.md`.
 
 ## Divisão atual (09/11 à noite)

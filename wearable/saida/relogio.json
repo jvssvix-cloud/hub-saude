@@ -1,0 +1,1411 @@
+{
+  "gerado_em": "2026-11-09",
+  "ultima_sincronizacao": "2026-11-09T07:00",
+  "fonte": "sintetico",
+  "paciente_id": "persona-roberto",
+  "periodo": {
+    "inicio": "2026-05-14",
+    "fim": "2026-11-09"
+  },
+  "dias": [
+    {
+      "data": "2026-05-14",
+      "fc_repouso": 61,
+      "vfc_ms": 43,
+      "sono_horas": 6.4,
+      "passos": 6800
+    },
+    {
+      "data": "2026-05-15",
+      "fc_repouso": 62,
+      "vfc_ms": 44,
+      "sono_horas": 7.2,
+      "passos": 7640
+    },
+    {
+      "data": "2026-05-16",
+      "fc_repouso": 58,
+      "vfc_ms": 46,
+      "sono_horas": 7.8,
+      "passos": 7350
+    },
+    {
+      "data": "2026-05-17",
+      "fc_repouso": 61,
+      "vfc_ms": 48,
+      "sono_horas": 7.2,
+      "passos": 5750
+    },
+    {
+      "data": "2026-05-18",
+      "fc_repouso": 65,
+      "vfc_ms": 41,
+      "sono_horas": 6.6,
+      "passos": 7480
+    },
+    {
+      "data": "2026-05-19",
+      "fc_repouso": 61,
+      "vfc_ms": 43,
+      "sono_horas": 7.5,
+      "passos": 7730
+    },
+    {
+      "data": "2026-05-20",
+      "fc_repouso": 62,
+      "vfc_ms": 43,
+      "sono_horas": 7.1,
+      "passos": 10770
+    },
+    {
+      "data": "2026-05-21",
+      "fc_repouso": 61,
+      "vfc_ms": 45,
+      "sono_horas": 7.3,
+      "passos": 7670
+    },
+    {
+      "data": "2026-05-22",
+      "fc_repouso": 63,
+      "vfc_ms": 50,
+      "sono_horas": 7.3,
+      "passos": 6800
+    },
+    {
+      "data": "2026-05-23",
+      "fc_repouso": 61,
+      "vfc_ms": 43,
+      "sono_horas": 7.6,
+      "passos": 6770
+    },
+    {
+      "data": "2026-05-24",
+      "fc_repouso": 61,
+      "vfc_ms": 48,
+      "sono_horas": 7.3,
+      "passos": 6520
+    },
+    {
+      "data": "2026-05-25",
+      "fc_repouso": 63,
+      "vfc_ms": 50,
+      "sono_horas": 6.8,
+      "passos": 8370
+    },
+    {
+      "data": "2026-05-26",
+      "fc_repouso": 61,
+      "vfc_ms": 45,
+      "sono_horas": 7.3,
+      "passos": 8680
+    },
+    {
+      "data": "2026-05-27",
+      "fc_repouso": 64,
+      "vfc_ms": 48,
+      "sono_horas": 6.8,
+      "passos": 8730
+    },
+    {
+      "data": "2026-05-28",
+      "fc_repouso": 61,
+      "vfc_ms": 49,
+      "sono_horas": 6.9,
+      "passos": 7890
+    },
+    {
+      "data": "2026-05-29",
+      "fc_repouso": 63,
+      "vfc_ms": 44,
+      "sono_horas": 7,
+      "passos": 6060
+    },
+    {
+      "data": "2026-05-30",
+      "fc_repouso": 61,
+      "vfc_ms": 42,
+      "sono_horas": 7.2,
+      "passos": 5800
+    },
+    {
+      "data": "2026-05-31",
+      "fc_repouso": 61,
+      "vfc_ms": 44,
+      "sono_horas": 7.2,
+      "passos": 5340
+    },
+    {
+      "data": "2026-06-01",
+      "fc_repouso": 61,
+      "vfc_ms": 47,
+      "sono_horas": 7.5,
+      "passos": 8540
+    },
+    {
+      "data": "2026-06-02",
+      "fc_repouso": 62,
+      "vfc_ms": 44,
+      "sono_horas": 7.3,
+      "passos": 7550
+    },
+    {
+      "data": "2026-06-03",
+      "fc_repouso": 61,
+      "vfc_ms": 40,
+      "sono_horas": 7.1,
+      "passos": 6580
+    },
+    {
+      "data": "2026-06-04",
+      "fc_repouso": 63,
+      "vfc_ms": 44,
+      "sono_horas": 7.8,
+      "passos": 5880
+    },
+    {
+      "data": "2026-06-05",
+      "fc_repouso": 63,
+      "vfc_ms": 43,
+      "sono_horas": 7.1,
+      "passos": 7460
+    },
+    {
+      "data": "2026-06-06",
+      "fc_repouso": 62,
+      "vfc_ms": 48,
+      "sono_horas": 7.2,
+      "passos": 6300
+    },
+    {
+      "data": "2026-06-07",
+      "fc_repouso": 65,
+      "vfc_ms": 44,
+      "sono_horas": 7.5,
+      "passos": 5710
+    },
+    {
+      "data": "2026-06-08",
+      "fc_repouso": 63,
+      "vfc_ms": 42,
+      "sono_horas": 6.6,
+      "passos": 8470
+    },
+    {
+      "data": "2026-06-09",
+      "fc_repouso": 61,
+      "vfc_ms": 41,
+      "sono_horas": 6.6,
+      "passos": 7410
+    },
+    {
+      "data": "2026-06-10",
+      "fc_repouso": null,
+      "vfc_ms": null,
+      "sono_horas": null,
+      "passos": null
+    },
+    {
+      "data": "2026-06-11",
+      "fc_repouso": 64,
+      "vfc_ms": 49,
+      "sono_horas": 6.5,
+      "passos": 9350
+    },
+    {
+      "data": "2026-06-12",
+      "fc_repouso": 62,
+      "vfc_ms": 42,
+      "sono_horas": 7.7,
+      "passos": 7710
+    },
+    {
+      "data": "2026-06-13",
+      "fc_repouso": 62,
+      "vfc_ms": 46,
+      "sono_horas": 8.1,
+      "passos": 5830
+    },
+    {
+      "data": "2026-06-14",
+      "fc_repouso": 61,
+      "vfc_ms": 45,
+      "sono_horas": 7.2,
+      "passos": 6710
+    },
+    {
+      "data": "2026-06-15",
+      "fc_repouso": 64,
+      "vfc_ms": 44,
+      "sono_horas": 7.3,
+      "passos": 8020
+    },
+    {
+      "data": "2026-06-16",
+      "fc_repouso": 62,
+      "vfc_ms": 44,
+      "sono_horas": 6.9,
+      "passos": 6920
+    },
+    {
+      "data": "2026-06-17",
+      "fc_repouso": 62,
+      "vfc_ms": 41,
+      "sono_horas": 7.2,
+      "passos": 9420
+    },
+    {
+      "data": "2026-06-18",
+      "fc_repouso": 61,
+      "vfc_ms": 40,
+      "sono_horas": 6.8,
+      "passos": 7960
+    },
+    {
+      "data": "2026-06-19",
+      "fc_repouso": 64,
+      "vfc_ms": 43,
+      "sono_horas": 7,
+      "passos": 7990
+    },
+    {
+      "data": "2026-06-20",
+      "fc_repouso": 63,
+      "vfc_ms": 41,
+      "sono_horas": 6.6,
+      "passos": 5810
+    },
+    {
+      "data": "2026-06-21",
+      "fc_repouso": 61,
+      "vfc_ms": 42,
+      "sono_horas": 7.8,
+      "passos": 7410
+    },
+    {
+      "data": "2026-06-22",
+      "fc_repouso": 62,
+      "vfc_ms": 46,
+      "sono_horas": 6.9,
+      "passos": 8070
+    },
+    {
+      "data": "2026-06-23",
+      "fc_repouso": 63,
+      "vfc_ms": 43,
+      "sono_horas": 6.5,
+      "passos": 6140
+    },
+    {
+      "data": "2026-06-24",
+      "fc_repouso": 62,
+      "vfc_ms": 41,
+      "sono_horas": 7.3,
+      "passos": 7880
+    },
+    {
+      "data": "2026-06-25",
+      "fc_repouso": 64,
+      "vfc_ms": 40,
+      "sono_horas": 7.1,
+      "passos": 8050
+    },
+    {
+      "data": "2026-06-26",
+      "fc_repouso": 61,
+      "vfc_ms": 43,
+      "sono_horas": 6.8,
+      "passos": 8680
+    },
+    {
+      "data": "2026-06-27",
+      "fc_repouso": 64,
+      "vfc_ms": 42,
+      "sono_horas": 7.4,
+      "passos": 7020
+    },
+    {
+      "data": "2026-06-28",
+      "fc_repouso": 60,
+      "vfc_ms": 45,
+      "sono_horas": 7.4,
+      "passos": 5030
+    },
+    {
+      "data": "2026-06-29",
+      "fc_repouso": 62,
+      "vfc_ms": 43,
+      "sono_horas": 7.3,
+      "passos": 7880
+    },
+    {
+      "data": "2026-06-30",
+      "fc_repouso": 61,
+      "vfc_ms": 44,
+      "sono_horas": 7.4,
+      "passos": 8830
+    },
+    {
+      "data": "2026-07-01",
+      "fc_repouso": 63,
+      "vfc_ms": 45,
+      "sono_horas": 7.7,
+      "passos": 6070
+    },
+    {
+      "data": "2026-07-02",
+      "fc_repouso": 61,
+      "vfc_ms": 45,
+      "sono_horas": 7,
+      "passos": 8700
+    },
+    {
+      "data": "2026-07-03",
+      "fc_repouso": 61,
+      "vfc_ms": 44,
+      "sono_horas": 7.4,
+      "passos": 7760
+    },
+    {
+      "data": "2026-07-04",
+      "fc_repouso": 60,
+      "vfc_ms": 40,
+      "sono_horas": 8.1,
+      "passos": 5640
+    },
+    {
+      "data": "2026-07-05",
+      "fc_repouso": null,
+      "vfc_ms": null,
+      "sono_horas": null,
+      "passos": null
+    },
+    {
+      "data": "2026-07-06",
+      "fc_repouso": 63,
+      "vfc_ms": 45,
+      "sono_horas": 6.9,
+      "passos": 8120
+    },
+    {
+      "data": "2026-07-07",
+      "fc_repouso": 61,
+      "vfc_ms": 37,
+      "sono_horas": 6.6,
+      "passos": 8240
+    },
+    {
+      "data": "2026-07-08",
+      "fc_repouso": 61,
+      "vfc_ms": 45,
+      "sono_horas": 7.4,
+      "passos": 8690
+    },
+    {
+      "data": "2026-07-09",
+      "fc_repouso": 61,
+      "vfc_ms": 41,
+      "sono_horas": 6.9,
+      "passos": 8420
+    },
+    {
+      "data": "2026-07-10",
+      "fc_repouso": 63,
+      "vfc_ms": 45,
+      "sono_horas": 7.8,
+      "passos": 5020
+    },
+    {
+      "data": "2026-07-11",
+      "fc_repouso": 62,
+      "vfc_ms": 46,
+      "sono_horas": 7.8,
+      "passos": 6000
+    },
+    {
+      "data": "2026-07-12",
+      "fc_repouso": 62,
+      "vfc_ms": 49,
+      "sono_horas": 7,
+      "passos": 5170
+    },
+    {
+      "data": "2026-07-13",
+      "fc_repouso": 62,
+      "vfc_ms": 46,
+      "sono_horas": 7.2,
+      "passos": 6500
+    },
+    {
+      "data": "2026-07-14",
+      "fc_repouso": 61,
+      "vfc_ms": 43,
+      "sono_horas": 6.5,
+      "passos": 9590
+    },
+    {
+      "data": "2026-07-15",
+      "fc_repouso": 63,
+      "vfc_ms": 45,
+      "sono_horas": 6.6,
+      "passos": 7620
+    },
+    {
+      "data": "2026-07-16",
+      "fc_repouso": 64,
+      "vfc_ms": 42,
+      "sono_horas": 6.7,
+      "passos": 7280
+    },
+    {
+      "data": "2026-07-17",
+      "fc_repouso": 63,
+      "vfc_ms": 50,
+      "sono_horas": 7.2,
+      "passos": 5050
+    },
+    {
+      "data": "2026-07-18",
+      "fc_repouso": 61,
+      "vfc_ms": 35,
+      "sono_horas": 7.3,
+      "passos": 5920
+    },
+    {
+      "data": "2026-07-19",
+      "fc_repouso": 60,
+      "vfc_ms": 46,
+      "sono_horas": 7.1,
+      "passos": 5210
+    },
+    {
+      "data": "2026-07-20",
+      "fc_repouso": 63,
+      "vfc_ms": 44,
+      "sono_horas": 7.5,
+      "passos": 7820
+    },
+    {
+      "data": "2026-07-21",
+      "fc_repouso": 61,
+      "vfc_ms": 44,
+      "sono_horas": 6.8,
+      "passos": 7660
+    },
+    {
+      "data": "2026-07-22",
+      "fc_repouso": 63,
+      "vfc_ms": 49,
+      "sono_horas": 7.4,
+      "passos": 6220
+    },
+    {
+      "data": "2026-07-23",
+      "fc_repouso": 62,
+      "vfc_ms": 44,
+      "sono_horas": 7,
+      "passos": 7110
+    },
+    {
+      "data": "2026-07-24",
+      "fc_repouso": 64,
+      "vfc_ms": 43,
+      "sono_horas": 6.7,
+      "passos": 8900
+    },
+    {
+      "data": "2026-07-25",
+      "fc_repouso": 62,
+      "vfc_ms": 47,
+      "sono_horas": 7.6,
+      "passos": 5220
+    },
+    {
+      "data": "2026-07-26",
+      "fc_repouso": 61,
+      "vfc_ms": 42,
+      "sono_horas": 8.1,
+      "passos": 5450
+    },
+    {
+      "data": "2026-07-27",
+      "fc_repouso": 64,
+      "vfc_ms": 43,
+      "sono_horas": 6.2,
+      "passos": 8880
+    },
+    {
+      "data": "2026-07-28",
+      "fc_repouso": 62,
+      "vfc_ms": 42,
+      "sono_horas": 6.6,
+      "passos": 8810
+    },
+    {
+      "data": "2026-07-29",
+      "fc_repouso": 61,
+      "vfc_ms": 45,
+      "sono_horas": 6.9,
+      "passos": 6980
+    },
+    {
+      "data": "2026-07-30",
+      "fc_repouso": null,
+      "vfc_ms": null,
+      "sono_horas": null,
+      "passos": null
+    },
+    {
+      "data": "2026-07-31",
+      "fc_repouso": 63,
+      "vfc_ms": 41,
+      "sono_horas": 7.4,
+      "passos": 7570
+    },
+    {
+      "data": "2026-08-01",
+      "fc_repouso": 62,
+      "vfc_ms": 45,
+      "sono_horas": 7.3,
+      "passos": 5260
+    },
+    {
+      "data": "2026-08-02",
+      "fc_repouso": 61,
+      "vfc_ms": 41,
+      "sono_horas": 7.5,
+      "passos": 4710
+    },
+    {
+      "data": "2026-08-03",
+      "fc_repouso": 62,
+      "vfc_ms": 41,
+      "sono_horas": 7,
+      "passos": 9740
+    },
+    {
+      "data": "2026-08-04",
+      "fc_repouso": 64,
+      "vfc_ms": 44,
+      "sono_horas": 6.6,
+      "passos": 9910
+    },
+    {
+      "data": "2026-08-05",
+      "fc_repouso": 61,
+      "vfc_ms": 43,
+      "sono_horas": 7,
+      "passos": 9640
+    },
+    {
+      "data": "2026-08-06",
+      "fc_repouso": 64,
+      "vfc_ms": 44,
+      "sono_horas": 7.3,
+      "passos": 9060
+    },
+    {
+      "data": "2026-08-07",
+      "fc_repouso": 62,
+      "vfc_ms": 43,
+      "sono_horas": 7.5,
+      "passos": 9790
+    },
+    {
+      "data": "2026-08-08",
+      "fc_repouso": 61,
+      "vfc_ms": 52,
+      "sono_horas": 7.4,
+      "passos": 6680
+    },
+    {
+      "data": "2026-08-09",
+      "fc_repouso": 63,
+      "vfc_ms": 45,
+      "sono_horas": 7.2,
+      "passos": 6460
+    },
+    {
+      "data": "2026-08-10",
+      "fc_repouso": 64,
+      "vfc_ms": 45,
+      "sono_horas": 7.4,
+      "passos": 11750
+    },
+    {
+      "data": "2026-08-11",
+      "fc_repouso": 63,
+      "vfc_ms": 43,
+      "sono_horas": 7.2,
+      "passos": 8300
+    },
+    {
+      "data": "2026-08-12",
+      "fc_repouso": 63,
+      "vfc_ms": 48,
+      "sono_horas": 7,
+      "passos": 10340
+    },
+    {
+      "data": "2026-08-13",
+      "fc_repouso": 65,
+      "vfc_ms": 48,
+      "sono_horas": 7,
+      "passos": 6660
+    },
+    {
+      "data": "2026-08-14",
+      "fc_repouso": 60,
+      "vfc_ms": 41,
+      "sono_horas": 6.7,
+      "passos": 10330
+    },
+    {
+      "data": "2026-08-15",
+      "fc_repouso": 61,
+      "vfc_ms": 44,
+      "sono_horas": 7.8,
+      "passos": 6100
+    },
+    {
+      "data": "2026-08-16",
+      "fc_repouso": 61,
+      "vfc_ms": 41,
+      "sono_horas": 7.1,
+      "passos": 5810
+    },
+    {
+      "data": "2026-08-17",
+      "fc_repouso": 62,
+      "vfc_ms": 46,
+      "sono_horas": 6.8,
+      "passos": 8730
+    },
+    {
+      "data": "2026-08-18",
+      "fc_repouso": 61,
+      "vfc_ms": 49,
+      "sono_horas": 6.9,
+      "passos": 8610
+    },
+    {
+      "data": "2026-08-19",
+      "fc_repouso": 63,
+      "vfc_ms": 39,
+      "sono_horas": 6.9,
+      "passos": 7590
+    },
+    {
+      "data": "2026-08-20",
+      "fc_repouso": 65,
+      "vfc_ms": 41,
+      "sono_horas": 6.9,
+      "passos": 7980
+    },
+    {
+      "data": "2026-08-21",
+      "fc_repouso": 62,
+      "vfc_ms": 43,
+      "sono_horas": 7.3,
+      "passos": 7920
+    },
+    {
+      "data": "2026-08-22",
+      "fc_repouso": 62,
+      "vfc_ms": 41,
+      "sono_horas": 7.5,
+      "passos": 5970
+    },
+    {
+      "data": "2026-08-23",
+      "fc_repouso": 62,
+      "vfc_ms": 46,
+      "sono_horas": 6.9,
+      "passos": 5690
+    },
+    {
+      "data": "2026-08-24",
+      "fc_repouso": 64,
+      "vfc_ms": 43,
+      "sono_horas": 7.4,
+      "passos": 8740
+    },
+    {
+      "data": "2026-08-25",
+      "fc_repouso": 62,
+      "vfc_ms": 42,
+      "sono_horas": 6.3,
+      "passos": 10580
+    },
+    {
+      "data": "2026-08-26",
+      "fc_repouso": 63,
+      "vfc_ms": 38,
+      "sono_horas": 6.9,
+      "passos": 8830
+    },
+    {
+      "data": "2026-08-27",
+      "fc_repouso": 64,
+      "vfc_ms": 42,
+      "sono_horas": 6.9,
+      "passos": 8920
+    },
+    {
+      "data": "2026-08-28",
+      "fc_repouso": 62,
+      "vfc_ms": 42,
+      "sono_horas": 7,
+      "passos": 7370
+    },
+    {
+      "data": "2026-08-29",
+      "fc_repouso": 63,
+      "vfc_ms": 42,
+      "sono_horas": 8,
+      "passos": 6370
+    },
+    {
+      "data": "2026-08-30",
+      "fc_repouso": 65,
+      "vfc_ms": 38,
+      "sono_horas": 7.2,
+      "passos": 4760
+    },
+    {
+      "data": "2026-08-31",
+      "fc_repouso": 66,
+      "vfc_ms": 41,
+      "sono_horas": 7.1,
+      "passos": 10160
+    },
+    {
+      "data": "2026-09-01",
+      "fc_repouso": 66,
+      "vfc_ms": 41,
+      "sono_horas": 7.1,
+      "passos": 9880
+    },
+    {
+      "data": "2026-09-02",
+      "fc_repouso": 63,
+      "vfc_ms": 42,
+      "sono_horas": 6.6,
+      "passos": 7440
+    },
+    {
+      "data": "2026-09-03",
+      "fc_repouso": 63,
+      "vfc_ms": 42,
+      "sono_horas": 7.1,
+      "passos": 8990
+    },
+    {
+      "data": "2026-09-04",
+      "fc_repouso": 66,
+      "vfc_ms": 35,
+      "sono_horas": 7,
+      "passos": 4930
+    },
+    {
+      "data": "2026-09-05",
+      "fc_repouso": 63,
+      "vfc_ms": 37,
+      "sono_horas": 7,
+      "passos": 6530
+    },
+    {
+      "data": "2026-09-06",
+      "fc_repouso": 66,
+      "vfc_ms": 39,
+      "sono_horas": 7.3,
+      "passos": 6530
+    },
+    {
+      "data": "2026-09-07",
+      "fc_repouso": 64,
+      "vfc_ms": 40,
+      "sono_horas": 7.3,
+      "passos": 9120
+    },
+    {
+      "data": "2026-09-08",
+      "fc_repouso": 65,
+      "vfc_ms": 42,
+      "sono_horas": 6.2,
+      "passos": 7990
+    },
+    {
+      "data": "2026-09-09",
+      "fc_repouso": 65,
+      "vfc_ms": 40,
+      "sono_horas": 7.2,
+      "passos": 6300
+    },
+    {
+      "data": "2026-09-10",
+      "fc_repouso": 65,
+      "vfc_ms": 41,
+      "sono_horas": 7,
+      "passos": 7650
+    },
+    {
+      "data": "2026-09-11",
+      "fc_repouso": 63,
+      "vfc_ms": 35,
+      "sono_horas": 7,
+      "passos": 7230
+    },
+    {
+      "data": "2026-09-12",
+      "fc_repouso": 65,
+      "vfc_ms": 45,
+      "sono_horas": 8,
+      "passos": 5880
+    },
+    {
+      "data": "2026-09-13",
+      "fc_repouso": 65,
+      "vfc_ms": 37,
+      "sono_horas": 6.8,
+      "passos": 5880
+    },
+    {
+      "data": "2026-09-14",
+      "fc_repouso": 65,
+      "vfc_ms": 40,
+      "sono_horas": 6.5,
+      "passos": 10250
+    },
+    {
+      "data": "2026-09-15",
+      "fc_repouso": 66,
+      "vfc_ms": 43,
+      "sono_horas": 7,
+      "passos": 8920
+    },
+    {
+      "data": "2026-09-16",
+      "fc_repouso": 65,
+      "vfc_ms": 41,
+      "sono_horas": 6.3,
+      "passos": 9360
+    },
+    {
+      "data": "2026-09-17",
+      "fc_repouso": 66,
+      "vfc_ms": 46,
+      "sono_horas": 7,
+      "passos": 8550
+    },
+    {
+      "data": "2026-09-18",
+      "fc_repouso": 65,
+      "vfc_ms": 39,
+      "sono_horas": 6.8,
+      "passos": 6710
+    },
+    {
+      "data": "2026-09-19",
+      "fc_repouso": 67,
+      "vfc_ms": 37,
+      "sono_horas": 7.6,
+      "passos": 4320
+    },
+    {
+      "data": "2026-09-20",
+      "fc_repouso": 66,
+      "vfc_ms": 33,
+      "sono_horas": 7.1,
+      "passos": 5030
+    },
+    {
+      "data": "2026-09-21",
+      "fc_repouso": 66,
+      "vfc_ms": 44,
+      "sono_horas": 7.1,
+      "passos": 9600
+    },
+    {
+      "data": "2026-09-22",
+      "fc_repouso": 65,
+      "vfc_ms": 39,
+      "sono_horas": 7,
+      "passos": 8670
+    },
+    {
+      "data": "2026-09-23",
+      "fc_repouso": 65,
+      "vfc_ms": 36,
+      "sono_horas": 6.4,
+      "passos": 6740
+    },
+    {
+      "data": "2026-09-24",
+      "fc_repouso": 64,
+      "vfc_ms": 38,
+      "sono_horas": 6.8,
+      "passos": 8600
+    },
+    {
+      "data": "2026-09-25",
+      "fc_repouso": 67,
+      "vfc_ms": 35,
+      "sono_horas": 6.3,
+      "passos": 9180
+    },
+    {
+      "data": "2026-09-26",
+      "fc_repouso": 64,
+      "vfc_ms": 38,
+      "sono_horas": 7,
+      "passos": 5600
+    },
+    {
+      "data": "2026-09-27",
+      "fc_repouso": 66,
+      "vfc_ms": 39,
+      "sono_horas": 7.5,
+      "passos": 6330
+    },
+    {
+      "data": "2026-09-28",
+      "fc_repouso": 69,
+      "vfc_ms": 35,
+      "sono_horas": 6.9,
+      "passos": 9060
+    },
+    {
+      "data": "2026-09-29",
+      "fc_repouso": 68,
+      "vfc_ms": 37,
+      "sono_horas": 5.9,
+      "passos": 8250
+    },
+    {
+      "data": "2026-09-30",
+      "fc_repouso": 64,
+      "vfc_ms": 39,
+      "sono_horas": 6.8,
+      "passos": 10900
+    },
+    {
+      "data": "2026-10-01",
+      "fc_repouso": 66,
+      "vfc_ms": 38,
+      "sono_horas": 7,
+      "passos": 8990
+    },
+    {
+      "data": "2026-10-02",
+      "fc_repouso": 67,
+      "vfc_ms": 35,
+      "sono_horas": 7.1,
+      "passos": 8030
+    },
+    {
+      "data": "2026-10-03",
+      "fc_repouso": 69,
+      "vfc_ms": 38,
+      "sono_horas": 8,
+      "passos": 5360
+    },
+    {
+      "data": "2026-10-04",
+      "fc_repouso": 68,
+      "vfc_ms": 39,
+      "sono_horas": 6.7,
+      "passos": 6760
+    },
+    {
+      "data": "2026-10-05",
+      "fc_repouso": 68,
+      "vfc_ms": 41,
+      "sono_horas": 7,
+      "passos": 7650
+    },
+    {
+      "data": "2026-10-06",
+      "fc_repouso": 66,
+      "vfc_ms": 38,
+      "sono_horas": 6,
+      "passos": 7430
+    },
+    {
+      "data": "2026-10-07",
+      "fc_repouso": 70,
+      "vfc_ms": 39,
+      "sono_horas": 6.2,
+      "passos": 8880
+    },
+    {
+      "data": "2026-10-08",
+      "fc_repouso": 68,
+      "vfc_ms": 37,
+      "sono_horas": 6.2,
+      "passos": 7000
+    },
+    {
+      "data": "2026-10-09",
+      "fc_repouso": 67,
+      "vfc_ms": 35,
+      "sono_horas": 6.6,
+      "passos": 7160
+    },
+    {
+      "data": "2026-10-10",
+      "fc_repouso": 67,
+      "vfc_ms": 39,
+      "sono_horas": 6.6,
+      "passos": 6330
+    },
+    {
+      "data": "2026-10-11",
+      "fc_repouso": 67,
+      "vfc_ms": 36,
+      "sono_horas": 6.8,
+      "passos": 4560
+    },
+    {
+      "data": "2026-10-12",
+      "fc_repouso": 68,
+      "vfc_ms": 33,
+      "sono_horas": 6.8,
+      "passos": 6520
+    },
+    {
+      "data": "2026-10-13",
+      "fc_repouso": 69,
+      "vfc_ms": 37,
+      "sono_horas": 6.7,
+      "passos": 7920
+    },
+    {
+      "data": "2026-10-14",
+      "fc_repouso": 69,
+      "vfc_ms": 29,
+      "sono_horas": 7,
+      "passos": 6750
+    },
+    {
+      "data": "2026-10-15",
+      "fc_repouso": 67,
+      "vfc_ms": 34,
+      "sono_horas": 6.7,
+      "passos": 7050
+    },
+    {
+      "data": "2026-10-16",
+      "fc_repouso": 70,
+      "vfc_ms": 34,
+      "sono_horas": 6,
+      "passos": 6550
+    },
+    {
+      "data": "2026-10-17",
+      "fc_repouso": 67,
+      "vfc_ms": 32,
+      "sono_horas": 7.2,
+      "passos": 4600
+    },
+    {
+      "data": "2026-10-18",
+      "fc_repouso": 68,
+      "vfc_ms": 34,
+      "sono_horas": 7.1,
+      "passos": 4710
+    },
+    {
+      "data": "2026-10-19",
+      "fc_repouso": 68,
+      "vfc_ms": 39,
+      "sono_horas": 6.3,
+      "passos": 6870
+    },
+    {
+      "data": "2026-10-20",
+      "fc_repouso": 69,
+      "vfc_ms": 39,
+      "sono_horas": 5.5,
+      "passos": 7250
+    },
+    {
+      "data": "2026-10-21",
+      "fc_repouso": 71,
+      "vfc_ms": 32,
+      "sono_horas": 6,
+      "passos": 5950
+    },
+    {
+      "data": "2026-10-22",
+      "fc_repouso": 71,
+      "vfc_ms": 36,
+      "sono_horas": 5.8,
+      "passos": 8170
+    },
+    {
+      "data": "2026-10-23",
+      "fc_repouso": 69,
+      "vfc_ms": 34,
+      "sono_horas": 5.6,
+      "passos": 7200
+    },
+    {
+      "data": "2026-10-24",
+      "fc_repouso": 69,
+      "vfc_ms": 31,
+      "sono_horas": 5.7,
+      "passos": 3790
+    },
+    {
+      "data": "2026-10-25",
+      "fc_repouso": 68,
+      "vfc_ms": 32,
+      "sono_horas": 6.7,
+      "passos": 3930
+    },
+    {
+      "data": "2026-10-26",
+      "fc_repouso": 71,
+      "vfc_ms": 39,
+      "sono_horas": 5.9,
+      "passos": 6050
+    },
+    {
+      "data": "2026-10-27",
+      "fc_repouso": 73,
+      "vfc_ms": 33,
+      "sono_horas": 6.4,
+      "passos": 6530
+    },
+    {
+      "data": "2026-10-28",
+      "fc_repouso": 69,
+      "vfc_ms": 38,
+      "sono_horas": 5.8,
+      "passos": 5520
+    },
+    {
+      "data": "2026-10-29",
+      "fc_repouso": 71,
+      "vfc_ms": 36,
+      "sono_horas": 5.9,
+      "passos": 5660
+    },
+    {
+      "data": "2026-10-30",
+      "fc_repouso": null,
+      "vfc_ms": null,
+      "sono_horas": null,
+      "passos": null
+    },
+    {
+      "data": "2026-10-31",
+      "fc_repouso": 69,
+      "vfc_ms": 31,
+      "sono_horas": 5.5,
+      "passos": 2850
+    },
+    {
+      "data": "2026-11-01",
+      "fc_repouso": null,
+      "vfc_ms": null,
+      "sono_horas": null,
+      "passos": null
+    },
+    {
+      "data": "2026-11-02",
+      "fc_repouso": 73,
+      "vfc_ms": 34,
+      "sono_horas": 5.4,
+      "passos": 4080
+    },
+    {
+      "data": "2026-11-03",
+      "fc_repouso": 70,
+      "vfc_ms": 30,
+      "sono_horas": 5,
+      "passos": 4020
+    },
+    {
+      "data": "2026-11-04",
+      "fc_repouso": 73,
+      "vfc_ms": 32,
+      "sono_horas": 5.9,
+      "passos": 4740
+    },
+    {
+      "data": "2026-11-05",
+      "fc_repouso": 71,
+      "vfc_ms": 30,
+      "sono_horas": 5.9,
+      "passos": 5020
+    },
+    {
+      "data": "2026-11-06",
+      "fc_repouso": 70,
+      "vfc_ms": 30,
+      "sono_horas": 5.2,
+      "passos": 4870
+    },
+    {
+      "data": "2026-11-07",
+      "fc_repouso": 73,
+      "vfc_ms": 33,
+      "sono_horas": 5.6,
+      "passos": 2490
+    },
+    {
+      "data": "2026-11-08",
+      "fc_repouso": 72,
+      "vfc_ms": 33,
+      "sono_horas": 5,
+      "passos": 2180
+    },
+    {
+      "data": "2026-11-09",
+      "fc_repouso": 71,
+      "vfc_ms": 34,
+      "sono_horas": 5.4,
+      "passos": 4930
+    }
+  ],
+  "eventos": [
+    {
+      "data_hora": "2026-10-21T03:12",
+      "tipo": "ritmo_irregular",
+      "detalhe": "Notificação de ritmo irregular do relógio (sinais compatíveis com fibrilação atrial, segundo o relógio)"
+    },
+    {
+      "data_hora": "2026-10-26T02:47",
+      "tipo": "ritmo_irregular",
+      "detalhe": "Notificação de ritmo irregular do relógio (sinais compatíveis com fibrilação atrial, segundo o relógio)"
+    },
+    {
+      "data_hora": "2026-10-31T04:05",
+      "tipo": "ritmo_irregular",
+      "detalhe": "Notificação de ritmo irregular do relógio (sinais compatíveis com fibrilação atrial, segundo o relógio)"
+    },
+    {
+      "data_hora": "2026-11-04T01:38",
+      "tipo": "ritmo_irregular",
+      "detalhe": "Notificação de ritmo irregular do relógio (sinais compatíveis com fibrilação atrial, segundo o relógio)"
+    },
+    {
+      "data_hora": "2026-11-08T03:55",
+      "tipo": "ritmo_irregular",
+      "detalhe": "Notificação de ritmo irregular do relógio (sinais compatíveis com fibrilação atrial, segundo o relógio)"
+    }
+  ],
+  "resumo": {
+    "fc_repouso": {
+      "atual_14d": 71,
+      "linha_base": 62,
+      "linha_base_periodo": "mai/2026 a ago/2026"
+    },
+    "vfc_ms": {
+      "atual_14d": 33,
+      "linha_base": 44
+    },
+    "sono_horas": {
+      "atual_14d": 5.6
+    },
+    "passos": {
+      "atual_30d": 5384,
+      "anterior_90d": 7647
+    },
+    "eventos_ritmo_14d": 3,
+    "dias_sem_dado_30d": 2
+  },
+  "alertas": [
+    {
+      "id": "ritmo_irregular",
+      "titulo": "Avisos de ritmo irregular",
+      "nivel": "atencao",
+      "motivo": "O relógio deu 3 avisos de ritmo irregular nos últimos 14 dias; 5 desde 21/10. A regra é: 3 ou mais em 14 dias.",
+      "evidencias": [
+        {
+          "data": "2026-10-21T03:12",
+          "valor": "aviso às 03:12"
+        },
+        {
+          "data": "2026-10-26T02:47",
+          "valor": "aviso às 02:47"
+        },
+        {
+          "data": "2026-10-31T04:05",
+          "valor": "aviso às 04:05"
+        },
+        {
+          "data": "2026-11-04T01:38",
+          "valor": "aviso às 01:38"
+        },
+        {
+          "data": "2026-11-08T03:55",
+          "valor": "aviso às 03:55"
+        }
+      ],
+      "recomendacao": "Procure um cardiologista e leve este resumo. Se sentir palpitação com falta de ar, dor no peito ou desmaio, procure um pronto-socorro. Seus exames também mostram fatores de risco para o coração: leve os dois ao médico.",
+      "aviso": "Isto não é diagnóstico.",
+      "contexto_exames": [
+        "Glicose em jejum 112 mg/dL em mar/2026, acima da referência (70 a 99 mg/dL)",
+        "Hemoglobina glicada (HbA1c) 6,2 % em mar/2026, acima da referência (até 5,7 %)",
+        "LDL 164 mg/dL em mar/2026, acima da referência (até 130 mg/dL)"
+      ]
+    },
+    {
+      "id": "fc_repouso_subindo",
+      "titulo": "Frequência cardíaca de repouso subindo",
+      "nivel": "atencao",
+      "motivo": "Sua frequência de repouso nas últimas 2 semanas foi 71 bpm em média, 9 acima da sua média de mai/2026 a ago/2026 (62 bpm). A regra é: 5 bpm ou mais acima da sua linha de base.",
+      "evidencias": [
+        {
+          "data": "2026-05-14 a 2026-08-11",
+          "valor": "62 bpm (média, 87 dias)"
+        },
+        {
+          "data": "2026-10-27 a 2026-11-09",
+          "valor": "71 bpm (média, 12 dias)"
+        }
+      ],
+      "recomendacao": "Vale comentar com seu médico, junto com os outros sinais. Pode ter causas simples (estresse, sono, infecção, falta de exercício). Seus exames também mostram fatores de risco para o coração: leve os dois ao médico.",
+      "aviso": "Isto não é diagnóstico.",
+      "contexto_exames": [
+        "Glicose em jejum 112 mg/dL em mar/2026, acima da referência (70 a 99 mg/dL)",
+        "Hemoglobina glicada (HbA1c) 6,2 % em mar/2026, acima da referência (até 5,7 %)",
+        "LDL 164 mg/dL em mar/2026, acima da referência (até 130 mg/dL)"
+      ]
+    },
+    {
+      "id": "sono_curto",
+      "titulo": "Sono curto nas últimas semanas",
+      "nivel": "info",
+      "motivo": "Você dormiu 5,6 h por noite em média nos últimos 14 dias (11 de 12 noites abaixo de 6 h). A regra é: média abaixo de 6 h.",
+      "evidencias": [
+        {
+          "data": "2026-10-27 a 2026-11-09",
+          "valor": "5,6 h (média, 12 noites)"
+        }
+      ],
+      "recomendacao": "Sono curto por semanas afeta pressão, glicose e coração. Se continuar, converse com seu médico.",
+      "aviso": "Isto não é diagnóstico."
+    },
+    {
+      "id": "atividade_caindo",
+      "titulo": "Atividade física caindo",
+      "nivel": "info",
+      "motivo": "Você deu 5.380 passos por dia em média no último mês, 30% a menos que nos 3 meses anteriores (7.650). A regra é: queda de 25% ou mais.",
+      "evidencias": [
+        {
+          "data": "2026-07-13 a 2026-10-10",
+          "valor": "7.647 passos/dia"
+        },
+        {
+          "data": "2026-10-11 a 2026-11-09",
+          "valor": "5.384 passos/dia"
+        }
+      ],
+      "recomendacao": "Tente voltar ao seu ritmo de caminhada. Se a queda veio com cansaço ou falta de ar, comente com seu médico.",
+      "aviso": "Isto não é diagnóstico."
+    }
+  ]
+}

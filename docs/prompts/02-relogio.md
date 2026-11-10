@@ -1,5 +1,7 @@
 # Prompt 02 — Relógio (wearable sintético + regras de alerta)
 
+> **Status (09/11 noite): construído pelo João em `wearable/`.** O formato final está em `wearable/src/tipos.ts` (o `resumo` mudou: linha de base da FC = média de 90 a 180 dias atrás). Este arquivo fica como registro do prompt.
+
 > Para quem vai construir: abra o Claude Code na pasta do repositório, crie a branch (`git checkout -b b/relogio`) e cole o texto abaixo.
 > Não precisa de chave da API: tudo aqui é código e dados sintéticos, **custo zero**.
 
