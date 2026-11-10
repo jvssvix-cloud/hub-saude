@@ -145,6 +145,8 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11 noite: **banco no ar** (Supabase `hub-saude`, LEPoli, São Paulo): 3 migrations + seed do Roberto (14 documentos, 188 exames, 17 doses). Consentimento "como no open finance": **o médico pede pelo telefone do paciente** e o paciente aprova no app (pode estreitar escopo); QR continua como alternativa; validade conta da aprovação; **revogar corta médico, MCP e API na hora** porque toda leitura externa passa por `acessar_historico(token)`, que grava log. Pedido para telefone desconhecido responde igual (não revela quem usa o app). Testado no banco real com a chave pública.
 - 09/11 noite: **RLS ligado sem políticas** (muda o "sem RLS" anterior): sem isso a chave pública, que vai para o navegador do médico, leria as tabelas direto e a revogação seria só visual. Não exige login nem regras por usuário; o servidor do app usa a service_role e não muda nada. **João: confirmar.**
 
+- 09/11 noite: **troca na divisão:** João faz o relógio (`wearable/`, branch `a/relogio`); Felipe faz o app (`app/`, branch `b/app`: Next.js + Início + Detalhe do exame, depois Visão do médico).
+
 ## 8. Perguntas em aberto
 - (resolvido) Região do projeto Supabase: São Paulo (sa-east-1).
 - (resolvido 09/11) **Ninguém do time tem relógio** → relógio 100% sintético; recomendação a confirmar: simular a sincronização periódica pela mesma rota que um relógio real usaria.

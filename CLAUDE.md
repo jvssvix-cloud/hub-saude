@@ -42,7 +42,7 @@ Cada pasta pronta tem README com comandos. Resumo:
 - Banco: entrada grava `documento` + `observacao`; médico, MCP e API leem **só** por `acessar_historico(token)`, que confere o consentimento e grava o log. Tipos em `lib/types.ts`, contrato em `supabase/README.md`.
 
 ## Divisão atual (09/11 à noite)
-- João: `app/` (branch `a/app`). Felipe: `wearable/` (branch `b/relogio`).
+- **Felipe: `app/` (branch `b/app`). João: `wearable/` (branch `a/relogio`).** (trocado em 09/11 à noite; antes era o inverso)
 - **Acesso total para os dois** (GitHub e Supabase): qualquer um pode editar qualquer arquivo (inclusive este e o `docs/contexto.md`) e fazer merge na `main` sem pedir aprovação.
 
 ## Sincronizar sempre (regra do time)
