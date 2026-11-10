@@ -15,11 +15,13 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 - Front: Next.js + TypeScript (App Router), Tailwind, Recharts; mobile-first. Deploy na Vercel; a `main` sempre funcionando.
 - Banco: Supabase `hub-saude` (Postgres + Storage), região São Paulo, **no ar** com o Roberto carregado. Sem login no MVP (um usuário de demonstração); as tabelas ficam trancadas para a chave pública (RLS sem políticas) e o acesso externo passa só por `acessar_historico(token)`. Ver seção "Banco" abaixo.
 - IA: API do Claude para extração (visão + saída estruturada). **Modelo padrão: Claude Haiku 5.5** (~US$ 0,003/laudo).
+- Chat do app (aba Conversar): **Gemini** (`GEMINI_API_KEY`, cota gratuita; `app/src/lib/chat.ts`). Sem a chave, o chat aparece desligado.
+- **Conector MCP** (`/api/mcp/[token]`): o assistente do próprio paciente (Claude, ChatGPT, Gemini) lê o histórico. O token é um consentimento `ia` criado em `/conectar-ia`; cada leitura passa por `acessar_historico(token, "mcp")` (escopo, log, revogação). Só leitura. As ferramentas ficam em `app/src/lib/ferramentas.ts` e o chat usa o mesmo texto.
 - Lovable (parceiro, 100 créditos até sábado): **recomendação** = usar só para a página de apresentação (landing do pitch), não para o app. Ver `docs/contexto.md`.
 
 ## Estrutura do repositório
 ```
-app/                  # Next.js, 2 áreas: PACIENTE (abas Início · Exames · Plano · Mais; /exames por sistema -> /sistema/[id] -> /exame/[analito]; /documentos/[id] = cada laudo; /plano = nota do médico + próximos exames; /relogio, /evolucao, /compartilhar: calma, gráficos, detalhe opcional) e MÉDICO (/medico pede acesso pelo telefone; /medico/acesso/[token] painel denso; paciente aprova em /compartilhar). Identidade clara (off-white, bege, sálvia) + faixa Rivio. Médico envia recomendações (nota) que o paciente vê na Início como "Revisado por". Exames do BANCO (plano B: insights.json). Ver app/README.md
+app/                  # Next.js, 2 áreas: PACIENTE (abas Início · Exames · Conversar · Plano · Mais; /conversar = chat; /conectar-ia = conector MCP; /exames por sistema -> /sistema/[id] -> /exame/[analito]; /documentos/[id] = cada laudo; /plano = nota do médico + próximos exames; /relogio, /evolucao, /compartilhar: calma, gráficos, detalhe opcional) e MÉDICO (/medico pede acesso pelo telefone; /medico/acesso/[token] painel denso; paciente aprova em /compartilhar). Identidade clara (off-white, bege, sálvia) + faixa Rivio. Médico envia recomendações (nota) que o paciente vê na Início como "Revisado por". Exames do BANCO (plano B: insights.json). Ver app/README.md
 extraction/           # documento -> dados: prompt (versionado), schema, normalização, testes de acurácia  [PRONTO]
 insights/             # dados -> informação: séries, áreas, tendência, repetição, vacinação, resumo do médico [PRONTO]
 wearable/             # relógio: dados sintéticos, 4 regras de alerta, cruzamento com exames, simulador de sincronização [PRONTO]

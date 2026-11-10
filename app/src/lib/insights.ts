@@ -73,6 +73,8 @@ export type Insights = {
   repeticoes: Repeticao[];
   /** Próximo exame de rotina de cada analito, pelo intervalo a partir do último resultado. */
   proximos: { analito: string; nome: string; ultimo: string; previsto: string; situacao: string }[];
+  /** Situação vacinal pelo calendário oficial (null quando o escopo não libera vacinas). */
+  vacinacao?: { fonte: string; situacao: { vacina: string; nome: string; status: string; texto: string }[] } | null;
   resumo_medico: string[];
 };
 

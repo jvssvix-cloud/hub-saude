@@ -160,6 +160,8 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 10/11: **"Entender este exame"** (o que é / por que importa / o que costuma ajudar, texto fixo em `app/src/lib/explicacoes.ts`) e contagem na faixa/fora na Início.
 - 10/11: **nota do médico** (`nota_medico` + `registrar_nota`): o painel sugere recomendações por regras, o médico edita e envia, e o paciente vê "Revisado por Dra. X" na Início. O token do consentimento é a credencial do médico (sem login por enquanto).
 
+- **10/11 · IA do paciente:** (1) **conector MCP** em `/api/mcp/[token]` para o paciente ligar o Claude/ChatGPT/Gemini dele ao histórico, com o mesmo consentimento do médico (tipo `ia`, escopo, prazo, log, revogação; tela `/conectar-ia`); é prioridade sobre o chat próprio. (2) **Chat do app** (aba Conversar) com **Gemini** pela cota gratuita (`GEMINI_API_KEY`); a extração continua no Claude. As duas coisas usam as mesmas ferramentas de leitura (`app/src/lib/ferramentas.ts`).
+
 ## 8. Perguntas em aberto
 - (resolvido) Região do projeto Supabase: São Paulo (sa-east-1).
 - (resolvido 09/11) **Ninguém do time tem relógio** → relógio 100% sintético + simulador de sincronização (feito).

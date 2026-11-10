@@ -43,6 +43,9 @@ regras de `insights/src/regras.ts` na hora. As telas recebem o resultado; nenhum
 | `/relogio` | **Paciente** · Relógio: alertas (motivo, recomendação, o que os exames mostram), cartões, gráficos de 6 meses de FC de repouso (com a base e os avisos de ritmo), variabilidade, sono e passos. Lê `wearable/saida/relogio.json` |
 | `/compartilhar` | **Paciente** · pedidos de acesso chegando (atualiza a cada 3 s): escolher o que compartilhar (exames, vacinas, relógio) e Autorizar/Recusar; quem pode ver agora (Encerrar acesso); últimos acessos (log). Precisa da `SUPABASE_SERVICE_ROLE_KEY` no servidor |
 | `/medico` | **Médico** · pedido de acesso pelo telefone do paciente (`solicitar_acesso`, chave pública) |
+| `/conversar` | **Paciente** · chat com os próprios dados (Gemini, `GEMINI_API_KEY`): perguntas sugeridas a partir do histórico; cada resposta traz atalhos para os exames citados. Rota `/api/chat` |
+| `/conectar-ia` | **Paciente** · cria a conexão do assistente de IA (qual, o que pode ler, prazo), mostra o endereço do conector, desconecta e lista as leituras por IA |
+| `/api/mcp/[token]` | **Conector MCP** (Streamable HTTP, só leitura): `resumo_de_saude`, `listar_exames`, `historico_do_exame`, `vacinas`, `relogio`. Cada chamada confere o consentimento e grava o log (`consumidor = mcp`) |
 | `/medico/acesso/[token]` | **Médico** · espera a aprovação e abre sozinho; painel: indicadores alterados, comparar até 3 séries, correlações relógio × exames, FC de repouso com avisos de ritmo, todos os exames com link para o laudo, resumo pré-consulta. Lê só por `acessar_historico(token)`; `situacao_acesso` a cada 3 s faz a revogação derrubar a tela na hora |
 
 ## Vercel

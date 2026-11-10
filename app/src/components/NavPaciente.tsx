@@ -13,8 +13,9 @@ const ITENS = [
     icone: IconeGrafico,
     ativo: (p: string) => comeca(p, "/exames", "/exame", "/sistema", "/evolucao", "/documentos"),
   },
+  { href: "/conversar", rotulo: "Conversar", icone: IconeConversa, ativo: (p: string) => comeca(p, "/conversar") },
   { href: "/plano", rotulo: "Plano", icone: IconePlano, ativo: (p: string) => comeca(p, "/plano") },
-  { href: "/mais", rotulo: "Mais", icone: IconeMais, ativo: (p: string) => comeca(p, "/mais", "/relogio", "/compartilhar") },
+  { href: "/mais", rotulo: "Mais", icone: IconeMais, ativo: (p: string) => comeca(p, "/mais", "/relogio", "/compartilhar", "/conectar-ia") },
 ];
 
 /** Barra inferior no celular; no desktop vira menu no topo (mesmos itens). */
@@ -39,7 +40,7 @@ export function NavPaciente({ variante }: { variante: "barra" | "topo" }) {
   }
   return (
     <nav className="fixed inset-x-0 bottom-0 z-20 border-t border-linha bg-fundo/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden">
-      <ul className="mx-auto grid max-w-md grid-cols-4">
+      <ul className="mx-auto grid max-w-md grid-cols-5">
         {ITENS.map((i) => {
           const ativo = i.ativo(p);
           const Icone = i.icone;
@@ -66,6 +67,9 @@ function IconeCasa() {
 }
 function IconeGrafico() {
   return <svg {...svg}><path d="M4 19h16" /><path d="M5 15l4-4 3 3 6-7" /></svg>;
+}
+function IconeConversa() {
+  return <svg {...svg}><path d="M5 6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5v6a2.5 2.5 0 0 1-2.5 2.5H11l-4 4v-4.2A2.5 2.5 0 0 1 5 12.5z" /></svg>;
 }
 function IconePlano() {
   return <svg {...svg}><rect x="5" y="4" width="14" height="17" rx="2.5" /><path d="M9 4.5V3h6v1.5" /><path d="M8.5 11l1.5 1.5 3-3M8.5 16.5h7" /></svg>;

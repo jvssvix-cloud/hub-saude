@@ -35,8 +35,9 @@ type Resposta =
       observacoes: LinhaObservacao[];
     };
 
-export async function acessar(token: string): Promise<Acesso> {
-  const r = await rpcPublica<Resposta>("acessar_historico", { p_token: token, p_consumidor: "visao_medico" });
+/** consumidor: quem está lendo ("visao_medico", "mcp"); vai para o log que o paciente vê. */
+export async function acessar(token: string, consumidor: "visao_medico" | "mcp" = "visao_medico"): Promise<Acesso> {
+  const r = await rpcPublica<Resposta>("acessar_historico", { p_token: token, p_consumidor: consumidor });
   if (!r.ok) {
     if (r.motivo === "pendente") return { situacao: "pendente", prazo: r.prazo_resposta ?? "" };
     return { situacao: r.motivo };

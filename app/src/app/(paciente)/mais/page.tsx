@@ -14,7 +14,10 @@ const GRUPOS: { titulo: string; itens: { href: string; nome: string; desc: strin
   },
   {
     titulo: "Privacidade",
-    itens: [{ href: "/compartilhar", nome: "Compartilhar com médicos", desc: "Pedidos, quem pode ver agora e o histórico de acessos" }],
+    itens: [
+      { href: "/compartilhar", nome: "Compartilhar com médicos", desc: "Pedidos, quem pode ver agora e o histórico de acessos" },
+      { href: "/conectar-ia", nome: "Conectar IA", desc: "Leve seus exames para o Claude, o ChatGPT ou o Gemini, com o seu consentimento" },
+    ],
   },
 ];
 
