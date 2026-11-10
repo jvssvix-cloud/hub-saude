@@ -5,7 +5,7 @@ import { ComparadorSeries } from "@/components/ComparadorSeries";
 import { GraficoRelogio } from "@/components/GraficoRelogio";
 import { VigiaAcesso } from "@/components/VigiaAcesso";
 import { dataBr, faixa, idade, linkLaudo, mesAno, numero, serie, type Insights, type Serie } from "@/lib/insights";
-import { SITUACAO_TEXTO, acessar, horaBrasilia, liberaRelogio, type Escopo } from "@/lib/medico";
+import { SITUACAO_TEXTO, acessar, horaBrasilia, liberaRelogio, listaCategorias, type Escopo } from "@/lib/medico";
 import { alertasOrdenados, dataHoraBr, decimal, inteiro, relogio, serieDoContexto } from "@/lib/relogio";
 
 export const metadata: Metadata = { title: "Histórico do paciente · Hub de Saúde" };
@@ -83,7 +83,7 @@ function Painel({ insights: i, escopo }: { insights: Insights; escopo: Escopo })
             Acesso até {horaBrasilia(escopo.expira_em)}
           </p>
           <p className="mt-1 text-xs text-suave">
-            Autorizado para {escopo.destinatario_nome} · {escopo.categorias ? `só ${escopo.categorias.join(", ")}` : "histórico completo"} ·
+            Autorizado para {escopo.destinatario_nome} · {escopo.categorias ? `só ${listaCategorias(escopo.categorias)}` : "histórico completo"} ·
             cada acesso é registrado
           </p>
         </div>

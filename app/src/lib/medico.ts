@@ -51,6 +51,14 @@ export function liberaRelogio(e: Escopo): boolean {
   return e.categorias === null || e.categorias.includes("wearable");
 }
 
+const CATEGORIA: Record<string, string> = { exame: "exames", vacina: "vacinas", wearable: "relógio" };
+
+/** ["exame", "vacina"] -> "exames e vacinas" */
+export function listaCategorias(c: string[]): string {
+  const n = c.map((x) => CATEGORIA[x] ?? x);
+  return n.length > 1 ? `${n.slice(0, -1).join(", ")} e ${n[n.length - 1]}` : (n[0] ?? "nada");
+}
+
 export const SITUACAO_TEXTO: Record<Exclude<Situacao, "ok" | "pendente">, { titulo: string; texto: string }> = {
   revogado: { titulo: "O paciente encerrou este acesso", texto: "O histórico não está mais disponível neste link." },
   expirado: { titulo: "Este acesso expirou", texto: "Peça um novo acesso ao paciente, se precisar." },
