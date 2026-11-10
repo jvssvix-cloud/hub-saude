@@ -4,11 +4,11 @@ import { connection } from "next/server";
 import { Suspense } from "react";
 import { AutoAtualizar } from "@/components/VigiaAcesso";
 import { horaBrasilia } from "@/lib/medico";
+import { PACIENTE_ID as PACIENTE } from "@/lib/usuario";
 import { getServidor, rpcServidor, temChaveServidor } from "@/lib/supabase";
 
 export const metadata: Metadata = { title: "Compartilhar · Hub de Saúde" };
 
-const PACIENTE = "persona-roberto";
 
 type Consentimento = {
   id: string;

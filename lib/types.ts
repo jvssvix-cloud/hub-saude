@@ -158,3 +158,13 @@ export type RespostaHistorico =
       documentos: Omit<Documento, "paciente_id">[];
       observacoes: Observacao[];
     };
+
+/** Tabela nota_medico: recomendações revisadas pelo médico (via registrar_nota com o token do consentimento). */
+export type NotaMedico = {
+  id: string;
+  paciente_id: string;
+  consentimento_id: string | null;
+  autor_nome: string;
+  itens: string[];
+  criado_em: string;
+};

@@ -6,7 +6,7 @@
 - **Quem:** João Vitor (Eng. Civil POLI-USP), organizador (LEPoli × Mohashees) e também participante.
 - **Time:** **2 pessoas**: João + **Felipe**, **construindo juntos** com o Claude Code (seção 6).
 - **Evento:** Hackathon Gama House. Desafio proposto pela **Rivio**.
-- **Entrega:** **sábado 14/11/2026, na Gama House**. **Live demo de 10 min** para a Rivio.
+- **Entrega:** **sábado 14/11/2026, na Gama House**. ~~Live demo de 10 min~~ **Sem demo ao vivo (10/11):** entregar a proposta mais completa possível.
 - **Tempo disponível (a partir de seg 09/11):** ~3,5 dias de construção (seg à noite → qui à noite) + sexta de ensaio.
 - **Regras de dados:** dados **sintéticos ou os próprios**. Dados de outra pessoa só com consentimento explícito. A Rivio não recebe nem guarda dados de saúde dos times.
 - **Parcerias/recursos:** Lovable, Red Bull, tokens Notion, Stripe, Canastra Ventures.
@@ -154,6 +154,11 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11 noite: **tela do Relógio no app** (`/relogio` + cartão na Início, lendo `relogio.json`). Estado e o que falta para fechar o esqueleto em `docs/estado-e-proximos.md`: 1) enviar exame pelo app, 2) site lendo do banco, 3) visão do médico, 4) tela de vacinação, 5) rota de sincronização do relógio. Sugestão: João 1 e 5, Felipe 2 e 3.
 - 10/11: **revisão geral** (tudo verde: typecheck, lint, build, 10 testes do relógio, acurácia do cache 100%). Correções: `insights` passa a usar a **data fixa 2026-11-09** por padrão (igual ao `FIM` do relógio; antes era a data do computador, e idade/atrasos mudavam conforme o dia em que se rodava); link "contexto de exames" do Relógio escolhe o nome mais longo (HbA1c não cai mais em Hemoglobina). **A decidir:** mover as duas datas para 14/11 (dia da demo) antes de sábado.
 - 10/11: **site lê do banco** (item 2, João, com ok do Felipe). `app/src/lib/dados.ts` lê documento + observação com a service_role (`insights/src/banco.ts`, fetch puro) e roda as regras de `insights/` na hora; telas iguais. Plano B: `insights.json` se faltar a chave ou o banco falhar. Cache `use cache` com etiqueta `historico` (1h); quem grava chama `updateTag("historico")`. `npm run conferir-banco` (insights/) prova banco = JSON. O app lê o `.env.local` da raiz; na Vercel, `NEXT_PUBLIC_SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` no painel. Relógio continua pelo JSON.
+
+- 10/11: **sem demo ao vivo; escopo passa a ser a proposta mais completa possível** (Felipe). O que era "fase 2" (onboarding/login, lista de pacientes do médico, timeline, chat de IA, conector MCP) entra no escopo. Referência de produto: engenharia reversa da Function Health (lado paciente) + painel do médico, que a Function não tem.
+- 10/11: **área do médico e Compartilhar no ar**, testadas com o banco real (pedir → autorizar com escopo → painel → encerrar/recusar). Nova função `situacao_acesso` (a tela do médico consulta a cada 3 s sem dados e sem log).
+- 10/11: **"Entender este exame"** (o que é / por que importa / o que costuma ajudar, texto fixo em `app/src/lib/explicacoes.ts`) e contagem na faixa/fora na Início.
+- 10/11: **nota do médico** (`nota_medico` + `registrar_nota`): o painel sugere recomendações por regras, o médico edita e envia, e o paciente vê "Revisado por Dra. X" na Início. O token do consentimento é a credencial do médico (sem login por enquanto).
 
 ## 8. Perguntas em aberto
 - (resolvido) Região do projeto Supabase: São Paulo (sa-east-1).

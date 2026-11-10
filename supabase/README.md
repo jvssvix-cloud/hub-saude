@@ -37,6 +37,7 @@
 | `observacao` | Fato atômico. `categoria` = exame / vacina / wearable; `codigo` = analito, vacina ou métrica. Colunas com os mesmos nomes de `extraction/src/schema.ts` e `insights/src/tipos.ts` |
 | `consentimento` | Grant: destinatário, escopo (`categorias`, `codigos`, `desde`; null = tudo), `expira_em`, `revogado_em`, `token` |
 | `log_acesso` | Toda tentativa, permitida ou negada, com motivo e quantas observações saíram |
+| `nota_medico` | Recomendações que o médico revisou e enviou (`autor_nome`, `itens`); o paciente vê "Revisado por" |
 
 Funções:
 
@@ -47,6 +48,7 @@ Funções:
 | `criar_consentimento(...)` | app do paciente (service_role) | QR: consentimento já aprovado |
 | `revogar_consentimento(id)` | app do paciente (service_role) | Corta na hora |
 | `acessar_historico(token, consumidor, ...)` | médico, MCP, API (anon) | Único caminho de leitura |
+| `registrar_nota(token, itens)` | painel do médico (anon) | Grava as recomendações do médico; só com consentimento aprovado e válido (revogado/expirado = recusa) |
 | `situacao_acesso(token)` | tela do médico (anon) | Só diz se o acesso vale agora (ok, pendente, revogado...), sem dados e sem log; a tela consulta a cada 3 s |
 
 ## Fluxo principal: o médico pede pelo telefone
@@ -92,7 +94,8 @@ precisa de `grant execute ... to anon` explícito.
 ## Subir em outro projeto
 
 1. SQL Editor → cole as migrations **em ordem**: `20261109220119_contrato.sql`,
-   `20261109220145_solicitacao_medico.sql`, `20261109220204_permissoes_supabase.sql`.
+   `20261109220145_solicitacao_medico.sql`, `20261109220204_permissoes_supabase.sql`,
+   `20261110152147_situacao_acesso.sql`, `20261110182058_nota_medico.sql`.
 2. Cole `seed.sql` (Roberto: 14 documentos, 188 resultados de exame, 17 doses de vacina).
    Para regerar depois que o gabarito mudar: `node supabase/seed/gerar-seed.mjs`.
 3. Com Supabase CLI local: `supabase db reset` aplica os dois.

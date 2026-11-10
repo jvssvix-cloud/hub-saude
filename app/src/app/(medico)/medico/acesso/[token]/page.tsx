@@ -5,7 +5,9 @@ import { ComparadorSeries } from "@/components/ComparadorSeries";
 import { GraficoRelogio } from "@/components/GraficoRelogio";
 import { VigiaAcesso } from "@/components/VigiaAcesso";
 import { dataBr, faixa, idade, linkLaudo, mesAno, numero, serie, type Insights, type Serie } from "@/lib/insights";
-import { SITUACAO_TEXTO, acessar, horaBrasilia, liberaRelogio, listaCategorias, type Escopo } from "@/lib/medico";
+import { NotaMedico } from "@/components/NotaMedico";
+import { SITUACAO_TEXTO, acessar, horaBrasilia, liberaRelogio, listaCategorias, rascunhoPlano, type Escopo } from "@/lib/medico";
+import { enviarNota } from "./acoes";
 import { alertasOrdenados, dataHoraBr, decimal, inteiro, relogio, serieDoContexto } from "@/lib/relogio";
 
 export const metadata: Metadata = { title: "Histórico do paciente · Hub de Saúde" };
@@ -55,12 +57,12 @@ async function Acesso({ params }: { params: Promise<{ token: string }> }) {
   return (
     <>
       <VigiaAcesso token={token} atual="ok" />
-      <Painel insights={a.insights} escopo={a.escopo} />
+      <Painel insights={a.insights} escopo={a.escopo} token={token} />
     </>
   );
 }
 
-function Painel({ insights: i, escopo }: { insights: Insights; escopo: Escopo }) {
+function Painel({ insights: i, escopo, token }: { insights: Insights; escopo: Escopo; token: string }) {
   const alteradas = i.series.filter((s) => s.alterado);
   const comRelogio = liberaRelogio(escopo);
   const alertas = comRelogio ? alertasOrdenados() : [];
@@ -238,6 +240,14 @@ function Painel({ insights: i, escopo }: { insights: Insights; escopo: Escopo })
             </p>
           ))}
         </div>
+      </section>
+
+      <section className="rounded-3xl border-2 border-marca bg-cartao p-5">
+        <h2 className="font-bold">Recomendações para o paciente</h2>
+        <p className="mb-3 text-sm text-suave">
+          O que você enviar aparece no app de {i.paciente.nome.split(" ")[0]} como “Revisado por {escopo.destinatario_nome}”.
+        </p>
+        <NotaMedico rascunho={rascunhoPlano(i, alertas)} acao={enviarNota.bind(null, token)} />
       </section>
     </div>
   );

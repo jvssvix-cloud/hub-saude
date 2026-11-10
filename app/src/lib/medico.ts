@@ -51,6 +51,39 @@ export function liberaRelogio(e: Escopo): boolean {
   return e.categorias === null || e.categorias.includes("wearable");
 }
 
+/**
+ * Rascunho das recomendações, por regras sobre o que está alterado. É só ponto de partida:
+ * o médico edita, apaga ou reescreve antes de enviar (quem decide é ele).
+ */
+export function rascunhoPlano(i: Insights, alertasRelogio: { id: string }[]): string[] {
+  const atencao = new Set(i.areas.filter((a) => a.status === "atencao").map((a) => a.id));
+  const nomes = (area: string) =>
+    i.series
+      .filter((s) => s.area === area && s.alterado)
+      .map((s) => s.nome.replace(/ \(.*\)$/, ""))
+      // "Glicose em jejum" -> "glicose em jejum" no meio da frase; siglas (LDL, TSH) ficam como estão
+      .map((n) => (/^[A-ZÁÉÍÓÚ][a-záéíóúãõç]/.test(n) ? n[0].toLowerCase() + n.slice(1) : n));
+  const temAlerta = (id: string) => alertasRelogio.some((a) => a.id === id);
+  const itens: string[] = [];
+
+  if (temAlerta("ritmo_irregular"))
+    itens.push(
+      "Avaliação cardiológica com eletrocardiograma (e Holter, se indicado) pelos avisos de ritmo irregular do relógio. Se tiver palpitação, falta de ar ou desmaio, procurar atendimento.",
+    );
+  if (atencao.has("glicemia"))
+    itens.push(`Repetir ${nomes("glicemia").join(" e ")} em 3 meses. Reduzir açúcar e farinha branca.`);
+  if (atencao.has("colesterol"))
+    itens.push(
+      `Repetir o perfil lipídico em 3 meses (${nomes("colesterol").join(", ")} acima da referência). Menos gordura saturada e ultraprocessados.`,
+    );
+  if (atencao.has("glicemia") || atencao.has("colesterol") || temAlerta("atividade_caindo"))
+    itens.push("Atividade física aeróbica: pelo menos 150 minutos por semana, começando aos poucos.");
+  if (atencao.has("rins"))
+    itens.push(`Repetir ${nomes("rins").join(" e ")} e creatinina. Beber mais água; moderar carne vermelha e álcool.`);
+  if (temAlerta("sono_curto")) itens.push("Priorizar 7 a 9 horas de sono por noite.");
+  return itens;
+}
+
 const CATEGORIA: Record<string, string> = { exame: "exames", vacina: "vacinas", wearable: "relógio" };
 
 /** ["exame", "vacina"] -> "exames e vacinas" */

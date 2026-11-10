@@ -6,8 +6,8 @@ O Claude Code lê este arquivo automaticamente. O contexto completo (estratégia
 ## O que estamos construindo
 Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira de vacinação em PDF ou foto, dados do relógio) num lugar só, mostra a evolução de cada exame ao longo dos anos ao lado da faixa de referência, avisa quando é hora de procurar um médico (regras explicáveis) e gera um link de consentimento para o médico ver um resumo, com cada número apontando para o documento original.
 
-- **Entrega:** sábado 14/11/2026, live demo de 10 min para a Rivio.
-- **Time:** 2 pessoas, **construindo juntas** com o Claude Code. **Cortar escopo é sempre a opção certa**: o caminho mais simples que funcione na demo.
+- **Entrega:** sábado 14/11/2026. **Sem demo ao vivo (decidido 10/11):** entregar a proposta mais completa possível (paciente, médico, consentimento, upload, timeline, onboarding/login, chat e conector MCP), sempre com a `main` funcionando.
+- **Time:** 2 pessoas, **construindo juntas** com o Claude Code. Cada parte entra pequena e funcionando antes da próxima (o simples primeiro, depois completar).
 - **Dados:** SOMENTE sintéticos ou do próprio time. **Dados de terceiros:** só com consentimento explícito, usados só para aprender e **apagados em seguida** (a lição vira código + caso sintético).
 - **Diferencial:** qualidade da extração + rastreabilidade. Todo número aponta para o documento original. Alertas são regras explicáveis, nunca diagnóstico.
 
@@ -19,7 +19,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 
 ## Estrutura do repositório
 ```
-app/                  # Next.js, 2 áreas: PACIENTE (/, /evolucao, /relogio, /exames, /exame/[analito]: calma, gráficos, detalhe opcional) e MÉDICO (/medico pede acesso pelo telefone; /medico/acesso/[token] painel denso; paciente aprova em /compartilhar). Identidade clara (off-white, bege, sálvia) + faixa Rivio. Exames do BANCO (plano B: insights.json). Ver app/README.md
+app/                  # Next.js, 2 áreas: PACIENTE (/, /evolucao, /relogio, /exames, /exame/[analito]: calma, gráficos, detalhe opcional) e MÉDICO (/medico pede acesso pelo telefone; /medico/acesso/[token] painel denso; paciente aprova em /compartilhar). Identidade clara (off-white, bege, sálvia) + faixa Rivio. Médico envia recomendações (nota) que o paciente vê na Início como "Revisado por". Exames do BANCO (plano B: insights.json). Ver app/README.md
 extraction/           # documento -> dados: prompt (versionado), schema, normalização, testes de acurácia  [PRONTO]
 insights/             # dados -> informação: séries, áreas, tendência, repetição, vacinação, resumo do médico [PRONTO]
 wearable/             # relógio: dados sintéticos, 4 regras de alerta, cruzamento com exames, simulador de sincronização [PRONTO]
@@ -54,6 +54,7 @@ Cada pasta pronta tem README com comandos. Resumo:
 ## Banco (Supabase `hub-saude`, compartilhado)
 Projeto `eimnpafybehiylzukoja` (organização LEPoli, São Paulo), o mesmo para os dois e para o Claude de cada um. O `.mcp.json` já configura o servidor do Supabase preso a este projeto: cada um autentica uma vez com a própria conta.
 - **Chaves:** URL e chave publicável no `.env.example` (são públicas). `SUPABASE_SERVICE_ROLE_KEY` só no `.env.local`, na Vercel ou nas variáveis da sessão na nuvem; nunca no Git nem no navegador.
+- **Nota do médico:** `registrar_nota(token, itens)` grava recomendações em `nota_medico` (só com consentimento aprovado e válido); o paciente lê pelo servidor.
 - **Consentimento:** o médico pede pelo telefone (`solicitar_acesso`) ou o paciente gera QR (`criar_consentimento`); o paciente aprova/recusa (`responder_solicitacao`) e revoga (`revogar_consentimento`). Revogar corta médico, MCP e API na hora. Telefone fictício do Roberto: (11) 98765-4321.
 - **Mudar estrutura** (tabela, coluna, função, permissão): sempre migration NOVA em `supabase/migrations/`, aplicada no Supabase (`apply_migration`) e commitada na mesma hora, com o arquivo renomeado para a versão que o Supabase registrou. Nunca editar migration já aplicada.
 - **Antes de mexer na estrutura:** `git pull` e comparar `list_migrations` com a pasta. Divergência = alguém esqueceu de commitar ou aplicar.

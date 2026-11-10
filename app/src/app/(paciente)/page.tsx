@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Suspense } from "react";
+import { NotaDoMedico } from "@/components/NotaDoMedico";
 import { MiniCurva } from "@/components/MiniCurva";
 import { carregarInsights } from "@/lib/dados";
 import { serie } from "@/lib/insights";
@@ -54,6 +56,10 @@ export default async function Inicio() {
           ))}
         </ul>
       </section>
+
+      <Suspense fallback={null}>
+        <NotaDoMedico />
+      </Suspense>
 
       <section className="space-y-3">
         <h2 className="text-lg font-bold tracking-tight">Seus índices ao longo do tempo</h2>
