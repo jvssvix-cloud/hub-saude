@@ -1,6 +1,6 @@
 /**
  * Gera os insights da persona e imprime de forma legível.
- *   npm run insights                      (hoje = data atual)
+ *   npm run insights                      (hoje = HOJE_PADRAO, a mesma data fixa do relógio)
  *   npm run insights -- --hoje=2026-11-14 (simular outra data)
  * Também grava o JSON que o app consome em insights/saida/insights.json
  */
@@ -9,7 +9,9 @@ import path from "node:path";
 import { carregarDoGabarito, carregarVacinasDoGabarito, RAIZ } from "./carregar";
 import { gerarInsights, mesAno } from "./regras";
 
-const hoje = process.argv.find((a) => a.startsWith("--hoje="))?.split("=")[1] ?? new Date().toISOString().slice(0, 10);
+// Data fixa (igual ao FIM de wearable/src/gerar.ts) para o resultado não depender do dia em que se roda.
+const HOJE_PADRAO = "2026-11-09";
+const hoje = process.argv.find((a) => a.startsWith("--hoje="))?.split("=")[1] ?? HOJE_PADRAO;
 const { laudos, paciente } = carregarDoGabarito();
 const i = gerarInsights(laudos, paciente, hoje, carregarVacinasDoGabarito());
 

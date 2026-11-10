@@ -152,6 +152,7 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11 noite: **repositório público** (Vercel Hobby não aceita colaboração em repositório privado). Histórico conferido: só dados fictícios; chaves nunca no Git.
 
 - 09/11 noite: **tela do Relógio no app** (`/relogio` + cartão na Início, lendo `relogio.json`). Estado e o que falta para fechar o esqueleto em `docs/estado-e-proximos.md`: 1) enviar exame pelo app, 2) site lendo do banco, 3) visão do médico, 4) tela de vacinação, 5) rota de sincronização do relógio. Sugestão: João 1 e 5, Felipe 2 e 3.
+- 10/11: **revisão geral** (tudo verde: typecheck, lint, build, 10 testes do relógio, acurácia do cache 100%). Correções: `insights` passa a usar a **data fixa 2026-11-09** por padrão (igual ao `FIM` do relógio; antes era a data do computador, e idade/atrasos mudavam conforme o dia em que se rodava); link "contexto de exames" do Relógio escolhe o nome mais longo (HbA1c não cai mais em Hemoglobina). **A decidir:** mover as duas datas para 14/11 (dia da demo) antes de sábado.
 
 ## 8. Perguntas em aberto
 - (resolvido) Região do projeto Supabase: São Paulo (sa-east-1).

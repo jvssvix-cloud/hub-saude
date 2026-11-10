@@ -6,7 +6,7 @@ Regras determinísticas (sem IA, sem custo) que transformam os resultados dos la
 ```bash
 cd insights
 npm install
-npm run insights                       # hoje = data atual
+npm run insights                       # hoje = 2026-11-09 (fixo, igual ao relógio)
 npm run insights -- --hoje=2026-11-14  # simular outra data
 ```
 

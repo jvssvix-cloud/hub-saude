@@ -58,9 +58,12 @@ export function alertasOrdenados(): Alerta[] {
   return [...relogio.alertas].sort((a, b) => (a.nivel === b.nivel ? 0 : a.nivel === "atencao" ? -1 : 1));
 }
 
-/** Frase do contexto de exames ("LDL 164 mg/dL em mar/2026...") → série do exame, para virar link. */
+/** Frase do contexto de exames ("LDL 164 mg/dL em mar/2026...") → série do exame, para virar link.
+ *  Fica com o nome mais longo que bate ("Hemoglobina glicada (HbA1c)" ganha de "Hemoglobina"). */
 export function serieDoContexto(frase: string): Serie | undefined {
-  return insights.series.find((s) => frase.startsWith(s.nome));
+  return insights.series
+    .filter((s) => frase.startsWith(s.nome))
+    .sort((a, b) => b.nome.length - a.nome.length)[0];
 }
 
 /** Últimos n dias do relógio (para os gráficos). */
