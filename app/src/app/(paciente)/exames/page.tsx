@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FiltroExames, type ExameFiltravel } from "@/components/FiltroExames";
 import { BarraContagem } from "@/components/LinhaIndice";
 import { carregarInsights } from "@/lib/dados";
 import { laudos } from "@/lib/documentos";
 import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
+import { fraseSerie } from "@/lib/paciente";
 import { relogio } from "@/lib/relogio";
 
 export const metadata: Metadata = { title: "Exames · Hub de Saúde" };
@@ -21,6 +23,18 @@ export default async function Exames() {
   const fora = insights.series.filter((s) => s.alterado).length;
   const atencaoRelogio = relogio.alertas.filter((a) => a.nivel === "atencao").length;
   const nLaudos = laudos(insights).length;
+  const exames: ExameFiltravel[] = insights.series.map((s) => ({
+    analito: s.analito,
+    nome: s.nome,
+    unidade: s.unidade,
+    frase: fraseSerie(s),
+    alterado: s.alterado,
+    faixa: { min: s.ultimo.ref_min, max: s.ultimo.ref_max },
+    pontos: s.pontos.map((p) => ({ data: p.data, valor: p.valor, fora: p.fora_da_faixa, qualificador: p.qualificador ?? null })),
+  }));
+  const textos = (insights.resultados_texto ?? []).map((t) => ({
+    analito: t.analito, nome: t.nome, data: t.data, texto: t.texto, fora: t.fora_da_faixa, fonte: t.fonte,
+  }));
 
   return (
     <div className="space-y-6 pt-3">
@@ -31,6 +45,7 @@ export default async function Exames() {
         </p>
       </section>
 
+      <FiltroExames exames={exames} textos={textos}>
       <section>
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Por sistema</h2>
         <ul className="divide-y divide-linha overflow-hidden rounded-3xl border border-linha bg-cartao">
@@ -70,6 +85,7 @@ export default async function Exames() {
           </li>
         </ul>
       </section>
+      </FiltroExames>
 
       <Link
         href="/documentos"

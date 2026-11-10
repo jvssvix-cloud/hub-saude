@@ -41,6 +41,11 @@ export type Serie = {
   tendencia: Tendencia | null;
 };
 
+/** Resultado só em texto ("NÃO REAGENTE"): não vira série; é o estado "outros" dos filtros. */
+export type ResultadoTexto = {
+  analito: string; nome: string; data: string; texto: string; fora_da_faixa: boolean; referencia_impressa: string; fonte: Fonte;
+};
+
 export type Area = {
   id: string;
   nome: string;
@@ -63,6 +68,7 @@ export type Insights = {
   hoje: string;
   periodo: { inicio: string; fim: string; laudos: number; laboratorios: string[] };
   series: Serie[];
+  resultados_texto?: ResultadoTexto[];
   areas: Area[];
   repeticoes: Repeticao[];
   /** Próximo exame de rotina de cada analito, pelo intervalo a partir do último resultado. */
@@ -83,6 +89,42 @@ export function serie(insights: Insights, analito: string): Serie | undefined {
 
 export function seriesDaArea(insights: Insights, area: Area): Serie[] {
   return area.analitos.map((a) => serie(insights, a)).filter((s): s is Serie => !!s);
+}
+
+/** Todos os exames na ordem em que aparecem em Exames (sistema a sistema): base do anterior/próximo. */
+export function seriesEmOrdem(insights: Insights): Serie[] {
+  const vistos = new Set<string>();
+  const ordem: Serie[] = [];
+  const por = (lista: Serie[]) => {
+    for (const s of lista) {
+      if (vistos.has(s.analito)) continue;
+      vistos.add(s.analito);
+      ordem.push(s);
+    }
+  };
+  for (const a of areasOrdenadas(insights)) {
+    por(seriesDaArea(insights, a).sort((x, y) => Number(y.alterado) - Number(x.alterado)));
+  }
+  por(insights.series);
+  return ordem;
+}
+
+const semAcento = (t: string) =>
+  t.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+
+/** Exames citados num texto livre (nota do médico), pelo nome ou pela sigla: "LDL", "glicose em jejum", "HbA1c". */
+export function seriesCitadas(insights: Insights, texto: string): Serie[] {
+  const alvo = ` ${semAcento(texto)} `;
+  const achados = insights.series.flatMap((s) => {
+    const sigla = s.nome.match(/\(([^)]+)\)/)?.[1];
+    const termos = [s.nome.replace(/ \(.*\)$/, ""), ...(sigla ? [sigla] : [])].map(semAcento);
+    const termo = termos.find((t) => alvo.includes(` ${t} `));
+    return termo ? [{ s, termo }] : [];
+  });
+  // "hemoglobina glicada" não pode puxar também "Hemoglobina": vale o nome mais longo
+  return achados
+    .filter((a) => !achados.some((b) => b !== a && b.termo.length > a.termo.length && ` ${b.termo} `.includes(` ${a.termo} `)))
+    .map((a) => a.s);
 }
 
 export function areaDe(insights: Insights, s: Serie): Area | undefined {

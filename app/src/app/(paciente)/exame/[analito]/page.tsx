@@ -5,7 +5,7 @@ import { GraficoSerie } from "@/components/GraficoSerie";
 import { AvisoNaoDiagnostico, SeloStatus } from "@/components/ui";
 import { carregarInsights } from "@/lib/dados";
 import { EXPLICACOES } from "@/lib/explicacoes";
-import { areaDe, dataBr, faixa, linkLaudo, numero, serie } from "@/lib/insights";
+import { areaDe, dataBr, faixa, linkLaudo, numero, serie, seriesEmOrdem } from "@/lib/insights";
 
 export async function generateStaticParams() {
   const { series } = await carregarInsights();
@@ -36,12 +36,25 @@ async function Conteudo({ params }: { params: Promise<{ analito: string }> }) {
   const laboratorios = new Set(s.pontos.map((p) => p.fonte.laboratorio)).size;
   const pontosRecentes = [...s.pontos].reverse();
   const explicacao = EXPLICACOES[s.analito];
+  const ordem = seriesEmOrdem(insights);
+  const pos = ordem.findIndex((x) => x.analito === s.analito);
+  const anterior = pos > 0 ? ordem[pos - 1] : null;
+  const proximo = pos >= 0 && pos < ordem.length - 1 ? ordem[pos + 1] : null;
 
   return (
     <div className="space-y-5 pt-3">
-      <Link href="/evolucao" className="text-sm font-semibold text-marca hover:underline">
-        ‹ Evolução
-      </Link>
+      <div className="flex items-center justify-between gap-3">
+        <Link href={area ? `/sistema/${area.id}` : "/exames"} className="text-sm font-semibold text-marca hover:underline">
+          ‹ {area ? area.nome : "Exames"}
+        </Link>
+        <nav aria-label="Outros exames" className="flex items-center gap-1.5">
+          <span className="num mr-1 text-xs text-suave">
+            {pos + 1} de {ordem.length}
+          </span>
+          <SetaExame para={anterior} sentido="anterior" />
+          <SetaExame para={proximo} sentido="proximo" />
+        </nav>
+      </div>
 
       <section>
         <div className="flex items-start justify-between gap-3">
@@ -151,7 +164,41 @@ async function Conteudo({ params }: { params: Promise<{ analito: string }> }) {
         </ul>
       </section>
 
+      {(anterior || proximo) && (
+        <nav aria-label="Exame anterior e próximo" className="grid grid-cols-2 gap-3">
+          {anterior ? (
+            <Link href={`/exame/${anterior.analito}`} className="rounded-3xl border border-linha bg-cartao px-4 py-3 hover:bg-fundo">
+              <span className="block text-xs text-suave">‹ Anterior</span>
+              <span className={`block truncate font-semibold ${anterior.alterado ? "text-atencao" : ""}`}>{anterior.nome}</span>
+            </Link>
+          ) : (
+            <span />
+          )}
+          {proximo && (
+            <Link href={`/exame/${proximo.analito}`} className="rounded-3xl border border-linha bg-cartao px-4 py-3 text-right hover:bg-fundo">
+              <span className="block text-xs text-suave">Próximo ›</span>
+              <span className={`block truncate font-semibold ${proximo.alterado ? "text-atencao" : ""}`}>{proximo.nome}</span>
+            </Link>
+          )}
+        </nav>
+      )}
+
       <AvisoNaoDiagnostico />
     </div>
+  );
+}
+
+function SetaExame({ para, sentido }: { para: { analito: string; nome: string } | null; sentido: "anterior" | "proximo" }) {
+  const seta = sentido === "anterior" ? "‹" : "›";
+  const classe = "grid size-9 place-items-center rounded-full border border-linha bg-cartao text-lg leading-none";
+  if (!para) return <span aria-hidden className={`${classe} text-linha`}>{seta}</span>;
+  return (
+    <Link
+      href={`/exame/${para.analito}`}
+      aria-label={`${sentido === "anterior" ? "Exame anterior" : "Próximo exame"}: ${para.nome}`}
+      className={`${classe} text-marca hover:bg-bege`}
+    >
+      {seta}
+    </Link>
   );
 }
