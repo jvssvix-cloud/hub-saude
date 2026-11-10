@@ -31,7 +31,7 @@ Leia o `CLAUDE.md` e o `docs/contexto.md` antes de tudo. Vamos construir a pasta
 4. **Cruzamento com exames (opcional, se der tempo):** ler `insights/saida/insights.json` (se existir) e, no alerta de ritmo irregular, adicionar `contexto_exames` com as áreas em atenção (ex.: "LDL alto e glicose subindo nos exames de 2026"). Nada de diagnóstico: só "vale levar isso ao médico".
 5. **Saída:** `wearable/saida/relogio.json` no formato abaixo (o app vai ler este arquivo).
 6. **Testes:** cada regra com um caso que dispara e um que não dispara.
-7. **README** com comandos e o formato. Registre decisões no `wearable/README.md` (o João transfere para o `CLAUDE.md` e o `contexto.md`; **não edite esses dois arquivos** para evitar conflito).
+7. **README** com comandos e o formato. Registre as decisões estruturais no `CLAUDE.md` e no `docs/contexto.md` (faça `git pull` logo antes de editá-los).
 
 ## Formato da saída (contrato com o app — não mude sem combinar)
 ```ts
@@ -60,4 +60,4 @@ type RelogioJson = {
 ## Regras do repositório
 - Textos em português do Brasil. Dados 100% fictícios.
 - Branch `b/relogio`; commits pequenos; ao final, `git push -u origin b/relogio`. O merge na `main` é feito junto com o João.
-- Não mexa em `app/`, `extraction/`, `insights/`, `CLAUDE.md` nem `docs/contexto.md`.
+- Evite mexer em `app/`, `extraction/` e `insights/` enquanto o João trabalha neles (para não dar conflito). Sempre `git pull` antes e confira `git log origin/main` depois de cada push.
