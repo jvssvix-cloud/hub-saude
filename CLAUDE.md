@@ -19,7 +19,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 
 ## Estrutura do repositório
 ```
-app/                  # Next.js, 2 áreas: PACIENTE (/, /evolucao, /relogio, /exames, /exame/[analito]: calma, gráficos, detalhe opcional) e MÉDICO (/medico pede acesso pelo telefone; /medico/acesso/[token] painel denso; paciente aprova em /compartilhar). Identidade clara (off-white, bege, sálvia) + faixa Rivio. Médico envia recomendações (nota) que o paciente vê na Início como "Revisado por". Exames do BANCO (plano B: insights.json). Ver app/README.md
+app/                  # Next.js, 2 áreas: PACIENTE (abas Início · Exames · Plano · Mais; /exames por sistema -> /sistema/[id] -> /exame/[analito]; /documentos/[id] = cada laudo; /plano = nota do médico + próximos exames; /relogio, /evolucao, /compartilhar: calma, gráficos, detalhe opcional) e MÉDICO (/medico pede acesso pelo telefone; /medico/acesso/[token] painel denso; paciente aprova em /compartilhar). Identidade clara (off-white, bege, sálvia) + faixa Rivio. Médico envia recomendações (nota) que o paciente vê na Início como "Revisado por". Exames do BANCO (plano B: insights.json). Ver app/README.md
 extraction/           # documento -> dados: prompt (versionado), schema, normalização, testes de acurácia  [PRONTO]
 insights/             # dados -> informação: séries, áreas, tendência, repetição, vacinação, resumo do médico [PRONTO]
 wearable/             # relógio: dados sintéticos, 4 regras de alerta, cruzamento com exames, simulador de sincronização [PRONTO]

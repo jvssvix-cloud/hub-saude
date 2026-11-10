@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import { BarraContagem } from "@/components/LinhaIndice";
 import { NotaDoMedico } from "@/components/NotaDoMedico";
 import { MiniCurva } from "@/components/MiniCurva";
 import { carregarInsights } from "@/lib/dados";
@@ -28,16 +29,29 @@ export default async function Inicio() {
         <p className="mt-1.5 text-[15px] text-suave">
           {anos} anos de exames, {periodo.laboratorios.length} laboratórios e o seu relógio, num lugar só.
         </p>
-        <Link href="/evolucao" className="mt-3 flex flex-wrap items-center gap-2 text-sm">
-          <span className="rounded-full bg-marca-fundo px-3 py-1 font-semibold text-marca">
-            <span className="num">{naFaixa}</span> na faixa
-          </span>
-          <span className="rounded-full bg-atencao-fundo px-3 py-1 font-semibold text-atencao">
-            <span className="num">{fora}</span> fora da faixa
-          </span>
-          <span className="text-suave">de {insights.series.length} exames acompanhados ›</span>
-        </Link>
       </section>
+
+      <Link href="/exames" className="block rounded-3xl border border-linha bg-cartao p-4 transition-colors hover:border-salvia sm:p-5">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="font-bold">
+            <span className="num text-2xl">{insights.series.length}</span> exames acompanhados
+          </p>
+          <span className="shrink-0 text-sm font-semibold text-marca">Ver por sistema ›</span>
+        </div>
+        <div className="mt-3">
+          <BarraContagem ok={naFaixa} fora={fora} grossa />
+        </div>
+        <div className="mt-2 flex gap-4 text-sm">
+          <span className="flex items-center gap-1.5">
+            <span aria-hidden className="size-2.5 rounded-full bg-[var(--ok)]" />
+            <span className="num font-semibold">{naFaixa}</span> na faixa
+          </span>
+          <span className="flex items-center gap-1.5 text-atencao">
+            <span aria-hidden className="size-2.5 rounded-full bg-fora" />
+            <span className="num font-semibold">{fora}</span> fora da faixa
+          </span>
+        </div>
+      </Link>
 
       <section className="rounded-3xl bg-bege p-4 sm:p-5">
         <div className="mb-3">

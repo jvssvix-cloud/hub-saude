@@ -3,11 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const comeca = (p: string, ...prefixos: string[]) => prefixos.some((x) => p === x || p.startsWith(x + "/"));
+
 const ITENS = [
   { href: "/", rotulo: "Início", icone: IconeCasa, ativo: (p: string) => p === "/" },
-  { href: "/evolucao", rotulo: "Evolução", icone: IconeGrafico, ativo: (p: string) => p.startsWith("/evolucao") || p.startsWith("/exame/") },
-  { href: "/relogio", rotulo: "Relógio", icone: IconeRelogio, ativo: (p: string) => p.startsWith("/relogio") },
-  { href: "/exames", rotulo: "Exames", icone: IconeDocumento, ativo: (p: string) => p.startsWith("/exames") },
+  {
+    href: "/exames",
+    rotulo: "Exames",
+    icone: IconeGrafico,
+    ativo: (p: string) => comeca(p, "/exames", "/exame", "/sistema", "/evolucao", "/documentos"),
+  },
+  { href: "/plano", rotulo: "Plano", icone: IconePlano, ativo: (p: string) => comeca(p, "/plano") },
+  { href: "/mais", rotulo: "Mais", icone: IconeMais, ativo: (p: string) => comeca(p, "/mais", "/relogio", "/compartilhar") },
 ];
 
 /** Barra inferior no celular; no desktop vira menu no topo (mesmos itens). */
@@ -60,9 +67,9 @@ function IconeCasa() {
 function IconeGrafico() {
   return <svg {...svg}><path d="M4 19h16" /><path d="M5 15l4-4 3 3 6-7" /></svg>;
 }
-function IconeRelogio() {
-  return <svg {...svg}><rect x="6" y="6" width="12" height="12" rx="3" /><path d="M9 6l1-3h4l1 3M9 18l1 3h4l1-3" /><path d="M12 9.5V12l1.5 1.5" /></svg>;
+function IconePlano() {
+  return <svg {...svg}><rect x="5" y="4" width="14" height="17" rx="2.5" /><path d="M9 4.5V3h6v1.5" /><path d="M8.5 11l1.5 1.5 3-3M8.5 16.5h7" /></svg>;
 }
-function IconeDocumento() {
-  return <svg {...svg}><path d="M7 3h7l4 4v14H7z" /><path d="M14 3v4h4" /><path d="M10 12h5M10 16h5" /></svg>;
+function IconeMais() {
+  return <svg {...svg}><circle cx="6" cy="12" r="1.3" /><circle cx="12" cy="12" r="1.3" /><circle cx="18" cy="12" r="1.3" /></svg>;
 }

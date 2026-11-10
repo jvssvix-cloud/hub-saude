@@ -1,71 +1,96 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { BarraContagem } from "@/components/LinhaIndice";
 import { carregarInsights } from "@/lib/dados";
-import { dataBr, linkLaudo, serie, type Insights } from "@/lib/insights";
+import { laudos } from "@/lib/documentos";
+import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
+import { relogio } from "@/lib/relogio";
 
 export const metadata: Metadata = { title: "Exames · Hub de Saúde" };
 
-type Laudo = { id: string; arquivo: string; laboratorio: string; data: string; exames: number };
-
-/** Os laudos originais, do mais recente ao mais antigo, montados a partir da origem de cada resultado. */
-function laudos(i: Insights): Laudo[] {
-  const m = new Map<string, Laudo>();
-  for (const s of i.series) {
-    for (const p of s.pontos) {
-      const l = m.get(p.fonte.laudo_id) ?? { id: p.fonte.laudo_id, arquivo: p.fonte.arquivo, laboratorio: p.fonte.laboratorio, data: p.data, exames: 0 };
-      l.exames += 1;
-      m.set(l.id, l);
-    }
-  }
-  return [...m.values()].sort((a, b) => b.data.localeCompare(a.data));
-}
-
-const nomeCurto = (lab: string) =>
-  lab.toLowerCase().replace(/(^|\s)(\p{L})/gu, (_, e, c) => e + c.toUpperCase()).replace(/ De | Da | Do /g, (x) => x.toLowerCase());
-
+/** Exames por sistema do corpo: quantos estão na faixa e quantos fora, num olhar. Toque abre o sistema. */
 export default async function Exames() {
   const insights = await carregarInsights();
-  const lista = laudos(insights);
+  const areas = areasOrdenadas(insights)
+    .map((a) => {
+      const series = seriesDaArea(insights, a);
+      const fora = series.filter((s) => s.alterado).length;
+      return { area: a, total: series.length, fora };
+    })
+    .filter((x) => x.total > 0);
+  const fora = insights.series.filter((s) => s.alterado).length;
+  const atencaoRelogio = relogio.alertas.filter((a) => a.nivel === "atencao").length;
+  const nLaudos = laudos(insights).length;
 
   return (
-    <div className="space-y-7 pt-3">
+    <div className="space-y-6 pt-3">
       <section>
         <h1 className="text-[28px] font-bold leading-tight tracking-tight">Exames</h1>
         <p className="mt-1 text-[15px] text-suave">
-          {lista.length} laudos de {insights.periodo.laboratorios.length} laboratórios. Cada número do app vem de um deles.
+          {insights.series.length} exames acompanhados · <span className="text-atencao">{fora} fora da faixa</span>
         </p>
       </section>
 
-      {insights.repeticoes.map((r) => (
-        <section key={r.de.laudo_id + r.para.laudo_id} className="rounded-3xl bg-bege p-4">
-          <p className="font-semibold">Exames feitos duas vezes</p>
-          <p className="mt-1 text-sm text-suave">
-            {r.analitos.map((a) => serie(insights, a)?.nome ?? a).join(", ")} foram refeitos {r.dias} dias depois, em outro
-            laboratório. Com tudo num lugar só, o médico teria visto o anterior.
-          </p>
-        </section>
-      ))}
-
-      <ul className="divide-y divide-linha overflow-hidden rounded-3xl border border-linha bg-cartao">
-        {lista.map((l) => (
-          <li key={l.id}>
-            <a href={linkLaudo({ arquivo: l.arquivo, pagina: 1 })} target="_blank" className="flex items-center gap-3 px-4 py-3 hover:bg-fundo">
-              <span aria-hidden className="grid size-10 shrink-0 place-items-center rounded-2xl bg-marca-fundo text-marca">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 3h7l4 4v14H7z" />
-                  <path d="M14 3v4h4" />
-                </svg>
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block font-semibold">{dataBr(l.data)}</span>
-                <span className="block truncate text-[13px] text-suave">
-                  {nomeCurto(l.laboratorio)} · {l.exames} resultados
+      <section>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Por sistema</h2>
+        <ul className="divide-y divide-linha overflow-hidden rounded-3xl border border-linha bg-cartao">
+          {areas.map(({ area, total, fora }) => (
+            <li key={area.id}>
+              <Link href={`/sistema/${area.id}`} className="flex items-center gap-3 px-4 py-3.5 hover:bg-fundo">
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-baseline justify-between gap-2">
+                    <span className="font-semibold">{area.nome}</span>
+                    <span className="num shrink-0 text-[13px] text-suave">
+                      {fora > 0 ? <span className="font-semibold text-atencao">{fora} fora · </span> : null}
+                      {total} {total === 1 ? "exame" : "exames"}
+                    </span>
+                  </span>
+                  <span className="mt-2 block">
+                    <BarraContagem ok={total - fora} fora={fora} />
+                  </span>
                 </span>
+                <span aria-hidden className="text-suave">›</span>
+              </Link>
+            </li>
+          ))}
+          <li>
+            <Link href="/relogio" className="flex items-center gap-3 px-4 py-3.5 hover:bg-fundo">
+              <span className="min-w-0 flex-1">
+                <span className="flex items-baseline justify-between gap-2">
+                  <span className="font-semibold">Coração e sono · relógio</span>
+                  <span className="shrink-0 text-[13px] text-suave">
+                    {atencaoRelogio > 0 ? <span className="font-semibold text-atencao">{atencaoRelogio} avisos · </span> : null}
+                    {relogio.dias.length} dias
+                  </span>
+                </span>
+                <span className="mt-1 block text-[13px] text-suave">Batimento em repouso, ritmo, sono e passos</span>
               </span>
-              <span className="shrink-0 text-sm font-semibold text-marca">Abrir ↗</span>
-            </a>
+              <span aria-hidden className="text-suave">›</span>
+            </Link>
           </li>
-        ))}
-      </ul>
+        </ul>
+      </section>
+
+      <Link
+        href="/documentos"
+        className="flex items-center gap-3 rounded-3xl bg-bege px-4 py-4 transition-colors hover:bg-bege-forte"
+      >
+        <span aria-hidden className="grid size-10 shrink-0 place-items-center rounded-2xl bg-cartao text-marca">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M7 3h7l4 4v14H7z" />
+            <path d="M14 3v4h4" />
+          </svg>
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-semibold">Documentos</span>
+          <span className="block text-[13px] text-suave">{nLaudos} laudos originais, de onde vem cada número</span>
+        </span>
+        <span aria-hidden className="text-suave">›</span>
+      </Link>
+
+      <Link href="/evolucao" className="inline-block text-sm font-semibold text-marca hover:underline">
+        Ver a evolução de todos os índices ›
+      </Link>
     </div>
   );
 }

@@ -6,13 +6,13 @@ import { getServidor, temChaveServidor } from "@/lib/supabase";
 type Nota = { id: string; autor_nome: string; itens: string[]; criado_em: string };
 
 /** A última nota que um médico revisou e enviou pelo painel. Lida na hora (fora do cache da página). */
-export async function NotaDoMedico() {
+export async function NotaDoMedico({ vazio = null }: { vazio?: React.ReactNode } = {}) {
   await connection();
-  if (!temChaveServidor()) return null;
+  if (!temChaveServidor()) return vazio;
   const [nota] = await getServidor<Nota[]>(
     `nota_medico?paciente_id=eq.${PACIENTE_ID}&select=id,autor_nome,itens,criado_em&order=criado_em.desc&limit=1`,
   ).catch(() => [] as Nota[]);
-  if (!nota) return null;
+  if (!nota) return vazio;
 
   return (
     <section className="rounded-3xl border border-salvia bg-cartao p-4 sm:p-5">

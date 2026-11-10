@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { MiniCurva } from "@/components/MiniCurva";
+import { LinhaIndice as Linha, LinhaSerie } from "@/components/LinhaIndice";
 import { carregarInsights } from "@/lib/dados";
-import { areasOrdenadas, seriesDaArea, type Serie } from "@/lib/insights";
-import { fraseSerie, mediaSemanal } from "@/lib/paciente";
+import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
+import { mediaSemanal } from "@/lib/paciente";
 import { relogio } from "@/lib/relogio";
 
 export const metadata: Metadata = { title: "Evolução · Hub de Saúde" };
@@ -66,43 +65,5 @@ export default async function Evolucao() {
         );
       })}
     </div>
-  );
-}
-
-function LinhaSerie({ s }: { s: Serie }) {
-  return (
-    <Linha
-      href={`/exame/${s.analito}`}
-      titulo={s.nome}
-      frase={fraseSerie(s)}
-      fora={s.alterado}
-      valores={s.pontos.map((p) => p.valor)}
-      faixa={{ min: s.ultimo.ref_min, max: s.ultimo.ref_max }}
-    />
-  );
-}
-
-function Linha({
-  href, titulo, frase, fora, valores, faixa, cor,
-}: {
-  href: string;
-  titulo: string;
-  frase: string;
-  fora: boolean;
-  valores: number[];
-  faixa?: { min: number | null; max: number | null };
-  cor?: string;
-}) {
-  return (
-    <li>
-      <Link href={href} className="grid grid-cols-[minmax(0,1fr)_96px_auto] items-center gap-3 px-4 py-3 hover:bg-fundo">
-        <span className="min-w-0">
-          <span className="block font-semibold">{titulo}</span>
-          <span className={`block text-[13px] leading-snug ${fora ? "text-atencao" : "text-suave"}`}>{frase}</span>
-        </span>
-        <MiniCurva valores={valores} faixa={faixa} destaqueFora={fora} cor={cor} altura={44} largura={110} />
-        <span aria-hidden className="text-suave">›</span>
-      </Link>
-    </li>
   );
 }

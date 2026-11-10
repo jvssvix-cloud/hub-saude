@@ -65,6 +65,8 @@ export type Insights = {
   series: Serie[];
   areas: Area[];
   repeticoes: Repeticao[];
+  /** Próximo exame de rotina de cada analito, pelo intervalo a partir do último resultado. */
+  proximos: { analito: string; nome: string; ultimo: string; previsto: string; situacao: string }[];
   resumo_medico: string[];
 };
 
