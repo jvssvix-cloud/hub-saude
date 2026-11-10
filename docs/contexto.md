@@ -144,7 +144,8 @@ Link: https://claude.ai/artifact/5uVxjYToEKD4j3cxFzMkSb (valores ilustrativos; a
 - 09/11 noite: **regra de trabalho:** toda mudança estrutural é registrada no `CLAUDE.md` e neste arquivo na hora.
 
 ## 8. Perguntas em aberto
-- Região do projeto Supabase (deve ser São Paulo) e qual relógio/celular cada um tem (define a integração real).
+- Região do projeto Supabase (deve ser São Paulo).
+- (resolvido 09/11) **Ninguém do time tem relógio** → relógio 100% sintético; recomendação a confirmar: simular a sincronização periódica pela mesma rota que um relógio real usaria.
 - Confirmar: app no Claude Code e Lovable só para landing?
 - Alguém tem relógio com histórico (Apple Saúde) para a importação opcional?
 - Critérios de avaliação dos jurados?
