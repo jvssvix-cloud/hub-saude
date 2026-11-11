@@ -4,13 +4,13 @@ import { BarraContagem } from "@/components/LinhaIndice";
 import { NotaDoMedico } from "@/components/NotaDoMedico";
 import { MiniCurva } from "@/components/MiniCurva";
 import { ProximoPasso } from "@/components/ProximoPasso";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { serie } from "@/lib/insights";
 import { NIVEL, fraseSerie, mediaSemanal, outrasAreas, temas, type Tema } from "@/lib/paciente";
 import { relogio } from "@/lib/relogio";
 
 export default async function Inicio() {
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   const { paciente, periodo } = insights;
   const lista = temas(insights, relogio);
   const pendentes = lista.filter((t) => t.nivel === "conversar").length;

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { sair } from "@/app/entrar/acoes";
 
 export const metadata: Metadata = { title: "Mais · Hub de Saúde" };
 
@@ -43,6 +44,14 @@ export default function Mais() {
           </ul>
         </section>
       ))}
+      <form action={sair}>
+        <button
+          type="submit"
+          className="w-full rounded-3xl border border-linha bg-cartao px-4 py-3.5 text-left font-semibold text-marca hover:bg-fundo"
+        >
+          Sair da conta
+        </button>
+      </form>
       <p className="text-center text-xs text-suave">Gerado por regras a partir dos seus exames e do seu relógio. Não é diagnóstico.</p>
     </div>
   );

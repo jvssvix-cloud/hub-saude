@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { laudos, nomeLab } from "@/lib/documentos";
 import { dataBr, serie } from "@/lib/insights";
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Documentos · Hub de Saúde" };
 
 /** Os documentos originais por categoria (exames de laboratório, vacinação). Cada laudo abre a lista dos resultados que saíram dele. */
 export default async function Documentos() {
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   const lista = laudos(insights);
   // carteiras e comprovantes de vacinação: um por arquivo de origem das doses
   const porArquivo = new Map<string, { arquivo: string; doses: number; de: string; ate: string }>();

@@ -18,9 +18,20 @@ const ITENS = [
   { href: "/mais", rotulo: "Mais", icone: IconeMais, ativo: (p: string) => comeca(p, "/mais", "/relogio", "/compartilhar", "/conectar-ia") },
 ];
 
-/** Barra inferior no celular; no desktop vira menu no topo (mesmos itens). */
-export function NavPaciente({ variante }: { variante: "barra" | "topo" }) {
-  const p = usePathname();
+/**
+ * Barra inferior no celular; no desktop vira menu no topo (mesmos itens).
+ * O endereço só existe na hora da requisição: o layout põe a nav num <Suspense> com fallback={<NavPaciente caminho="" />},
+ * a mesma nav sem item ativo, para a barra não piscar.
+ */
+export function NavPaciente({ variante, caminho }: { variante: "barra" | "topo"; caminho?: string }) {
+  return caminho === undefined ? <NavComEndereco variante={variante} /> : <Nav variante={variante} p={caminho} />;
+}
+
+function NavComEndereco({ variante }: { variante: "barra" | "topo" }) {
+  return <Nav variante={variante} p={usePathname()} />;
+}
+
+function Nav({ variante, p }: { variante: "barra" | "topo"; p: string }) {
   if (variante === "topo") {
     return (
       <nav className="hidden items-center gap-1 sm:flex">

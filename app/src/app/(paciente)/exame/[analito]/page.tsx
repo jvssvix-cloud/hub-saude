@@ -1,24 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { GraficoSerie } from "@/components/GraficoSerie";
 import { AvisoNaoDiagnostico, SeloStatus } from "@/components/ui";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { EXPLICACOES } from "@/lib/explicacoes";
 import { areaDe, dataBr, faixa, linkLaudo, numero, serie, seriesEmOrdem } from "@/lib/insights";
 
-export async function generateStaticParams() {
-  const { series } = await carregarInsights();
-  return series.map((s) => ({ analito: s.analito }));
-}
+// Os exames são de cada paciente (sessão): nada é gerado no build e o título não depende dos dados.
+export const metadata: Metadata = { title: "Exame · Hub de Saúde" };
 
-export async function generateMetadata({ params }: PageProps<"/exame/[analito]">) {
-  const s = serie(await carregarInsights(), (await params).analito);
-  return { title: s ? `${s.nome} · Hub de Saúde` : "Exame · Hub de Saúde" };
-}
-
-// As páginas dos exames que já existem são geradas no build (generateStaticParams); o Suspense só satisfaz a regra do Next 16
-// de não ler o endereço fora de um limite de carregamento.
+// Lê a sessão e o endereço: fica dentro do Suspense (regra do Next 16 com cacheComponents).
 export default function DetalheExame({ params }: PageProps<"/exame/[analito]">) {
   return (
     <Suspense fallback={<p className="text-sm text-suave">Carregando…</p>}>
@@ -28,7 +21,7 @@ export default function DetalheExame({ params }: PageProps<"/exame/[analito]">) 
 }
 
 async function Conteudo({ params }: { params: Promise<{ analito: string }> }) {
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   const s = serie(insights, (await params).analito);
   if (!s) notFound();
   const area = areaDe(insights, s);

@@ -4,13 +4,13 @@ import { GraficoRelogio } from "@/components/GraficoRelogio";
 import {
   FONTE, alertasOrdenados, dataHoraBr, decimal, inteiro, relogio, serieDoContexto, type Alerta,
 } from "@/lib/relogio";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { dataBr, type Serie } from "@/lib/insights";
 
 export const metadata: Metadata = { title: "Relógio · Hub de Saúde" };
 
 export default async function Relogio() {
-  const { series } = await carregarInsights();
+  const { series } = await meusInsights();
   const { resumo: r, eventos, dias } = relogio;
   const alertas = alertasOrdenados();
   const atencao = alertas.filter((a) => a.nivel === "atencao");

@@ -1,19 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { laudos, nomeLab } from "@/lib/documentos";
 import { dataBr, faixa, linkLaudo, numero } from "@/lib/insights";
 
-export async function generateStaticParams() {
-  return laudos(await carregarInsights()).map((l) => ({ id: l.id }));
-}
-
-export async function generateMetadata({ params }: PageProps<"/documentos/[id]">) {
-  const { id } = await params;
-  const l = laudos(await carregarInsights()).find((x) => x.id === id);
-  return { title: l ? `Laudo de ${dataBr(l.data)} · Hub de Saúde` : "Documento · Hub de Saúde" };
-}
+// Os laudos são de cada paciente (sessão): nada é gerado no build e o título não depende dos dados.
+export const metadata: Metadata = { title: "Documento · Hub de Saúde" };
 
 export default function Documento({ params }: PageProps<"/documentos/[id]">) {
   return (
@@ -25,7 +19,7 @@ export default function Documento({ params }: PageProps<"/documentos/[id]">) {
 
 async function Conteudo({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const l = laudos(await carregarInsights()).find((x) => x.id === id);
+  const l = laudos(await meusInsights()).find((x) => x.id === id);
   if (!l) notFound();
   const fora = l.resultados.filter((r) => r.fora).length;
 

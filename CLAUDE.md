@@ -40,7 +40,7 @@ Cada pasta pronta tem README com comandos. Resumo:
 
 ## Contrato entre as partes
 - Extração → app/banco: formato do gabarito (`tools/gerador-laudos/README.md`) + campos v5 (`qualificador`, `resultado_texto`, `data_coleta` por resultado) e `doses` de vacina.
-- Insights → app: o app roda as regras de `insights/src/regras.ts` sobre o banco (`insights/src/banco.ts`, via `app/src/lib/dados.ts`, etiqueta de cache `historico`); `insights/saida/insights.json` é o plano B (tipos em `insights/src/tipos.ts`). Gravou no banco? `updateTag("historico")`.
+- Insights → app: o app roda as regras de `insights/src/regras.ts` sobre o banco (`insights/src/banco.ts`, via `app/src/lib/dados.ts`: `carregarInsights(pacienteId)`, etiqueta de cache **por paciente** `historico:<id>`); `insights/saida/insights.json` é o plano B, só do Roberto (tipos em `insights/src/tipos.ts`). Gravou no banco? `updateTag(tagHistorico(pacienteId))`.
 - Relógio → app: `wearable/saida/relogio.json` (tipo `RelogioJson` em `wearable/src/tipos.ts`). Rota futura `/api/relogio/sync` recebe um `Lote` (`{dias, eventos}`) e usa `mesclar` + `montarRelogio`.
 - Banco: entrada grava `documento` + `observacao`; médico, MCP e API leem **só** por `acessar_historico(token)`, que confere o consentimento e grava o log. Tipos em `lib/types.ts`, contrato em `supabase/README.md`.
 

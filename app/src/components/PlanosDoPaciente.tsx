@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { refresh } from "next/cache";
 import { connection } from "next/server";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { seriesCitadas } from "@/lib/insights";
 import { horaBrasilia } from "@/lib/medico";
 import { escreverServidor, getServidor, temChaveServidor } from "@/lib/supabase";
@@ -53,7 +53,7 @@ export async function PlanosDoPaciente() {
     );
   }
 
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   return (
     <section>
       <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Seus planos</h2>

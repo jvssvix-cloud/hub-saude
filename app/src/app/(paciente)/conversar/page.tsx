@@ -3,7 +3,7 @@ import { connection } from "next/server";
 import { Suspense } from "react";
 import { Chat } from "@/components/Chat";
 import { temChaveChat } from "@/lib/chat";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import type { Insights } from "@/lib/insights";
 
 export const metadata: Metadata = { title: "Conversar · Hub de Saúde" };
@@ -37,6 +37,6 @@ export default function Conversar() {
 
 async function Conteudo() {
   await connection(); // a chave do chat é lida do ambiente na hora
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   return <Chat nome={insights.paciente.nome.split(" ")[0]} sugestoes={sugestoes(insights)} ligado={temChaveChat()} />;
 }

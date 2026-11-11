@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { connection } from "next/server";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { mesAno, type Insights } from "@/lib/insights";
 import { temas } from "@/lib/paciente";
 import { relogio } from "@/lib/relogio";
@@ -91,7 +91,7 @@ function escolher(i: Insights, consentimentos: Consentimento[] | null): Passo {
 /** Cartão único no topo da Início. Lido na hora (pedidos de acesso mudam a qualquer momento). */
 export async function ProximoPasso() {
   await connection();
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   const consentimentos = temChaveServidor()
     ? await getServidor<Consentimento[]>(
         `consentimento?paciente_id=eq.${PACIENTE_ID}&select=destinatario_nome,destinatario_tipo,status,expira_em,revogado_em&order=criado_em.desc&limit=30`,

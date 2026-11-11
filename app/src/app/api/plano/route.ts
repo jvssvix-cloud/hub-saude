@@ -6,7 +6,7 @@ import { montarPlano, temChaveChat, type Mensagem } from "@/lib/chat";
 import { carregarInsights } from "@/lib/dados";
 import { relogio } from "@/lib/relogio";
 import { escreverServidor, temChaveServidor } from "@/lib/supabase";
-import { PACIENTE_ID } from "@/lib/usuario";
+import { pacienteDaSessao } from "@/lib/sessao";
 
 const MAX_MENSAGENS = 12;
 const MAX_TEXTO = 2000;
@@ -14,6 +14,8 @@ const MAX_TEXTO = 2000;
 export async function POST(req: Request) {
   if (!temChaveChat()) return Response.json({ erro: "sem_chave" }, { status: 503 });
   if (!temChaveServidor()) return Response.json({ erro: "sem_banco" }, { status: 503 });
+  const p = await pacienteDaSessao();
+  if (!p) return Response.json({ erro: "sem_sessao" }, { status: 401 });
 
   const corpo = (await req.json().catch(() => null)) as { mensagens?: unknown } | null;
   const mensagens: Mensagem[] = (Array.isArray(corpo?.mensagens) ? corpo.mensagens : [])
@@ -31,7 +33,7 @@ export async function POST(req: Request) {
 
   let plano;
   try {
-    const insights = await carregarInsights();
+    const insights = await carregarInsights(p.id);
     plano = await montarPlano({ insights, relogio, origem: new URL(req.url).origin }, mensagens);
   } catch (e) {
     console.error("[plano] geração:", e instanceof Error ? e.message : e);
@@ -40,7 +42,7 @@ export async function POST(req: Request) {
 
   try {
     const [linha] = await escreverServidor<{ id: string }[]>("POST", "plano_paciente", {
-      paciente_id: PACIENTE_ID, titulo: plano.titulo, itens: plano.itens, origem: "chat",
+      paciente_id: p.id, titulo: plano.titulo, itens: plano.itens, origem: "chat",
     });
     return Response.json({ id: linha.id, titulo: plano.titulo, itens: plano.itens });
   } catch (e) {

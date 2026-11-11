@@ -3,10 +3,12 @@
  * extração e devolve a PRÉVIA. Nada entra no histórico aqui: quem salva é a ação "Salvar" da tela /enviar.
  */
 import { ErroEnvio, lerExame } from "@/lib/envio";
+import { pacienteDaSessao } from "@/lib/sessao";
 
 export const maxDuration = 120; // a leitura do Claude leva de 10 a 60 s
 
 export async function POST(req: Request) {
+  if (!(await pacienteDaSessao())) return Response.json({ erro: "sem_sessao", mensagem: "Entre de novo para enviar." }, { status: 401 });
   const form = await req.formData().catch(() => null);
   const arquivo = form?.get("arquivo");
   if (!(arquivo instanceof File)) return Response.json({ erro: "sem_arquivo", mensagem: "Escolha um arquivo." }, { status: 400 });

@@ -1,20 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { BarraContagem, LinhaSerie } from "@/components/LinhaIndice";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { seriesDaArea } from "@/lib/insights";
 
-export async function generateStaticParams() {
-  const { areas } = await carregarInsights();
-  return areas.map((a) => ({ id: a.id }));
-}
-
-export async function generateMetadata({ params }: PageProps<"/sistema/[id]">) {
-  const { id } = await params;
-  const a = (await carregarInsights()).areas.find((x) => x.id === id);
-  return { title: a ? `${a.nome} · Hub de Saúde` : "Exames · Hub de Saúde" };
-}
+// As áreas são de cada paciente (sessão): nada é gerado no build e o título não depende dos dados.
+export const metadata: Metadata = { title: "Exames · Hub de Saúde" };
 
 export default function Sistema({ params }: PageProps<"/sistema/[id]">) {
   return (
@@ -26,7 +19,7 @@ export default function Sistema({ params }: PageProps<"/sistema/[id]">) {
 
 async function Conteudo({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   const area = insights.areas.find((a) => a.id === id);
   if (!area) notFound();
   const series = seriesDaArea(insights, area).sort((a, b) => Number(b.alterado) - Number(a.alterado));

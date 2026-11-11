@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FiltroExames, type ExameFiltravel } from "@/components/FiltroExames";
 import { BarraContagem } from "@/components/LinhaIndice";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { laudos } from "@/lib/documentos";
 import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
 import { fraseSerie } from "@/lib/paciente";
@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: "Exames · Hub de Saúde" };
 
 /** Exames por sistema do corpo: quantos estão na faixa e quantos fora, num olhar. Toque abre o sistema. */
 export default async function Exames() {
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   const areas = areasOrdenadas(insights)
     .map((a) => {
       const series = seriesDaArea(insights, a);

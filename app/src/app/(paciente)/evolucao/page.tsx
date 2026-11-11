@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LinhaIndice as Linha, LinhaSerie } from "@/components/LinhaIndice";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
 import { mediaSemanal } from "@/lib/paciente";
 import { relogio } from "@/lib/relogio";
@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "Evolução · Hub de Saúde" };
 
 /** Todos os índices, agrupados por tema. Só forma + frase; número e laudo ficam um toque adiante. */
 export default async function Evolucao() {
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   const areas = areasOrdenadas(insights);
   const temRitmo = relogio.alertas.some((a) => a.id === "ritmo_irregular" || a.id === "fc_repouso_subindo");
 

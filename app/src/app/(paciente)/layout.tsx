@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { NavPaciente } from "@/components/NavPaciente";
 
 /** Área do paciente: coluna estreita (feita para o celular), linguagem simples, navegação embaixo. */
@@ -15,14 +16,18 @@ export default function LayoutPaciente({ children }: { children: React.ReactNode
             </span>
             hub saúde
           </Link>
-          <NavPaciente variante="topo" />
+          <Suspense fallback={<NavPaciente variante="topo" caminho="" />}>
+            <NavPaciente variante="topo" />
+          </Suspense>
           <span aria-label="Roberto" className="grid size-8 place-items-center rounded-full bg-bege text-sm font-semibold text-marca sm:hidden">
             R
           </span>
         </div>
       </header>
       <main className="mx-auto max-w-2xl px-4 pb-28 pt-2 sm:pb-16">{children}</main>
-      <NavPaciente variante="barra" />
+      <Suspense fallback={<NavPaciente variante="barra" caminho="" />}>
+        <NavPaciente variante="barra" />
+      </Suspense>
     </>
   );
 }

@@ -11,18 +11,30 @@ npm run build      # o que a Vercel roda
 npm run typecheck && npm run lint
 ```
 
+## Conta e sessão do paciente
+
+- **Login:** `/entrar` (entrar, criar conta, "Entrar na demonstração"). Supabase Auth com e-mail e senha; o
+  `@supabase/ssr` só cuida do login e do cookie (httpOnly). O resto do app continua com fetch puro.
+- **`src/lib/sessao.ts`:** `pacienteAtual()` (páginas e Server Actions: sem sessão → `/entrar`, conta sem paciente →
+  `/checkup`) e `pacienteDaSessao()` (rotas de API: `null` → 401). Liga a conta ao paciente por `paciente.usuario_id`.
+- **`src/proxy.ts`:** renova o cookie e faz a checagem otimista. Fora dele: `/medico`, `/api/mcp/[token]` e arquivos.
+- **Demonstração:** conta ligada ao Roberto. `DEMO_EMAIL` e `DEMO_SENHA` só no `.env.local` da raiz e no painel da
+  Vercel (nunca no código nem no `.env.example`). Criar/conferir: `node scripts/criar-conta-demo.mjs` (gera a senha e
+  grava no `.env.local` se faltar; não imprime a senha). Sem as duas variáveis, o botão da demonstração não aparece.
+
 ## De onde vêm os dados
 
-**Exames e vacinas: do banco (Supabase).** `src/lib/dados.ts` (`carregarInsights()`, só servidor) lê `documento` +
-`observacao` do Roberto com a chave secreta (`insights/src/banco.ts`, API REST, sem biblioteca) e roda as mesmas
+**Exames e vacinas: do banco (Supabase).** `src/lib/dados.ts` (`meusInsights()` = `carregarInsights(pacienteId)` do
+paciente da sessão, só servidor) lê `documento` + `observacao` do paciente com a chave secreta (`insights/src/banco.ts`, API REST, sem biblioteca) e roda as mesmas
 regras de `insights/src/regras.ts` na hora. As telas recebem o resultado; nenhuma fala com o banco direto.
 
 - **Variáveis:** `NEXT_PUBLIC_SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY`. O `next.config.ts` lê o `.env.local` da
   **raiz** do repositório (o mesmo da extração); na Vercel, vão no painel.
 - **Plano B:** sem a chave, ou se o banco falhar, usa `src/dados/insights.json` e avisa no log
-  (`[dados] banco indisponível`). A demo não quebra.
-- **Cache:** resultado guardado com a etiqueta `historico` (`TAG_HISTORICO`), revalida a cada 1h. Quem gravar no
-  banco (envio de exame) chama `updateTag(TAG_HISTORICO)` numa Server Action e a próxima tela já vem com o dado novo.
+  (`[dados] banco indisponível`). **Só para o Roberto** (o arquivo é dele); outro paciente recebe erro, nunca os dados dele.
+- **Cache por paciente:** o `pacienteId` entra na chave do `use cache` e na etiqueta `historico:<id>`
+  (`tagHistorico(id)`), revalida a cada 1h. Quem gravar no banco (envio de exame) chama
+  `updateTag(tagHistorico(id))` numa Server Action e a próxima tela daquele paciente já vem com o dado novo.
 - **Conferência:** `cd insights && npm run conferir-banco` compara insights do banco com os do JSON (têm que ser iguais).
 - O app importa `insights/src` pelo atalho `@insights/*` (`tsconfig.json`), com `turbopack.root` na raiz do repositório.
 

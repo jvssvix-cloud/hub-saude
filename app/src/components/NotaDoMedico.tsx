@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { connection } from "next/server";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { seriesCitadas, type Serie } from "@/lib/insights";
 import { horaBrasilia } from "@/lib/medico";
 import { PACIENTE_ID } from "@/lib/usuario";
@@ -19,7 +19,7 @@ export async function NotaDoMedico({ vazio = null }: { vazio?: React.ReactNode }
     `nota_medico?paciente_id=eq.${PACIENTE_ID}&select=id,autor_nome,itens,criado_em&order=criado_em.desc&limit=1`,
   ).catch(() => [] as Nota[]);
   if (!nota) return vazio;
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   const fora = insights.series.filter((s) => s.alterado);
 
   return (

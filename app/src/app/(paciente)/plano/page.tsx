@@ -3,14 +3,14 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { NotaDoMedico } from "@/components/NotaDoMedico";
 import { PlanosDoPaciente } from "@/components/PlanosDoPaciente";
-import { carregarInsights } from "@/lib/dados";
+import { meusInsights } from "@/lib/dados";
 import { mesAno } from "@/lib/insights";
 
 export const metadata: Metadata = { title: "Plano · Hub de Saúde" };
 
 /** O que fazer agora: as recomendações revisadas pelo médico e os próximos exames de rotina. */
 export default async function Plano() {
-  const insights = await carregarInsights();
+  const insights = await meusInsights();
   // próximos exames agrupados pelo mês previsto
   const porMes = new Map<string, string[]>();
   for (const p of insights.proximos) {
