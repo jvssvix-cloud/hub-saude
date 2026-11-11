@@ -4,6 +4,8 @@ O Claude Code lê este arquivo automaticamente. O contexto completo (estratégia
 **Toda mudança estrutural (pasta nova, decisão, regra, escopo) deve ser registrada aqui e em `docs/contexto.md` na mesma hora.**
 
 ## O que estamos construindo
+**Nome do produto: Zelo** (decidido 11/11; logo em `app/public/zelo.png`, favicon em `app/src/app/icon.png`). O repositório e o projeto do Supabase continuam `hub-saude`.
+
 Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira de vacinação em PDF ou foto, dados do relógio) num lugar só, mostra a evolução de cada exame ao longo dos anos ao lado da faixa de referência, avisa quando é hora de procurar um médico (regras explicáveis) e gera um link de consentimento para o médico ver um resumo, com cada número apontando para o documento original.
 
 - **Entrega:** sábado 14/11/2026. **Sem demo ao vivo (decidido 10/11):** entregar a proposta mais completa possível (paciente, médico, consentimento, upload, timeline, onboarding/login, chat e conector MCP), sempre com a `main` funcionando.

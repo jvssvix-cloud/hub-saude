@@ -10,7 +10,7 @@ import { SITUACAO_TEXTO, acessar, horaBrasilia, listaCategorias, rascunhoPlano, 
 import { enviarNota } from "./acoes";
 import { alertasOrdenados, dataHoraBr, decimal, inteiro, serieDoContexto, type Relogio } from "@/lib/relogio";
 
-export const metadata: Metadata = { title: "Histórico do paciente · Hub de Saúde" };
+export const metadata: Metadata = { title: "Histórico do paciente · Zelo" };
 
 export default function PaginaAcesso({ params }: PageProps<"/medico/acesso/[token]">) {
   return (

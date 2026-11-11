@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { sair } from "@/app/entrar/acoes";
 import { pacienteDaSessao, usuarioAtual } from "@/lib/sessao";
 
-export const metadata: Metadata = { title: "Check-up inicial · Hub de Saúde" };
+export const metadata: Metadata = { title: "Check-up inicial · Zelo" };
 
 /**
  * Check-up inicial: quem tem conta mas ainda não tem paciente cai aqui (pacienteAtual() redireciona).

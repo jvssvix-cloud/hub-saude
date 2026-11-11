@@ -8,7 +8,7 @@ import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
 import { fraseSerie } from "@/lib/paciente";
 import type { Relogio } from "@/lib/relogio";
 
-export const metadata: Metadata = { title: "Exames · Hub de Saúde" };
+export const metadata: Metadata = { title: "Exames · Zelo" };
 
 /** Exames por sistema do corpo: quantos estão na faixa e quantos fora, num olhar. Toque abre o sistema. */
 const avisosRelogio = (r: Relogio) => r.alertas.filter((a) => a.nivel === "atencao").length;

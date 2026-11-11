@@ -1,5 +1,5 @@
 /**
- * Conector MCP do Hub de Saúde (Streamable HTTP, sem sessão): o assistente de IA do paciente (Claude, ChatGPT, Gemini…)
+ * Conector MCP do Zelo (Streamable HTTP, sem sessão): o assistente de IA do paciente (Claude, ChatGPT, Gemini…)
  * conecta nesta URL e lê o histórico que o paciente liberou.
  *
  * O token da URL é o do consentimento (destinatário "ia", criado em /conectar-ia). Cada chamada de ferramenta passa por
@@ -32,7 +32,7 @@ async function chamarFerramenta(token: string, origem: string, params: Record<st
   if (a.situacao === "pendente") return texto("O paciente ainda não autorizou este acesso.", true);
   if (a.situacao !== "ok") {
     const s = SITUACAO_TEXTO[a.situacao];
-    return texto(`${s.titulo}. ${s.texto} Peça ao paciente uma nova conexão em Hub de Saúde > Mais > Conectar IA.`, true);
+    return texto(`${s.titulo}. ${s.texto} Peça ao paciente uma nova conexão em Zelo > Mais > Conectar IA.`, true);
   }
   const c: Contexto = { insights: a.insights, relogio: a.relogio, origem };
   const args = (params.arguments ?? {}) as Record<string, unknown>;
@@ -47,7 +47,7 @@ async function responder(p: Pedido, token: string, origem: string): Promise<Resp
       return ok(p.id, {
         protocolVersion: VERSOES.includes(pedida) ? pedida : VERSOES[0],
         capabilities: { tools: {} },
-        serverInfo: { name: "hub-saude", title: "Hub de Saúde", version: "0.1.0" },
+        serverInfo: { name: "zelo", title: "Zelo", version: "0.1.0" },
         instructions: INSTRUCOES,
       });
     }
@@ -93,7 +93,7 @@ export async function POST(req: Request, ctx: RouteContext<"/api/mcp/[token]">) 
 
 /** Sem fluxo aberto pelo servidor (SSE): o protocolo manda responder 405 no GET. */
 export function GET() {
-  return new Response("Conector MCP do Hub de Saúde: use POST (Streamable HTTP).", { status: 405, headers: { ...CORS, Allow: "POST" } });
+  return new Response("Conector MCP do Zelo: use POST (Streamable HTTP).", { status: 405, headers: { ...CORS, Allow: "POST" } });
 }
 
 export function OPTIONS() {

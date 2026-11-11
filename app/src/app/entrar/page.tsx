@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { FormEntrar } from "./FormEntrar";
 
-export const metadata: Metadata = { title: "Entrar · Hub de Saúde" };
+export const metadata: Metadata = { title: "Entrar · Zelo" };
 
 /** Entrada do paciente. O médico não passa por aqui: pede acesso pelo telefone em /medico. */
 export default function Entrar() {

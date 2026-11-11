@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { sair } from "@/app/entrar/acoes";
 
-export const metadata: Metadata = { title: "Mais · Hub de Saúde" };
+export const metadata: Metadata = { title: "Mais · Zelo" };
 
 const GRUPOS: { titulo: string; itens: { href: string; nome: string; desc: string }[] }[] = [
   {

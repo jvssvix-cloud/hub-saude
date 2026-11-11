@@ -6,7 +6,7 @@ import { temChaveChat } from "@/lib/chat";
 import { meusInsights } from "@/lib/dados";
 import type { Insights } from "@/lib/insights";
 
-export const metadata: Metadata = { title: "Conversar · Hub de Saúde" };
+export const metadata: Metadata = { title: "Conversar · Zelo" };
 
 /** Perguntas de partida tiradas dos próprios dados: o que está fora da faixa, vacinas pendentes, próxima consulta. */
 function sugestoes(i: Insights): string[] {

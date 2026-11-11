@@ -6,7 +6,7 @@ import { PlanosDoPaciente } from "@/components/PlanosDoPaciente";
 import { meusInsights } from "@/lib/dados";
 import { mesAno } from "@/lib/insights";
 
-export const metadata: Metadata = { title: "Plano · Hub de Saúde" };
+export const metadata: Metadata = { title: "Plano · Zelo" };
 
 /** O que fazer agora: as recomendações revisadas pelo médico e os próximos exames de rotina. */
 export default async function Plano() {

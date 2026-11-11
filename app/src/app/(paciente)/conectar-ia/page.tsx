@@ -8,7 +8,7 @@ import { horaBrasilia } from "@/lib/medico";
 import { getServidor, rpcServidor, temChaveServidor } from "@/lib/supabase";
 import { consentimentoDoPaciente, pacienteAtual } from "@/lib/sessao";
 
-export const metadata: Metadata = { title: "Conectar IA · Hub de Saúde" };
+export const metadata: Metadata = { title: "Conectar IA · Zelo" };
 
 type Conexao = {
   id: string;

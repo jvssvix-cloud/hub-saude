@@ -4,7 +4,7 @@ import { meusInsights } from "@/lib/dados";
 import { laudos, nomeLab } from "@/lib/documentos";
 import { dataBr, serie } from "@/lib/insights";
 
-export const metadata: Metadata = { title: "Documentos · Hub de Saúde" };
+export const metadata: Metadata = { title: "Documentos · Zelo" };
 
 /** Os documentos originais por categoria (exames de laboratório, vacinação). Cada laudo abre a lista dos resultados que saíram dele. */
 export default async function Documentos() {

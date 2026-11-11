@@ -7,7 +7,7 @@ import { horaBrasilia } from "@/lib/medico";
 import { consentimentoDoPaciente, pacienteAtual } from "@/lib/sessao";
 import { getServidor, rpcServidor, temChaveServidor } from "@/lib/supabase";
 
-export const metadata: Metadata = { title: "Compartilhar · Hub de Saúde" };
+export const metadata: Metadata = { title: "Compartilhar · Zelo" };
 
 
 type Consentimento = {

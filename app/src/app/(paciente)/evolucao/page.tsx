@@ -4,7 +4,7 @@ import { meuRelogio, meusInsights } from "@/lib/dados";
 import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
 import { mediaSemanal } from "@/lib/paciente";
 
-export const metadata: Metadata = { title: "Evolução · Hub de Saúde" };
+export const metadata: Metadata = { title: "Evolução · Zelo" };
 
 /** Todos os índices, agrupados por tema. Só forma + frase; número e laudo ficam um toque adiante. */
 export default async function Evolucao() {

@@ -6,7 +6,7 @@ const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Hub de Saúde",
+  title: "Zelo",
   description: "Seu histórico de saúde num lugar só: exames de anos e dados do relógio, para você e para o seu médico.",
 };
 

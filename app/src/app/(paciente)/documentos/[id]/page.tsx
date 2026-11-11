@@ -7,7 +7,7 @@ import { laudos, nomeLab } from "@/lib/documentos";
 import { dataBr, faixa, linkLaudo, numero } from "@/lib/insights";
 
 // Os laudos são de cada paciente (sessão): nada é gerado no build e o título não depende dos dados.
-export const metadata: Metadata = { title: "Documento · Hub de Saúde" };
+export const metadata: Metadata = { title: "Documento · Zelo" };
 
 export default function Documento({ params }: PageProps<"/documentos/[id]">) {
   return (

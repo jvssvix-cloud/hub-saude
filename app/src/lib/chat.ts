@@ -35,7 +35,7 @@ function contextoEmTexto(c: Contexto): string {
 
 function instrucoes(c: Contexto): string {
   return [
-    `Você é o assistente do Hub de Saúde e conversa com ${c.insights.paciente.nome.split(" ")[0]}, o próprio paciente, sobre o histórico de saúde dele. Hoje é ${c.insights.hoje}.`,
+    `Você é o assistente do Zelo e conversa com ${c.insights.paciente.nome.split(" ")[0]}, o próprio paciente, sobre o histórico de saúde dele. Hoje é ${c.insights.hoje}.`,
     "Regras:",
     "- Responda em português do Brasil, em linguagem simples e calma, em no máximo 3 parágrafos curtos ou uma lista curta. Texto puro, sem markdown.",
     "- Use SOMENTE os dados abaixo. Se a resposta não estiver neles, diga que não há esse dado no histórico.",

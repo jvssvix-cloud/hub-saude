@@ -7,7 +7,7 @@ import {
 import { meuRelogio, meusInsights } from "@/lib/dados";
 import { dataBr, type Serie } from "@/lib/insights";
 
-export const metadata: Metadata = { title: "Relógio · Hub de Saúde" };
+export const metadata: Metadata = { title: "Relógio · Zelo" };
 
 /** Paciente sem relógio conectado (por enquanto, todo mundo menos a demonstração). */
 function SemRelogio() {

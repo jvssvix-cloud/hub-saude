@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { rpcPublica } from "@/lib/supabase";
 
-export const metadata: Metadata = { title: "Médico · Hub de Saúde" };
+export const metadata: Metadata = { title: "Médico · Zelo" };
 
 async function solicitar(form: FormData) {
   "use server";

@@ -7,7 +7,7 @@ import { meusInsights } from "@/lib/dados";
 import { seriesDaArea } from "@/lib/insights";
 
 // As áreas são de cada paciente (sessão): nada é gerado no build e o título não depende dos dados.
-export const metadata: Metadata = { title: "Exames · Hub de Saúde" };
+export const metadata: Metadata = { title: "Exames · Zelo" };
 
 export default function Sistema({ params }: PageProps<"/sistema/[id]">) {
   return (

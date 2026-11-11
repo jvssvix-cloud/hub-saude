@@ -9,7 +9,7 @@ import { EXPLICACOES } from "@/lib/explicacoes";
 import { areaDe, dataBr, faixa, linkLaudo, numero, serie, seriesEmOrdem } from "@/lib/insights";
 
 // Os exames são de cada paciente (sessão): nada é gerado no build e o título não depende dos dados.
-export const metadata: Metadata = { title: "Exame · Hub de Saúde" };
+export const metadata: Metadata = { title: "Exame · Zelo" };
 
 // Lê a sessão e o endereço: fica dentro do Suspense (regra do Next 16 com cacheComponents).
 export default function DetalheExame({ params }: PageProps<"/exame/[analito]">) {

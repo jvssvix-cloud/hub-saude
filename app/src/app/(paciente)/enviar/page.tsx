@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { EnviarExame } from "@/components/EnviarExame";
 import { envioLigado } from "@/lib/envio";
 
-export const metadata: Metadata = { title: "Enviar exame · Hub de Saúde" };
+export const metadata: Metadata = { title: "Enviar exame · Zelo" };
 
 /** Enviar um laudo (PDF ou foto) ou a carteira de vacinação: a IA lê, você confere e só então entra no histórico. */
 export default function Enviar() {
