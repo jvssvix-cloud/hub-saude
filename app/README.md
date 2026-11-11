@@ -25,6 +25,9 @@ npm run typecheck && npm run lint
 - **Relógio:** `relogioDe(pacienteId)` (`src/lib/relogio.ts`) devolve o `relogio.json` só para o Roberto; outro
   paciente não tem relógio e as telas escondem os cartões (a tela `/relogio` diz "Nenhum relógio conectado"). Médico e
   MCP descobrem o paciente pelo token (`acessar()` em `src/lib/medico.ts`) e só recebem o relógio se o escopo liberar.
+- **Check-up inicial:** `/checkup?bloco=1..7` (`src/app/checkup/`, regras em `src/lib/checkup.ts`). O paciente nasce no
+  bloco 1 (com os aceites em `perfil_saude`); `pacienteAtual()` manda para o check-up quem não tem
+  `checkup_concluido_em`. Não dá para pular o bloco 2 (altura e peso). Termos em `/termos` (pública).
 - **Demonstração:** conta ligada ao Roberto. `DEMO_EMAIL` e `DEMO_SENHA` só no `.env.local` da raiz e no painel da
   Vercel (nunca no código nem no `.env.example`). Criar/conferir: `node scripts/criar-conta-demo.mjs` (gera a senha e
   grava no `.env.local` se faltar; não imprime a senha). Sem as duas variáveis, o botão da demonstração não aparece.

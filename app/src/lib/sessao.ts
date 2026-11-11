@@ -5,9 +5,10 @@
  * fetch puro (lib/supabase.ts). O navegador nunca fala com o Supabase direto: nem a chave pública lê as tabelas.
  *
  * - usuarioAtual(): quem está logado (ou null).
- * - pacienteAtual(): o paciente da conta. Sem sessão -> /entrar; conta sem paciente (check-up não feito) -> /checkup.
- *   Para páginas e Server Actions.
+ * - pacienteAtual(): o paciente da conta. Sem sessão -> /entrar; check-up não concluído (sem paciente ou sem
+ *   perfil_saude.checkup_concluido_em) -> /checkup. Para páginas e Server Actions.
  * - pacienteDaSessao(): igual, mas devolve null em vez de redirecionar. Para rotas de API (respondem 401).
+ * - contaAtual(): para o próprio check-up (conta com ou sem paciente).
  *
  * Quem lê a sessão lê cookie: fica dentro de <Suspense> (o (paciente)/loading.tsx já cobre as páginas).
  */
@@ -49,14 +50,34 @@ export const usuarioAtual = cache(async (): Promise<Usuario | null> => {
   return { id: data.claims.sub, email: typeof data.claims.email === "string" ? data.claims.email : null };
 });
 
-const pacienteDoUsuario = cache(async (usuarioId: string): Promise<PacienteDaConta | null> => {
-  const [p] = await getServidor<PacienteDaConta[]>(`paciente?usuario_id=eq.${encodeURIComponent(usuarioId)}&select=id,nome`);
-  return p ?? null;
+type LinhaConta = PacienteDaConta & {
+  sexo: "M" | "F";
+  perfil_saude: { checkup_concluido_em: string | null } | { checkup_concluido_em: string | null }[] | null;
+};
+
+/** O paciente da conta e se o check-up já foi concluído (perfil_saude.checkup_concluido_em). */
+const contaDoUsuario = cache(async (usuarioId: string) => {
+  const [p] = await getServidor<LinhaConta[]>(
+    `paciente?usuario_id=eq.${encodeURIComponent(usuarioId)}&select=id,nome,sexo,perfil_saude(checkup_concluido_em)`,
+  );
+  if (!p) return { paciente: null, sexo: null, concluido: false };
+  const perfil = Array.isArray(p.perfil_saude) ? p.perfil_saude[0] : p.perfil_saude;
+  return { paciente: { id: p.id, nome: p.nome }, sexo: p.sexo, concluido: !!perfil?.checkup_concluido_em };
 });
 
+/** Para o check-up: a conta logada, com ou sem paciente, com ou sem check-up concluído. Sem sessão -> /entrar. */
+export async function contaAtual() {
+  const u = await usuarioAtual();
+  if (!u) redirect("/entrar");
+  return { usuario: u, ...(await contaDoUsuario(u.id)) };
+}
+
+/** Paciente da sessão para as rotas de API: null sem sessão ou com o check-up por fazer (a rota responde 401). */
 export async function pacienteDaSessao(): Promise<PacienteDaConta | null> {
   const u = await usuarioAtual();
-  return u ? pacienteDoUsuario(u.id) : null;
+  if (!u) return null;
+  const c = await contaDoUsuario(u.id);
+  return c.concluido ? c.paciente : null;
 }
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
@@ -80,7 +101,7 @@ export async function consentimentoDoPaciente(id: FormDataEntryValue | null): Pr
 export async function pacienteAtual(): Promise<PacienteDaConta> {
   const u = await usuarioAtual();
   if (!u) redirect("/entrar");
-  const p = await pacienteDoUsuario(u.id);
-  if (!p) redirect("/checkup");
-  return p;
+  const c = await contaDoUsuario(u.id);
+  if (!c.paciente || !c.concluido) redirect("/checkup");
+  return c.paciente;
 }

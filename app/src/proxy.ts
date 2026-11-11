@@ -28,6 +28,7 @@ export async function proxy(req: NextRequest) {
   const p = req.nextUrl.pathname;
 
   if (p === "/entrar") return logado ? redirecionar(req, "/", res) : res;
+  if (p === "/termos") return res; // pública: o check-up abre os termos em outra aba
   if (logado) return res;
   if (p.startsWith("/api/")) return Response.json({ erro: "sem_sessao" }, { status: 401 });
   return redirecionar(req, "/entrar", res);

@@ -6,6 +6,12 @@ delete from paciente where id = 'persona-roberto';  -- cascade: documentos, obse
 insert into paciente (id, nome, nascimento, sexo, telefone) values
   ('persona-roberto', 'Roberto Almeida Siqueira', '1968-05-14', 'M', '5511987654321');
 
+-- check-up já feito (sem isso a demonstração cairia no check-up). Peso e hábitos: sintéticos, coerentes com a história.
+-- A conta de demonstração (paciente.usuario_id) não vem daqui: rode app/scripts/criar-conta-demo.mjs depois.
+insert into perfil_saude (paciente_id, termos_versao, termos_aceitos_em, dados_saude_aceitos_em,
+  altura_cm, peso_kg, fumo, alcool, atividade_min_semana, sono_horas, condicoes, familia, checkup_concluido_em) values
+('persona-roberto', 'v1-2026-11-11', now(), now(), 174, 86, 'nunca', 'semanal', 60, 6, '{}', '{diabetes}', now());
+
 insert into documento (id, paciente_id, tipo, origem, emissor, data, arquivo, paginas) values
   ('2016-03', 'persona-roberto', 'laudo_exame', 'seed', 'LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS', '2016-03-09', 'laudos/2016-03_delta.pdf', 2),
   ('2017-04', 'persona-roberto', 'laudo_exame', 'seed', 'LABORATÓRIO DELTA DE ANÁLISES CLÍNICAS', '2017-04-18', 'laudos/2017-04_delta.pdf', 2),

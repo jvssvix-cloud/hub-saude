@@ -15,6 +15,34 @@ export type Paciente = {
   usuario_id: string | null; // auth.users.id da conta que entra como este paciente (null = sem conta)
 };
 
+/** Perfil de saúde do check-up inicial (tabela perfil_saude, uma linha por paciente; só o servidor do app). */
+export type Fumo = "nunca" | "ex" | "atual";
+export type Alcool = "nao" | "raramente" | "semanal" | "diario";
+export type Condicao = "diabetes" | "hipertensao" | "colesterol_alto" | "tireoide" | "coracao" | "rim";
+export type HistoricoFamiliar = "infarto_avc_precoce" | "diabetes" | "cancer";
+export type PerfilSaude = {
+  paciente_id: string;
+  termos_versao: string;
+  termos_aceitos_em: string;
+  dados_saude_aceitos_em: string;
+  altura_cm: number | null;
+  peso_kg: number | null;
+  fumo: Fumo | null;
+  alcool: Alcool | null;
+  atividade_min_semana: number | null;
+  sono_horas: number | null;
+  condicoes: Condicao[];
+  condicoes_outras: string | null;
+  remedios: string | null;
+  familia: HistoricoFamiliar[];
+  familia_cancer: string | null;
+  alergias: string | null;
+  gestante: boolean | null; // só sexo F
+  menopausa: boolean | null; // só sexo F
+  checkup_concluido_em: string | null;
+  atualizado_em: string;
+};
+
 export type TipoDocumento = "laudo_exame" | "carteira_vacinacao" | "wearable" | "outro";
 
 /** Canal por onde o dado entrou. É o que a demo mostra como "várias fontes, um histórico". */
