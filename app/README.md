@@ -47,13 +47,25 @@ regras de `insights/src/regras.ts` na hora. As telas recebem o resultado; nenhum
 | `/plano` | **Paciente** · recomendações do médico ("Revisado por"), **Seus planos** (criados no chat por `/api/plano`, tabela `plano_paciente`: seguir um por vez, apagar, atalhos para os exames citados) e próximos exames de rotina |
 | `/conectar-ia` | **Paciente** · cria a conexão do assistente de IA (qual, o que pode ler, prazo), mostra o endereço do conector, desconecta e lista as leituras por IA |
 | `/api/mcp/[token]` | **Conector MCP** (Streamable HTTP, só leitura): `resumo_de_saude`, `listar_exames`, `historico_do_exame`, `vacinas`, `relogio`. Cada chamada confere o consentimento e grava o log (`consumidor = mcp`) |
+| `/enviar` | **Paciente** · **Enviar exame**: PDF ou foto (foto reduzida no navegador, até 4 MB) → `/api/enviar` guarda no bucket privado `documentos` e lê com a extração (Claude Haiku) → **prévia** (valores, fora da faixa, avisos: nome diferente do paciente, item não reconhecido) → **Salvar** grava `documento` + `observacao` e chama `updateTag("historico")`; **Descartar** apaga o arquivo. O navegador só manda o id do envio (a leitura fica na tabela `envio`). Mesmo arquivo de novo = aviso (sha256); reenvio de prévia pendente não paga de novo. Limite `ENVIO_LIMITE_HORA` (padrão 10/h) e `ENVIO_DESLIGADO=1`. Lógica em `src/lib/envio.ts` |
+| `/enviados/[arquivo]` | Original de um exame enviado (lê do Storage com a chave secreta; nome = UUID). É o endereço que `linkLaudo()` monta, então "abrir o laudo" funciona igual para seed e envios |
 | `/medico/acesso/[token]` | **Médico** · espera a aprovação e abre sozinho; painel: indicadores alterados, comparar até 3 séries, correlações relógio × exames, FC de repouso com avisos de ritmo, todos os exames com link para o laudo, resumo pré-consulta. Lê só por `acessar_historico(token)`; `situacao_acesso` a cada 3 s faz a revogação derrubar a tela na hora |
 
 ## Vercel
 
 Projeto com **Root Directory = `app`**. O build precisa das pastas `insights/` e `tools/` do repositório
 (a Vercel clona o repositório inteiro, então funciona). No painel: `NEXT_PUBLIC_SUPABASE_URL` e
-`SUPABASE_SERVICE_ROLE_KEY` (sem elas o site sobe com o plano B, o JSON).
+`SUPABASE_SERVICE_ROLE_KEY` (sem elas o site sobe com o plano B, o JSON). O envio de exame precisa também da
+`ANTHROPIC_API_KEY`. O app importa `extraction/src` (apelido `@extraction`); como a Vercel só instala o `app/`,
+o `postinstall` (`scripts/instalar-extracao.mjs`) instala as dependências de `extraction/` quando roda na Vercel.
+`/enviar` é estática: depois de mudar `ANTHROPIC_API_KEY` ou `ENVIO_DESLIGADO`, faça redeploy (a rota `/api/enviar` confere na hora).
+
+## Testado (11/11): enviar exame
+
+Laudo sintético do Roberto (`2026-03_gama.pdf`): 17 resultados lidos em 14 s (US$ 0,003), **17/17 iguais ao seed**
+(valor e fora da faixa); salvo aparece em `/documentos` com o original em `/enviados/...`; mesmo arquivo de novo = 409.
+Laudo de outra paciente fictícia (`caso-misto.pdf`): aviso de nome, descartar apaga o arquivo; reenvio reaproveita a
+leitura (0 s). Arquivo de texto recusado; caminho malicioso em `/enviados/` = 404. Build de produção ok. Dados de teste apagados.
 
 ## Testado (10/11): leitura do banco
 

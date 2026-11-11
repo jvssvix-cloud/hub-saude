@@ -39,7 +39,15 @@ export default async function Exames() {
   return (
     <div className="space-y-6 pt-3">
       <section>
-        <h1 className="text-[28px] font-bold leading-tight tracking-tight">Exames</h1>
+        <div className="flex items-center justify-between gap-3">
+          <h1 className="text-[28px] font-bold leading-tight tracking-tight">Exames</h1>
+          <Link
+            href="/enviar"
+            className="shrink-0 rounded-full border border-linha bg-cartao px-4 py-2 text-sm font-semibold text-marca transition-colors hover:border-salvia"
+          >
+            + Enviar
+          </Link>
+        </div>
         <p className="mt-1 text-[15px] text-suave">
           {insights.series.length} exames acompanhados · <span className="text-atencao">{fora} fora da faixa</span>
         </p>

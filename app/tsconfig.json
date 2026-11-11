@@ -28,6 +28,9 @@
       ],
       "@insights/*": [
         "../insights/src/*"
+      ],
+      "@extraction/*": [
+        "../extraction/src/*"
       ]
     }
   },

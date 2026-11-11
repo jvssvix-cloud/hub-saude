@@ -30,6 +30,12 @@ export default async function Inicio() {
         <p className="mt-1.5 text-[15px] text-suave">
           {anos} anos de exames, {periodo.laboratorios.length} laboratórios e o seu relógio, num lugar só.
         </p>
+        <Link
+          href="/enviar"
+          className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-linha bg-cartao px-4 py-2 text-sm font-semibold text-marca transition-colors hover:border-salvia"
+        >
+          <span aria-hidden>+</span> Enviar exame
+        </Link>
       </section>
 
       <Suspense fallback={null}>

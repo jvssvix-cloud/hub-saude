@@ -33,11 +33,12 @@
 | Tabela | Para quê |
 |---|---|
 | `paciente` | A persona (`persona-roberto`) |
-| `documento` | Origem de cada dado: `tipo`, `origem` (canal de entrada), `emissor`, `data`, `arquivo` no Storage |
+| `documento` | Origem de cada dado: `tipo`, `origem` (canal de entrada), `emissor`, `data`, `arquivo` no Storage, `sha256` (envios do app: mesmo arquivo não entra duas vezes) |
 | `observacao` | Fato atômico. `categoria` = exame / vacina / wearable; `codigo` = analito, vacina ou métrica. Colunas com os mesmos nomes de `extraction/src/schema.ts` e `insights/src/tipos.ts` |
 | `consentimento` | Grant: destinatário, escopo (`categorias`, `codigos`, `desde`; null = tudo), `expira_em`, `revogado_em`, `token` |
 | `log_acesso` | Toda tentativa, permitida ou negada, com motivo e quantas observações saíram |
 | `nota_medico` | Recomendações que o médico revisou e enviou (`autor_nome`, `itens`); o paciente vê "Revisado por" |
+| `envio` | Arquivo enviado pelo app esperando o paciente conferir a prévia (`sha256`, `arquivo` no bucket, `extracao` jsonb, `situacao` lendo/pronto/salvo/descartado/erro). Só o servidor do app (service_role) |
 | `plano_paciente` | Plano que o paciente salva a partir do chat do app (`titulo`, `itens`, `seguindo`). Só o servidor do app (service_role) lê e grava |
 
 Funções:
@@ -96,7 +97,8 @@ precisa de `grant execute ... to anon` explícito.
 
 1. SQL Editor → cole as migrations **em ordem**: `20261109220119_contrato.sql`,
    `20261109220145_solicitacao_medico.sql`, `20261109220204_permissoes_supabase.sql`,
-   `20261110152147_situacao_acesso.sql`, `20261110182058_nota_medico.sql`, `20261111010047_plano_paciente.sql`.
+   `20261110152147_situacao_acesso.sql`, `20261110182058_nota_medico.sql`, `20261111010047_plano_paciente.sql`,
+   `20261111135221_envio_exame.sql` (também cria o bucket privado `documentos` no Storage).
 2. Cole `seed.sql` (Roberto: 14 documentos, 188 resultados de exame, 17 doses de vacina).
    Para regerar depois que o gabarito mudar: `node supabase/seed/gerar-seed.mjs`.
 3. Com Supabase CLI local: `supabase db reset` aplica os dois.
