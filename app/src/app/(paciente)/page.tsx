@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { BarraContagem } from "@/components/LinhaIndice";
 import { NotaDoMedico } from "@/components/NotaDoMedico";
 import { MiniCurva } from "@/components/MiniCurva";
+import { ProximoPasso } from "@/components/ProximoPasso";
 import { carregarInsights } from "@/lib/dados";
 import { serie } from "@/lib/insights";
 import { NIVEL, fraseSerie, mediaSemanal, outrasAreas, temas, type Tema } from "@/lib/paciente";
@@ -30,6 +31,10 @@ export default async function Inicio() {
           {anos} anos de exames, {periodo.laboratorios.length} laboratórios e o seu relógio, num lugar só.
         </p>
       </section>
+
+      <Suspense fallback={null}>
+        <ProximoPasso />
+      </Suspense>
 
       <Link href="/exames" className="block rounded-3xl border border-linha bg-cartao p-4 transition-colors hover:border-salvia sm:p-5">
         <div className="flex items-baseline justify-between gap-3">
