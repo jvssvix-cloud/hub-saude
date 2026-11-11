@@ -49,7 +49,10 @@ Cada pasta pronta tem README com comandos. Resumo:
 - **Acesso total para os dois** (GitHub e Supabase): qualquer um pode editar qualquer arquivo (inclusive este e o `docs/contexto.md`) e fazer merge na `main` sem pedir aprovação.
 
 ## Sincronizar sempre (regra do time)
-- **Antes de começar:** `git checkout main && git pull`, depois volte para a sua branch e `git merge main`.
+**O time trabalha de forma assíncrona: ninguém avisa ninguém para dar pull. Quem sincroniza é o Claude de cada um, sozinho, sem esperar pedido.**
+- **Claude: antes de QUALQUER mudança** (arquivo, commit, migration, e no começo de cada sessão ou tarefa nova), rode `git fetch` e traga a `main` do GitHub para a branch em que está (`git merge origin/main`). Se vier algo novo, leia o que mudou (`git log`, `CLAUDE.md`, `docs/contexto.md`, `supabase/migrations/`) antes de continuar. Nunca termine uma resposta dizendo "avise o outro para dar pull": a regra é esta aqui.
+- **Antes de mexer no banco:** além do pull, compare `list_migrations` com `supabase/migrations/` (ver "Banco").
+- **Antes de começar (à mão):** `git checkout main && git pull`, depois volte para a sua branch e `git merge main`.
 - **Depois de cada merge/push:** `git fetch && git log --oneline -3 origin/main` para conferir que a versão no GitHub é a esperada, e rode o teste/typecheck da pasta que mudou.
 - Ao editar `CLAUDE.md` ou `docs/contexto.md`, faça pull imediatamente antes e push logo depois (são os arquivos que os dois mexem).
 
