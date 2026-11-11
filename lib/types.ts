@@ -28,6 +28,7 @@ export type Documento = {
   data: string | null; // coleta do laudo; null em carteira de vacina
   arquivo: string | null; // caminho no Storage
   paginas: number | null;
+  sha256?: string | null; // hash do arquivo enviado pelo app (evita o mesmo laudo duas vezes); null no seed
 };
 
 export type Categoria = "exame" | "vacina" | "wearable";
@@ -177,5 +178,20 @@ export type PlanoPaciente = {
   itens: string[];
   origem: "chat";
   seguindo: boolean;
+  criado_em: string;
+};
+
+/** Tabela envio: arquivo enviado pelo app (PDF/foto) esperando o paciente conferir a prévia e salvar. Só o servidor. */
+export type Envio = {
+  id: string;
+  paciente_id: string;
+  sha256: string;
+  arquivo: string; // caminho no bucket 'documentos' (enviados/<id>.<ext>)
+  mime: string;
+  extracao: unknown | null; // ExtracaoNormalizada (extraction/src/schema.ts)
+  uso: { modelo: string; entrada: number; saida: number; custo_usd: number; segundos: number } | null;
+  situacao: "lendo" | "pronto" | "salvo" | "descartado" | "erro";
+  documento_id: string | null;
+  erro: string | null;
   criado_em: string;
 };
