@@ -1,0 +1,54 @@
+{
+  "bruto": {
+    "tipo_documento": "laudo_descritivo",
+    "documento": {
+      "laboratorio": "Centro de Endoscopia Fictício",
+      "data_coleta": "2023-10-19",
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": "206098",
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [],
+    "descritivo": {
+      "exame_nome": "ENDOSCOPIA DIGESTIVA ALTA",
+      "area": "gastro",
+      "data_exame": "2023-10-19",
+      "conclusao": "Gastrite enantematosa leve de antro.\nTeste da urease negativo.",
+      "pagina_conclusao": 1,
+      "confianca": "alta"
+    },
+    "observacoes": null
+  },
+  "normalizado": {
+    "tipo_documento": "laudo_descritivo",
+    "documento": {
+      "laboratorio": "Centro de Endoscopia Fictício",
+      "data_coleta": "2023-10-19",
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": "206098",
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [],
+    "descritivo": {
+      "exame_nome": "ENDOSCOPIA DIGESTIVA ALTA",
+      "area": "gastro",
+      "data_exame": "2023-10-19",
+      "conclusao": "Gastrite enantematosa leve de antro.\nTeste da urease negativo.",
+      "pagina_conclusao": 1,
+      "confianca": "alta",
+      "alertas": []
+    },
+    "observacoes": null
+  },
+  "uso": {
+    "entrada": 10424,
+    "saida": 257,
+    "custo_usd": 0.0011709000000000001,
+    "segundos": 1.688
+  },
+  "modelo": "claude-haiku-5-5"
+}

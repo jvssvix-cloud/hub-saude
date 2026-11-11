@@ -4,6 +4,7 @@
  * Nada é calculado aqui: é o mesmo resultado das regras de insights/ e do relógio, escrito com a origem de cada número
  * (laboratório, data, página do laudo e link). Só leitura.
  */
+import { descritivosEmTexto, type LaudoDescritivo } from "@/lib/descritivos";
 import { dataBr, faixa, numero, type Insights, type Serie } from "@/lib/insights";
 import type { Relogio } from "@/lib/relogio";
 
@@ -18,6 +19,8 @@ export type Contexto = {
    * o consentimento do médico e do MCP ainda não tem a categoria "perfil", então lá fica de fora.
    */
   perfil?: string | null;
+  /** Laudos descritivos (ECG, eco, endoscopia, imagem) dentro do escopo, com a conclusão copiada do laudo. */
+  descritivos?: LaudoDescritivo[];
 };
 
 export type Ferramenta = {
@@ -65,8 +68,11 @@ export const FERRAMENTAS: Ferramenta[] = [
     description:
       "Resumo do histórico de saúde do paciente: quem é, período coberto, exames alterados com tendência, mudanças relevantes, vacinas pendentes e avisos do relógio. Comece por aqui.",
     inputSchema: { type: "object", properties: {} },
-    executar: ({ insights, relogio }) => {
+    executar: ({ insights, relogio, descritivos, origem }) => {
       const partes = [insights.resumo_medico.join("\n")];
+      if (descritivos?.length) {
+        partes.push("Laudos descritivos (conclusão copiada do laudo, sem interpretação do Zelo):\n" + descritivosEmTexto(descritivos, origem));
+      }
       if (relogio?.alertas.length) {
         partes.push(
           "Relógio (últimos 6 meses), avisos por regras:\n" +
@@ -133,6 +139,13 @@ export const FERRAMENTAS: Ferramenta[] = [
     },
   },
   {
+    name: "laudos_descritivos",
+    description:
+      "Laudos cujo resultado é um texto (eletrocardiograma, ecocardiograma, endoscopia, colonoscopia, ultrassom, mamografia, densitometria, raio-x): nome do exame, data, local e a conclusão copiada do laudo, com a página.",
+    inputSchema: { type: "object", properties: {} },
+    executar: ({ descritivos, origem }) => descritivosEmTexto(descritivos ?? [], origem),
+  },
+  {
     name: "relogio",
     description: "Dados do relógio do paciente: batimento em repouso, variabilidade, sono, passos e avisos (ritmo irregular etc.).",
     inputSchema: { type: "object", properties: {} },
@@ -156,7 +169,7 @@ export const FERRAMENTAS: Ferramenta[] = [
 ];
 
 export const INSTRUCOES =
-  "Zelo: histórico de saúde que o próprio paciente decidiu compartilhar com este assistente (exames de laboratório de vários anos, vacinas e relógio). " +
+  "Zelo: histórico de saúde que o próprio paciente decidiu compartilhar com este assistente (exames de laboratório de vários anos, laudos de coração, gastro e imagem, vacinas e relógio). " +
   "Comece por resumo_de_saude. Ao citar um número, diga a data e o laboratório do laudo. " +
   "A faixa de referência é a de cada laudo. Não dê diagnóstico nem mude tratamento: explique, compare e sugira o que levar ao médico. " +
   "O paciente pode encerrar este acesso a qualquer momento; se uma ferramenta disser que o acesso acabou, avise-o.";

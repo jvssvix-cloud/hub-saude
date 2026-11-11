@@ -59,8 +59,26 @@ export const DoseExtraida = z.object({
 });
 export type DoseExtraida = z.infer<typeof DoseExtraida>;
 
+/** Áreas dos laudos descritivos (as mesmas do /reunir no app, menos "sangue" e "vacinas"). */
+export const AREAS_DESCRITIVO = ["coracao", "gastro", "rins", "mulher", "ossos", "pulmao", "outros"] as const;
+export type AreaDescritivo = (typeof AREAS_DESCRITIVO)[number];
+
+/**
+ * Laudo descritivo (ECG, ecocardiograma, endoscopia, ultrassom, mamografia...): o resultado é um texto.
+ * Guardamos o nome do exame, a área, a data e a CONCLUSÃO copiada do laudo, com a página (rastreabilidade).
+ */
+export const Descritivo = z.object({
+  exame_nome: z.string(),
+  area: z.enum(AREAS_DESCRITIVO),
+  data_exame: z.string().nullable(),
+  conclusao: z.string(),
+  pagina_conclusao: z.number().int(),
+  confianca: z.enum(["alta", "media", "baixa"]),
+});
+export type Descritivo = z.infer<typeof Descritivo>;
+
 export const Extracao = z.object({
-  tipo_documento: z.enum(["laudo_exame", "carteira_vacinacao", "outro"]),
+  tipo_documento: z.enum(["laudo_exame", "carteira_vacinacao", "laudo_descritivo", "outro"]),
   documento: z.object({
     laboratorio: z.string(),
     data_coleta: z.string().nullable(),
@@ -71,6 +89,8 @@ export const Extracao = z.object({
   }),
   resultados: z.array(ResultadoExtraido),
   doses: z.array(DoseExtraida),
+  /** Só em laudo_descritivo; null nos outros tipos. */
+  descritivo: Descritivo.nullable(),
   observacoes: z.string().nullable(),
 });
 export type Extracao = z.infer<typeof Extracao>;
@@ -87,7 +107,10 @@ export type ResultadoNormalizado = ResultadoExtraido & {
 
 export type DoseNormalizada = DoseExtraida & { alertas: string[] };
 
-export type ExtracaoNormalizada = Omit<Extracao, "resultados" | "doses"> & {
+export type DescritivoNormalizado = Descritivo & { alertas: string[] };
+
+export type ExtracaoNormalizada = Omit<Extracao, "resultados" | "doses" | "descritivo"> & {
   resultados: ResultadoNormalizado[];
   doses: DoseNormalizada[];
+  descritivo: DescritivoNormalizado | null;
 };

@@ -1,0 +1,27 @@
+{
+  "documento_id": "us-rins-2021",
+  "tipo": "laudo_descritivo",
+  "arquivo_pdf": "descritivos/us-rins-2021.pdf",
+  "fotos": [],
+  "documento": {
+    "emissor": "Imagem Modelo Diagnósticos",
+    "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+    "paginas": 1,
+    "paciente": {
+      "sexo": "M",
+      "nascimento": "1968-05-14"
+    }
+  },
+  "descritivo": {
+    "exame_nome": "ULTRASSONOGRAFIA DE RINS E VIAS URINÁRIAS E PRÓSTATA (VIA ABDOMINAL)",
+    "area": "rins",
+    "data_exame": "2021-09-08",
+    "pagina_conclusao": 1,
+    "conclusao_contem": [
+      "sem cálculos",
+      "próstata",
+      "32 cm"
+    ],
+    "conclusao": "Rins de dimensões e ecotextura normais, sem cálculos.\nPróstata com volume discretamente aumentado (32 cm³)."
+  }
+}

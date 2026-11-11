@@ -1,0 +1,25 @@
+{
+  "documento_id": "ecg-2024",
+  "tipo": "laudo_descritivo",
+  "arquivo_pdf": "descritivos/ecg-2024.pdf",
+  "fotos": [],
+  "documento": {
+    "emissor": "Clínica Cardio Exemplo",
+    "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+    "paginas": 1,
+    "paciente": {
+      "sexo": "M",
+      "nascimento": "1968-05-14"
+    }
+  },
+  "descritivo": {
+    "exame_nome": "ELETROCARDIOGRAMA DE REPOUSO (12 DERIVAÇÕES)",
+    "area": "coracao",
+    "data_exame": "2024-03-12",
+    "pagina_conclusao": 1,
+    "conclusao_contem": [
+      "dentro dos limites da normalidade"
+    ],
+    "conclusao": "Eletrocardiograma dentro dos limites da normalidade."
+  }
+}

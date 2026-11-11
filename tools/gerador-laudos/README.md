@@ -44,6 +44,9 @@ ou ponto, separador de milhar, nome do paciente escrito de formas diferentes, LD
 antiga (Ótimo/Desejável/…) até 2017 e meta por risco (Baixo/Intermediário/Alto/Muito alto) a partir de 2018,
 colesterol total `< 200` até 2017 e `< 190` depois.
 
+## Laudos descritivos (`descritivos.py`)
+Quatro laudos do Roberto cujo resultado é texto: ECG (2024), ecocardiograma (2025, conclusão na página 2), endoscopia (2023, + foto) e ultrassom de rins e próstata (2021). Saída em `saida/descritivos/` e gabarito em `saida/gabarito_descritivos/` (`descritivo`: `exame_nome`, `area`, `data_exame`, `pagina_conclusao`, `conclusao_contem` (trechos que a extração precisa trazer) e `conclusao` (texto completo, usado pelo seed)).
+
 ## Formato do gabarito (JSON)
 
 ```jsonc

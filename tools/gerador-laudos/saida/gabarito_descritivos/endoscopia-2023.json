@@ -1,0 +1,31 @@
+{
+  "documento_id": "endoscopia-2023",
+  "tipo": "laudo_descritivo",
+  "arquivo_pdf": "descritivos/endoscopia-2023.pdf",
+  "fotos": [
+    {
+      "arquivo": "fotos/endoscopia-2023_p1.jpg",
+      "pagina": 1
+    }
+  ],
+  "documento": {
+    "emissor": "Centro de Endoscopia Fictício",
+    "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+    "paginas": 1,
+    "paciente": {
+      "sexo": "M",
+      "nascimento": "1968-05-14"
+    }
+  },
+  "descritivo": {
+    "exame_nome": "ENDOSCOPIA DIGESTIVA ALTA",
+    "area": "gastro",
+    "data_exame": "2023-10-19",
+    "pagina_conclusao": 1,
+    "conclusao_contem": [
+      "gastrite enantematosa leve",
+      "urease negativo"
+    ],
+    "conclusao": "Gastrite enantematosa leve de antro.\nTeste da urease negativo."
+  }
+}

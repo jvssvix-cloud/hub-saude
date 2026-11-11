@@ -33,7 +33,7 @@
 | Tabela | Para quê |
 |---|---|
 | `paciente` | A persona (`persona-roberto`) e os pacientes com conta. `usuario_id` (uuid, único, → `auth.users`, `on delete set null`) liga a conta do Supabase Auth ao paciente; o paciente só é criado no bloco 1 do check-up |
-| `documento` | Origem de cada dado: `tipo`, `origem` (canal de entrada), `emissor`, `data`, `arquivo` no Storage, `sha256` (envios do app: mesmo arquivo não entra duas vezes) |
+| `documento` | Origem de cada dado: `tipo`, `origem` (canal de entrada), `emissor`, `data`, `arquivo` no Storage, `sha256` (envios do app: mesmo arquivo não entra duas vezes). Laudo descritivo (`tipo = laudo_descritivo`, ECG/eco/endoscopia/imagem): `area`, `exame_nome`, `conclusao` copiada do laudo e `conclusao_pagina`; não tem observação |
 | `observacao` | Fato atômico. `categoria` = exame / vacina / wearable; `codigo` = analito, vacina ou métrica. Colunas com os mesmos nomes de `extraction/src/schema.ts` e `insights/src/tipos.ts` |
 | `consentimento` | Grant: destinatário, escopo (`categorias`, `codigos`, `desde`; null = tudo), `expira_em`, `revogado_em`, `token` |
 | `log_acesso` | Toda tentativa, permitida ou negada, com motivo e quantas observações saíram |
@@ -104,7 +104,7 @@ precisa de `grant execute ... to anon` explícito.
    `20261109220145_solicitacao_medico.sql`, `20261109220204_permissoes_supabase.sql`,
    `20261110152147_situacao_acesso.sql`, `20261110182058_nota_medico.sql`, `20261111010047_plano_paciente.sql`,
    `20261111135221_envio_exame.sql` (também cria o bucket privado `documentos` no Storage),
-   `20261111144935_conta_paciente.sql`, `20261111182852_perfil_saude.sql`, `20261111213908_indices_chaves.sql`, `20261111221623_perfil_detalhado.sql`.
+   `20261111144935_conta_paciente.sql`, `20261111182852_perfil_saude.sql`, `20261111213908_indices_chaves.sql`, `20261111221623_perfil_detalhado.sql`, `20261111223531_laudo_descritivo.sql`.
 2. Cole `seed.sql` (Roberto: 14 documentos, 188 resultados de exame, 17 doses de vacina, perfil de saúde com o
    check-up concluído). O seed apaga e recria o Roberto: depois rode `node app/scripts/criar-conta-demo.mjs` para ligar
    de novo a conta de demonstração.

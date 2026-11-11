@@ -3,6 +3,7 @@
 //   wearable/saida/relogio.json             -> src/dados/relogio.json   (tela do relógio)
 //   tools/gerador-laudos/saida/laudos/*.pdf -> public/laudos/            (documento original de cada número)
 //   tools/gerador-laudos/saida/vacinas/*.pdf-> public/vacinas/
+//   tools/gerador-laudos/saida/descritivos/*.pdf -> public/descritivos/ (ECG, eco, endoscopia, ultrassom)
 // Roda sozinho antes de `npm run dev` e `npm run build` (predev/prebuild). As cópias não vão para o Git.
 // Quando o banco entrar no app, só esta etapa muda.
 import { cpSync, existsSync, mkdirSync } from "node:fs";
@@ -17,6 +18,7 @@ const copias = [
   ["wearable/saida/relogio.json", "src/dados/relogio.json"],
   ["tools/gerador-laudos/saida/laudos", "public/laudos"],
   ["tools/gerador-laudos/saida/vacinas", "public/vacinas"],
+  ["tools/gerador-laudos/saida/descritivos", "public/descritivos"],
 ];
 
 for (const [de, para] of copias) {

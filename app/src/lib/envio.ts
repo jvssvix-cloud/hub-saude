@@ -58,10 +58,15 @@ export type ItemExame = {
   fora: boolean; reconhecido: boolean; alertas: string[];
 };
 export type ItemDose = { nome: string; dose: string; data: string | null; lote: string | null; pagina: number; valida: boolean; alertas: string[] };
+/** Laudo descritivo (ECG, eco, endoscopia, imagem): a conclusão copiada do laudo, com a página. */
+export type ItemDescritivo = {
+  exame: string; area: string; data: string | null; conclusao: string; pagina: number; alertas: string[];
+};
 export type Previa = {
   envioId: string;
   arquivo: string; // link para abrir o original (/enviados/...)
-  tipo: "laudo_exame" | "carteira_vacinacao" | "outro";
+  tipo: "laudo_exame" | "carteira_vacinacao" | "laudo_descritivo" | "outro";
+  descritivo: ItemDescritivo | null;
   emissor: string;
   data: string | null;
   paginas: number;
@@ -96,6 +101,9 @@ export function montarPrevia(envio: Pick<Envio, "id" | "arquivo">, e: ExtracaoNo
   }
   if (e.documento.sexo_paciente && e.documento.sexo_paciente !== cadastro.sexo) avisos.push("O sexo no documento é diferente do seu cadastro.");
   if (e.tipo_documento === "outro") avisos.push("Não parece um laudo de exame nem uma carteira de vacinação.");
+  const d = e.tipo_documento === "laudo_descritivo" ? e.descritivo : null;
+  if (e.tipo_documento === "laudo_descritivo" && !d?.conclusao) avisos.push("Não achamos a conclusão do laudo.");
+  if (d?.alertas.length) avisos.push(...d.alertas.map((a) => `Conferir: ${a}.`));
   if (e.tipo_documento === "laudo_exame" && !dataDoc) avisos.push("Não achamos a data da coleta no documento.");
   const ignorados = exames.filter((x) => !x.reconhecido).length + doses.filter((x) => !x.valida).length;
   if (ignorados) avisos.push(`${ignorados} ${ignorados === 1 ? "item não foi reconhecido e fica" : "itens não foram reconhecidos e ficam"} de fora dos gráficos.`);
@@ -103,11 +111,16 @@ export function montarPrevia(envio: Pick<Envio, "id" | "arquivo">, e: ExtracaoNo
   const nExames = exames.filter((x) => x.reconhecido).length;
   const nDoses = doses.filter((x) => x.valida).length;
   const podeSalvar =
-    (e.tipo_documento === "laudo_exame" && !!dataDoc && nExames > 0) || (e.tipo_documento === "carteira_vacinacao" && nDoses > 0);
+    (e.tipo_documento === "laudo_exame" && !!dataDoc && nExames > 0) || (e.tipo_documento === "carteira_vacinacao" && nDoses > 0)
+    || (e.tipo_documento === "laudo_descritivo" && !!d?.conclusao);
 
   return {
     envioId: envio.id, arquivo: `/${envio.arquivo}`, tipo: e.tipo_documento, emissor: e.documento.laboratorio,
-    data: dataDoc, paginas: e.documento.paginas, exames, doses, avisos, podeSalvar, segundos,
+    data: d ? (d.data_exame ?? dataDoc) : dataDoc, paginas: e.documento.paginas, exames: d ? [] : exames, doses, avisos,
+    podeSalvar, segundos,
+    descritivo: d
+      ? { exame: d.exame_nome, area: d.area, data: d.data_exame, conclusao: d.conclusao, pagina: d.pagina_conclusao, alertas: d.alertas }
+      : null,
   };
 }
 
@@ -189,7 +202,9 @@ async function envioPronto(id: string, pacienteId: string): Promise<Envio> {
 }
 
 /** Grava documento + observações a partir da leitura guardada. Devolve o id do documento. */
-export async function salvarEnvio(id: string, pacienteId: string): Promise<{ documentoId: string; exames: number; doses: number }> {
+export async function salvarEnvio(
+  id: string, pacienteId: string,
+): Promise<{ documentoId: string; exames: number; doses: number; area: string | null }> {
   const envio = await envioPronto(id, pacienteId);
   const e = envio.extracao as ExtracaoNormalizada;
   const previa = montarPrevia(envio, e, await cadastroDoPaciente(pacienteId));
@@ -197,6 +212,21 @@ export async function salvarEnvio(id: string, pacienteId: string): Promise<{ doc
 
   const documentoId = `envio-${id.slice(0, 8)}`;
   const dataDoc = e.documento.data_coleta;
+
+  // laudo descritivo: só o documento, com a conclusão copiada e a página (não há valor para virar observação)
+  const d = e.tipo_documento === "laudo_descritivo" ? e.descritivo : null;
+  if (d) {
+    const data = d.data_exame && /^\d{4}-\d{2}-\d{2}$/.test(d.data_exame) ? d.data_exame : null;
+    await escreverServidor("POST", "documento", {
+      id: documentoId, paciente_id: pacienteId, tipo: "laudo_descritivo",
+      origem: envio.mime === "application/pdf" ? "upload_pdf" : "upload_foto",
+      emissor: e.documento.laboratorio || null, data, arquivo: envio.arquivo, paginas: e.documento.paginas,
+      sha256: envio.sha256, area: d.area, exame_nome: d.exame_nome.slice(0, 200), conclusao: d.conclusao.slice(0, 4000),
+      conclusao_pagina: Math.max(1, d.pagina_conclusao),
+    });
+    await escreverServidor("PATCH", `envio?id=eq.${id}`, { situacao: "salvo", documento_id: documentoId });
+    return { documentoId, exames: 0, doses: 0, area: d.area };
+  }
   const tipo = e.tipo_documento === "carteira_vacinacao" ? "carteira_vacinacao" : "laudo_exame";
 
   const observacoes =
@@ -237,6 +267,7 @@ export async function salvarEnvio(id: string, pacienteId: string): Promise<{ doc
     documentoId,
     exames: tipo === "laudo_exame" ? observacoes.length : 0,
     doses: tipo === "carteira_vacinacao" ? observacoes.length : 0,
+    area: tipo === "laudo_exame" ? "sangue" : "vacinas", // área do /reunir que este documento cobre
   };
 }
 

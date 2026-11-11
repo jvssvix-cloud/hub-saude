@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { descartar, salvar } from "@/app/(paciente)/enviar/acoes";
+import { AREA_NOME, nomeExame } from "@/lib/descritivos";
 import type { Previa } from "@/lib/envio";
 
 type Estado =
@@ -44,6 +45,7 @@ const dataBr = (iso: string | null) => (iso ? iso.slice(0, 10).split("-").revers
 const TIPO: Record<Previa["tipo"], string> = {
   laudo_exame: "Laudo de exame",
   carteira_vacinacao: "Carteira de vacinação",
+  laudo_descritivo: "Laudo",
   outro: "Documento não reconhecido",
 };
 
@@ -156,7 +158,9 @@ export function EnviarExame({ area }: { area?: string } = {}) {
           Pronto! {p.docs} {p.docs === 1 ? "documento salvo" : "documentos salvos"} no seu histórico.
         </p>
         <p className="text-sm text-suave">
-          {partes.length ? `${partes.join(" e ")}. ` : ""}Os gráficos e os avisos já levam em conta.
+          {partes.length
+            ? `${partes.join(" e ")}. Os gráficos e os avisos já levam em conta.`
+            : "O laudo e a conclusão já estão em Documentos (e para o médico, quando você compartilhar)."}
         </p>
         {p.erros.length ? (
           <ul className="space-y-1 rounded-2xl bg-atencao-fundo px-4 py-3 text-left text-sm text-atencao">
@@ -213,7 +217,12 @@ export function EnviarExame({ area }: { area?: string } = {}) {
         <p className="text-xs font-semibold uppercase tracking-wider text-suave">
           Confira antes de salvar{total > 1 ? ` · ${atual} de ${total}` : ""}
         </p>
-        <h2 className="mt-1 text-xl font-bold">{TIPO[previa.tipo]}</h2>
+        <h2 className="mt-1 text-xl font-bold">
+          {previa.descritivo ? nomeExame(previa.descritivo.exame) : TIPO[previa.tipo]}
+        </h2>
+        {previa.descritivo ? (
+          <p className="text-sm font-semibold text-marca">{AREA_NOME[previa.descritivo.area] ?? "Outros exames"}</p>
+        ) : null}
         <p className="mt-1 text-[15px] text-suave">
           {previa.emissor || "Emissor não identificado"} · {dataBr(previa.data)} · {previa.paginas}{" "}
           {previa.paginas === 1 ? "página" : "páginas"}
@@ -240,6 +249,19 @@ export function EnviarExame({ area }: { area?: string } = {}) {
             <li key={a}>{a}</li>
           ))}
         </ul>
+      ) : null}
+
+      {previa.descritivo?.conclusao ? (
+        <section className="rounded-3xl border border-linha bg-cartao p-5">
+          <div className="flex items-baseline justify-between gap-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-suave">Conclusão do laudo</h3>
+            <span className="text-xs text-suave">pág. {previa.descritivo.pagina}</span>
+          </div>
+          <p className="mt-2 whitespace-pre-line text-[15px]">{previa.descritivo.conclusao}</p>
+          <p className="mt-3 text-xs text-suave">
+            Copiada do laudo, sem interpretação. O Zelo guarda o texto e o original; quem interpreta é o seu médico.
+          </p>
+        </section>
       ) : null}
 
       {previa.exames.length ? (
@@ -309,7 +331,9 @@ export function EnviarExame({ area }: { area?: string } = {}) {
         </button>
       </div>
       {!previa.podeSalvar ? (
-        <p className="text-center text-sm text-suave">Nada para salvar: não reconhecemos resultados com data neste documento.</p>
+        <p className="text-center text-sm text-suave">
+          Nada para salvar: não reconhecemos resultados com data nem a conclusão de um laudo neste documento.
+        </p>
       ) : null}
     </div>
   );

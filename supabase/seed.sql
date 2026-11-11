@@ -1,5 +1,5 @@
 -- GERADO por supabase/seed/gerar-seed.mjs a partir de tools/gerador-laudos/saida. Não edite à mão.
--- Persona sintética: Roberto Almeida Siqueira. 14 documentos, 205 observações.
+-- Persona sintética: Roberto Almeida Siqueira. 14 documentos, 205 observações, 4 laudos descritivos.
 
 delete from paciente where id = 'persona-roberto';  -- cascade: documentos, observações, consentimentos, logs
 
@@ -326,3 +326,14 @@ Risco muito alto: < 50 mg/dL', 1, 161, 'mg/dL', null, null, null, 130, true, nul
   ('persona-roberto', 'vacinas-comprovante', 'vacina', 'influenza', '2023-04-28', 'Influenza Trivalente', 'Dose', null, null, 1, null, null, null, null, null, null, false, 'anual', 'FLU23D', 'UBS Vila Modelo', 'alta'),
   ('persona-roberto', 'vacinas-comprovante', 'vacina', 'influenza', '2024-04-15', 'Influenza Trivalente', 'Dose', null, null, 1, null, null, null, null, null, null, false, 'anual', 'FLU24A', 'UBS Vila Modelo', 'alta'),
   ('persona-roberto', 'vacinas-comprovante', 'vacina', 'influenza', '2025-05-12', 'Influenza Trivalente', 'Dose', null, null, 1, null, null, null, null, null, null, false, 'anual', 'FLU25F', 'Drogaria Saúde Fictícia', 'alta');
+
+insert into documento (id, paciente_id, tipo, origem, emissor, data, arquivo, paginas,
+  area, exame_nome, conclusao, conclusao_pagina) values
+  ('ecg-2024', 'persona-roberto', 'laudo_descritivo', 'seed', 'Clínica Cardio Exemplo', '2024-03-12', 'descritivos/ecg-2024.pdf', 1, 'coracao', 'ELETROCARDIOGRAMA DE REPOUSO (12 DERIVAÇÕES)', 'Eletrocardiograma dentro dos limites da normalidade.', 1),
+  ('eco-2025', 'persona-roberto', 'laudo_descritivo', 'seed', 'Instituto do Coração Modelo', '2025-06-03', 'descritivos/eco-2025.pdf', 2, 'coracao', 'ECOCARDIOGRAMA TRANSTORÁCICO', 'Função sistólica do ventrículo esquerdo preservada.
+Disfunção diastólica do ventrículo esquerdo grau I (alteração do relaxamento).
+Valvas sem alterações significativas.', 2),
+  ('endoscopia-2023', 'persona-roberto', 'laudo_descritivo', 'seed', 'Centro de Endoscopia Fictício', '2023-10-19', 'descritivos/endoscopia-2023.pdf', 1, 'gastro', 'ENDOSCOPIA DIGESTIVA ALTA', 'Gastrite enantematosa leve de antro.
+Teste da urease negativo.', 1),
+  ('us-rins-2021', 'persona-roberto', 'laudo_descritivo', 'seed', 'Imagem Modelo Diagnósticos', '2021-09-08', 'descritivos/us-rins-2021.pdf', 1, 'rins', 'ULTRASSONOGRAFIA DE RINS E VIAS URINÁRIAS E PRÓSTATA (VIA ABDOMINAL)', 'Rins de dimensões e ecotextura normais, sem cálculos.
+Próstata com volume discretamente aumentado (32 cm³).', 1);

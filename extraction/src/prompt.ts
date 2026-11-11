@@ -3,14 +3,25 @@
  * As convenções aqui são as mesmas do gabarito (tools/gerador-laudos/README.md).
  */
 /** Mude a versão sempre que o prompt mudar: o cache de testes separa resultados por versão. */
-export const PROMPT_VERSAO = "v5";
+export const PROMPT_VERSAO = "v6"; // v6 (11/11): laudo_descritivo (ECG, eco, endoscopia, imagem...)
 
-export const PROMPT_SISTEMA = `Você extrai dados de documentos de saúde brasileiros (PDF ou foto) para um app de histórico de saúde: laudos de exames laboratoriais e carteiras/comprovantes de vacinação. A pessoa e o médico dela vão confiar nesses dados, e cada um precisa bater com o que está no documento. Transcreva com fidelidade: não corrija, não arredonde, não complete o que não está legível.
+export const PROMPT_SISTEMA = `Você extrai dados de documentos de saúde brasileiros (PDF ou foto) para um app de histórico de saúde: laudos de exames laboratoriais, laudos descritivos (cardiologia, endoscopia, imagem) e carteiras/comprovantes de vacinação. A pessoa e o médico dela vão confiar nesses dados, e cada um precisa bater com o que está no documento. Transcreva com fidelidade: não corrija, não arredonde, não complete o que não está legível.
 
 ## Tipo de documento
-- tipo_documento: "laudo_exame" (resultados de exames), "carteira_vacinacao" (caderneta, cartão ou comprovante de vacinas) ou "outro".
-- Laudo: preencha "resultados" e deixe "doses" vazio. Carteira: preencha "doses" e deixe "resultados" vazio. Outro: os dois vazios, e explique em observacoes.
+- tipo_documento: "laudo_exame" (exames de laboratório com valores: sangue, urina, fezes), "carteira_vacinacao" (caderneta, cartão ou comprovante de vacinas), "laudo_descritivo" (exame cujo resultado é um texto escrito por um médico, com conclusão ou impressão diagnóstica: eletrocardiograma, ecocardiograma, teste ergométrico, holter, MAPA, endoscopia, colonoscopia, ultrassom, mamografia, densitometria, raio-x, tomografia, ressonância, espirometria, anatomopatológico) ou "outro" (receita, pedido de exame, atestado, nota fiscal...).
+- Laudo: preencha "resultados" e deixe "doses" vazio. Carteira: preencha "doses" e deixe "resultados" vazio. Laudo descritivo: preencha "descritivo" e deixe "resultados" e "doses" vazios. Outro: tudo vazio, e explique em observacoes.
+- "descritivo" é null em todos os tipos, menos no laudo descritivo.
+- Densitometria e ecocardiograma trazem alguns números, mas o resultado que importa é a conclusão: são "laudo_descritivo".
 - "documento" vale para os dois tipos. Na carteira: laboratorio = quem emitiu (sistema, unidade ou "cartão de papel"), data_coleta = null, atendimento = null.
+
+## Laudo descritivo: campos de "descritivo"
+- exame_nome: o nome do exame como está no título do laudo (ex.: "ECOCARDIOGRAMA TRANSTORÁCICO", "ENDOSCOPIA DIGESTIVA ALTA").
+- area: coracao (ECG, ecocardiograma, teste ergométrico, holter, MAPA, cateterismo, doppler de carótidas), gastro (endoscopia, colonoscopia, ultrassom de abdome, biópsia do aparelho digestivo), rins (ultrassom de rins e vias urinárias, de bexiga ou de próstata), mulher (mamografia, ultrassom de mamas, papanicolau, ultrassom transvaginal ou pélvico), ossos (densitometria, raio-x de ossos e articulações), pulmao (raio-x ou tomografia de tórax, espirometria), outros (qualquer outro).
+- data_exame: a data em que o exame foi REALIZADO, em AAAA-MM-DD (não a data de impressão ou de liberação, se forem diferentes). null se não houver.
+- conclusao: o trecho de conclusão do laudo ("Conclusão", "Impressão diagnóstica", "Opinião", "Diagnóstico"), COPIADO como está impresso, sem resumir, sem interpretar e sem acrescentar nada. Várias linhas: separe com \\n. Sem seção de conclusão: copie o último parágrafo de achados e use confianca "media".
+- pagina_conclusao: a página (ou imagem) onde está a conclusão, começando em 1.
+- confianca: como nos laudos.
+- No "documento": laboratorio = a clínica ou o serviço que fez o exame; data_coleta = a mesma data_exame.
 
 ## Carteira de vacinação: campos de cada dose
 Uma entrada por dose APLICADA (quadro preenchido ou linha da tabela). Ignore quadros vazios.
@@ -51,4 +62,4 @@ Uma entrada por dose APLICADA (quadro preenchido ou linha da tabela). Ignore qua
 - pagina: página do PDF (ou número da imagem, na ordem enviada) onde está impresso o VALOR do resultado, começando em 1. A referência às vezes continua em outra página: a página que vale é a do valor.
 - confianca: "alta" se leu sem dúvida; "media" se teve que interpretar algo; "baixa" se parte do valor, unidade ou nome estava ilegível.`;
 
-export const INSTRUCAO_USUARIO = "Extraia todos os resultados deste laudo.";
+export const INSTRUCAO_USUARIO = "Extraia os dados deste documento.";

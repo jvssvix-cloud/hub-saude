@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { ListaDescritivos } from "@/components/ListaDescritivos";
+import type { LaudoDescritivo } from "@/lib/descritivos";
 import Link from "next/link";
 import { Suspense } from "react";
 import { ComparadorSeries } from "@/components/ComparadorSeries";
@@ -57,14 +59,14 @@ async function Acesso({ params }: { params: Promise<{ token: string }> }) {
   return (
     <>
       <VigiaAcesso token={token} atual="ok" />
-      <Painel insights={a.insights} escopo={a.escopo} token={token} relogio={a.relogio} />
+      <Painel insights={a.insights} escopo={a.escopo} token={token} relogio={a.relogio} descritivos={a.descritivos} />
     </>
   );
 }
 
 function Painel({
-  insights: i, escopo, token, relogio,
-}: { insights: Insights; escopo: Escopo; token: string; relogio: Relogio | null }) {
+  insights: i, escopo, token, relogio, descritivos,
+}: { insights: Insights; escopo: Escopo; token: string; relogio: Relogio | null; descritivos: LaudoDescritivo[] }) {
   const alteradas = i.series.filter((s) => s.alterado);
   // null: o escopo não libera o relógio ou o paciente não tem relógio
   const comRelogio = relogio !== null;
@@ -232,6 +234,14 @@ function Painel({
           </table>
         </div>
       </section>
+
+      {descritivos.length > 0 && (
+        <section>
+          <h2 className="mb-2 font-bold">Laudos de coração, gastro e imagem</h2>
+          <ListaDescritivos lista={descritivos} token={token} />
+          <p className="mt-2 text-xs text-suave">Conclusões copiadas dos laudos originais, sem interpretação do Zelo.</p>
+        </section>
+      )}
 
       <section className="rounded-3xl bg-bege p-5">
         <h2 className="font-bold">Resumo pré-consulta</h2>

@@ -1,0 +1,54 @@
+{
+  "bruto": {
+    "tipo_documento": "laudo_descritivo",
+    "documento": {
+      "laboratorio": "CLÍNICA CARDIO EXEMPLO",
+      "data_coleta": null,
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": "788647",
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [],
+    "descritivo": {
+      "exame_nome": "ELETROCARDIOGRAMA DE REPOUSO (12 DERIVAÇÕES)",
+      "area": "coracao",
+      "data_exame": "2024-03-12",
+      "conclusao": "Eletrocardiograma dentro dos limites da normalidade.",
+      "pagina_conclusao": 1,
+      "confianca": "alta"
+    },
+    "observacoes": null
+  },
+  "normalizado": {
+    "tipo_documento": "laudo_descritivo",
+    "documento": {
+      "laboratorio": "CLÍNICA CARDIO EXEMPLO",
+      "data_coleta": null,
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": "788647",
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [],
+    "descritivo": {
+      "exame_nome": "ELETROCARDIOGRAMA DE REPOUSO (12 DERIVAÇÕES)",
+      "area": "coracao",
+      "data_exame": "2024-03-12",
+      "conclusao": "Eletrocardiograma dentro dos limites da normalidade.",
+      "pagina_conclusao": 1,
+      "confianca": "alta",
+      "alertas": []
+    },
+    "observacoes": null
+  },
+  "uso": {
+    "entrada": 8789,
+    "saida": 265,
+    "custo_usd": 0.0010114000000000002,
+    "segundos": 1.753
+  },
+  "modelo": "claude-haiku-5-5"
+}

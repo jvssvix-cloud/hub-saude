@@ -3,7 +3,8 @@
  * Nada aqui usa IA: toda conversão é uma regra explicável.
  */
 import type {
-  Analito, DoseExtraida, DoseNormalizada, Extracao, ExtracaoNormalizada, ResultadoExtraido, ResultadoNormalizado,
+  Analito, Descritivo, DescritivoNormalizado, DoseExtraida, DoseNormalizada, Extracao, ExtracaoNormalizada,
+  ResultadoExtraido, ResultadoNormalizado,
 } from "./schema";
 
 export const UNIDADE_CANONICA: Record<Analito, string> = {
@@ -133,8 +134,14 @@ function vezes(x: number, f: number): number {
   return f === 1 ? x : Math.round(x * f * 1e6) / 1e6;
 }
 
+/** "Resultado (GLICOSE)" -> "GLICOSE": o modelo às vezes junta o rótulo do valor ao nome da seção (laudo real, v6). */
+function limparNome(r: ResultadoExtraido): ResultadoExtraido {
+  const m = /^\s*resultados?\s*[(:\-–]\s*(.+?)\)?\s*$/i.exec(r.nome_impresso);
+  return m && m[1].trim() ? { ...r, nome_impresso: m[1].trim() } : r;
+}
+
 export function normalizarResultado(original: ResultadoExtraido): ResultadoNormalizado {
-  const r = reclassificar(original);
+  const r = reclassificar(limparNome(original));
   const alertas: string[] = [];
   if (r.analito === "outro") {
     return { ...r, unidade_canonica: null, valor_canonico: null, ref_min_canonico: null, ref_max_canonico: null, alertas: ["exame fora do dicionário"] };
@@ -212,5 +219,20 @@ export function normalizar(e: Extracao, nascimento?: string): ExtracaoNormalizad
     tipo_documento: e.tipo_documento ?? "laudo_exame", // leituras antigas (prompt v1-v3) não tinham o campo
     resultados: (e.resultados ?? []).map(normalizarResultado),
     doses: (e.doses ?? []).map((d) => normalizarDose(d, nascimento)),
+    descritivo: e.tipo_documento === "laudo_descritivo" && e.descritivo ? normalizarDescritivo(e.descritivo, nascimento) : null,
   };
+}
+
+/** Laudo descritivo: só confere a data e a conclusão (o texto é copiado do laudo, não há o que converter). */
+export function normalizarDescritivo(d: Descritivo, nascimento?: string): DescritivoNormalizado {
+  const alertas: string[] = [];
+  if (!d.data_exame || !/^\d{4}-\d{2}-\d{2}$/.test(d.data_exame) || Number.isNaN(Date.parse(d.data_exame))) {
+    alertas.push("data do exame não encontrada ou inválida");
+  } else {
+    if (d.data_exame > new Date().toISOString().slice(0, 10)) alertas.push("data no futuro: conferir leitura");
+    if (nascimento && d.data_exame < nascimento) alertas.push("data antes do nascimento: conferir leitura");
+  }
+  if (!d.conclusao.trim()) alertas.push("conclusão não encontrada");
+  if (d.confianca === "baixa") alertas.push("leitura com baixa confiança");
+  return { ...d, conclusao: d.conclusao.trim(), alertas };
 }

@@ -1,0 +1,54 @@
+{
+  "bruto": {
+    "tipo_documento": "laudo_descritivo",
+    "documento": {
+      "laboratorio": "IMAGEM MODELO DIAGNÓSTICOS",
+      "data_coleta": null,
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": "438857",
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [],
+    "descritivo": {
+      "exame_nome": "ULTRASSONOGRAFIA DE RINS E VIAS URINÁRIAS E PRÓSTATA (VIA ABDOMINAL)",
+      "area": "rins",
+      "data_exame": "2021-09-08",
+      "conclusao": "Rins de dimensões e ecotextura normais, sem cálculos.\nPróstata com volume discretamente aumentado (32 cm³).",
+      "pagina_conclusao": 1,
+      "confianca": "alta"
+    },
+    "observacoes": null
+  },
+  "normalizado": {
+    "tipo_documento": "laudo_descritivo",
+    "documento": {
+      "laboratorio": "IMAGEM MODELO DIAGNÓSTICOS",
+      "data_coleta": null,
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": "438857",
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [],
+    "descritivo": {
+      "exame_nome": "ULTRASSONOGRAFIA DE RINS E VIAS URINÁRIAS E PRÓSTATA (VIA ABDOMINAL)",
+      "area": "rins",
+      "data_exame": "2021-09-08",
+      "conclusao": "Rins de dimensões e ecotextura normais, sem cálculos.\nPróstata com volume discretamente aumentado (32 cm³).",
+      "pagina_conclusao": 1,
+      "confianca": "alta",
+      "alertas": []
+    },
+    "observacoes": null
+  },
+  "uso": {
+    "entrada": 8834,
+    "saida": 311,
+    "custo_usd": 0.0010389000000000002,
+    "segundos": 2.21
+  },
+  "modelo": "claude-haiku-5-5"
+}

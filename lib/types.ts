@@ -62,7 +62,9 @@ export type PerfilSaude = {
   atualizado_em: string;
 };
 
-export type TipoDocumento = "laudo_exame" | "carteira_vacinacao" | "wearable" | "outro";
+export type TipoDocumento = "laudo_exame" | "carteira_vacinacao" | "laudo_descritivo" | "wearable" | "outro";
+/** Área de um laudo descritivo (a mesma do /reunir). */
+export type AreaDescritivo = "coracao" | "gastro" | "rins" | "mulher" | "ossos" | "pulmao" | "outros";
 
 /** Canal por onde o dado entrou. É o que a demo mostra como "várias fontes, um histórico". */
 export type Origem = "upload_pdf" | "upload_foto" | "email" | "meu_sus" | "wearable" | "clinica_api" | "seed";
@@ -77,6 +79,11 @@ export type Documento = {
   arquivo: string | null; // caminho no Storage
   paginas: number | null;
   sha256?: string | null; // hash do arquivo enviado pelo app (evita o mesmo laudo duas vezes); null no seed
+  // só em laudo_descritivo (ECG, eco, endoscopia, imagem): a conclusão copiada do laudo e a página dela
+  area?: AreaDescritivo | null;
+  exame_nome?: string | null;
+  conclusao?: string | null;
+  conclusao_pagina?: number | null;
 };
 
 export type Categoria = "exame" | "vacina" | "wearable";

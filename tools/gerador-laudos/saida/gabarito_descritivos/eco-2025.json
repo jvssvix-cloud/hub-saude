@@ -1,0 +1,28 @@
+{
+  "documento_id": "eco-2025",
+  "tipo": "laudo_descritivo",
+  "arquivo_pdf": "descritivos/eco-2025.pdf",
+  "fotos": [],
+  "documento": {
+    "emissor": "Instituto do Coração Modelo",
+    "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+    "paginas": 2,
+    "paciente": {
+      "sexo": "M",
+      "nascimento": "1968-05-14"
+    }
+  },
+  "descritivo": {
+    "exame_nome": "ECOCARDIOGRAMA TRANSTORÁCICO",
+    "area": "coracao",
+    "data_exame": "2025-06-03",
+    "pagina_conclusao": 2,
+    "conclusao_contem": [
+      "função sistólica",
+      "preservada",
+      "disfunção diastólica",
+      "grau i"
+    ],
+    "conclusao": "Função sistólica do ventrículo esquerdo preservada.\nDisfunção diastólica do ventrículo esquerdo grau I (alteração do relaxamento).\nValvas sem alterações significativas."
+  }
+}

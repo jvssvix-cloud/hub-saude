@@ -28,6 +28,7 @@ function contextoEmTexto(c: Contexto): string {
   return [
     ...(c.perfil ? [`## Perfil de saúde (informado pelo próprio paciente no check-up; não é exame)\n${c.perfil}`] : []),
     `## Resumo\n${f("resumo_de_saude")}`,
+    `## Laudos descritivos (ECG, eco, endoscopia, imagem)\n${f("laudos_descritivos")}`,
     `## Vacinas\n${f("vacinas")}`,
     `## Relógio\n${f("relogio")}`,
     `## Cada exame, resultado a resultado\n${historicos}`,

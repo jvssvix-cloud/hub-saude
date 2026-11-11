@@ -1,0 +1,54 @@
+{
+  "bruto": {
+    "tipo_documento": "laudo_descritivo",
+    "documento": {
+      "laboratorio": "INSTITUTO DO CORAÇÃO MODELO",
+      "data_coleta": "2025-06-03",
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": "427100",
+      "paginas": 2
+    },
+    "resultados": [],
+    "doses": [],
+    "descritivo": {
+      "exame_nome": "ECOCARDIOGRAMA TRANSTORÁCICO",
+      "area": "coracao",
+      "data_exame": "2025-06-03",
+      "conclusao": "Função sistólica do ventrículo esquerdo preservada.\nDisfunção diastólica do ventrículo esquerdo grau I (alteração do relaxamento).\nValvas sem alterações significativas.",
+      "pagina_conclusao": 2,
+      "confianca": "alta"
+    },
+    "observacoes": null
+  },
+  "normalizado": {
+    "tipo_documento": "laudo_descritivo",
+    "documento": {
+      "laboratorio": "INSTITUTO DO CORAÇÃO MODELO",
+      "data_coleta": "2025-06-03",
+      "nome_paciente_impresso": "ROBERTO ALMEIDA SIQUEIRA",
+      "sexo_paciente": "M",
+      "atendimento": "427100",
+      "paginas": 2
+    },
+    "resultados": [],
+    "doses": [],
+    "descritivo": {
+      "exame_nome": "ECOCARDIOGRAMA TRANSTORÁCICO",
+      "area": "coracao",
+      "data_exame": "2025-06-03",
+      "conclusao": "Função sistólica do ventrículo esquerdo preservada.\nDisfunção diastólica do ventrículo esquerdo grau I (alteração do relaxamento).\nValvas sem alterações significativas.",
+      "pagina_conclusao": 2,
+      "confianca": "alta",
+      "alertas": []
+    },
+    "observacoes": null
+  },
+  "uso": {
+    "entrada": 10569,
+    "saida": 309,
+    "custo_usd": 0.0012114,
+    "segundos": 1.806
+  },
+  "modelo": "claude-haiku-5-5"
+}

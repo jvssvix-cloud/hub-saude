@@ -6,6 +6,7 @@
  */
 import { montarEntrada, type LinhaDocumento, type LinhaObservacao } from "@insights/banco";
 import { gerarInsights, HOJE_PADRAO } from "@insights/regras";
+import { soDescritivos, type LaudoDescritivo } from "@/lib/descritivos";
 import type { Insights } from "@/lib/insights";
 import { relogioDe, type Relogio } from "@/lib/relogio";
 import { getServidor, rpcPublica, temChaveServidor } from "@/lib/supabase";
@@ -22,7 +23,11 @@ export type Escopo = {
 };
 
 export type Acesso =
-  | { situacao: "ok"; escopo: Escopo; insights: Insights; documentos: number; relogio: Relogio | null }
+  | {
+      situacao: "ok"; escopo: Escopo; insights: Insights; documentos: number; relogio: Relogio | null;
+      /** ECG, eco, endoscopia, imagem: a conclusão copiada do laudo (não entra nos gráficos). */
+      descritivos: LaudoDescritivo[];
+    }
   | { situacao: "pendente"; prazo: string }
   | { situacao: Exclude<Situacao, "ok" | "pendente"> };
 
@@ -32,7 +37,7 @@ type Resposta =
       ok: true;
       consentimento: Escopo;
       paciente: { nome: string; nascimento: string; sexo: "M" | "F" };
-      documentos: LinhaDocumento[];
+      documentos: (LinhaDocumento & Partial<LaudoDescritivo> & { tipo?: string })[];
       observacoes: LinhaObservacao[];
     };
 
@@ -47,6 +52,10 @@ export async function acessar(token: string, consumidor: "visao_medico" | "mcp" 
   const insights = gerarInsights(laudos, r.paciente, HOJE_PADRAO, doses) as unknown as Insights;
   return {
     situacao: "ok", escopo: r.consentimento, insights, documentos: r.documentos.length,
+    descritivos: soDescritivos(r.documentos).map((d) => ({
+      id: d.id, area: d.area ?? null, exame_nome: d.exame_nome ?? null, data: d.data, emissor: d.emissor,
+      conclusao: d.conclusao ?? null, conclusao_pagina: d.conclusao_pagina ?? null, arquivo: d.arquivo,
+    })),
     relogio: liberaRelogio(r.consentimento) ? await relogioDoToken(token) : null,
   };
 }

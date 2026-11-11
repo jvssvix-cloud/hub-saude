@@ -899,6 +899,9 @@ def main():
     # Carteiras de vacinação (vacinas.py)
     import vacinas
     vacinas.gerar_todas(SAIDA, fotografar)
+    # Laudos descritivos: ECG, eco, endoscopia, ultrassom (descritivos.py)
+    import descritivos
+    descritivos.gerar_todas(SAIDA, fotografar)
     import casos
     casos.gerar_caso_misto(SAIDA)
 

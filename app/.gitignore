@@ -44,3 +44,4 @@ next-env.d.ts
 /src/dados/
 /public/laudos/
 /public/vacinas/
+/public/descritivos/

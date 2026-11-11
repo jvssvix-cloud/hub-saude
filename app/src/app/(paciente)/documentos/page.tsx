@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { meusInsights } from "@/lib/dados";
+import { ListaDescritivos } from "@/components/ListaDescritivos";
 import { SemExames } from "@/components/SemExames";
+import { descritivosDoPaciente } from "@/lib/descritivos-banco";
 import { laudos, nomeLab } from "@/lib/documentos";
 import { dataBr, serie } from "@/lib/insights";
+import { pacienteAtual } from "@/lib/sessao";
 
 export const metadata: Metadata = { title: "Documentos · Zelo" };
 
-/** Os documentos originais por categoria (exames de laboratório, vacinação). Cada laudo abre a lista dos resultados que saíram dele. */
+/**
+ * Os documentos originais por categoria (exames de laboratório, laudos de coração/gastro/imagem, vacinação).
+ * Cada laudo de laboratório abre a lista dos resultados que saíram dele; o laudo descritivo mostra a conclusão copiada.
+ */
 export default async function Documentos() {
-  const insights = await meusInsights();
+  const [insights, descritivos] = await Promise.all([
+    meusInsights(),
+    pacienteAtual().then((p) => descritivosDoPaciente(p.id)),
+  ]);
   const lista = laudos(insights);
   // carteiras e comprovantes de vacinação: um por arquivo de origem das doses
   const porArquivo = new Map<string, { arquivo: string; doses: number; de: string; ate: string }>();
@@ -23,6 +32,7 @@ export default async function Documentos() {
   const pendentes = (insights.vacinacao?.situacao ?? []).filter((v) => v.status === "atencao");
   const categorias = [
     { id: "exames", nome: "Exames de laboratório", n: lista.length },
+    { id: "laudos", nome: "Coração, gastro e imagem", n: descritivos.length },
     { id: "vacinacao", nome: "Vacinação", n: vacinas.length },
   ].filter((c) => c.n > 0);
 
@@ -34,9 +44,9 @@ export default async function Documentos() {
       <section>
         <h1 className="text-[28px] font-bold leading-tight tracking-tight">Documentos</h1>
         <p className="mt-1 text-[15px] text-suave">
-          {lista.length + vacinas.length === 0
+          {lista.length + vacinas.length + descritivos.length === 0
             ? "Os laudos e carteiras de vacinação que você enviar ficam guardados aqui."
-            : `${lista.length + vacinas.length} documentos originais. Cada número do app vem de um deles.`}
+            : `${lista.length + vacinas.length + descritivos.length} documentos originais. Cada número do app vem de um deles.`}
         </p>
         <nav aria-label="Categorias" className="mt-3 flex flex-wrap gap-2">
           {categorias.map((c) => (
@@ -61,7 +71,7 @@ export default async function Documentos() {
         </section>
       ))}
 
-      {lista.length === 0 && (
+      {lista.length + descritivos.length === 0 && (
         <SemExames texto="Envie o PDF ou uma foto de um laudo. O original fica guardado aqui, e cada número do app aponta para ele." />
       )}
 
@@ -96,6 +106,16 @@ export default async function Documentos() {
         })}
       </ul>
       </section>
+      )}
+
+      {descritivos.length > 0 && (
+        <section id="laudos" className="scroll-mt-20">
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Coração, gastro e imagem</h2>
+          <ListaDescritivos lista={descritivos} />
+          <p className="mt-2 text-xs text-suave">
+            A conclusão é copiada do laudo, sem interpretação. Não vira gráfico nem alerta: quem interpreta é o seu médico.
+          </p>
+        </section>
       )}
 
       {vacinas.length > 0 && (
@@ -137,7 +157,7 @@ export default async function Documentos() {
       )}
 
       <p className="text-center text-xs text-suave">
-        Receitas, exames de imagem e outros documentos aparecem aqui, na sua categoria, quando forem enviados.
+        Receitas e outros documentos ainda não são lidos pelo Zelo. Laudos de exame, de imagem e vacinas: envie em Reunir meus exames.
       </p>
     </div>
   );

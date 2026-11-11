@@ -60,8 +60,18 @@ for (const f of readdirSync(dirVac).filter((f) => f.endsWith(".json")).sort()) {
   }
 }
 
+// Laudos descritivos (ECG, eco, endoscopia, ultrassom): só o documento, com a conclusão copiada e a página
+const descritivos = [];
+const dirDesc = path.join(SAIDA, "gabarito_descritivos");
+for (const f of readdirSync(dirDesc).filter((f) => f.endsWith(".json")).sort()) {
+  const g = ler(path.join(dirDesc, f));
+  const d = g.descritivo;
+  descritivos.push([g.documento_id, PID, "laudo_descritivo", "seed", g.documento.emissor, d.data_exame, g.arquivo_pdf,
+    g.documento.paginas, d.area, d.exame_nome, d.conclusao, d.pagina_conclusao]);
+}
+
 const sql = `-- GERADO por supabase/seed/gerar-seed.mjs a partir de tools/gerador-laudos/saida. Não edite à mão.
--- Persona sintética: ${persona.nome}. ${documentos.length} documentos, ${observacoes.length} observações.
+-- Persona sintética: ${persona.nome}. ${documentos.length} documentos, ${observacoes.length} observações, ${descritivos.length} laudos descritivos.
 
 delete from paciente where id = ${q(PID)};  -- cascade: documentos, observações, consentimentos, logs
 
@@ -85,6 +95,10 @@ insert into observacao (paciente_id, documento_id, categoria, codigo, data,
   ref_min_canonico, ref_max_canonico, fora_da_faixa,
   dose, lote, local, confianca) values
 ${observacoes.map(linha).join(",\n")};
+
+insert into documento (id, paciente_id, tipo, origem, emissor, data, arquivo, paginas,
+  area, exame_nome, conclusao, conclusao_pagina) values
+${descritivos.map(linha).join(",\n")};
 `;
 
 const destino = path.join(RAIZ, "supabase/seed.sql");

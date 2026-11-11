@@ -1,0 +1,216 @@
+{
+  "bruto": {
+    "tipo_documento": "carteira_vacinacao",
+    "documento": {
+      "laboratorio": "Cartão de papel",
+      "data_coleta": null,
+      "nome_paciente_impresso": "Roberto A. Siqueira",
+      "sexo_paciente": "M",
+      "atendimento": null,
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [
+      {
+        "vacina": "dt",
+        "nome_impresso": "DUPLA ADULTO (dT) - DIFTERIA E TÉTANO",
+        "dose": "reforco",
+        "dose_impressa": "Ref.",
+        "data": "2004-06-15",
+        "data_impressa": "15/06/04",
+        "lote": "DT0412A",
+        "local": "AMA PARQUE EXEMPLO - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "media"
+      },
+      {
+        "vacina": "dt",
+        "nome_impresso": "DUPLA ADULTO (dT) - DIFTERIA E TÉTANO",
+        "dose": "reforco",
+        "dose_impressa": "Ref.",
+        "data": "2014-08-20",
+        "data_impressa": "20/08/14",
+        "lote": "DT14086",
+        "local": "AMA PARQUE EXEMPLO - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "media"
+      },
+      {
+        "vacina": "hepatite_b",
+        "nome_impresso": "HEPATITE B",
+        "dose": "1",
+        "dose_impressa": "1ª dose",
+        "data": "2009-03-10",
+        "data_impressa": "10/03/09",
+        "lote": "HB0903",
+        "local": "DROGARIA SAÚDE FICTÍCIA - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "hepatite_b",
+        "nome_impresso": "HEPATITE B",
+        "dose": "2",
+        "dose_impressa": "2ª dose",
+        "data": "2009-04-14",
+        "data_impressa": "14/04/09",
+        "lote": "HB0904",
+        "local": "AMA PARQUE EXEMPLO - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "febre_amarela",
+        "nome_impresso": "FEBRE AMARELA",
+        "dose": "unica",
+        "dose_impressa": "Dose única",
+        "data": "2018-02-05",
+        "data_impressa": "05/02/18",
+        "lote": "FA1802X",
+        "local": "UBS VILA MODELO - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "triplice_viral",
+        "nome_impresso": "TRÍPLICE VIRAL (SARAMPO, CAXUMBA, RUBÉOLA)",
+        "dose": "1",
+        "dose_impressa": "1ª dose",
+        "data": "2019-08-20",
+        "data_impressa": "20/08/19",
+        "lote": "SCR1908",
+        "local": "DROGARIA SAÚDE FICTÍCIA - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta"
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "GRIPE (INFLUENZA)",
+        "dose": "anual",
+        "dose_impressa": "Dose anual",
+        "data": "2019-04-22",
+        "data_impressa": "22/04/19",
+        "lote": "FLU19B",
+        "local": "DROGARIA SAÚDE FICTÍCIA - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta"
+      }
+    ],
+    "descritivo": null,
+    "observacoes": "Carimbos sobrepostos a parte do lote da 2ª dose de DT (DT14086) e à data/assinatura de algumas linhas; leitura dos lotes DT0412A e DT14086 com confiança média. Sexo informado pelo cadastro e impresso no cartão."
+  },
+  "normalizado": {
+    "tipo_documento": "carteira_vacinacao",
+    "documento": {
+      "laboratorio": "Cartão de papel",
+      "data_coleta": null,
+      "nome_paciente_impresso": "Roberto A. Siqueira",
+      "sexo_paciente": "M",
+      "atendimento": null,
+      "paginas": 1
+    },
+    "resultados": [],
+    "doses": [
+      {
+        "vacina": "dt",
+        "nome_impresso": "DUPLA ADULTO (dT) - DIFTERIA E TÉTANO",
+        "dose": "reforco",
+        "dose_impressa": "Ref.",
+        "data": "2004-06-15",
+        "data_impressa": "15/06/04",
+        "lote": "DT0412A",
+        "local": "AMA PARQUE EXEMPLO - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "media",
+        "alertas": []
+      },
+      {
+        "vacina": "dt",
+        "nome_impresso": "DUPLA ADULTO (dT) - DIFTERIA E TÉTANO",
+        "dose": "reforco",
+        "dose_impressa": "Ref.",
+        "data": "2014-08-20",
+        "data_impressa": "20/08/14",
+        "lote": "DT14086",
+        "local": "AMA PARQUE EXEMPLO - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "media",
+        "alertas": []
+      },
+      {
+        "vacina": "hepatite_b",
+        "nome_impresso": "HEPATITE B",
+        "dose": "1",
+        "dose_impressa": "1ª dose",
+        "data": "2009-03-10",
+        "data_impressa": "10/03/09",
+        "lote": "HB0903",
+        "local": "DROGARIA SAÚDE FICTÍCIA - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "hepatite_b",
+        "nome_impresso": "HEPATITE B",
+        "dose": "2",
+        "dose_impressa": "2ª dose",
+        "data": "2009-04-14",
+        "data_impressa": "14/04/09",
+        "lote": "HB0904",
+        "local": "AMA PARQUE EXEMPLO - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "febre_amarela",
+        "nome_impresso": "FEBRE AMARELA",
+        "dose": "unica",
+        "dose_impressa": "Dose única",
+        "data": "2018-02-05",
+        "data_impressa": "05/02/18",
+        "lote": "FA1802X",
+        "local": "UBS VILA MODELO - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "triplice_viral",
+        "nome_impresso": "TRÍPLICE VIRAL (SARAMPO, CAXUMBA, RUBÉOLA)",
+        "dose": "1",
+        "dose_impressa": "1ª dose",
+        "data": "2019-08-20",
+        "data_impressa": "20/08/19",
+        "lote": "SCR1908",
+        "local": "DROGARIA SAÚDE FICTÍCIA - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      },
+      {
+        "vacina": "influenza",
+        "nome_impresso": "GRIPE (INFLUENZA)",
+        "dose": "anual",
+        "dose_impressa": "Dose anual",
+        "data": "2019-04-22",
+        "data_impressa": "22/04/19",
+        "lote": "FLU19B",
+        "local": "DROGARIA SAÚDE FICTÍCIA - SÃO PAULO - SP",
+        "pagina": 1,
+        "confianca": "alta",
+        "alertas": []
+      }
+    ],
+    "descritivo": null,
+    "observacoes": "Carimbos sobrepostos a parte do lote da 2ª dose de DT (DT14086) e à data/assinatura de algumas linhas; leitura dos lotes DT0412A e DT14086 com confiança média. Sexo informado pelo cadastro e impresso no cartão."
+  },
+  "uso": {
+    "entrada": 10424,
+    "saida": 2020,
+    "custo_usd": 0.0020524000000000002,
+    "segundos": 7.908
+  },
+  "modelo": "claude-haiku-5-5"
+}
