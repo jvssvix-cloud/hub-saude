@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import { Logo } from "@/components/Logo";
 import { NavPaciente } from "@/components/NavPaciente";
 import { pacienteDaSessao } from "@/lib/sessao";
 
@@ -9,13 +10,8 @@ export default function LayoutPaciente({ children }: { children: React.ReactNode
     <>
       <header className="sticky top-0 z-10 bg-fundo/90 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-2xl items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-2 text-[15px] font-bold tracking-tight text-marca">
-            <span aria-hidden className="grid size-7 place-items-center rounded-full bg-marca-fundo">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-            </span>
-            hub saúde
+          <Link href="/" className="flex items-center" aria-label="Zelo: início">
+            <Logo />
           </Link>
           <Suspense fallback={<NavPaciente variante="topo" caminho="" />}>
             <NavPaciente variante="topo" />
