@@ -26,6 +26,7 @@ function contextoEmTexto(c: Contexto): string {
   const f = (nome: string, args: Record<string, unknown> = {}) => FERRAMENTAS.find((x) => x.name === nome)!.executar(c, args);
   const historicos = c.insights.series.map((s) => f("historico_do_exame", { exame: s.analito })).join("\n\n---\n\n");
   return [
+    ...(c.perfil ? [`## Perfil de saúde (informado pelo próprio paciente no check-up; não é exame)\n${c.perfil}`] : []),
     `## Resumo\n${f("resumo_de_saude")}`,
     `## Vacinas\n${f("vacinas")}`,
     `## Relógio\n${f("relogio")}`,
@@ -44,6 +45,7 @@ function instrucoes(c: Contexto): string {
     "- Não dê diagnóstico, não indique nem ajuste remédio. Explique, compare ao longo do tempo e sugira o que levar ao médico.",
     "- Sinais de urgência (dor no peito, falta de ar, desmaio): oriente a procurar atendimento agora.",
     "- Cite os exames pelo nome que aparece nos dados, para o app conseguir ligar a resposta à página do exame.",
+    "- O perfil de saúde (hábitos, diagnósticos, remédios, família) foi o paciente quem contou: use para dar contexto (ex.: IMC, sono, histórico familiar), dizendo que é o que ele informou, nunca como resultado de exame.",
     "",
     "# Histórico do paciente",
     contextoEmTexto(c),

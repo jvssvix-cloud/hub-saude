@@ -8,6 +8,7 @@ const GRUPOS: { titulo: string; itens: { href: string; nome: string; desc: strin
   {
     titulo: "Seus dados",
     itens: [
+      { href: "/perfil", nome: "Meu perfil de saúde", desc: "Altura, peso, hábitos, diagnósticos e família: o que você contou no check-up" },
       { href: "/relogio", nome: "Relógio", desc: "Batimento, ritmo, sono e passos dos últimos 6 meses" },
       { href: "/documentos", nome: "Documentos", desc: "Os laudos originais de onde vem cada número" },
       { href: "/evolucao", nome: "Evolução completa", desc: "Todos os índices ao longo do tempo" },

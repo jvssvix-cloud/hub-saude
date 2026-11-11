@@ -1,22 +1,26 @@
 "use server";
 /**
- * Gravação do check-up, um bloco por vez (cada "Continuar" salva o bloco e vai para o próximo).
+ * Gravação do perfil de saúde, um bloco por vez. Dois modos: "checkup" (cada "Continuar" salva e vai para o
+ * próximo bloco) e "perfil" (edição em Mais > Meu perfil de saúde: salva e volta para /perfil).
  * O paciente nasce no bloco 1, junto com o perfil_saude e os aceites. Tudo com a chave secreta, só no servidor;
  * o que vem do formulário é validado aqui de novo (nunca confiar no navegador).
  */
 import { randomUUID } from "node:crypto";
+import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import {
-  ALCOOL, CONDICOES, FAMILIA, FUMO, TERMOS_VERSAO, TOTAL_BLOCOS,
+  ALCOOL, ATIVIDADE_MAX_HORAS, CONDICOES, FAMILIA, FUMO, MIN_SEMANA_POR_HORA_DIA, TERMOS_VERSAO, TOTAL_BLOCOS,
   alturaCm, escolhas, numero, sim, telefone, texto, uma,
 } from "@/lib/checkup";
+import { tagHistorico } from "@/lib/dados";
 import { contaAtual } from "@/lib/sessao";
 import { escreverServidor, getServidor } from "@/lib/supabase";
 
 export type EstadoBloco = { erro?: string };
+export type Modo = "checkup" | "perfil";
 
 const agora = () => new Date().toISOString();
-const proximo = (n: number) => redirect(`/checkup?bloco=${n + 1}`);
+const depois = (modo: Modo, n: number) => redirect(modo === "perfil" ? "/perfil" : `/checkup?bloco=${n + 1}`);
 
 async function atualizarPerfil(pacienteId: string, campos: Record<string, unknown>) {
   await escreverServidor("PATCH", `perfil_saude?paciente_id=eq.${encodeURIComponent(pacienteId)}`, {
@@ -24,9 +28,11 @@ async function atualizarPerfil(pacienteId: string, campos: Record<string, unknow
   });
 }
 
-export async function salvarBloco(n: number, _: EstadoBloco, form: FormData): Promise<EstadoBloco> {
+export async function salvarBloco(modo: Modo, n: number, _: EstadoBloco, form: FormData): Promise<EstadoBloco> {
   const conta = await contaAtual();
-  if (n === 1) return salvarBasico(conta, form);
+  // editar o perfil é só para quem já concluiu o check-up (e o bloco 7, que conclui, não existe na edição)
+  if (modo === "perfil" && (!conta.concluido || n === TOTAL_BLOCOS)) redirect("/checkup");
+  if (n === 1) return salvarBasico(modo, conta, form);
   if (!conta.paciente) redirect("/checkup?bloco=1");
   const pid = conta.paciente.id;
 
@@ -41,14 +47,16 @@ export async function salvarBloco(n: number, _: EstadoBloco, form: FormData): Pr
       break;
     }
     case 3: {
-      const atividade = numero(form.get("atividade"));
+      const horas = numero(form.get("atividade_horas"));
       const sono = numero(form.get("sono"));
-      if (atividade !== null && (Number.isNaN(atividade) || atividade > 3000)) return { erro: "Confira os minutos de atividade por semana." };
+      if (horas !== null && (Number.isNaN(horas) || !Number.isInteger(horas) || horas > ATIVIDADE_MAX_HORAS)) {
+        return { erro: "Confira as horas de atividade por dia." };
+      }
       if (sono !== null && (Number.isNaN(sono) || sono > 24)) return { erro: "Confira as horas de sono por noite." };
       await atualizarPerfil(pid, {
         fumo: uma(form.get("fumo"), FUMO),
         alcool: uma(form.get("alcool"), ALCOOL),
-        atividade_min_semana: atividade === null ? null : Math.round(atividade),
+        atividade_min_semana: horas === null ? null : horas * MIN_SEMANA_POR_HORA_DIA,
         sono_horas: sono,
       });
       break;
@@ -89,11 +97,11 @@ export async function salvarBloco(n: number, _: EstadoBloco, form: FormData): Pr
     default:
       redirect("/checkup");
   }
-  proximo(n);
+  depois(modo, n);
   return {};
 }
 
-async function salvarBasico(conta: Awaited<ReturnType<typeof contaAtual>>, form: FormData): Promise<EstadoBloco> {
+async function salvarBasico(modo: Modo, conta: Awaited<ReturnType<typeof contaAtual>>, form: FormData): Promise<EstadoBloco> {
   const nome = texto(form.get("nome"), 120);
   const nascimento = String(form.get("nascimento") ?? "");
   const sexo = form.get("sexo");
@@ -144,6 +152,8 @@ async function salvarBasico(conta: Awaited<ReturnType<typeof contaAtual>>, form:
     console.error("[checkup] básico:", msg);
     return { erro: "Não conseguimos salvar agora. Tente de novo." };
   }
-  proximo(1);
+  // nome, nascimento e sexo entram nos insights (idade, faixas de referência): renova o cache deste paciente
+  if (conta.paciente) updateTag(tagHistorico(conta.paciente.id));
+  depois(modo, 1);
   return {};
 }

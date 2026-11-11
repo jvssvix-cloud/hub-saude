@@ -15,7 +15,7 @@ const ITENS = [
   },
   { href: "/conversar", rotulo: "Conversar", icone: IconeConversa, ativo: (p: string) => comeca(p, "/conversar") },
   { href: "/plano", rotulo: "Plano", icone: IconePlano, ativo: (p: string) => comeca(p, "/plano") },
-  { href: "/mais", rotulo: "Mais", icone: IconeMais, ativo: (p: string) => comeca(p, "/mais", "/relogio", "/compartilhar", "/conectar-ia") },
+  { href: "/mais", rotulo: "Mais", icone: IconeMais, ativo: (p: string) => comeca(p, "/mais", "/perfil", "/relogio", "/compartilhar", "/conectar-ia") },
 ];
 
 /**

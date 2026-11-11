@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { startTransition, useActionState, useState } from "react";
-import { imc } from "@/lib/checkup";
+import { ATIVIDADE_MAX_HORAS, MIN_SEMANA_POR_HORA_DIA, imc } from "@/lib/checkup";
 import type { EstadoBloco } from "./acoes";
 
 export const CAMPO =
@@ -10,12 +10,14 @@ export const CAMPO =
 
 /** Formulário de um bloco: mostra o erro que a ação devolve e trava os botões enquanto salva. */
 export function FormBloco({
-  acao, n, opcional, ultimo, children,
+  acao, n, opcional, ultimo, edicao = false, children,
 }: {
   acao: (estado: EstadoBloco, form: FormData) => Promise<EstadoBloco>;
   n: number;
   opcional: boolean;
   ultimo: boolean;
+  /** Edição em Mais > Meu perfil de saúde: "Cancelar" e "Salvar" no lugar de "Voltar", "Pular" e "Continuar". */
+  edicao?: boolean;
   children: React.ReactNode;
 }) {
   const [estado, enviar, salvando] = useActionState(acao, {});
@@ -35,7 +37,21 @@ export function FormBloco({
           {estado.erro}
         </p>
       )}
-      {ultimo ? (
+      {edicao ? (
+        <div className="flex items-center gap-3">
+          <Link href="/perfil" className="rounded-2xl px-3 py-3 text-sm font-semibold text-suave hover:text-tinta">
+            Cancelar
+          </Link>
+          <span className="flex-1" />
+          <button
+            type="submit"
+            disabled={salvando}
+            className="rounded-2xl bg-marca px-6 py-3 font-semibold text-white hover:bg-marca-hover disabled:opacity-60"
+          >
+            {salvando ? "Salvando…" : "Salvar"}
+          </button>
+        </div>
+      ) : ultimo ? (
         <div className="space-y-2.5">
           <button
             name="destino"
@@ -77,6 +93,67 @@ export function FormBloco({
         </div>
       )}
     </form>
+  );
+}
+
+/**
+ * Bloco 3: atividade física em horas por dia, com − e + (de 1 em 1 hora, até ATIVIDADE_MAX_HORAS).
+ * O banco guarda minutos por semana (a medida das recomendações): 1 h/dia = 420 min/semana.
+ */
+export function CampoAtividade({ minSemana }: { minSemana: number | null }) {
+  return (
+    <Contador
+      nome="atividade_horas"
+      inicial={minSemana === null ? null : Math.round(minSemana / MIN_SEMANA_POR_HORA_DIA)}
+      max={ATIVIDADE_MAX_HORAS}
+      unidade={(n) => (n === 0 ? "nenhuma por dia" : n === 1 ? "hora por dia" : "horas por dia")}
+      dica={(n) =>
+        n === 0
+          ? "A recomendação é de pelo menos 150 minutos por semana. Caminhada conta."
+          : `${n * 7} horas por semana. Caminhada, academia, esporte e bicicleta contam.`
+      }
+    />
+  );
+}
+
+/**
+ * Contador com − e + (de 1 em 1). Começa sem resposta ("—"): o primeiro toque em + vai para 1.
+ * O valor vai num campo escondido; vazio = não informou.
+ */
+function Contador({
+  nome, inicial, max, unidade, dica,
+}: {
+  nome: string;
+  inicial: number | null;
+  max: number;
+  unidade: (n: number) => string;
+  dica?: (n: number) => string;
+}) {
+  const [v, setV] = useState<number | null>(inicial);
+  const botao =
+    "grid size-12 place-items-center rounded-full border border-linha bg-cartao text-2xl font-semibold text-marca transition-colors hover:border-salvia active:bg-marca-fundo disabled:opacity-35";
+  return (
+    <div className="rounded-2xl border border-linha bg-cartao p-4">
+      <input type="hidden" name={nome} value={v ?? ""} />
+      <div className="flex items-center justify-between gap-3">
+        <button type="button" aria-label="Menos" className={botao} disabled={!v} onClick={() => setV((x) => Math.max(0, (x ?? 0) - 1))}>
+          −
+        </button>
+        <p className="text-center" aria-live="polite">
+          <span className="num block text-4xl font-bold tracking-tight">{v ?? "—"}</span>
+          <span className="text-sm text-suave">{v === null ? "toque em + para responder" : unidade(v)}</span>
+        </p>
+        <button type="button" aria-label="Mais" className={botao} disabled={v !== null && v >= max} onClick={() => setV((x) => Math.min(max, (x ?? 0) + 1))}>
+          +
+        </button>
+      </div>
+      <div className="mt-3 flex gap-1" aria-hidden>
+        {Array.from({ length: max }, (_, i) => (
+          <span key={i} className={`h-1.5 flex-1 rounded-full transition-colors ${v !== null && i < v ? "bg-marca" : "bg-bege"}`} />
+        ))}
+      </div>
+      {v !== null && dica && <p className="mt-2 text-center text-xs text-suave">{dica(v)}</p>}
+    </div>
   );
 }
 

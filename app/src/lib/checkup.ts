@@ -5,7 +5,7 @@
  * ("Enviar exames agora" ou "Depois"). Os aceites ficam no bloco 1 de propósito: o consentimento para dado de saúde
  * (LGPD) vem antes de qualquer dado de saúde ser gravado.
  */
-import type { Alcool, Condicao, Fumo, HistoricoFamiliar } from "../../../lib/types";
+import type { Alcool, Condicao, Fumo, HistoricoFamiliar, PerfilSaude } from "../../../lib/types";
 
 export const TERMOS_VERSAO = "v1-2026-11-11";
 
@@ -46,6 +46,10 @@ export const FAMILIA: { id: HistoricoFamiliar; rotulo: string; dica?: string }[]
   { id: "cancer", rotulo: "Câncer" },
 ];
 
+/** Atividade física: a tela pergunta horas por dia (de 1 em 1); o banco guarda minutos por semana. */
+export const MIN_SEMANA_POR_HORA_DIA = 7 * 60;
+export const ATIVIDADE_MAX_HORAS = 6; // 6 h/dia = 2520 min/semana (a coluna aceita até 3000)
+
 /** IMC com 1 casa (null se faltar altura ou peso) e a faixa da OMS em linguagem simples. */
 export function imc(alturaCm: number | null, pesoKg: number | null): { valor: number; faixa: string } | null {
   if (!alturaCm || !pesoKg) return null;
@@ -53,6 +57,97 @@ export function imc(alturaCm: number | null, pesoKg: number | null): { valor: nu
   const faixa = v < 18.5 ? "abaixo do peso" : v < 25 ? "peso adequado" : v < 30 ? "sobrepeso" : "obesidade";
   return { valor: v, faixa };
 }
+
+// ---------------------------------------------------------------- perfil em texto (tela do perfil e chat)
+export type CadastroBasico = { nome: string; nascimento: string; sexo: "M" | "F"; telefone: string | null };
+export type SecaoPerfil = { bloco: number; titulo: string; itens: { rotulo: string; valor: string | null }[] };
+
+const n = (v: number | string | null | undefined) => (v === null || v === undefined || v === "" ? null : Number(v));
+const br = (v: number, casas = 0) => v.toLocaleString("pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas });
+const rotuloDe = <T extends string>(lista: { id: T; rotulo: string }[], id: T | null | undefined) =>
+  lista.find((x) => x.id === id)?.rotulo ?? null;
+const listaDe = <T extends string>(lista: { id: T; rotulo: string }[], ids: T[] | null | undefined) =>
+  ids?.length ? ids.map((id) => rotuloDe(lista, id) ?? id).join(", ") : null;
+
+export function idade(nascimento: string, hoje = new Date().toISOString().slice(0, 10)): number {
+  const [a, m, d] = nascimento.split("-").map(Number);
+  const [ha, hm, hd] = hoje.split("-").map(Number);
+  return ha - a - (hm < m || (hm === m && hd < d) ? 1 : 0);
+}
+
+/** "5511987654321" -> "(11) 98765-4321" */
+export function telefoneBr(t: string | null): string | null {
+  if (!t) return null;
+  const d = t.startsWith("55") ? t.slice(2) : t;
+  return d.length === 11 ? `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}` : `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+}
+
+/** Atividade guardada em min/semana -> "1 h por dia" (ou "90 min por semana" se não fechar hora por dia). */
+export function atividadeTexto(minSemana: number | null): string | null {
+  if (minSemana === null) return null;
+  if (minSemana === 0) return "Nenhuma";
+  const h = minSemana / MIN_SEMANA_POR_HORA_DIA;
+  return Number.isInteger(h) ? `${h} h por dia` : `${br(minSemana)} min por semana`;
+}
+
+/** O perfil em seções legíveis (valor null = não informado). Uma seção por bloco do check-up (1 a 6). */
+export function secoesPerfil(cad: CadastroBasico, p: PerfilSaudeLeitura): SecaoPerfil[] {
+  const altura = n(p.altura_cm);
+  const peso = n(p.peso_kg);
+  const i = imc(altura, peso);
+  const sono = n(p.sono_horas);
+  const mulher = cad.sexo === "F";
+  const simNao = (v: boolean | null) => (v === true ? "Sim" : v === false ? "Não" : null);
+  const [a, m, d] = cad.nascimento.split("-");
+  return [
+    { bloco: 1, titulo: "Sobre você", itens: [
+      { rotulo: "Nome", valor: cad.nome },
+      { rotulo: "Idade", valor: `${idade(cad.nascimento)} anos (nascimento em ${d}/${m}/${a})` },
+      { rotulo: "Sexo biológico", valor: cad.sexo === "F" ? "Feminino" : "Masculino" },
+      { rotulo: "Celular", valor: telefoneBr(cad.telefone) },
+    ] },
+    { bloco: 2, titulo: "Seu corpo", itens: [
+      { rotulo: "Altura", valor: altura ? `${br(altura)} cm` : null },
+      { rotulo: "Peso", valor: peso ? `${br(peso, Number.isInteger(peso) ? 0 : 1)} kg` : null },
+      { rotulo: "IMC", valor: i ? `${br(i.valor, 1)} (${i.faixa})` : null },
+    ] },
+    { bloco: 3, titulo: "Seus hábitos", itens: [
+      { rotulo: "Cigarro", valor: rotuloDe(FUMO, p.fumo) },
+      { rotulo: "Bebida alcoólica", valor: rotuloDe(ALCOOL, p.alcool) },
+      { rotulo: "Atividade física", valor: atividadeTexto(n(p.atividade_min_semana)) },
+      { rotulo: "Sono", valor: sono !== null ? `${br(sono, Number.isInteger(sono) ? 0 : 1)} h por noite` : null },
+    ] },
+    { bloco: 4, titulo: "Saúde até aqui", itens: [
+      { rotulo: "Diagnósticos", valor: listaDe(CONDICOES, p.condicoes) },
+      { rotulo: "Outras condições", valor: p.condicoes_outras },
+      { rotulo: "Remédios de uso contínuo", valor: p.remedios },
+    ] },
+    { bloco: 5, titulo: "Sua família", itens: [
+      { rotulo: "Pais e irmãos tiveram", valor: listaDe(FAMILIA, p.familia) },
+      ...(p.familia?.includes("cancer") ? [{ rotulo: "Câncer", valor: p.familia_cancer }] : []),
+    ] },
+    { bloco: 6, titulo: "Alergias e outros", itens: [
+      { rotulo: "Alergias", valor: p.alergias },
+      ...(mulher ? [{ rotulo: "Grávida", valor: simNao(p.gestante) }, { rotulo: "Menopausa", valor: simNao(p.menopausa) }] : []),
+    ] },
+  ];
+}
+
+/** Linhas do perfil já respondidas, para o contexto do chat (o que não foi informado fica de fora). */
+export function perfilParaTexto(cad: CadastroBasico, p: PerfilSaudeLeitura): string {
+  return secoesPerfil(cad, p)
+    .filter((s) => s.bloco > 1) // nome, idade e sexo o chat já recebe pelos insights; celular não interessa
+    .flatMap((s) => s.itens.filter((x) => x.valor).map((x) => `- ${x.rotulo}: ${x.valor}`))
+    .join("\n");
+}
+
+/** perfil_saude como chega da API (numeric vem como texto). */
+export type PerfilSaudeLeitura = Omit<PerfilSaude, "altura_cm" | "peso_kg" | "sono_horas" | "atividade_min_semana"> & {
+  altura_cm: number | string | null;
+  peso_kg: number | string | null;
+  sono_horas: number | string | null;
+  atividade_min_semana: number | string | null;
+};
 
 // ---------------------------------------------------------------- leitura dos campos (servidor e testes)
 /** "1,75" ou "1.75" -> 1.75; vazio -> null; texto inválido -> NaN. */

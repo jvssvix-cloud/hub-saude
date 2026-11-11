@@ -5,6 +5,8 @@
 import { responder, temChaveChat, type Mensagem } from "@/lib/chat";
 import { carregarInsights } from "@/lib/dados";
 import { seriesCitadas } from "@/lib/insights";
+import { perfilParaTexto } from "@/lib/checkup";
+import { perfilDoPaciente } from "@/lib/perfil";
 import { pacienteDaSessao } from "@/lib/sessao";
 import { relogioDe } from "@/lib/relogio";
 
@@ -30,9 +32,12 @@ export async function POST(req: Request) {
 
   const p = await pacienteDaSessao();
   if (!p) return Response.json({ erro: "sem_sessao" }, { status: 401 });
-  const insights = await carregarInsights(p.id);
+  const [insights, perfil] = await Promise.all([carregarInsights(p.id), perfilDoPaciente(p.id).catch(() => null)]);
   try {
-    const texto = await responder({ insights, relogio: relogioDe(p.id), origem: new URL(req.url).origin }, mensagens);
+    const texto = await responder(
+      { insights, relogio: relogioDe(p.id), origem: new URL(req.url).origin, perfil: perfil && perfilParaTexto(perfil.cad, perfil.perfil) },
+      mensagens,
+    );
     const exames = seriesCitadas(insights, texto).map((s) => ({ analito: s.analito, nome: s.nome.replace(/ \(.*\)$/, ""), fora: s.alterado }));
     return Response.json({ texto, exames });
   } catch (e) {

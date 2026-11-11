@@ -6,6 +6,8 @@ import { montarPlano, temChaveChat, type Mensagem } from "@/lib/chat";
 import { carregarInsights } from "@/lib/dados";
 import { relogioDe } from "@/lib/relogio";
 import { escreverServidor, temChaveServidor } from "@/lib/supabase";
+import { perfilParaTexto } from "@/lib/checkup";
+import { perfilDoPaciente } from "@/lib/perfil";
 import { pacienteDaSessao } from "@/lib/sessao";
 
 const MAX_MENSAGENS = 12;
@@ -33,8 +35,11 @@ export async function POST(req: Request) {
 
   let plano;
   try {
-    const insights = await carregarInsights(p.id);
-    plano = await montarPlano({ insights, relogio: relogioDe(p.id), origem: new URL(req.url).origin }, mensagens);
+    const [insights, perfil] = await Promise.all([carregarInsights(p.id), perfilDoPaciente(p.id).catch(() => null)]);
+    plano = await montarPlano(
+      { insights, relogio: relogioDe(p.id), origem: new URL(req.url).origin, perfil: perfil && perfilParaTexto(perfil.cad, perfil.perfil) },
+      mensagens,
+    );
   } catch (e) {
     console.error("[plano] geração:", e instanceof Error ? e.message : e);
     return Response.json({ erro: "falha" }, { status: 502 });

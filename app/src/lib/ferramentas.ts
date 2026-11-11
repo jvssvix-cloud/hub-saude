@@ -13,6 +13,11 @@ export type Contexto = {
   relogio: Relogio | null;
   /** "https://app..." para montar o link do laudo original. */
   origem: string;
+  /**
+   * Perfil de saúde do check-up, em texto (lib/checkup.ts perfilParaTexto). Só o chat do próprio paciente recebe:
+   * o consentimento do médico e do MCP ainda não tem a categoria "perfil", então lá fica de fora.
+   */
+  perfil?: string | null;
 };
 
 export type Ferramenta = {

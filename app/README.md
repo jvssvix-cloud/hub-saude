@@ -28,6 +28,9 @@ npm run typecheck && npm run lint
 - **Check-up inicial:** `/checkup?bloco=1..7` (`src/app/checkup/`, regras em `src/lib/checkup.ts`). O paciente nasce no
   bloco 1 (com os aceites em `perfil_saude`); `pacienteAtual()` manda para o check-up quem não tem
   `checkup_concluido_em`. Não dá para pular o bloco 2 (altura e peso). Termos em `/termos` (pública).
+- **Meu perfil de saúde:** `/perfil` (resumo por bloco, `secoesPerfil` em `src/lib/checkup.ts`) e
+  `/perfil/editar?bloco=1..6` (mesmos campos do check-up, `src/app/checkup/Campos.tsx`). O chat recebe o perfil em
+  texto (`perfilParaTexto`); médico e MCP não (fora do consentimento).
 - **Demonstração:** conta ligada ao Roberto. `DEMO_EMAIL` e `DEMO_SENHA` só no `.env.local` da raiz e no painel da
   Vercel (nunca no código nem no `.env.example`). Criar/conferir: `node scripts/criar-conta-demo.mjs` (gera a senha e
   grava no `.env.local` se faltar; não imprime a senha). Sem as duas variáveis, o botão da demonstração não aparece.
