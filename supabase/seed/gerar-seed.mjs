@@ -71,8 +71,10 @@ ${linha([PID, persona.nome, persona.nascimento, persona.sexo, TELEFONE_DEMO])};
 -- check-up já feito (sem isso a demonstração cairia no check-up). Peso e hábitos: sintéticos, coerentes com a história.
 -- A conta de demonstração (paciente.usuario_id) não vem daqui: rode app/scripts/criar-conta-demo.mjs depois.
 insert into perfil_saude (paciente_id, termos_versao, termos_aceitos_em, dados_saude_aceitos_em,
-  altura_cm, peso_kg, fumo, alcool, atividade_min_semana, sono_horas, condicoes, familia, checkup_concluido_em) values
-(${q(PID)}, 'v1-2026-11-11', now(), now(), ${persona.altura_cm}, 86, 'nunca', 'semanal', 60, 6, '{}', '{diabetes}', now());
+  altura_cm, peso_kg, fumo, alcool, atividade_min_semana, sono_horas, condicoes, familia, familia_parentes, medicos,
+  internacoes, cirurgias, remedios_lista, checkup_concluido_em) values
+(${q(PID)}, 'v1-2026-11-11', now(), now(), ${persona.altura_cm}, 86, 'nunca', 'semanal', 60, 6, '{}', '{diabetes}',
+  '{"mae": {"condicoes": ["diabetes"]}}', '{clinico}', '[]', '[]', '[]', now());
 
 insert into documento (id, paciente_id, tipo, origem, emissor, data, arquivo, paginas) values
 ${documentos.map(linha).join(",\n")};

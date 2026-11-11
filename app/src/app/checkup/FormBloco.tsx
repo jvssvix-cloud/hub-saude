@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { startTransition, useActionState, useState } from "react";
-import { ATIVIDADE_MAX_HORAS, MIN_SEMANA_POR_HORA_DIA, imc } from "@/lib/checkup";
+import { ATIVIDADE_MAX_HORAS, MAX_ITENS, MIN_POR_HORA, imc } from "@/lib/checkup";
 import type { EstadoBloco } from "./acoes";
 
 export const CAMPO =
@@ -97,23 +97,87 @@ export function FormBloco({
 }
 
 /**
- * Bloco 3: atividade física em horas por dia, com − e + (de 1 em 1 hora, até ATIVIDADE_MAX_HORAS).
- * O banco guarda minutos por semana (a medida das recomendações): 1 h/dia = 420 min/semana.
+ * Bloco 3: atividade física em horas por semana, com − e + (de 1 em 1 hora, até ATIVIDADE_MAX_HORAS = "15+").
+ * O banco guarda minutos por semana (a medida das recomendações): 1 h/semana = 60 min.
  */
 export function CampoAtividade({ minSemana }: { minSemana: number | null }) {
   return (
     <Contador
       nome="atividade_horas"
-      inicial={minSemana === null ? null : Math.round(minSemana / MIN_SEMANA_POR_HORA_DIA)}
+      inicial={minSemana === null ? null : Math.min(ATIVIDADE_MAX_HORAS, Math.round(minSemana / MIN_POR_HORA))}
       max={ATIVIDADE_MAX_HORAS}
-      unidade={(n) => (n === 0 ? "nenhuma por dia" : n === 1 ? "hora por dia" : "horas por dia")}
+      unidade={(n) => (n === 0 ? "nenhuma na semana" : n === 1 ? "hora por semana" : "horas por semana")}
       dica={(n) =>
         n === 0
-          ? "A recomendação é de pelo menos 150 minutos por semana. Caminhada conta."
-          : `${n * 7} horas${n >= ATIVIDADE_MAX_HORAS ? " ou mais" : ""} por semana. Caminhada, academia, esporte e bicicleta contam.`
+          ? "A recomendação é de pelo menos 2 h e meia por semana (150 minutos). Caminhada conta."
+          : n < 3
+            ? "Some a semana toda. A recomendação é de pelo menos 2 h e meia. Caminhada, academia, esporte e bicicleta contam."
+            : "Some a semana toda: caminhada, academia, esporte e bicicleta contam."
       }
       maisNoMax
     />
+  );
+}
+
+/**
+ * Lista com "+ Adicionar" e "Remover" (internações, cirurgias, remédios). Cada coluna vai como `<prefixo>_<campo>`,
+ * um valor por linha; o servidor junta pelo índice (lib/checkup.ts linhas()). Linha sem o primeiro campo é ignorada.
+ */
+export function ListaRepetida({
+  prefixo, campos, iniciais, adicionar, vazio,
+}: {
+  prefixo: string;
+  campos: { id: string; rotulo: string; placeholder?: string; largura?: "curto"; numerico?: boolean }[];
+  iniciais: Record<string, string>[];
+  adicionar: string;
+  vazio: string;
+}) {
+  const [itens, setItens] = useState(() => iniciais.map((v, i) => ({ k: i, v })));
+  const [prox, setProx] = useState(iniciais.length);
+  const novo = () => {
+    setItens((l) => [...l, { k: prox, v: {} }]);
+    setProx((n) => n + 1);
+  };
+  return (
+    <div className="space-y-2.5">
+      {itens.length === 0 && <p className="rounded-2xl bg-bege px-4 py-3 text-sm text-suave">{vazio}</p>}
+      {itens.map((it, idx) => (
+        <div key={it.k} className="rounded-2xl border border-linha bg-cartao p-3">
+          <div className="flex flex-wrap gap-2">
+            {campos.map((c, j) => (
+              <label key={c.id} className={c.largura === "curto" ? "w-24" : "min-w-0 flex-1 basis-40"}>
+                <span className="mb-1 block text-xs font-semibold text-suave">{c.rotulo}</span>
+                <input
+                  name={`${prefixo}_${c.id}`}
+                  defaultValue={it.v[c.id] ?? ""}
+                  placeholder={c.placeholder}
+                  inputMode={c.numerico ? "numeric" : undefined}
+                  maxLength={c.numerico ? 4 : 120}
+                  autoFocus={j === 0 && idx === itens.length - 1 && it.k >= iniciais.length}
+                  className={CAMPO}
+                />
+              </label>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => setItens((l) => l.filter((x) => x.k !== it.k))}
+            className="mt-2 text-xs font-semibold text-suave hover:text-atencao"
+          >
+            Remover
+          </button>
+        </div>
+      ))}
+      {itens.length < MAX_ITENS && (
+        <button
+          type="button"
+          onClick={novo}
+          className="w-full rounded-2xl border border-dashed border-salvia py-3 text-sm font-semibold text-marca hover:bg-marca-fundo"
+        >
+          + {adicionar}
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -129,7 +193,7 @@ function Contador({
   max: number;
   unidade: (n: number) => string;
   dica?: (n: number) => string;
-  /** No máximo mostra "6+" (o máximo vale "isso ou mais"). */
+  /** No máximo mostra "15+" (o máximo vale "isso ou mais"). */
   maisNoMax?: boolean;
 }) {
   const [v, setV] = useState<number | null>(inicial);

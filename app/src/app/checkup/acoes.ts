@@ -9,9 +9,10 @@ import { randomUUID } from "node:crypto";
 import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import {
-  ALCOOL, ATIVIDADE_MAX_HORAS, CONDICOES, FAMILIA, FUMO, MIN_SEMANA_POR_HORA_DIA, TERMOS_VERSAO, TOTAL_BLOCOS,
-  alturaCm, escolhas, numero, sim, telefone, texto, uma,
+  ALCOOL, ATIVIDADE_MAX_HORAS, CONDICOES, CONDICOES_FAMILIA, FUMO, MEDICOS, MIN_POR_HORA, PARENTES, TERMOS_VERSAO,
+  TOTAL_BLOCOS, alturaCm, ano, derivarFamilia, escolhas, linhas, numero, sim, telefone, texto, uma,
 } from "@/lib/checkup";
+import type { FamiliaParente, Parente } from "../../../../lib/types";
 import { tagHistorico } from "@/lib/dados";
 import { contaAtual } from "@/lib/sessao";
 import { escreverServidor, getServidor } from "@/lib/supabase";
@@ -50,13 +51,13 @@ export async function salvarBloco(modo: Modo, n: number, _: EstadoBloco, form: F
       const horas = numero(form.get("atividade_horas"));
       const sono = numero(form.get("sono"));
       if (horas !== null && (Number.isNaN(horas) || !Number.isInteger(horas) || horas > ATIVIDADE_MAX_HORAS)) {
-        return { erro: "Confira as horas de atividade por dia." };
+        return { erro: "Confira as horas de atividade por semana." };
       }
       if (sono !== null && (Number.isNaN(sono) || sono > 24)) return { erro: "Confira as horas de sono por noite." };
       await atualizarPerfil(pid, {
         fumo: uma(form.get("fumo"), FUMO),
         alcool: uma(form.get("alcool"), ALCOOL),
-        atividade_min_semana: horas === null ? null : horas * MIN_SEMANA_POR_HORA_DIA,
+        atividade_min_semana: horas === null ? null : horas * MIN_POR_HORA,
         sono_horas: sono,
       });
       break;
@@ -65,18 +66,48 @@ export async function salvarBloco(modo: Modo, n: number, _: EstadoBloco, form: F
       await atualizarPerfil(pid, {
         condicoes: escolhas(form, "condicao", CONDICOES),
         condicoes_outras: texto(form.get("condicoes_outras"), 300),
-        remedios: texto(form.get("remedios"), 500),
+        remedios_lista: linhas(form, "remedio", ["nome", "dose", "para_que"]).map((l) => ({
+          nome: texto(l.nome, 80), dose: texto(l.dose, 40), para_que: texto(l.para_que, 80),
+        })),
       });
       break;
     case 5: {
-      const familia = escolhas(form, "familia", FAMILIA);
+      const intern = linhas(form, "internacao", ["motivo", "ano"]).map((l) => ({ motivo: texto(l.motivo, 120), ano: ano(l.ano) }));
+      const cirur = linhas(form, "cirurgia", ["nome", "ano"]).map((l) => ({ nome: texto(l.nome, 120), ano: ano(l.ano) }));
+      if ([...intern, ...cirur].some((x) => Number.isNaN(x.ano))) {
+        return { erro: "Confira os anos: com 4 números (por exemplo 2015) e não depois deste ano." };
+      }
+      await atualizarPerfil(pid, { internacoes: intern, cirurgias: cirur });
+      break;
+    }
+    case 6:
       await atualizarPerfil(pid, {
-        familia,
-        familia_cancer: familia.includes("cancer") ? texto(form.get("familia_cancer"), 200) : null,
+        medicos: escolhas(form, "medico", MEDICOS),
+        medicos_outros: texto(form.get("medicos_outros"), 200),
+      });
+      break;
+    case 7: {
+      const fp: Partial<Record<Parente, FamiliaParente>> = {};
+      for (const pa of PARENTES) {
+        const condicoes = escolhas(form, `fam_${pa.id}`, CONDICOES_FAMILIA);
+        const observacao = texto(form.get(`fam_${pa.id}_obs`), 200);
+        if (!condicoes.length && !observacao) continue;
+        fp[pa.id] = {
+          condicoes,
+          cancer_qual: condicoes.includes("cancer") ? texto(form.get(`fam_${pa.id}_cancer`), 100) : null,
+          observacao,
+        };
+      }
+      const cancer = PARENTES.filter((pa) => fp[pa.id]?.condicoes.includes("cancer"))
+        .map((pa) => `${pa.rotulo.toLowerCase()}${fp[pa.id]?.cancer_qual ? ` (${fp[pa.id]?.cancer_qual})` : ""}`);
+      await atualizarPerfil(pid, {
+        familia_parentes: fp,
+        familia: derivarFamilia(fp), // resumo antigo, que regras e chat já usam
+        familia_cancer: cancer.length ? cancer.join(", ").slice(0, 200) : null,
       });
       break;
     }
-    case 6: {
+    case 8: {
       const mulher = conta.sexo === "F";
       await atualizarPerfil(pid, {
         alergias: texto(form.get("alergias"), 300),

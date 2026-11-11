@@ -39,7 +39,7 @@
 | `log_acesso` | Toda tentativa, permitida ou negada, com motivo e quantas observações saíram |
 | `nota_medico` | Recomendações que o médico revisou e enviou (`autor_nome`, `itens`); o paciente vê "Revisado por" |
 | `envio` | Arquivo enviado pelo app esperando o paciente conferir a prévia (`sha256`, `arquivo` no bucket, `extracao` jsonb, `situacao` lendo/pronto/salvo/descartado/erro). Só o servidor do app (service_role) |
-| `perfil_saude` | Check-up inicial (uma linha por paciente): aceites com data e hora (`termos_aceitos_em`, `dados_saude_aceitos_em`, `termos_versao`), altura e peso, hábitos, condições e remédios, família, alergias, gestação/menopausa e `checkup_concluido_em` (null = o app manda de volta ao check-up). Só o servidor do app |
+| `perfil_saude` | Check-up inicial (uma linha por paciente): aceites com data e hora (`termos_aceitos_em`, `dados_saude_aceitos_em`, `termos_versao`), altura e peso, hábitos, condições e remédios, família, alergias, gestação/menopausa, `checkup_concluido_em` (null = o app manda de volta ao check-up); desde 11/11 também `remedios_lista`, `internacoes`, `cirurgias`, `medicos`, `familia_parentes` (jsonb) e `coleta` (progresso do /reunir). Só o servidor do app |
 | `plano_paciente` | Plano que o paciente salva a partir do chat do app (`titulo`, `itens`, `seguindo`). Só o servidor do app (service_role) lê e grava |
 
 Funções:
@@ -104,7 +104,7 @@ precisa de `grant execute ... to anon` explícito.
    `20261109220145_solicitacao_medico.sql`, `20261109220204_permissoes_supabase.sql`,
    `20261110152147_situacao_acesso.sql`, `20261110182058_nota_medico.sql`, `20261111010047_plano_paciente.sql`,
    `20261111135221_envio_exame.sql` (também cria o bucket privado `documentos` no Storage),
-   `20261111144935_conta_paciente.sql`, `20261111182852_perfil_saude.sql`, `20261111213908_indices_chaves.sql`.
+   `20261111144935_conta_paciente.sql`, `20261111182852_perfil_saude.sql`, `20261111213908_indices_chaves.sql`, `20261111221623_perfil_detalhado.sql`.
 2. Cole `seed.sql` (Roberto: 14 documentos, 188 resultados de exame, 17 doses de vacina, perfil de saúde com o
    check-up concluído). O seed apaga e recria o Roberto: depois rode `node app/scripts/criar-conta-demo.mjs` para ligar
    de novo a conta de demonstração.

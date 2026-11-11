@@ -3,9 +3,9 @@
  * Componente de servidor: só os pedaços interativos (IMC, contador de atividade) são de cliente.
  */
 import Link from "next/link";
-import { ALCOOL, CONDICOES, FAMILIA, FUMO } from "@/lib/checkup";
+import { ALCOOL, CONDICOES, CONDICOES_FAMILIA, FUMO, MEDICOS, PARENTES } from "@/lib/checkup";
 import type { PerfilSaude } from "../../../../lib/types";
-import { CAMPO, CampoAtividade, CamposCorpo } from "./FormBloco";
+import { CAMPO, CampoAtividade, CamposCorpo, ListaRepetida } from "./FormBloco";
 
 export type Cadastro = { nome: string; nascimento: string; sexo: "M" | "F"; telefone: string | null };
 
@@ -48,6 +48,15 @@ const SIM_NAO = [
 ];
 export const num = (v: number | string | null | undefined) => (v === null || v === undefined || v === "" ? null : Number(v));
 const simNao = (v: boolean | null | undefined) => (v === true ? "sim" : v === false ? "nao" : null);
+const str = (v: unknown) => (v === null || v === undefined ? "" : String(v));
+
+/** Remédios para a lista: a lista salva ou, de quem preencheu antes, o texto antigo (um por linha). */
+function remediosIniciais(perfil: PerfilSaude | null): Record<string, string>[] {
+  if (perfil?.remedios_lista?.length) {
+    return perfil.remedios_lista.map((r) => ({ nome: r.nome, dose: str(r.dose), para_que: str(r.para_que) }));
+  }
+  return (perfil?.remedios ?? "").split(/\n|;/).map((x) => x.trim()).filter(Boolean).map((nome) => ({ nome }));
+}
 
 export function Campos({
   n, cad, perfil, email, edicao = false,
@@ -155,26 +164,97 @@ export function Campos({
             <Rotulo>Outras condições</Rotulo>
             <input name="condicoes_outras" maxLength={300} defaultValue={perfil?.condicoes_outras ?? undefined} className={CAMPO} />
           </label>
-          <label className="block">
-            <Rotulo dica="Nome e dose, se souber. Um por linha.">Remédios que você toma todo dia</Rotulo>
-            <textarea name="remedios" rows={3} maxLength={500} defaultValue={perfil?.remedios ?? undefined} className={CAMPO} />
-          </label>
+          <div>
+            <Rotulo dica="Um por remédio. A dose está na caixa ou na receita; se não souber, deixe em branco.">
+              Remédios que você toma todo dia
+            </Rotulo>
+            <ListaRepetida
+              prefixo="remedio"
+              campos={[
+                { id: "nome", rotulo: "Remédio", placeholder: "Losartana" },
+                { id: "dose", rotulo: "Dose", placeholder: "50 mg", largura: "curto" },
+                { id: "para_que", rotulo: "Para quê", placeholder: "pressão" },
+              ]}
+              iniciais={remediosIniciais(perfil)}
+              adicionar="Adicionar remédio"
+              vazio="Nenhum remédio de uso contínuo."
+            />
+          </div>
         </>
       );
     case 5:
       return (
         <>
           <div>
-            <Rotulo dica="Pais e irmãos.">Na sua família alguém teve</Rotulo>
-            <Opcoes nome="familia" tipo="checkbox" opcoes={FAMILIA} marcadas={perfil?.familia ?? []} />
+            <Rotulo dica="Quando ficou pelo menos uma noite no hospital.">Já ficou internado?</Rotulo>
+            <ListaRepetida
+              prefixo="internacao"
+              campos={[
+                { id: "motivo", rotulo: "Motivo", placeholder: "pneumonia" },
+                { id: "ano", rotulo: "Ano", placeholder: "2019", largura: "curto", numerico: true },
+              ]}
+              iniciais={(perfil?.internacoes ?? []).map((i) => ({ motivo: i.motivo, ano: str(i.ano) }))}
+              adicionar="Adicionar internação"
+              vazio="Nenhuma internação."
+            />
           </div>
-          <label className="block">
-            <Rotulo dica="Só se marcou câncer.">Qual câncer e quem teve</Rotulo>
-            <input name="familia_cancer" maxLength={200} placeholder="mama, mãe" defaultValue={perfil?.familia_cancer ?? undefined} className={CAMPO} />
-          </label>
+          <div>
+            <Rotulo dica="Inclusive as pequenas (vesícula, hérnia, catarata...).">Já fez alguma cirurgia?</Rotulo>
+            <ListaRepetida
+              prefixo="cirurgia"
+              campos={[
+                { id: "nome", rotulo: "Cirurgia", placeholder: "vesícula" },
+                { id: "ano", rotulo: "Ano", placeholder: "2015", largura: "curto", numerico: true },
+              ]}
+              iniciais={(perfil?.cirurgias ?? []).map((c) => ({ nome: c.nome, ano: str(c.ano) }))}
+              adicionar="Adicionar cirurgia"
+              vazio="Nenhuma cirurgia."
+            />
+          </div>
         </>
       );
     case 6:
+      return (
+        <>
+          <div>
+            <Rotulo dica="Marque quem você consultou nos últimos anos.">Médicos que acompanham você</Rotulo>
+            <Opcoes nome="medico" tipo="checkbox" opcoes={MEDICOS} marcadas={perfil?.medicos ?? []} />
+          </div>
+          <label className="block">
+            <Rotulo>Outros especialistas</Rotulo>
+            <input name="medicos_outros" maxLength={200} placeholder="oftalmologista" defaultValue={perfil?.medicos_outros ?? undefined} className={CAMPO} />
+          </label>
+        </>
+      );
+    case 7:
+      return (
+        <>
+          <p className="text-sm text-suave">Marque o que cada um teve. Se não souber, deixe em branco.</p>
+          {PARENTES.map((pa) => {
+            const x = perfil?.familia_parentes?.[pa.id];
+            return (
+              <fieldset key={pa.id} className="space-y-3 rounded-2xl border border-linha bg-cartao p-4">
+                <legend className="px-1 text-base font-bold">
+                  {pa.rotulo}
+                  {pa.dica && <span className="ml-2 text-xs font-normal text-suave">{pa.dica}</span>}
+                </legend>
+                <Opcoes nome={`fam_${pa.id}`} tipo="checkbox" opcoes={CONDICOES_FAMILIA} marcadas={x?.condicoes ?? []} />
+                <div className="grid gap-2 sm:grid-cols-2">
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-semibold text-suave">Se teve câncer, qual</span>
+                    <input name={`fam_${pa.id}_cancer`} maxLength={100} placeholder="próstata" defaultValue={x?.cancer_qual ?? undefined} className={CAMPO} />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-semibold text-suave">Outro problema ou observação</span>
+                    <input name={`fam_${pa.id}_obs`} maxLength={200} placeholder="faleceu aos 70, do coração" defaultValue={x?.observacao ?? undefined} className={CAMPO} />
+                  </label>
+                </div>
+              </fieldset>
+            );
+          })}
+        </>
+      );
+    case 8:
       return (
         <>
           <label className="block">

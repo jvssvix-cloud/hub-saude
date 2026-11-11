@@ -20,6 +20,18 @@ export type Fumo = "nunca" | "ex" | "atual";
 export type Alcool = "nao" | "raramente" | "semanal" | "diario";
 export type Condicao = "diabetes" | "hipertensao" | "colesterol_alto" | "tireoide" | "coracao" | "rim";
 export type HistoricoFamiliar = "infarto_avc_precoce" | "diabetes" | "cancer";
+export type Medico =
+  | "clinico" | "cardiologista" | "endocrinologista" | "gastroenterologista" | "urologista" | "ginecologista"
+  | "nefrologista" | "pneumologista" | "geriatra" | "neurologista" | "ortopedista";
+export type Parente = "pai" | "mae" | "irmaos" | "avos";
+export type CondicaoFamiliar =
+  | "diabetes" | "hipertensao" | "colesterol_alto" | "infarto_avc_cedo" | "cancer" | "demencia" | "outro";
+export type FamiliaParente = { condicoes: CondicaoFamiliar[]; cancer_qual?: string | null; observacao?: string | null };
+export type Internacao = { motivo: string; ano: number | null };
+export type Cirurgia = { nome: string; ano: number | null };
+export type Remedio = { nome: string; dose: string | null; para_que: string | null };
+/** Progresso do "Reunir meus exames" (/reunir), por área. */
+export type SituacaoColeta = "enviado" | "nao_tenho" | "pulado";
 export type PerfilSaude = {
   paciente_id: string;
   termos_versao: string;
@@ -36,6 +48,13 @@ export type PerfilSaude = {
   remedios: string | null;
   familia: HistoricoFamiliar[];
   familia_cancer: string | null;
+  familia_parentes: Partial<Record<Parente, FamiliaParente>> | null; // familia (acima) é derivado deste
+  internacoes: Internacao[] | null;
+  cirurgias: Cirurgia[] | null;
+  remedios_lista: Remedio[] | null; // remedios (texto) fica só para leitura de quem preencheu antes
+  medicos: Medico[] | null;
+  medicos_outros: string | null;
+  coleta: Partial<Record<string, SituacaoColeta>>;
   alergias: string | null;
   gestante: boolean | null; // só sexo F
   menopausa: boolean | null; // só sexo F
