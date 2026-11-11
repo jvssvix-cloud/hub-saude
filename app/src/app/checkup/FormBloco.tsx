@@ -110,8 +110,9 @@ export function CampoAtividade({ minSemana }: { minSemana: number | null }) {
       dica={(n) =>
         n === 0
           ? "A recomendação é de pelo menos 150 minutos por semana. Caminhada conta."
-          : `${n * 7} horas por semana. Caminhada, academia, esporte e bicicleta contam.`
+          : `${n * 7} horas${n >= ATIVIDADE_MAX_HORAS ? " ou mais" : ""} por semana. Caminhada, academia, esporte e bicicleta contam.`
       }
+      maisNoMax
     />
   );
 }
@@ -121,13 +122,15 @@ export function CampoAtividade({ minSemana }: { minSemana: number | null }) {
  * O valor vai num campo escondido; vazio = não informou.
  */
 function Contador({
-  nome, inicial, max, unidade, dica,
+  nome, inicial, max, unidade, dica, maisNoMax = false,
 }: {
   nome: string;
   inicial: number | null;
   max: number;
   unidade: (n: number) => string;
   dica?: (n: number) => string;
+  /** No máximo mostra "6+" (o máximo vale "isso ou mais"). */
+  maisNoMax?: boolean;
 }) {
   const [v, setV] = useState<number | null>(inicial);
   const botao =
@@ -140,7 +143,7 @@ function Contador({
           −
         </button>
         <p className="text-center" aria-live="polite">
-          <span className="num block text-4xl font-bold tracking-tight">{v ?? "—"}</span>
+          <span className="num block text-4xl font-bold tracking-tight">{v === null ? "—" : maisNoMax && v >= max ? `${max}+` : v}</span>
           <span className="text-sm text-suave">{v === null ? "toque em + para responder" : unidade(v)}</span>
         </p>
         <button type="button" aria-label="Mais" className={botao} disabled={v !== null && v >= max} onClick={() => setV((x) => Math.min(max, (x ?? 0) + 1))}>

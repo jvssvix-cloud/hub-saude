@@ -87,6 +87,7 @@ export function atividadeTexto(minSemana: number | null): string | null {
   if (minSemana === null) return null;
   if (minSemana === 0) return "Nenhuma";
   const h = minSemana / MIN_SEMANA_POR_HORA_DIA;
+  if (h >= ATIVIDADE_MAX_HORAS) return `${ATIVIDADE_MAX_HORAS} h ou mais por dia`;
   return Number.isInteger(h) ? `${h} h por dia` : `${br(minSemana)} min por semana`;
 }
 
