@@ -32,7 +32,7 @@
 
 | Tabela | Para quê |
 |---|---|
-| `paciente` | A persona (`persona-roberto`) |
+| `paciente` | A persona (`persona-roberto`) e os pacientes com conta. `usuario_id` (uuid, único, → `auth.users`, `on delete set null`) liga a conta do Supabase Auth ao paciente; o paciente só é criado no bloco 1 do check-up |
 | `documento` | Origem de cada dado: `tipo`, `origem` (canal de entrada), `emissor`, `data`, `arquivo` no Storage, `sha256` (envios do app: mesmo arquivo não entra duas vezes) |
 | `observacao` | Fato atômico. `categoria` = exame / vacina / wearable; `codigo` = analito, vacina ou métrica. Colunas com os mesmos nomes de `extraction/src/schema.ts` e `insights/src/tipos.ts` |
 | `consentimento` | Grant: destinatário, escopo (`categorias`, `codigos`, `desde`; null = tudo), `expira_em`, `revogado_em`, `token` |
@@ -74,7 +74,11 @@ Funções:
 - **Limite conhecido:** sem login, qualquer um com a URL pode pedir acesso (só pedir; não ver). Na fase 2 o
   médico se identifica pelo CRM.
 
-**Segurança no MVP:** sem Auth. As tabelas têm RLS ligado e **nenhuma política**, então a chave anon (que vai
+**Conta do paciente (11/11):** Supabase Auth com e-mail e senha só para o login do paciente; a sessão fica em
+cookie httpOnly e o servidor do app descobre o paciente por `paciente.usuario_id`. As tabelas continuam sem
+políticas: o navegador nunca lê o banco direto, nem logado. Médico, MCP e link continuam sem login, por token.
+
+**Segurança no MVP:** As tabelas têm RLS ligado e **nenhuma política**, então a chave anon (que vai
 para o navegador do médico e para o MCP) não lê nada direto, só via `acessar_historico` com token válido.
 O servidor do app usa a service_role para gravar e para as telas do paciente. Nunca mande a service_role para o navegador.
 
@@ -98,7 +102,8 @@ precisa de `grant execute ... to anon` explícito.
 1. SQL Editor → cole as migrations **em ordem**: `20261109220119_contrato.sql`,
    `20261109220145_solicitacao_medico.sql`, `20261109220204_permissoes_supabase.sql`,
    `20261110152147_situacao_acesso.sql`, `20261110182058_nota_medico.sql`, `20261111010047_plano_paciente.sql`,
-   `20261111135221_envio_exame.sql` (também cria o bucket privado `documentos` no Storage).
+   `20261111135221_envio_exame.sql` (também cria o bucket privado `documentos` no Storage),
+   `20261111144935_conta_paciente.sql`.
 2. Cole `seed.sql` (Roberto: 14 documentos, 188 resultados de exame, 17 doses de vacina).
    Para regerar depois que o gabarito mudar: `node supabase/seed/gerar-seed.mjs`.
 3. Com Supabase CLI local: `supabase db reset` aplica os dois.

@@ -12,6 +12,7 @@ export type Paciente = {
   nascimento: string; // AAAA-MM-DD
   sexo: Sexo;
   telefone: string | null; // só dígitos, com DDI: "5511987654321"
+  usuario_id: string | null; // auth.users.id da conta que entra como este paciente (null = sem conta)
 };
 
 export type TipoDocumento = "laudo_exame" | "carteira_vacinacao" | "wearable" | "outro";

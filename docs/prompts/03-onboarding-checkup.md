@@ -61,7 +61,8 @@ conta + sessão → paciente da sessão no lugar do paciente fixo → check-up �
   autenticação do Supabase.
 - **Check-up, em blocos curtos (uma tela por bloco, barra de progresso, tudo opcional menos o bloco 1):**
   1. Básico: nome, data de nascimento, sexo biológico, telefone.
-  2. Corpo: altura, peso (IMC calculado), circunferência da cintura, pressão habitual se souber.
+  2. Corpo: altura e peso **obrigatórios** (IMC calculado; decidido pelo Felipe em 11/11), circunferência da
+     cintura e pressão habitual opcionais.
   3. Hábitos: fumo, álcool, atividade física por semana, horas de sono.
   4. Condições já diagnosticadas (diabetes, pressão alta, colesterol alto, tireoide, coração, rim, outras) e remédios
      de uso contínuo (texto livre).
