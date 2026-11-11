@@ -6,7 +6,7 @@ import { responder, temChaveChat, type Mensagem } from "@/lib/chat";
 import { carregarInsights } from "@/lib/dados";
 import { seriesCitadas } from "@/lib/insights";
 import { pacienteDaSessao } from "@/lib/sessao";
-import { relogio } from "@/lib/relogio";
+import { relogioDe } from "@/lib/relogio";
 
 const MAX_MENSAGENS = 12;
 const MAX_TEXTO = 2000;
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
   if (!p) return Response.json({ erro: "sem_sessao" }, { status: 401 });
   const insights = await carregarInsights(p.id);
   try {
-    const texto = await responder({ insights, relogio, origem: new URL(req.url).origin }, mensagens);
+    const texto = await responder({ insights, relogio: relogioDe(p.id), origem: new URL(req.url).origin }, mensagens);
     const exames = seriesCitadas(insights, texto).map((s) => ({ analito: s.analito, nome: s.nome.replace(/ \(.*\)$/, ""), fora: s.alterado }));
     return Response.json({ texto, exames });
   } catch (e) {

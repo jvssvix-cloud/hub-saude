@@ -51,17 +51,19 @@ function nivelDosAlertas(alertas: Alerta[], ids: Alerta["id"][]): Nivel {
   return "bem";
 }
 
-export function temas(i: Insights, r: Relogio): Tema[] {
+/** Sem relógio (r = null), ficam só os temas dos exames: coração e sono dependem do relógio. */
+export function temas(i: Insights, r: Relogio | null): Tema[] {
   const area = (id: string) => i.areas.find((a) => a.id === id);
   const s = (id: string) => i.series.find((x) => x.analito === id);
-  const tem = (id: Alerta["id"]) => r.alertas.some((a) => a.id === id);
+  const alertas = r?.alertas ?? [];
+  const tem = (id: Alerta["id"]) => alertas.some((a) => a.id === id);
 
-  const coracao = nivelDosAlertas(r.alertas, ["ritmo_irregular", "fc_repouso_subindo"]);
-  const sono = nivelDosAlertas(r.alertas, ["sono_curto", "atividade_caindo"]);
+  const coracao = nivelDosAlertas(alertas, ["ritmo_irregular", "fc_repouso_subindo"]);
+  const sono = nivelDosAlertas(alertas, ["sono_curto", "atividade_caindo"]);
   const glicose = s("glicose");
   const ldl = s("ldl");
 
-  return [
+  const lista: Tema[] = [
     {
       id: "coracao",
       titulo: "Coração",
@@ -99,6 +101,7 @@ export function temas(i: Insights, r: Relogio): Tema[] {
       href: "/relogio",
     },
   ];
+  return r ? lista : lista.filter((t) => t.id !== "coracao" && t.id !== "sono");
 }
 
 /** Áreas de exame fora dos 4 temas: as em atenção viram uma linha; o resto vira "em dia". */

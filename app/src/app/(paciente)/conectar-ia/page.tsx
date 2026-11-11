@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import { Copiar } from "@/components/Copiar";
 import { horaBrasilia } from "@/lib/medico";
 import { getServidor, rpcServidor, temChaveServidor } from "@/lib/supabase";
-import { PACIENTE_ID as PACIENTE } from "@/lib/usuario";
+import { consentimentoDoPaciente, pacienteAtual } from "@/lib/sessao";
 
 export const metadata: Metadata = { title: "Conectar IA · Hub de Saúde" };
 
@@ -41,7 +41,7 @@ async function conectar(form: FormData) {
   const marcadas = form.getAll("categoria").map(String).filter((c) => CATEGORIAS.some((k) => k.id === c));
   if (!ASSISTENTES.includes(nome) || !VALIDADES.some((v) => v.id === validade) || marcadas.length === 0) return;
   await rpcServidor("criar_consentimento", {
-    p_paciente_id: PACIENTE,
+    p_paciente_id: (await pacienteAtual()).id,
     p_destinatario_tipo: "ia",
     p_destinatario_nome: nome,
     p_validade: validade,
@@ -52,7 +52,7 @@ async function conectar(form: FormData) {
 
 async function desconectar(form: FormData) {
   "use server";
-  await rpcServidor("revogar_consentimento", { p_id: String(form.get("id")) });
+  await rpcServidor("revogar_consentimento", { p_id: await consentimentoDoPaciente(form.get("id")) });
   refresh();
 }
 
@@ -89,6 +89,7 @@ async function Conteudo() {
   const local = /^(localhost|127\.0\.0\.1)(:|$)/.test(host);
   const origem = `${h.get("x-forwarded-proto") ?? (local ? "http" : "https")}://${host}`;
 
+  const PACIENTE = encodeURIComponent((await pacienteAtual()).id);
   const [lista, logs] = await Promise.all([
     getServidor<Conexao[]>(
       `consentimento?paciente_id=eq.${PACIENTE}&destinatario_tipo=eq.ia&status=eq.aprovado&select=id,destinatario_nome,categorias,token,criado_em,expira_em,revogado_em&order=criado_em.desc&limit=20`,

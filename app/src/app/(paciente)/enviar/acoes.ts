@@ -4,16 +4,15 @@ import { updateTag } from "next/cache";
 import { tagHistorico } from "@/lib/dados";
 import { descartarEnvio, ErroEnvio, salvarEnvio } from "@/lib/envio";
 import { pacienteDaSessao } from "@/lib/sessao";
-import { PACIENTE_ID } from "@/lib/usuario";
 
 export type RespostaSalvar = { ok: true; documentoId: string; exames: number; doses: number } | { ok: false; mensagem: string };
 
 export async function salvar(envioId: string): Promise<RespostaSalvar> {
-  if (!(await pacienteDaSessao())) return { ok: false, mensagem: "Sua sessão terminou. Entre de novo." };
+  const p = await pacienteDaSessao();
+  if (!p) return { ok: false, mensagem: "Sua sessão terminou. Entre de novo." };
   try {
-    const r = await salvarEnvio(envioId);
-    // TODO fatia 2 (paciente da sessão): o envio ainda grava no paciente fixo; trocar pelo id da sessão
-    updateTag(tagHistorico(PACIENTE_ID)); // gráficos, alertas, médico e conector já veem o exame novo
+    const r = await salvarEnvio(envioId, p.id);
+    updateTag(tagHistorico(p.id)); // gráficos, alertas, médico e conector já veem o exame novo
     return { ok: true, ...r };
   } catch (e) {
     console.error("[enviar] salvar:", e instanceof Error ? e.message : e);
@@ -22,9 +21,10 @@ export async function salvar(envioId: string): Promise<RespostaSalvar> {
 }
 
 export async function descartar(envioId: string): Promise<{ ok: boolean }> {
-  if (!(await pacienteDaSessao())) return { ok: false };
+  const p = await pacienteDaSessao();
+  if (!p) return { ok: false };
   try {
-    await descartarEnvio(envioId);
+    await descartarEnvio(envioId, p.id);
     return { ok: true };
   } catch (e) {
     console.error("[enviar] descartar:", e instanceof Error ? e.message : e);

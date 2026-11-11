@@ -4,7 +4,7 @@
  */
 import { montarPlano, temChaveChat, type Mensagem } from "@/lib/chat";
 import { carregarInsights } from "@/lib/dados";
-import { relogio } from "@/lib/relogio";
+import { relogioDe } from "@/lib/relogio";
 import { escreverServidor, temChaveServidor } from "@/lib/supabase";
 import { pacienteDaSessao } from "@/lib/sessao";
 
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
   let plano;
   try {
     const insights = await carregarInsights(p.id);
-    plano = await montarPlano({ insights, relogio, origem: new URL(req.url).origin }, mensagens);
+    plano = await montarPlano({ insights, relogio: relogioDe(p.id), origem: new URL(req.url).origin }, mensagens);
   } catch (e) {
     console.error("[plano] geração:", e instanceof Error ? e.message : e);
     return Response.json({ erro: "falha" }, { status: 502 });

@@ -45,7 +45,16 @@ export type Relogio = {
   alertas: Alerta[];
 };
 
-export const relogio = dados as unknown as Relogio;
+const RELOGIO_DEMO = dados as unknown as Relogio;
+
+/**
+ * Relógio de um paciente. Por enquanto só existe o do Roberto (relogio.json, `paciente_id`); qualquer outro paciente
+ * não tem relógio (null), e as telas, o chat, o MCP e o médico tratam esse caso. Nunca use o arquivo direto: assim o
+ * relógio do Roberto não aparece para outro paciente nem para o médico de outro paciente.
+ */
+export function relogioDe(pacienteId: string | null | undefined): Relogio | null {
+  return pacienteId && pacienteId === RELOGIO_DEMO.paciente_id ? RELOGIO_DEMO : null;
+}
 
 export const FONTE: Record<Relogio["fonte"], string> = {
   sintetico: "Relógio simulado (dados sintéticos)",
@@ -54,7 +63,7 @@ export const FONTE: Record<Relogio["fonte"], string> = {
 };
 
 /** Alertas de atenção primeiro. */
-export function alertasOrdenados(): Alerta[] {
+export function alertasOrdenados(relogio: Relogio): Alerta[] {
   return [...relogio.alertas].sort((a, b) => (a.nivel === b.nivel ? 0 : a.nivel === "atencao" ? -1 : 1));
 }
 
@@ -67,7 +76,7 @@ export function serieDoContexto(series: Serie[], frase: string): Serie | undefin
 }
 
 /** Últimos n dias do relógio (para os gráficos). */
-export function ultimosDias(n: number): Dia[] {
+export function ultimosDias(relogio: Relogio, n: number): Dia[] {
   return relogio.dias.slice(-n);
 }
 

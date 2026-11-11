@@ -12,11 +12,13 @@
  * só chame com um id que veio de pacienteAtual()/pacienteDaSessao().
  */
 import { cacheLife, cacheTag } from "next/cache";
-import { carregarDoBanco, conexaoDoAmbiente, PACIENTE_DEMO } from "@insights/banco";
+import { carregarDoBanco, PACIENTE_DEMO, type Conexao } from "@insights/banco";
 import { gerarInsights, HOJE_PADRAO } from "@insights/regras";
 import dadosJson from "@/dados/insights.json";
 import type { Insights } from "@/lib/insights";
+import { relogioDe, type Relogio } from "@/lib/relogio";
 import { pacienteAtual } from "@/lib/sessao";
+import { SUPABASE_URL } from "@/lib/supabase-publico";
 
 export const tagHistorico = (pacienteId: string) => `historico:${pacienteId}`;
 
@@ -27,7 +29,9 @@ export async function carregarInsights(pacienteId: string): Promise<Insights & {
   cacheLife("hours");
   cacheTag(tagHistorico(pacienteId));
 
-  const c = conexaoDoAmbiente();
+  // URL com a mesma reserva pública do resto do app (o .env.local de cada um costuma ter só a chave secreta)
+  const chave = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const c: Conexao | null = chave ? { url: SUPABASE_URL, chave } : null;
   if (c) {
     try {
       const { laudos, paciente, doses } = await carregarDoBanco(c, pacienteId);
@@ -47,4 +51,10 @@ export async function carregarInsights(pacienteId: string): Promise<Insights & {
 export async function meusInsights() {
   const p = await pacienteAtual();
   return carregarInsights(p.id);
+}
+
+/** Relógio do paciente logado, ou null se ele não tiver relógio. */
+export async function meuRelogio(): Promise<Relogio | null> {
+  const p = await pacienteAtual();
+  return relogioDe(p.id);
 }

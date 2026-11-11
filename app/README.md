@@ -18,6 +18,13 @@ npm run typecheck && npm run lint
 - **`src/lib/sessao.ts`:** `pacienteAtual()` (páginas e Server Actions: sem sessão → `/entrar`, conta sem paciente →
   `/checkup`) e `pacienteDaSessao()` (rotas de API: `null` → 401). Liga a conta ao paciente por `paciente.usuario_id`.
 - **`src/proxy.ts`:** renova o cookie e faz a checagem otimista. Fora dele: `/medico`, `/api/mcp/[token]` e arquivos.
+- **Tudo do paciente vem da sessão** (fatia 2): telas, Compartilhar, Conectar IA, envio de exame, nota do médico,
+  planos e "Próximo passo". Não existe mais paciente fixo no app. Ações que recebem o id de um consentimento do
+  navegador (aprovar, recusar, revogar, desconectar) conferem o dono com `consentimentoDoPaciente()`; o envio só acha
+  envios do próprio paciente.
+- **Relógio:** `relogioDe(pacienteId)` (`src/lib/relogio.ts`) devolve o `relogio.json` só para o Roberto; outro
+  paciente não tem relógio e as telas escondem os cartões (a tela `/relogio` diz "Nenhum relógio conectado"). Médico e
+  MCP descobrem o paciente pelo token (`acessar()` em `src/lib/medico.ts`) e só recebem o relógio se o escopo liberar.
 - **Demonstração:** conta ligada ao Roberto. `DEMO_EMAIL` e `DEMO_SENHA` só no `.env.local` da raiz e no painel da
   Vercel (nunca no código nem no `.env.example`). Criar/conferir: `node scripts/criar-conta-demo.mjs` (gera a senha e
   grava no `.env.local` se faltar; não imprime a senha). Sem as duas variáveis, o botão da demonstração não aparece.

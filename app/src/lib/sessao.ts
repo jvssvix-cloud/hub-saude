@@ -59,6 +59,24 @@ export async function pacienteDaSessao(): Promise<PacienteDaConta | null> {
   return u ? pacienteDoUsuario(u.id) : null;
 }
 
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+
+/**
+ * Para as ações que recebem o id de um consentimento do navegador (aprovar, recusar, revogar, desconectar):
+ * confere que ele é do paciente da sessão. Sem isso, um paciente aprovaria o pedido feito para o telefone de outro.
+ * Devolve o id conferido; se não for do paciente, lança erro (a ação não faz nada).
+ */
+export async function consentimentoDoPaciente(id: FormDataEntryValue | null): Promise<string> {
+  const p = await pacienteAtual();
+  const v = String(id ?? "");
+  if (!UUID.test(v)) throw new Error("consentimento inválido");
+  const [c] = await getServidor<{ id: string }[]>(
+    `consentimento?id=eq.${v}&paciente_id=eq.${encodeURIComponent(p.id)}&select=id`,
+  );
+  if (!c) throw new Error("consentimento de outro paciente");
+  return c.id;
+}
+
 export async function pacienteAtual(): Promise<PacienteDaConta> {
   const u = await usuarioAtual();
   if (!u) redirect("/entrar");

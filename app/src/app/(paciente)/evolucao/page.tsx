@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { LinhaIndice as Linha, LinhaSerie } from "@/components/LinhaIndice";
-import { meusInsights } from "@/lib/dados";
+import { meuRelogio, meusInsights } from "@/lib/dados";
 import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
 import { mediaSemanal } from "@/lib/paciente";
-import { relogio } from "@/lib/relogio";
 
 export const metadata: Metadata = { title: "Evolução · Hub de Saúde" };
 
@@ -11,7 +10,8 @@ export const metadata: Metadata = { title: "Evolução · Hub de Saúde" };
 export default async function Evolucao() {
   const insights = await meusInsights();
   const areas = areasOrdenadas(insights);
-  const temRitmo = relogio.alertas.some((a) => a.id === "ritmo_irregular" || a.id === "fc_repouso_subindo");
+  const relogio = await meuRelogio();
+  const temRitmo = !!relogio?.alertas.some((a) => a.id === "ritmo_irregular" || a.id === "fc_repouso_subindo");
 
   return (
     <div className="space-y-7 pt-3">
@@ -20,6 +20,7 @@ export default async function Evolucao() {
         <p className="mt-1 text-[15px] text-suave">Como cada índice mudou ao longo do tempo. Toque para ver os detalhes.</p>
       </section>
 
+      {relogio && (
       <section>
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Do seu relógio · 6 meses</h2>
         <ul className="divide-y divide-linha overflow-hidden rounded-3xl border border-linha bg-cartao">
@@ -49,6 +50,7 @@ export default async function Evolucao() {
           />
         </ul>
       </section>
+      )}
 
       {areas.map((area) => {
         const series = seriesDaArea(insights, area);

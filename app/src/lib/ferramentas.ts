@@ -132,7 +132,7 @@ export const FERRAMENTAS: Ferramenta[] = [
     description: "Dados do relógio do paciente: batimento em repouso, variabilidade, sono, passos e avisos (ritmo irregular etc.).",
     inputSchema: { type: "object", properties: {} },
     executar: ({ relogio }) => {
-      if (!relogio) return "O paciente não liberou os dados do relógio para esta conexão.";
+      if (!relogio) return "Sem dados de relógio: o paciente não tem relógio conectado ou não liberou o relógio para esta conexão.";
       const r = relogio.resumo;
       const n = (v: number | null, u: string) => (v === null ? "sem dado" : `${numero(Math.round(v * 10) / 10)} ${u}`);
       return [

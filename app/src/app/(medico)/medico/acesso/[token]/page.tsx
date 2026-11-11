@@ -6,9 +6,9 @@ import { GraficoRelogio } from "@/components/GraficoRelogio";
 import { VigiaAcesso } from "@/components/VigiaAcesso";
 import { dataBr, faixa, idade, linkLaudo, mesAno, numero, serie, type Insights, type Serie } from "@/lib/insights";
 import { NotaMedico } from "@/components/NotaMedico";
-import { SITUACAO_TEXTO, acessar, horaBrasilia, liberaRelogio, listaCategorias, rascunhoPlano, type Escopo } from "@/lib/medico";
+import { SITUACAO_TEXTO, acessar, horaBrasilia, listaCategorias, rascunhoPlano, type Escopo } from "@/lib/medico";
 import { enviarNota } from "./acoes";
-import { alertasOrdenados, dataHoraBr, decimal, inteiro, relogio, serieDoContexto } from "@/lib/relogio";
+import { alertasOrdenados, dataHoraBr, decimal, inteiro, serieDoContexto, type Relogio } from "@/lib/relogio";
 
 export const metadata: Metadata = { title: "Histórico do paciente · Hub de Saúde" };
 
@@ -57,16 +57,18 @@ async function Acesso({ params }: { params: Promise<{ token: string }> }) {
   return (
     <>
       <VigiaAcesso token={token} atual="ok" />
-      <Painel insights={a.insights} escopo={a.escopo} token={token} />
+      <Painel insights={a.insights} escopo={a.escopo} token={token} relogio={a.relogio} />
     </>
   );
 }
 
-function Painel({ insights: i, escopo, token }: { insights: Insights; escopo: Escopo; token: string }) {
+function Painel({
+  insights: i, escopo, token, relogio,
+}: { insights: Insights; escopo: Escopo; token: string; relogio: Relogio | null }) {
   const alteradas = i.series.filter((s) => s.alterado);
-  const comRelogio = liberaRelogio(escopo);
-  const alertas = comRelogio ? alertasOrdenados() : [];
-  const r = relogio.resumo;
+  // null: o escopo não libera o relógio ou o paciente não tem relógio
+  const comRelogio = relogio !== null;
+  const alertas = relogio ? alertasOrdenados(relogio) : [];
   const iniciais = ["glicose", "ldl", "hba1c"].filter((a) => i.series.some((s) => s.analito === a));
 
   return (
@@ -77,7 +79,7 @@ function Painel({ insights: i, escopo, token }: { insights: Insights; escopo: Es
           <p className="mt-1 text-sm text-suave">
             {i.paciente.sexo === "M" ? "Masculino" : "Feminino"}, {idade(i.paciente.nascimento, i.hoje)} anos · {i.periodo.laudos} laudos de{" "}
             {i.periodo.laboratorios.length} laboratórios ({mesAno(i.periodo.inicio)} a {mesAno(i.periodo.fim)})
-            {comRelogio && ` · relógio: ${relogio.dias.length} dias`}
+            {relogio && ` · relógio: ${relogio.dias.length} dias`}
           </p>
         </div>
         <div className="text-right text-sm">
@@ -95,14 +97,14 @@ function Painel({ insights: i, escopo, token }: { insights: Insights; escopo: Es
         {alteradas.slice(0, comRelogio ? 3 : 4).map((s) => (
           <Indicador key={s.analito} s={s} />
         ))}
-        {comRelogio && (
+        {relogio && (
           <div className="rounded-2xl border border-linha bg-cartao p-4">
             <p className="text-xs text-suave">FC de repouso (14 d)</p>
             <p className="num mt-0.5 text-2xl font-bold text-fora">
-              {inteiro(r.fc_repouso.atual_14d)} <span className="text-sm font-normal text-suave">bpm</span>
+              {inteiro(relogio.resumo.fc_repouso.atual_14d)} <span className="text-sm font-normal text-suave">bpm</span>
             </p>
             <p className="text-xs text-suave">
-              base {inteiro(r.fc_repouso.linha_base)} bpm ({r.fc_repouso.linha_base_periodo})
+              base {inteiro(relogio.resumo.fc_repouso.linha_base)} bpm ({relogio.resumo.fc_repouso.linha_base_periodo})
             </p>
           </div>
         )}
@@ -167,19 +169,19 @@ function Painel({ insights: i, escopo, token }: { insights: Insights; escopo: Es
             </ul>
           </section>
 
-          {comRelogio && (
+          {relogio && (
             <section className="rounded-3xl border border-linha bg-cartao p-5">
               <h2 className="font-bold">Relógio · FC de repouso</h2>
               <p className="mb-2 text-xs text-suave">
                 Tracejado: base pessoal. Marcas: avisos de ritmo irregular ({relogio.eventos.length}, último{" "}
                 {relogio.eventos.length ? dataHoraBr(relogio.eventos[relogio.eventos.length - 1].data_hora) : "—"}). Sono{" "}
-                {decimal(r.sono_horas.atual_14d)} h/noite; passos {inteiro(r.passos.atual_30d)}/dia.
+                {decimal(relogio.resumo.sono_horas.atual_14d)} h/noite; passos {inteiro(relogio.resumo.passos.atual_30d)}/dia.
               </p>
               <GraficoRelogio
                 dias={relogio.dias}
                 campo="fc_repouso"
                 unidade="bpm"
-                referencia={r.fc_repouso.linha_base}
+                referencia={relogio.resumo.fc_repouso.linha_base}
                 rotuloReferencia="base"
                 eventos={relogio.eventos}
               />

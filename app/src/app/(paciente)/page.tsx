@@ -4,20 +4,19 @@ import { BarraContagem } from "@/components/LinhaIndice";
 import { NotaDoMedico } from "@/components/NotaDoMedico";
 import { MiniCurva } from "@/components/MiniCurva";
 import { ProximoPasso } from "@/components/ProximoPasso";
-import { meusInsights } from "@/lib/dados";
+import { meuRelogio, meusInsights } from "@/lib/dados";
 import { serie } from "@/lib/insights";
 import { NIVEL, fraseSerie, mediaSemanal, outrasAreas, temas, type Tema } from "@/lib/paciente";
-import { relogio } from "@/lib/relogio";
 
 export default async function Inicio() {
   const insights = await meusInsights();
+  const relogio = await meuRelogio();
   const { paciente, periodo } = insights;
   const lista = temas(insights, relogio);
   const pendentes = lista.filter((t) => t.nivel === "conversar").length;
   const { atencao, emDia } = outrasAreas(insights);
   const glicose = serie(insights, "glicose");
   const ldl = serie(insights, "ldl");
-  const r = relogio.resumo;
   const fora = insights.series.filter((s) => s.alterado).length;
   const naFaixa = insights.series.length - fora;
   const anos = Number(periodo.fim.slice(0, 4)) - Number(periodo.inicio.slice(0, 4));
@@ -28,7 +27,7 @@ export default async function Inicio() {
         <p className="text-suave">Olá,</p>
         <h1 className="text-[28px] font-bold leading-tight tracking-tight">{paciente.nome.split(" ")[0]}</h1>
         <p className="mt-1.5 text-[15px] text-suave">
-          {anos} anos de exames, {periodo.laboratorios.length} laboratórios e o seu relógio, num lugar só.
+          {anos} anos de exames, {periodo.laboratorios.length} laboratórios{relogio ? " e o seu relógio" : ""}, num lugar só.
         </p>
         <Link
           href="/enviar"
@@ -111,10 +110,12 @@ export default async function Inicio() {
               fora={ldl.alterado}
             />
           )}
+          {relogio && (
+          <>
           <CartaoIndice
             titulo="Batimento em repouso"
             frase={
-              r.fc_repouso.atual_14d !== null && r.fc_repouso.linha_base !== null && r.fc_repouso.atual_14d > r.fc_repouso.linha_base
+              relogio.resumo.fc_repouso.atual_14d !== null && relogio.resumo.fc_repouso.linha_base !== null && relogio.resumo.fc_repouso.atual_14d > relogio.resumo.fc_repouso.linha_base
                 ? `Mais alto que o seu normal nas últimas semanas`
                 : "No seu normal"
             }
@@ -134,6 +135,8 @@ export default async function Inicio() {
             cor="var(--rivio-2)"
             fora={relogio.alertas.some((a) => a.id === "sono_curto")}
           />
+          </>
+          )}
         </div>
         <Link href="/evolucao" className="inline-block text-sm font-semibold text-marca hover:underline">
           Ver todos os índices ›

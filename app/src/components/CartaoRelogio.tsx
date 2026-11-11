@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { alertasOrdenados, dataHoraBr, inteiro, relogio } from "@/lib/relogio";
+import { alertasOrdenados, dataHoraBr, inteiro, type Relogio } from "@/lib/relogio";
 
 /** Entrada da tela do relógio na Início: o alerta mais importante + a última sincronização. */
-export function CartaoRelogio() {
-  const alertas = alertasOrdenados();
+export function CartaoRelogio({ relogio }: { relogio: Relogio }) {
+  const alertas = alertasOrdenados(relogio);
   const principal = alertas[0];
   const atencao = principal?.nivel === "atencao";
   const r = relogio.resumo;

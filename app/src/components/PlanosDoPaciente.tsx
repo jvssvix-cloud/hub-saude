@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { refresh } from "next/cache";
 import { connection } from "next/server";
-import { meusInsights } from "@/lib/dados";
+import { carregarInsights } from "@/lib/dados";
 import { seriesCitadas } from "@/lib/insights";
 import { horaBrasilia } from "@/lib/medico";
 import { escreverServidor, getServidor, temChaveServidor } from "@/lib/supabase";
-import { PACIENTE_ID } from "@/lib/usuario";
+import { pacienteAtual } from "@/lib/sessao";
 
 type Plano = { id: string; titulo: string; itens: string[]; seguindo: boolean; criado_em: string };
 
@@ -15,10 +15,11 @@ async function seguir(form: FormData) {
   "use server";
   const id = String(form.get("id"));
   if (!ID.test(id)) return;
+  const pid = encodeURIComponent((await pacienteAtual()).id); // a ação confere a sessão de novo
   // um plano por vez: marcar um desmarca os outros
   const marcar = form.get("seguindo") !== "true";
-  if (marcar) await escreverServidor("PATCH", `plano_paciente?paciente_id=eq.${PACIENTE_ID}&seguindo=is.true`, { seguindo: false });
-  await escreverServidor("PATCH", `plano_paciente?id=eq.${id}&paciente_id=eq.${PACIENTE_ID}`, { seguindo: marcar });
+  if (marcar) await escreverServidor("PATCH", `plano_paciente?paciente_id=eq.${pid}&seguindo=is.true`, { seguindo: false });
+  await escreverServidor("PATCH", `plano_paciente?id=eq.${id}&paciente_id=eq.${pid}`, { seguindo: marcar });
   refresh();
 }
 
@@ -26,7 +27,8 @@ async function apagar(form: FormData) {
   "use server";
   const id = String(form.get("id"));
   if (!ID.test(id)) return;
-  await escreverServidor("DELETE", `plano_paciente?id=eq.${id}&paciente_id=eq.${PACIENTE_ID}`);
+  const pid = encodeURIComponent((await pacienteAtual()).id);
+  await escreverServidor("DELETE", `plano_paciente?id=eq.${id}&paciente_id=eq.${pid}`);
   refresh();
 }
 
@@ -34,8 +36,9 @@ async function apagar(form: FormData) {
 export async function PlanosDoPaciente() {
   await connection();
   if (!temChaveServidor()) return null;
+  const paciente = await pacienteAtual();
   const planos = await getServidor<Plano[]>(
-    `plano_paciente?paciente_id=eq.${PACIENTE_ID}&select=id,titulo,itens,seguindo,criado_em&order=seguindo.desc,criado_em.desc&limit=10`,
+    `plano_paciente?paciente_id=eq.${encodeURIComponent(paciente.id)}&select=id,titulo,itens,seguindo,criado_em&order=seguindo.desc,criado_em.desc&limit=10`,
   ).catch(() => null);
   if (planos === null) return null; // tabela ainda não existe neste banco
 
@@ -53,7 +56,7 @@ export async function PlanosDoPaciente() {
     );
   }
 
-  const insights = await meusInsights();
+  const insights = await carregarInsights(paciente.id);
   return (
     <section>
       <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Seus planos</h2>

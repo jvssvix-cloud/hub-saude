@@ -7,7 +7,8 @@
 import { montarEntrada, type LinhaDocumento, type LinhaObservacao } from "@insights/banco";
 import { gerarInsights, HOJE_PADRAO } from "@insights/regras";
 import type { Insights } from "@/lib/insights";
-import { rpcPublica } from "@/lib/supabase";
+import { relogioDe, type Relogio } from "@/lib/relogio";
+import { getServidor, rpcPublica, temChaveServidor } from "@/lib/supabase";
 
 export type Situacao = "ok" | "pendente" | "revogado" | "expirado" | "recusado" | "token_invalido";
 
@@ -21,7 +22,7 @@ export type Escopo = {
 };
 
 export type Acesso =
-  | { situacao: "ok"; escopo: Escopo; insights: Insights; documentos: number }
+  | { situacao: "ok"; escopo: Escopo; insights: Insights; documentos: number; relogio: Relogio | null }
   | { situacao: "pendente"; prazo: string }
   | { situacao: Exclude<Situacao, "ok" | "pendente"> };
 
@@ -44,12 +45,27 @@ export async function acessar(token: string, consumidor: "visao_medico" | "mcp" 
   }
   const { laudos, doses } = montarEntrada(r.documentos, r.observacoes);
   const insights = gerarInsights(laudos, r.paciente, HOJE_PADRAO, doses) as unknown as Insights;
-  return { situacao: "ok", escopo: r.consentimento, insights, documentos: r.documentos.length };
+  return {
+    situacao: "ok", escopo: r.consentimento, insights, documentos: r.documentos.length,
+    relogio: liberaRelogio(r.consentimento) ? await relogioDoToken(token) : null,
+  };
 }
 
-/** O escopo libera o relógio? (null = tudo). O relógio ainda vem do relogio.json, não do banco. */
-export function liberaRelogio(e: Escopo): boolean {
+/** O escopo libera o relógio? (null = tudo). */
+function liberaRelogio(e: Escopo): boolean {
   return e.categorias === null || e.categorias.includes("wearable");
+}
+
+/**
+ * O relógio ainda vem do relogio.json (não passa por acessar_historico), então descobrimos de quem é o token pelo
+ * servidor e só devolvemos o relógio se for desse paciente. Só chamado depois de acessar_historico dizer "ok".
+ */
+async function relogioDoToken(token: string): Promise<Relogio | null> {
+  if (!temChaveServidor()) return null;
+  const [c] = await getServidor<{ paciente_id: string | null }[]>(
+    `consentimento?token=eq.${encodeURIComponent(token)}&select=paciente_id&limit=1`,
+  ).catch(() => []);
+  return relogioDe(c?.paciente_id);
 }
 
 /**

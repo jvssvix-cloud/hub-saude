@@ -7,8 +7,7 @@
  * Revogou? A próxima chamada já responde "acesso encerrado". Só leitura.
  */
 import { FERRAMENTAS, INSTRUCOES, type Contexto } from "@/lib/ferramentas";
-import { acessar, liberaRelogio, SITUACAO_TEXTO } from "@/lib/medico";
-import { relogio } from "@/lib/relogio";
+import { acessar, SITUACAO_TEXTO } from "@/lib/medico";
 
 const VERSOES = ["2025-06-18", "2025-03-26", "2024-11-05"];
 
@@ -35,7 +34,7 @@ async function chamarFerramenta(token: string, origem: string, params: Record<st
     const s = SITUACAO_TEXTO[a.situacao];
     return texto(`${s.titulo}. ${s.texto} Peça ao paciente uma nova conexão em Hub de Saúde > Mais > Conectar IA.`, true);
   }
-  const c: Contexto = { insights: a.insights, relogio: liberaRelogio(a.escopo) ? relogio : null, origem };
+  const c: Contexto = { insights: a.insights, relogio: a.relogio, origem };
   const args = (params.arguments ?? {}) as Record<string, unknown>;
   return texto(f.executar(c, args));
 }

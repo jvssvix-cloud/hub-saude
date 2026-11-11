@@ -5,8 +5,9 @@
  * A leitura fica guardada na tabela `envio` entre a prévia e o "Salvar": o navegador só manda o id do envio,
  * nunca os dados. Assim ninguém grava no histórico um valor que não saiu do documento.
  *
- * Proteção enquanto não há login: no máximo ENVIO_LIMITE_HORA leituras por hora (padrão 10) e o interruptor
- * ENVIO_DESLIGADO=1 (na Vercel) desliga o envio sem novo deploy de código.
+ * Cada função recebe o paciente da SESSÃO (quem chama resolve com pacienteDaSessao/pacienteAtual); nunca um id vindo
+ * do navegador. Proteção de custo: no máximo ENVIO_LIMITE_HORA leituras por hora por paciente (padrão 10) e o
+ * interruptor ENVIO_DESLIGADO=1 (na Vercel) desliga o envio sem novo deploy de código.
  */
 import "server-only";
 import { createHash, randomUUID } from "node:crypto";
@@ -14,7 +15,6 @@ import { extrairDocumento } from "@extraction/extrair";
 import type { ExtracaoNormalizada } from "@extraction/schema";
 import type { Envio } from "../../../lib/types";
 import { escreverServidor, getServidor, SUPABASE_URL } from "@/lib/supabase";
-import { PACIENTE_ID } from "@/lib/usuario";
 
 export const TAMANHO_MAX = 4 * 1024 * 1024; // limite do corpo da requisição na Vercel é 4,5 MB
 const EXTENSAO: Record<string, string> = {
@@ -118,13 +118,14 @@ export class ErroEnvio extends Error {
   }
 }
 
-async function cadastroDoPaciente(): Promise<Cadastro> {
-  const [p] = await getServidor<Cadastro[]>(`paciente?id=eq.${PACIENTE_ID}&select=nome,nascimento,sexo`);
-  if (!p) throw new ErroEnvio("sem_paciente", "Paciente de demonstração não está no banco.", 500);
+async function cadastroDoPaciente(pacienteId: string): Promise<Cadastro> {
+  const [p] = await getServidor<Cadastro[]>(`paciente?id=eq.${encodeURIComponent(pacienteId)}&select=nome,nascimento,sexo`);
+  if (!p) throw new ErroEnvio("sem_paciente", "Não achamos o seu cadastro. Entre de novo.", 500);
   return p;
 }
 
-export async function lerExame(arquivo: File): Promise<Previa> {
+export async function lerExame(arquivo: File, pacienteId: string): Promise<Previa> {
+  const pid = encodeURIComponent(pacienteId);
   if (!envioLigado()) throw new ErroEnvio("desligado", "O envio de exames está desligado no momento.", 503);
   const mime = arquivo.type;
   if (!EXTENSAO[mime]) throw new ErroEnvio("tipo", "Envie um PDF ou uma foto (JPG, PNG ou WebP).");
@@ -133,24 +134,24 @@ export async function lerExame(arquivo: File): Promise<Previa> {
 
   const dados = Buffer.from(await arquivo.arrayBuffer());
   const sha256 = createHash("sha256").update(dados).digest("hex");
-  const cadastro = await cadastroDoPaciente();
+  const cadastro = await cadastroDoPaciente(pacienteId);
 
   // Já está no histórico?
   const [jaSalvo] = await getServidor<{ id: string; emissor: string | null; data: string | null }[]>(
-    `documento?paciente_id=eq.${PACIENTE_ID}&sha256=eq.${sha256}&select=id,emissor,data`,
+    `documento?paciente_id=eq.${pid}&sha256=eq.${sha256}&select=id,emissor,data`,
   );
   if (jaSalvo) throw new ErroEnvio("repetido", "Este arquivo já está no seu histórico.", 409);
 
   // Já foi lido e está esperando? Reaproveita a leitura (não paga de novo)
   const [pendente] = await getServidor<Envio[]>(
-    `envio?paciente_id=eq.${PACIENTE_ID}&sha256=eq.${sha256}&situacao=eq.pronto&select=*&order=criado_em.desc&limit=1`,
+    `envio?paciente_id=eq.${pid}&sha256=eq.${sha256}&situacao=eq.pronto&select=*&order=criado_em.desc&limit=1`,
   );
   if (pendente?.extracao) return montarPrevia(pendente, pendente.extracao as ExtracaoNormalizada, cadastro, pendente.uso?.segundos ?? 0);
 
   // Limite de leituras por hora (cada leitura custa uma chamada à API)
   const desde = new Date(Date.now() - 3600_000).toISOString();
   const recentes = await getServidor<{ id: string }[]>(
-    `envio?paciente_id=eq.${PACIENTE_ID}&criado_em=gte.${encodeURIComponent(desde)}&select=id&limit=${limitePorHora()}`,
+    `envio?paciente_id=eq.${pid}&criado_em=gte.${encodeURIComponent(desde)}&select=id&limit=${limitePorHora()}`,
   );
   if (recentes.length >= limitePorHora()) {
     throw new ErroEnvio("limite", "Muitos envios na última hora. Tente de novo mais tarde.", 429);
@@ -158,7 +159,7 @@ export async function lerExame(arquivo: File): Promise<Previa> {
 
   const id = randomUUID();
   const caminho = `enviados/${id}.${EXTENSAO[mime]}`;
-  await escreverServidor("POST", "envio", { id, paciente_id: PACIENTE_ID, sha256, arquivo: caminho, mime, situacao: "lendo" });
+  await escreverServidor("POST", "envio", { id, paciente_id: pacienteId, sha256, arquivo: caminho, mime, situacao: "lendo" });
 
   try {
     await subirArquivo(caminho, dados, mime);
@@ -178,19 +179,20 @@ export async function lerExame(arquivo: File): Promise<Previa> {
 // ---------------------------------------------------------------- 2) salvar ou descartar
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
-async function envioPronto(id: string): Promise<Envio> {
+async function envioPronto(id: string, pacienteId: string): Promise<Envio> {
   if (!UUID.test(id)) throw new ErroEnvio("id", "Envio inválido.");
-  const [envio] = await getServidor<Envio[]>(`envio?id=eq.${id}&paciente_id=eq.${PACIENTE_ID}&select=*`);
+  // só acha envio do próprio paciente: o id que vem do navegador não alcança o de outro
+  const [envio] = await getServidor<Envio[]>(`envio?id=eq.${id}&paciente_id=eq.${encodeURIComponent(pacienteId)}&select=*`);
   if (!envio) throw new ErroEnvio("id", "Envio não encontrado.", 404);
   if (envio.situacao !== "pronto" || !envio.extracao) throw new ErroEnvio("situacao", "Este envio já foi salvo ou descartado.", 409);
   return envio;
 }
 
 /** Grava documento + observações a partir da leitura guardada. Devolve o id do documento. */
-export async function salvarEnvio(id: string): Promise<{ documentoId: string; exames: number; doses: number }> {
-  const envio = await envioPronto(id);
+export async function salvarEnvio(id: string, pacienteId: string): Promise<{ documentoId: string; exames: number; doses: number }> {
+  const envio = await envioPronto(id, pacienteId);
   const e = envio.extracao as ExtracaoNormalizada;
-  const previa = montarPrevia(envio, e, await cadastroDoPaciente());
+  const previa = montarPrevia(envio, e, await cadastroDoPaciente(pacienteId));
   if (!previa.podeSalvar) throw new ErroEnvio("nada", "Não há resultados reconhecidos para salvar.");
 
   const documentoId = `envio-${id.slice(0, 8)}`;
@@ -202,7 +204,7 @@ export async function salvarEnvio(id: string): Promise<{ documentoId: string; ex
       ? e.resultados
           .filter((r) => r.analito !== "outro" && (r.data_coleta ?? dataDoc))
           .map((r) => ({
-            paciente_id: PACIENTE_ID, documento_id: documentoId, categoria: "exame", codigo: r.analito,
+            paciente_id: pacienteId, documento_id: documentoId, categoria: "exame", codigo: r.analito,
             data: r.data_coleta ?? dataDoc,
             nome_impresso: r.nome_impresso, valor_impresso: r.valor_impresso, unidade_impressa: r.unidade_impressa,
             referencia_impressa: r.referencia_impressa || null, pagina: r.pagina,
@@ -213,13 +215,13 @@ export async function salvarEnvio(id: string): Promise<{ documentoId: string; ex
       : e.doses
           .filter((d) => d.vacina !== "outra" && d.data && /^\d{4}-\d{2}-\d{2}$/.test(d.data))
           .map((d) => ({
-            paciente_id: PACIENTE_ID, documento_id: documentoId, categoria: "vacina", codigo: d.vacina, data: d.data,
+            paciente_id: pacienteId, documento_id: documentoId, categoria: "vacina", codigo: d.vacina, data: d.data,
             nome_impresso: d.nome_impresso, valor_impresso: d.dose_impressa, pagina: d.pagina,
             dose: d.dose, lote: d.lote, local: d.local, confianca: d.confianca, alertas: d.alertas,
           }));
 
   await escreverServidor("POST", "documento", {
-    id: documentoId, paciente_id: PACIENTE_ID, tipo,
+    id: documentoId, paciente_id: pacienteId, tipo,
     origem: envio.mime === "application/pdf" ? "upload_pdf" : "upload_foto",
     emissor: e.documento.laboratorio || null, data: tipo === "laudo_exame" ? dataDoc : null,
     arquivo: envio.arquivo, paginas: e.documento.paginas, sha256: envio.sha256,
@@ -238,8 +240,8 @@ export async function salvarEnvio(id: string): Promise<{ documentoId: string; ex
   };
 }
 
-export async function descartarEnvio(id: string): Promise<void> {
-  const envio = await envioPronto(id);
+export async function descartarEnvio(id: string, pacienteId: string): Promise<void> {
+  const envio = await envioPronto(id, pacienteId);
   await escreverServidor("PATCH", `envio?id=eq.${id}`, { situacao: "descartado" });
   await apagarArquivo(envio.arquivo);
 }

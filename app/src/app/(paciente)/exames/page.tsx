@@ -2,17 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FiltroExames, type ExameFiltravel } from "@/components/FiltroExames";
 import { BarraContagem } from "@/components/LinhaIndice";
-import { meusInsights } from "@/lib/dados";
+import { meuRelogio, meusInsights } from "@/lib/dados";
 import { laudos } from "@/lib/documentos";
 import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
 import { fraseSerie } from "@/lib/paciente";
-import { relogio } from "@/lib/relogio";
+import type { Relogio } from "@/lib/relogio";
 
 export const metadata: Metadata = { title: "Exames · Hub de Saúde" };
 
 /** Exames por sistema do corpo: quantos estão na faixa e quantos fora, num olhar. Toque abre o sistema. */
+const avisosRelogio = (r: Relogio) => r.alertas.filter((a) => a.nivel === "atencao").length;
+
 export default async function Exames() {
   const insights = await meusInsights();
+  const relogio = await meuRelogio();
   const areas = areasOrdenadas(insights)
     .map((a) => {
       const series = seriesDaArea(insights, a);
@@ -21,7 +24,6 @@ export default async function Exames() {
     })
     .filter((x) => x.total > 0);
   const fora = insights.series.filter((s) => s.alterado).length;
-  const atencaoRelogio = relogio.alertas.filter((a) => a.nivel === "atencao").length;
   const nLaudos = laudos(insights).length;
   const exames: ExameFiltravel[] = insights.series.map((s) => ({
     analito: s.analito,
@@ -76,13 +78,14 @@ export default async function Exames() {
               </Link>
             </li>
           ))}
+          {relogio && (
           <li>
             <Link href="/relogio" className="flex items-center gap-3 px-4 py-3.5 hover:bg-fundo">
               <span className="min-w-0 flex-1">
                 <span className="flex items-baseline justify-between gap-2">
                   <span className="font-semibold">Coração e sono · relógio</span>
                   <span className="shrink-0 text-[13px] text-suave">
-                    {atencaoRelogio > 0 ? <span className="font-semibold text-atencao">{atencaoRelogio} avisos · </span> : null}
+                    {avisosRelogio(relogio) > 0 ? <span className="font-semibold text-atencao">{avisosRelogio(relogio)} avisos · </span> : null}
                     {relogio.dias.length} dias
                   </span>
                 </span>
@@ -91,6 +94,7 @@ export default async function Exames() {
               <span aria-hidden className="text-suave">›</span>
             </Link>
           </li>
+          )}
         </ul>
       </section>
       </FiltroExames>

@@ -2,17 +2,34 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { GraficoRelogio } from "@/components/GraficoRelogio";
 import {
-  FONTE, alertasOrdenados, dataHoraBr, decimal, inteiro, relogio, serieDoContexto, type Alerta,
+  FONTE, alertasOrdenados, dataHoraBr, decimal, inteiro, serieDoContexto, type Alerta,
 } from "@/lib/relogio";
-import { meusInsights } from "@/lib/dados";
+import { meuRelogio, meusInsights } from "@/lib/dados";
 import { dataBr, type Serie } from "@/lib/insights";
 
 export const metadata: Metadata = { title: "Relógio · Hub de Saúde" };
 
+/** Paciente sem relógio conectado (por enquanto, todo mundo menos a demonstração). */
+function SemRelogio() {
+  return (
+    <div className="space-y-4 pt-3">
+      <h1 className="text-[28px] font-bold leading-tight tracking-tight">Relógio</h1>
+      <section className="rounded-3xl border border-dashed border-linha p-4 sm:p-5">
+        <h2 className="font-bold">Nenhum relógio conectado</h2>
+        <p className="mt-1 text-sm text-suave">
+          Quando você conectar um relógio, batimento em repouso, ritmo, sono e passos aparecem aqui, ao lado dos seus exames.
+        </p>
+      </section>
+    </div>
+  );
+}
+
 export default async function Relogio() {
+  const relogio = await meuRelogio();
+  if (!relogio) return <SemRelogio />;
   const { series } = await meusInsights();
   const { resumo: r, eventos, dias } = relogio;
-  const alertas = alertasOrdenados();
+  const alertas = alertasOrdenados(relogio);
   const atencao = alertas.filter((a) => a.nivel === "atencao");
 
   return (

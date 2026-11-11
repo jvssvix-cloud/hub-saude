@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { connection } from "next/server";
-import { meusInsights } from "@/lib/dados";
+import { carregarInsights } from "@/lib/dados";
 import { seriesCitadas, type Serie } from "@/lib/insights";
 import { horaBrasilia } from "@/lib/medico";
-import { PACIENTE_ID } from "@/lib/usuario";
+import { pacienteAtual } from "@/lib/sessao";
 import { getServidor, temChaveServidor } from "@/lib/supabase";
 
 type Nota = { id: string; autor_nome: string; itens: string[]; criado_em: string };
@@ -15,11 +15,12 @@ type Nota = { id: string; autor_nome: string; itens: string[]; criado_em: string
 export async function NotaDoMedico({ vazio = null }: { vazio?: React.ReactNode } = {}) {
   await connection();
   if (!temChaveServidor()) return vazio;
+  const p = await pacienteAtual();
   const [nota] = await getServidor<Nota[]>(
-    `nota_medico?paciente_id=eq.${PACIENTE_ID}&select=id,autor_nome,itens,criado_em&order=criado_em.desc&limit=1`,
+    `nota_medico?paciente_id=eq.${encodeURIComponent(p.id)}&select=id,autor_nome,itens,criado_em&order=criado_em.desc&limit=1`,
   ).catch(() => [] as Nota[]);
   if (!nota) return vazio;
-  const insights = await meusInsights();
+  const insights = await carregarInsights(p.id);
   const fora = insights.series.filter((s) => s.alterado);
 
   return (

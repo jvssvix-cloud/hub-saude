@@ -4,7 +4,7 @@ import { connection } from "next/server";
 import { Suspense } from "react";
 import { AutoAtualizar } from "@/components/VigiaAcesso";
 import { horaBrasilia } from "@/lib/medico";
-import { PACIENTE_ID as PACIENTE } from "@/lib/usuario";
+import { consentimentoDoPaciente, pacienteAtual } from "@/lib/sessao";
 import { getServidor, rpcServidor, temChaveServidor } from "@/lib/supabase";
 
 export const metadata: Metadata = { title: "Compartilhar · Hub de Saúde" };
@@ -41,9 +41,10 @@ const CATEGORIAS = [
 // ---------------------------------------------------------------- ações do paciente (servidor, chave secreta)
 async function aprovar(form: FormData) {
   "use server";
+  const id = await consentimentoDoPaciente(form.get("id"));
   const marcadas = form.getAll("categoria").map(String);
   await rpcServidor("responder_solicitacao", {
-    p_id: String(form.get("id")),
+    p_id: id,
     p_aprovar: true,
     // todas marcadas = sem restrição (null); senão, só as escolhidas
     p_categorias: marcadas.length === CATEGORIAS.length ? null : marcadas,
@@ -53,13 +54,13 @@ async function aprovar(form: FormData) {
 
 async function recusar(form: FormData) {
   "use server";
-  await rpcServidor("responder_solicitacao", { p_id: String(form.get("id")), p_aprovar: false });
+  await rpcServidor("responder_solicitacao", { p_id: await consentimentoDoPaciente(form.get("id")), p_aprovar: false });
   refresh();
 }
 
 async function revogar(form: FormData) {
   "use server";
-  await rpcServidor("revogar_consentimento", { p_id: String(form.get("id")) });
+  await rpcServidor("revogar_consentimento", { p_id: await consentimentoDoPaciente(form.get("id")) });
   refresh();
 }
 
@@ -89,6 +90,7 @@ async function Conteudo() {
       </p>
     );
   }
+  const PACIENTE = encodeURIComponent((await pacienteAtual()).id);
   const [lista, logs] = await Promise.all([
     getServidor<Consentimento[]>(
       `consentimento?paciente_id=eq.${PACIENTE}&select=id,destinatario_nome,motivo,status,canal,categorias,validade,criado_em,expira_em,revogado_em&order=criado_em.desc&limit=30`,

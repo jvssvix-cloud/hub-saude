@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { connection } from "next/server";
-import { meusInsights } from "@/lib/dados";
+import { carregarInsights } from "@/lib/dados";
 import { mesAno, type Insights } from "@/lib/insights";
 import { temas } from "@/lib/paciente";
-import { relogio } from "@/lib/relogio";
+import { relogioDe, type Relogio } from "@/lib/relogio";
+import { pacienteAtual } from "@/lib/sessao";
 import { getServidor, temChaveServidor } from "@/lib/supabase";
-import { PACIENTE_ID } from "@/lib/usuario";
 
 type Passo = { rotulo: string; titulo: string; texto: string; href: string; acao: string; urgente?: boolean };
 
@@ -25,7 +25,7 @@ type Consentimento = {
  * 4. vacina pendente pelo calendário oficial;
  * 5. nada pendente: quando é o próximo check-up.
  */
-function escolher(i: Insights, consentimentos: Consentimento[] | null): Passo {
+function escolher(i: Insights, relogio: Relogio | null, consentimentos: Consentimento[] | null): Passo {
   const agora = new Date().toISOString();
   const vivos = (consentimentos ?? []).filter((c) => !c.revogado_em && c.expira_em > agora);
 
@@ -91,25 +91,26 @@ function escolher(i: Insights, consentimentos: Consentimento[] | null): Passo {
 /** Cartão único no topo da Início. Lido na hora (pedidos de acesso mudam a qualquer momento). */
 export async function ProximoPasso() {
   await connection();
-  const insights = await meusInsights();
+  const p = await pacienteAtual();
+  const insights = await carregarInsights(p.id);
   const consentimentos = temChaveServidor()
     ? await getServidor<Consentimento[]>(
-        `consentimento?paciente_id=eq.${PACIENTE_ID}&select=destinatario_nome,destinatario_tipo,status,expira_em,revogado_em&order=criado_em.desc&limit=30`,
+        `consentimento?paciente_id=eq.${encodeURIComponent(p.id)}&select=destinatario_nome,destinatario_tipo,status,expira_em,revogado_em&order=criado_em.desc&limit=30`,
       ).catch(() => null)
     : null;
-  const p = escolher(insights, consentimentos);
+  const passo = escolher(insights, relogioDe(p.id), consentimentos);
 
   return (
     <Link
-      href={p.href}
+      href={passo.href}
       className={`block rounded-3xl p-4 transition-colors sm:p-5 ${
-        p.urgente ? "border-2 border-marca bg-cartao" : "bg-marca-fundo hover:bg-salvia/50"
+        passo.urgente ? "border-2 border-marca bg-cartao" : "bg-marca-fundo hover:bg-salvia/50"
       }`}
     >
-      <p className="text-xs font-semibold uppercase tracking-wider text-marca">{p.rotulo}</p>
-      <h2 className="mt-1 text-lg font-bold leading-snug tracking-tight">{p.titulo}</h2>
-      <p className="mt-1 text-sm text-suave">{p.texto}</p>
-      <span className="mt-3 inline-block rounded-xl bg-marca px-4 py-2 text-sm font-semibold text-white">{p.acao} ›</span>
+      <p className="text-xs font-semibold uppercase tracking-wider text-marca">{passo.rotulo}</p>
+      <h2 className="mt-1 text-lg font-bold leading-snug tracking-tight">{passo.titulo}</h2>
+      <p className="mt-1 text-sm text-suave">{passo.texto}</p>
+      <span className="mt-3 inline-block rounded-xl bg-marca px-4 py-2 text-sm font-semibold text-white">{passo.acao} ›</span>
     </Link>
   );
 }
