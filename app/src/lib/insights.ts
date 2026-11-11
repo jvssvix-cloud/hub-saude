@@ -137,9 +137,14 @@ export function areaDe(insights: Insights, s: Serie): Area | undefined {
   return insights.areas.find((a) => a.id === s.area);
 }
 
-/** Link para o documento original na página certa (o navegador abre o PDF na página). */
-export function linkLaudo(f: Pick<Fonte, "arquivo" | "pagina">): string {
-  return `/${f.arquivo}#page=${f.pagina}`;
+/**
+ * Link para o documento original na página certa (o navegador abre o PDF na página).
+ * Arquivo enviado pelo app (enviados/...) só abre para o paciente dono (sessão) ou com o token de um consentimento
+ * válido: a visão do médico passa o token, que vai como ?t= e é conferido a cada abertura (revogou, parou de abrir).
+ */
+export function linkLaudo(f: Pick<Fonte, "arquivo" | "pagina">, token?: string): string {
+  const t = token && f.arquivo.startsWith("enviados/") ? `?t=${encodeURIComponent(token)}` : "";
+  return `/${f.arquivo}${t}#page=${f.pagina}`;
 }
 
 // ---------------------------------------------------------------- formatação (pt-BR)

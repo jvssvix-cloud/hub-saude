@@ -104,7 +104,7 @@ precisa de `grant execute ... to anon` explícito.
    `20261109220145_solicitacao_medico.sql`, `20261109220204_permissoes_supabase.sql`,
    `20261110152147_situacao_acesso.sql`, `20261110182058_nota_medico.sql`, `20261111010047_plano_paciente.sql`,
    `20261111135221_envio_exame.sql` (também cria o bucket privado `documentos` no Storage),
-   `20261111144935_conta_paciente.sql`, `20261111182852_perfil_saude.sql`.
+   `20261111144935_conta_paciente.sql`, `20261111182852_perfil_saude.sql`, `20261111213908_indices_chaves.sql`.
 2. Cole `seed.sql` (Roberto: 14 documentos, 188 resultados de exame, 17 doses de vacina, perfil de saúde com o
    check-up concluído). O seed apaga e recria o Roberto: depois rode `node app/scripts/criar-conta-demo.mjs` para ligar
    de novo a conta de demonstração.

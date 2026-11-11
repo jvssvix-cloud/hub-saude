@@ -156,11 +156,11 @@ function Painel({
                   <p className="font-semibold">Exames repetidos em {rp.dias} dias</p>
                   <p className="text-suave">
                     {rp.analitos.map((x) => serie(i, x)?.nome ?? x).join(", ")}:{" "}
-                    <a className="text-marca hover:underline" href={linkLaudo(rp.de)} target="_blank">
+                    <a className="text-marca hover:underline" href={linkLaudo(rp.de, token)} target="_blank">
                       {dataBr(rp.de.data)}
                     </a>{" "}
                     →{" "}
-                    <a className="text-marca hover:underline" href={linkLaudo(rp.para)} target="_blank">
+                    <a className="text-marca hover:underline" href={linkLaudo(rp.para, token)} target="_blank">
                       {dataBr(rp.para.data)}
                     </a>
                   </p>
@@ -222,7 +222,7 @@ function Painel({
                     </td>
                     <td className="num px-3 py-2.5">{s.fora_seguidos || "—"}</td>
                     <td className="px-5 py-2.5 text-right">
-                      <a href={linkLaudo(s.ultimo.fonte)} target="_blank" className="text-marca hover:underline">
+                      <a href={linkLaudo(s.ultimo.fonte, token)} target="_blank" className="text-marca hover:underline">
                         {dataBr(s.ultimo.data)} · p. {s.ultimo.fonte.pagina} ↗
                       </a>
                     </td>
