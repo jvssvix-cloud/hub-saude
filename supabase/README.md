@@ -38,6 +38,7 @@
 | `consentimento` | Grant: destinatário, escopo (`categorias`, `codigos`, `desde`; null = tudo), `expira_em`, `revogado_em`, `token` |
 | `log_acesso` | Toda tentativa, permitida ou negada, com motivo e quantas observações saíram |
 | `nota_medico` | Recomendações que o médico revisou e enviou (`autor_nome`, `itens`); o paciente vê "Revisado por" |
+| `plano_paciente` | Plano que o paciente salva a partir do chat do app (`titulo`, `itens`, `seguindo`). Só o servidor do app (service_role) lê e grava |
 
 Funções:
 
@@ -95,7 +96,7 @@ precisa de `grant execute ... to anon` explícito.
 
 1. SQL Editor → cole as migrations **em ordem**: `20261109220119_contrato.sql`,
    `20261109220145_solicitacao_medico.sql`, `20261109220204_permissoes_supabase.sql`,
-   `20261110152147_situacao_acesso.sql`, `20261110182058_nota_medico.sql`.
+   `20261110152147_situacao_acesso.sql`, `20261110182058_nota_medico.sql`, `20261111010047_plano_paciente.sql`.
 2. Cole `seed.sql` (Roberto: 14 documentos, 188 resultados de exame, 17 doses de vacina).
    Para regerar depois que o gabarito mudar: `node supabase/seed/gerar-seed.mjs`.
 3. Com Supabase CLI local: `supabase db reset` aplica os dois.

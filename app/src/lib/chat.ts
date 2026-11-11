@@ -13,8 +13,10 @@ import { FERRAMENTAS, type Contexto } from "@/lib/ferramentas";
 
 export type Mensagem = { papel: "paciente" | "assistente"; texto: string };
 
-const MODELO_PADRAO = "gemini-flash-latest"; // apelido do Google para o Flash atual (não quebra quando um modelo sai de linha)
-const MODELOS_RESERVA = ["gemini-flash-lite-latest", "gemini-3.5-flash"];
+const MODELO_PADRAO = "gemini-3.5-flash";
+// se o principal estiver sobrecarregado, sem cota ou demorar demais, tenta os reservas nesta ordem
+const MODELOS_RESERVA = ["gemini-flash-lite-latest", "gemini-flash-latest"];
+const ESPERA_MS = 25_000;
 
 export function temChaveChat(): boolean {
   return !!process.env.GEMINI_API_KEY;
@@ -53,25 +55,39 @@ type RespostaGemini = {
   error?: { message?: string };
 };
 
-export async function responder(c: Contexto, mensagens: Mensagem[]): Promise<string> {
+type ConversaGemini = { role: "user" | "model"; parts: { text: string }[] }[];
+
+const paraGemini = (mensagens: Mensagem[]): ConversaGemini =>
+  mensagens.map((m) => ({ role: m.papel === "paciente" ? "user" : "model", parts: [{ text: m.texto }] }));
+
+/** Uma chamada ao Gemini, com modelos reserva quando o principal está sobrecarregado ou sem cota (503/429/500). */
+async function gerar(c: Contexto, contents: ConversaGemini, config: Record<string, unknown> = {}): Promise<string> {
   const chave = process.env.GEMINI_API_KEY;
   if (!chave) throw new Error("Falta GEMINI_API_KEY");
   const corpo = JSON.stringify({
     systemInstruction: { parts: [{ text: instrucoes(c) }] },
-    contents: mensagens.map((m) => ({ role: m.papel === "paciente" ? "user" : "model", parts: [{ text: m.texto }] })),
-    generationConfig: { temperature: 0.2, maxOutputTokens: 4000 },
+    contents,
+    generationConfig: { temperature: 0.2, maxOutputTokens: 4000, ...config },
   });
-  // modelo sobrecarregado ou no limite da cota gratuita (503/429/500): tenta o reserva antes de desistir
   const modelos = [...new Set([process.env.GEMINI_MODEL || MODELO_PADRAO, ...MODELOS_RESERVA])];
   let falha = "";
   for (const modelo of modelos) {
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "x-goog-api-key": chave },
-      body: corpo,
-      cache: "no-store",
-    });
-    const j = (await r.json().catch(() => ({}))) as RespostaGemini;
+    let r: Response;
+    let j: RespostaGemini;
+    try {
+      r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": chave },
+        body: corpo,
+        cache: "no-store",
+        signal: AbortSignal.timeout(ESPERA_MS),
+      });
+      j = (await r.json().catch(() => ({}))) as RespostaGemini;
+    } catch (e) {
+      // sem resposta no prazo (o modelo às vezes fica pendurado) ou rede: próximo modelo
+      falha = `Gemini sem resposta (${modelo}): ${e instanceof Error ? e.name : "erro"}`;
+      continue;
+    }
     if (!r.ok) {
       falha = `Gemini ${r.status} (${modelo}): ${(j.error?.message ?? "").slice(0, 160)}`;
       if ([429, 500, 503].includes(r.status)) continue;
@@ -82,4 +98,35 @@ export async function responder(c: Contexto, mensagens: Mensagem[]): Promise<str
     falha = `Gemini sem texto (${modelo}, ${j.candidates?.[0]?.finishReason ?? "sem candidato"})`;
   }
   throw new Error(falha);
+}
+
+export function responder(c: Contexto, mensagens: Mensagem[]): Promise<string> {
+  return gerar(c, paraGemini(mensagens));
+}
+
+export type PlanoGerado = { titulo: string; itens: string[] };
+
+const PEDIDO_PLANO = [
+  "Com base nesta conversa e no meu histórico, monte um plano curto para eu seguir até a próxima consulta.",
+  "Responda SÓ com JSON, no formato {\"titulo\": string, \"itens\": string[]}.",
+  "- titulo: até 60 caracteres, sobre o assunto da conversa (ex.: \"Cuidar do colesterol até a consulta\").",
+  "- itens: de 3 a 6 passos práticos, cada um em uma frase de até 200 caracteres, começando por um verbo.",
+  "- Hábitos (alimentação, movimento, sono), o que acompanhar, quando repetir exame de rotina e o que levar ou perguntar ao médico.",
+  "- Quando o passo vier de um exame, cite o nome do exame, o valor e a data do laudo.",
+  "- Nada de remédio, dose, suplemento ou diagnóstico. Inclua um passo para confirmar o plano com o médico.",
+].join("\n");
+
+/** A conversa vira um plano: título + passos, pronto para salvar. Mesmas regras do chat (só os dados, sem diagnóstico). */
+export async function montarPlano(c: Contexto, mensagens: Mensagem[]): Promise<PlanoGerado> {
+  const bruto = await gerar(c, [...paraGemini(mensagens), { role: "user", parts: [{ text: PEDIDO_PLANO }] }], {
+    responseMimeType: "application/json",
+  });
+  const j = JSON.parse(bruto.replace(/^```(?:json)?\s*|\s*```$/g, "")) as { titulo?: unknown; itens?: unknown };
+  const titulo = typeof j.titulo === "string" ? j.titulo.trim().slice(0, 120) : "";
+  const itens = (Array.isArray(j.itens) ? j.itens : [])
+    .filter((x): x is string => typeof x === "string" && x.trim().length > 0)
+    .map((x) => x.trim().slice(0, 300))
+    .slice(0, 8);
+  if (!titulo || itens.length === 0) throw new Error("Plano em formato inesperado");
+  return { titulo, itens };
 }

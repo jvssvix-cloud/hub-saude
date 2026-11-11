@@ -54,3 +54,14 @@ export async function getServidor<T>(caminho: string): Promise<T> {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${caminho}`, { headers: cabecalhos(chaveServidor()), cache: "no-store" });
   return resposta<T>(r, caminho.split("?")[0]);
 }
+
+/** Grava, altera ou apaga linhas de uma tabela do paciente (chave secreta). Devolve as linhas afetadas. */
+export async function escreverServidor<T>(metodo: "POST" | "PATCH" | "DELETE", caminho: string, corpo?: unknown): Promise<T> {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${caminho}`, {
+    method: metodo,
+    headers: { ...cabecalhos(chaveServidor()), Prefer: "return=representation" },
+    body: corpo === undefined ? undefined : JSON.stringify(corpo),
+    cache: "no-store",
+  });
+  return resposta<T>(r, caminho.split("?")[0]);
+}

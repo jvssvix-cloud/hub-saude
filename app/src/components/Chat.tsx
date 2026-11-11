@@ -6,6 +6,11 @@ import { useEffect, useRef, useState } from "react";
 type ExameCitado = { analito: string; nome: string; fora: boolean };
 type Msg = { papel: "paciente" | "assistente"; texto: string; exames?: ExameCitado[]; erro?: boolean };
 
+const ERRO_PLANO: Record<string, string> = {
+  nao_salvou: "Montei o plano, mas não consegui guardar. Tente de novo em instantes.",
+  falha: "Não consegui montar o plano agora. Tente de novo em instantes.",
+};
+
 const ERRO: Record<string, string> = {
   sem_chave: "O chat ainda não está ligado neste ambiente (falta a chave do Gemini no servidor).",
   falha: "Não consegui responder agora. Tente de novo em instantes.",
@@ -17,11 +22,28 @@ export function Chat({ nome, sugestoes, ligado }: { nome: string; sugestoes: str
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [texto, setTexto] = useState("");
   const [esperando, setEsperando] = useState(false);
+  const [plano, setPlano] = useState<{ estado: "parado" | "criando" | "salvo" | "erro"; titulo?: string; erro?: string }>({ estado: "parado" });
   const fim = useRef<HTMLDivElement>(null);
+
+  async function criarPlano() {
+    if (plano.estado === "criando") return;
+    setPlano({ estado: "criando" });
+    try {
+      const r = await fetch("/api/plano", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mensagens: msgs.filter((m) => !m.erro).map(({ papel, texto }) => ({ papel, texto })) }),
+      });
+      const j = (await r.json().catch(() => ({}))) as { titulo?: string; erro?: string };
+      setPlano(r.ok && j.titulo ? { estado: "salvo", titulo: j.titulo } : { estado: "erro", erro: ERRO_PLANO[j.erro ?? "falha"] ?? ERRO_PLANO.falha });
+    } catch {
+      setPlano({ estado: "erro", erro: ERRO_PLANO.falha });
+    }
+  }
 
   useEffect(() => {
     fim.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [msgs, esperando]);
+  }, [msgs, esperando, plano]);
 
   async function enviar(pergunta: string) {
     const p = pergunta.trim();
@@ -29,6 +51,7 @@ export function Chat({ nome, sugestoes, ligado }: { nome: string; sugestoes: str
     const conversa: Msg[] = [...msgs.filter((m) => !m.erro), { papel: "paciente", texto: p }];
     setMsgs([...msgs, { papel: "paciente", texto: p }]);
     setTexto("");
+    setPlano({ estado: "parado" }); // conversa mudou: dá para criar outro plano
     setEsperando(true);
     try {
       const r = await fetch("/api/chat", {
@@ -117,6 +140,31 @@ export function Chat({ nome, sugestoes, ligado }: { nome: string; sugestoes: str
                 Lendo seus exames…
               </li>
             )}
+            {!esperando && msgs[msgs.length - 1]?.papel === "assistente" && !msgs[msgs.length - 1]?.erro && (
+              <li>
+                {plano.estado === "salvo" ? (
+                  <Link href="/plano" className="flex items-center justify-between gap-3 rounded-2xl bg-marca-fundo px-4 py-3 text-sm">
+                    <span>
+                      <span className="block font-semibold text-marca">Plano salvo ✓</span>
+                      <span className="block text-suave">{plano.titulo}</span>
+                    </span>
+                    <span className="shrink-0 font-semibold text-marca">Ver em Plano ›</span>
+                  </Link>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={criarPlano}
+                      disabled={plano.estado === "criando"}
+                      className="rounded-full border border-marca px-4 py-2 text-sm font-semibold text-marca hover:bg-marca-fundo disabled:opacity-60"
+                    >
+                      {plano.estado === "criando" ? "Montando o plano…" : "Criar plano com esta conversa"}
+                    </button>
+                    {plano.estado === "erro" && <p className="mt-2 text-sm text-atencao" role="alert">{plano.erro}</p>}
+                  </>
+                )}
+              </li>
+            )}
           </ol>
         )}
         <div ref={fim} />
@@ -127,7 +175,7 @@ export function Chat({ nome, sugestoes, ligado }: { nome: string; sugestoes: str
           e.preventDefault();
           enviar(texto);
         }}
-        className="sticky bottom-[4.5rem] mt-4 sm:bottom-4"
+        className="sticky bottom-[4.25rem] -mx-4 mt-4 bg-fundo px-4 pb-2 pt-2 sm:bottom-0"
       >
         <div className="flex items-end gap-2 rounded-3xl border border-linha bg-cartao p-2 shadow-sm focus-within:border-marca">
           <textarea

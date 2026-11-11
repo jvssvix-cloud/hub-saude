@@ -15,7 +15,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 - Front: Next.js + TypeScript (App Router), Tailwind, Recharts; mobile-first. Deploy na Vercel; a `main` sempre funcionando.
 - Banco: Supabase `hub-saude` (Postgres + Storage), região São Paulo, **no ar** com o Roberto carregado. Sem login no MVP (um usuário de demonstração); as tabelas ficam trancadas para a chave pública (RLS sem políticas) e o acesso externo passa só por `acessar_historico(token)`. Ver seção "Banco" abaixo.
 - IA: API do Claude para extração (visão + saída estruturada). **Modelo padrão: Claude Haiku 5.5** (~US$ 0,003/laudo).
-- Chat do app (aba Conversar): **Gemini** (`GEMINI_API_KEY`, cota gratuita; `app/src/lib/chat.ts`). Sem a chave, o chat aparece desligado.
+- Chat do app (aba Conversar): **Gemini** (`GEMINI_API_KEY`, cota gratuita; `app/src/lib/chat.ts`; padrão `gemini-3.5-flash`, com modelos reserva e limite de 25 s por tentativa). Sem a chave, o chat aparece desligado.
 - **Conector MCP** (`/api/mcp/[token]`): o assistente do próprio paciente (Claude, ChatGPT, Gemini) lê o histórico. O token é um consentimento `ia` criado em `/conectar-ia`; cada leitura passa por `acessar_historico(token, "mcp")` (escopo, log, revogação). Só leitura. As ferramentas ficam em `app/src/lib/ferramentas.ts` e o chat usa o mesmo texto.
 - Lovable (parceiro, 100 créditos até sábado): **recomendação** = usar só para a página de apresentação (landing do pitch), não para o app. Ver `docs/contexto.md`.
 
@@ -57,6 +57,7 @@ Cada pasta pronta tem README com comandos. Resumo:
 Projeto `eimnpafybehiylzukoja` (organização LEPoli, São Paulo), o mesmo para os dois e para o Claude de cada um. O `.mcp.json` já configura o servidor do Supabase preso a este projeto: cada um autentica uma vez com a própria conta.
 - **Chaves:** URL e chave publicável no `.env.example` (são públicas). `SUPABASE_SERVICE_ROLE_KEY` só no `.env.local`, na Vercel ou nas variáveis da sessão na nuvem; nunca no Git nem no navegador.
 - **Nota do médico:** `registrar_nota(token, itens)` grava recomendações em `nota_medico` (só com consentimento aprovado e válido); o paciente lê pelo servidor.
+- **Plano do paciente:** tabela `plano_paciente` (título, passos, `seguindo`): o plano que o paciente cria no chat ("Criar plano com esta conversa", rota `/api/plano`) e vê em `/plano`. Só o servidor lê e grava; é sugestão de IA, separado da `nota_medico`.
 - **Consentimento:** o médico pede pelo telefone (`solicitar_acesso`) ou o paciente gera QR (`criar_consentimento`); o paciente aprova/recusa (`responder_solicitacao`) e revoga (`revogar_consentimento`). Revogar corta médico, MCP e API na hora. Telefone fictício do Roberto: (11) 98765-4321.
 - **Mudar estrutura** (tabela, coluna, função, permissão): sempre migration NOVA em `supabase/migrations/`, aplicada no Supabase (`apply_migration`) e commitada na mesma hora, com o arquivo renomeado para a versão que o Supabase registrou. Nunca editar migration já aplicada.
 - **Antes de mexer na estrutura:** `git pull` e comparar `list_migrations` com a pasta. Divergência = alguém esqueceu de commitar ou aplicar.

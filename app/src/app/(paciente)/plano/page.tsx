@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { NotaDoMedico } from "@/components/NotaDoMedico";
+import { PlanosDoPaciente } from "@/components/PlanosDoPaciente";
 import { carregarInsights } from "@/lib/dados";
 import { mesAno } from "@/lib/insights";
 
@@ -27,6 +28,10 @@ export default async function Plano() {
 
       <Suspense fallback={null}>
         <NotaDoMedico vazio={<SemNota />} />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <PlanosDoPaciente />
       </Suspense>
 
       <section>

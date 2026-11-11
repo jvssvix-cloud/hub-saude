@@ -168,3 +168,14 @@ export type NotaMedico = {
   itens: string[];
   criado_em: string;
 };
+
+/** Tabela plano_paciente: plano que o paciente salva a partir do chat do app (sugestão de IA; só o servidor lê e grava). */
+export type PlanoPaciente = {
+  id: string;
+  paciente_id: string;
+  titulo: string;
+  itens: string[];
+  origem: "chat";
+  seguindo: boolean;
+  criado_em: string;
+};
