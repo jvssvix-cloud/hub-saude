@@ -3,20 +3,32 @@ import { connection } from "next/server";
 import { Suspense } from "react";
 import { Chat } from "@/components/Chat";
 import { temChaveChat } from "@/lib/chat";
-import { meusInsights } from "@/lib/dados";
+import { meuRelogio, meusInsights } from "@/lib/dados";
 import type { Insights } from "@/lib/insights";
 
 export const metadata: Metadata = { title: "Conversar · Zelo" };
 
-/** Perguntas de partida tiradas dos próprios dados: o que está fora da faixa, vacinas pendentes, próxima consulta. */
-function sugestoes(i: Insights): string[] {
+/**
+ * Perguntas de partida tiradas dos próprios dados: o que está fora da faixa, vacinas pendentes, próxima consulta.
+ * Sem exames, as perguntas são sobre o perfil do check-up; sem relógio, nada de pergunta sobre o relógio.
+ */
+function sugestoes(i: Insights, temRelogio: boolean): string[] {
+  const vacinasPendentes = !!i.vacinacao?.situacao.some((v) => v.status === "atencao");
+  if (i.series.length === 0) {
+    return [
+      "O que o meu perfil de saúde mostra?",
+      "O que o meu IMC quer dizer?",
+      ...(vacinasPendentes ? ["Minhas vacinas estão em dia?"] : []),
+      ...(temRelogio ? ["O que o relógio mostrou sobre o meu coração e o meu sono?"] : []),
+    ];
+  }
   const curto = (n: string) => n.replace(/ \(.*\)$/, "");
   const fora = i.series.filter((s) => s.alterado);
   const lista = ["O que mudou nos meus últimos exames?"];
   if (fora[0]) lista.push(`Como evoluiu ${artigo(curto(fora[0].nome))} nos últimos anos?`);
   if (fora.length > 1) lista.push("O que devo levar para a próxima consulta?");
-  if (i.vacinacao?.situacao.some((v) => v.status === "atencao")) lista.push("Minhas vacinas estão em dia?");
-  lista.push("O que o relógio mostrou sobre o meu coração e o meu sono?");
+  if (vacinasPendentes) lista.push("Minhas vacinas estão em dia?");
+  if (temRelogio) lista.push("O que o relógio mostrou sobre o meu coração e o meu sono?");
   return lista.slice(0, 5);
 }
 
@@ -37,6 +49,6 @@ export default function Conversar() {
 
 async function Conteudo() {
   await connection(); // a chave do chat é lida do ambiente na hora
-  const insights = await meusInsights();
-  return <Chat nome={insights.paciente.nome.split(" ")[0]} sugestoes={sugestoes(insights)} ligado={temChaveChat()} />;
+  const [insights, relogio] = await Promise.all([meusInsights(), meuRelogio()]);
+  return <Chat nome={insights.paciente.nome.split(" ")[0]} sugestoes={sugestoes(insights, !!relogio)} ligado={temChaveChat()} />;
 }

@@ -41,6 +41,17 @@ function escolher(i: Insights, relogio: Relogio | null, consentimentos: Consenti
     };
   }
 
+  // sem nenhum exame, o próximo passo é enviar o primeiro (vacinas e consulta dependem dele)
+  if (i.series.length === 0) {
+    return {
+      rotulo: "Próximo passo",
+      titulo: "Envie seu primeiro exame",
+      texto: "PDF do laboratório ou foto do laudo. O Zelo lê, você confere e ele monta a evolução de cada exame.",
+      href: "/enviar",
+      acao: "Enviar exame",
+    };
+  }
+
   const assuntos = temas(i, relogio).filter((t) => t.nivel === "conversar");
   const medicoComAcesso = vivos.some((c) => c.status === "aprovado" && c.destinatario_tipo === "medico");
   if (assuntos.length > 0 && consentimentos !== null && !medicoComAcesso) {
@@ -89,7 +100,7 @@ function escolher(i: Insights, relogio: Relogio | null, consentimentos: Consenti
 }
 
 /** Cartão único no topo da Início. Lido na hora (pedidos de acesso mudam a qualquer momento). */
-export async function ProximoPasso() {
+export async function ProximoPasso({ soUrgente = false }: { soUrgente?: boolean } = {}) {
   await connection();
   const p = await pacienteAtual();
   const insights = await carregarInsights(p.id);
@@ -99,6 +110,8 @@ export async function ProximoPasso() {
       ).catch(() => null)
     : null;
   const passo = escolher(insights, relogioDe(p.id), consentimentos);
+  // soUrgente: a tela já tem o seu próprio chamado (ex.: Início sem exames); aqui só um pedido de acesso pendente
+  if (soUrgente && !passo.urgente) return null;
 
   return (
     <Link

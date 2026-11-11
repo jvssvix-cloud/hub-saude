@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { meusInsights } from "@/lib/dados";
+import { SemExames } from "@/components/SemExames";
 import { laudos, nomeLab } from "@/lib/documentos";
 import { dataBr, serie } from "@/lib/insights";
 
@@ -33,7 +34,9 @@ export default async function Documentos() {
       <section>
         <h1 className="text-[28px] font-bold leading-tight tracking-tight">Documentos</h1>
         <p className="mt-1 text-[15px] text-suave">
-          {lista.length + vacinas.length} documentos originais. Cada número do app vem de um deles.
+          {lista.length + vacinas.length === 0
+            ? "Os laudos e carteiras de vacinação que você enviar ficam guardados aqui."
+            : `${lista.length + vacinas.length} documentos originais. Cada número do app vem de um deles.`}
         </p>
         <nav aria-label="Categorias" className="mt-3 flex flex-wrap gap-2">
           {categorias.map((c) => (
@@ -58,6 +61,11 @@ export default async function Documentos() {
         </section>
       ))}
 
+      {lista.length === 0 && (
+        <SemExames texto="Envie o PDF ou uma foto de um laudo. O original fica guardado aqui, e cada número do app aponta para ele." />
+      )}
+
+      {lista.length > 0 && (
       <section id="exames" className="scroll-mt-20">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">
           Exames de laboratório · {insights.periodo.laboratorios.length} laboratórios
@@ -88,6 +96,7 @@ export default async function Documentos() {
         })}
       </ul>
       </section>
+      )}
 
       {vacinas.length > 0 && (
         <section id="vacinacao" className="scroll-mt-20">

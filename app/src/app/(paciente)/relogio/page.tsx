@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ConecteWearable } from "@/components/ConecteWearable";
 import { GraficoRelogio } from "@/components/GraficoRelogio";
 import {
   FONTE, alertasOrdenados, dataHoraBr, decimal, inteiro, serieDoContexto, type Alerta,
@@ -14,12 +15,11 @@ function SemRelogio() {
   return (
     <div className="space-y-4 pt-3">
       <h1 className="text-[28px] font-bold leading-tight tracking-tight">Relógio</h1>
-      <section className="rounded-3xl border border-dashed border-linha p-4 sm:p-5">
-        <h2 className="font-bold">Nenhum relógio conectado</h2>
-        <p className="mt-1 text-sm text-suave">
-          Quando você conectar um relógio, batimento em repouso, ritmo, sono e passos aparecem aqui, ao lado dos seus exames.
-        </p>
-      </section>
+      <p className="text-[15px] text-suave">
+        Nenhum relógio conectado ainda. Quando conectar, batimento em repouso, ritmo, sono e passos aparecem aqui, ao lado dos
+        seus exames.
+      </p>
+      <ConecteWearable />
     </div>
   );
 }

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FiltroExames, type ExameFiltravel } from "@/components/FiltroExames";
+import { ConecteWearable } from "@/components/ConecteWearable";
 import { BarraContagem } from "@/components/LinhaIndice";
+import { SemExames } from "@/components/SemExames";
 import { meuRelogio, meusInsights } from "@/lib/dados";
 import { laudos } from "@/lib/documentos";
 import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
@@ -25,6 +27,7 @@ export default async function Exames() {
     .filter((x) => x.total > 0);
   const fora = insights.series.filter((s) => s.alterado).length;
   const nLaudos = laudos(insights).length;
+  const semExames = insights.series.length === 0;
   const exames: ExameFiltravel[] = insights.series.map((s) => ({
     analito: s.analito,
     nome: s.nome,
@@ -50,10 +53,26 @@ export default async function Exames() {
             + Enviar
           </Link>
         </div>
-        <p className="mt-1 text-[15px] text-suave">
-          {insights.series.length} exames acompanhados · <span className="text-atencao">{fora} fora da faixa</span>
-        </p>
+        {!semExames && (
+          <p className="mt-1 text-[15px] text-suave">
+            {insights.series.length} exames acompanhados · <span className="text-atencao">{fora} fora da faixa</span>
+          </p>
+        )}
       </section>
+
+      {semExames && (
+        <>
+          <SemExames />
+          {!relogio && (
+            <div className="overflow-hidden rounded-3xl border border-linha bg-cartao">
+              <ConecteWearable variante="linha" />
+            </div>
+          )}
+        </>
+      )}
+
+      {!semExames && (
+      <>
 
       <FiltroExames exames={exames} textos={textos}>
       <section>
@@ -95,6 +114,11 @@ export default async function Exames() {
             </Link>
           </li>
           )}
+          {!relogio && (
+            <li>
+              <ConecteWearable variante="linha" />
+            </li>
+          )}
         </ul>
       </section>
       </FiltroExames>
@@ -119,6 +143,8 @@ export default async function Exames() {
       <Link href="/evolucao" className="inline-block text-sm font-semibold text-marca hover:underline">
         Ver a evolução de todos os índices ›
       </Link>
+      </>
+      )}
     </div>
   );
 }

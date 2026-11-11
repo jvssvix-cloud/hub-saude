@@ -36,6 +36,15 @@ export default async function Plano() {
 
       <section>
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Próximos exames de rotina</h2>
+        {meses.length === 0 ? (
+          <div className="rounded-3xl border border-dashed border-linha p-4 text-sm text-suave sm:p-5">
+            O calendário dos próximos exames sai do intervalo de cada um a partir do último resultado.{" "}
+            <Link href="/enviar" className="font-semibold text-marca hover:underline">
+              Envie seus exames
+            </Link>{" "}
+            para ver quando refazer cada um.
+          </div>
+        ) : (
         <ul className="divide-y divide-linha overflow-hidden rounded-3xl border border-linha bg-cartao">
           {meses.map(([mes, nomes]) => (
             <li key={mes} className="px-4 py-3">
@@ -44,6 +53,7 @@ export default async function Plano() {
             </li>
           ))}
         </ul>
+        )}
         <p className="mt-2 text-xs text-suave">
           Calculado pelo intervalo de cada exame a partir do último resultado. Se o médico pediu antes, vale o que ele pediu.
         </p>

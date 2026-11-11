@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { ConecteWearable } from "@/components/ConecteWearable";
 import { LinhaIndice as Linha, LinhaSerie } from "@/components/LinhaIndice";
+import { SemExames } from "@/components/SemExames";
 import { meuRelogio, meusInsights } from "@/lib/dados";
 import { areasOrdenadas, seriesDaArea } from "@/lib/insights";
 import { mediaSemanal } from "@/lib/paciente";
@@ -50,6 +52,11 @@ export default async function Evolucao() {
           />
         </ul>
       </section>
+      )}
+      {!relogio && <ConecteWearable />}
+
+      {insights.series.length === 0 && (
+        <SemExames texto="Quando você enviar seus exames, cada índice aparece aqui com a curva ao longo dos anos." />
       )}
 
       {areas.map((area) => {
