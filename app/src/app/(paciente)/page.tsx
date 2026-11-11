@@ -168,6 +168,10 @@ export default async function Inicio() {
 
       <p className="text-center text-xs text-suave">
         Gerado por regras a partir dos seus exames e do seu relógio. Não é diagnóstico.
+        {/* Selinho: mostra se os exames vieram do banco (Supabase) ou do insights.json (plano B). */}
+        <span className="mt-1 block opacity-70" data-origem={insights.origem}>
+          Dados: {insights.origem === "banco" ? "banco" : "arquivo de demonstração"}
+        </span>
       </p>
     </div>
   );
