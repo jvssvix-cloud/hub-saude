@@ -45,10 +45,10 @@ function escolher(i: Insights, relogio: Relogio | null, consentimentos: Consenti
   if (i.series.length === 0) {
     return {
       rotulo: "Próximo passo",
-      titulo: "Envie seu primeiro exame",
-      texto: "PDF do laboratório ou foto do laudo. O Zelo lê, você confere e ele monta a evolução de cada exame.",
-      href: "/enviar",
-      acao: "Enviar exame",
+      titulo: "Reúna seus exames",
+      texto: "Uma área por vez: sangue, coração, estômago, rins... O Zelo lê, você confere e ele monta a sua história.",
+      href: "/reunir",
+      acao: "Começar",
     };
   }
 

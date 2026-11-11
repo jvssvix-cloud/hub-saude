@@ -123,7 +123,7 @@ export async function salvarBloco(modo: Modo, n: number, _: EstadoBloco, form: F
       );
       if (!p?.altura_cm || !p?.peso_kg) redirect("/checkup?bloco=2");
       await atualizarPerfil(pid, { checkup_concluido_em: agora() });
-      redirect(form.get("destino") === "enviar" ? "/enviar" : "/");
+      redirect(form.get("destino") === "enviar" ? "/reunir" : "/");
     }
     default:
       redirect("/checkup");

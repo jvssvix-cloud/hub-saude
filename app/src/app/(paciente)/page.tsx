@@ -35,12 +35,20 @@ export default async function Inicio() {
             : `${anos} anos de exames, ${periodo.laboratorios.length} laboratórios${relogio ? " e o seu relógio" : ""}, num lugar só.`}
         </p>
         {!semExames && (
-          <Link
-            href="/enviar"
-            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-linha bg-cartao px-4 py-2 text-sm font-semibold text-marca transition-colors hover:border-salvia"
-          >
-            <span aria-hidden>+</span> Enviar exame
-          </Link>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Link
+              href="/enviar"
+              className="inline-flex items-center gap-1.5 rounded-full border border-linha bg-cartao px-4 py-2 text-sm font-semibold text-marca transition-colors hover:border-salvia"
+            >
+              <span aria-hidden>+</span> Enviar exame
+            </Link>
+            <Link
+              href="/reunir"
+              className="inline-flex items-center gap-1.5 rounded-full border border-linha bg-cartao px-4 py-2 text-sm font-semibold text-marca transition-colors hover:border-salvia"
+            >
+              Reunir por área
+            </Link>
+          </div>
         )}
       </section>
 

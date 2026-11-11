@@ -1,9 +1,12 @@
 "use client";
 /**
- * Tela de envio: escolher arquivo -> (foto reduzida no navegador) -> /api/enviar lê -> prévia -> Salvar ou Descartar.
- * Nenhum dado da prévia volta ao servidor: o "Salvar" manda só o id do envio.
+ * Tela de envio: escolher um ou VÁRIOS arquivos -> (foto reduzida no navegador) -> /api/enviar lê um por vez ->
+ * prévia -> Salvar ou Descartar -> próximo da fila. Nenhum dado da prévia volta ao servidor: o "Salvar" manda só o id.
+ *
+ * area (vindo do /reunir): marca a área como "enviado" ao salvar e troca os botões do final.
  */
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { descartar, salvar } from "@/app/(paciente)/enviar/acoes";
 import type { Previa } from "@/lib/envio";
@@ -12,7 +15,11 @@ type Estado =
   | { fase: "escolher"; erro?: string }
   | { fase: "lendo"; nome: string }
   | { fase: "previa"; previa: Previa; erro?: string; ocupado?: "salvar" | "descartar" }
-  | { fase: "salvo"; exames: number; doses: number };
+  | { fase: "salvo" };
+
+/** O que já passou pela fila (para o resumo do final). */
+type Placar = { docs: number; exames: number; doses: number; erros: string[] };
+const PLACAR_VAZIO: Placar = { docs: 0, exames: 0, doses: 0, erros: [] };
 
 const TAMANHO_MAX = 4 * 1024 * 1024;
 const LADO_MAX = 2000;
@@ -40,12 +47,31 @@ const TIPO: Record<Previa["tipo"], string> = {
   outro: "Documento não reconhecido",
 };
 
-export function EnviarExame() {
+export function EnviarExame({ area }: { area?: string } = {}) {
   const [estado, setEstado] = useState<Estado>({ fase: "escolher" });
   const entrada = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  // fila de arquivos: posição e placar em ref (as funções abaixo rodam depois de awaits e não podem ler estado velho)
+  const fila = useRef<File[]>([]);
+  const pos = useRef(0);
+  const placar = useRef<Placar>(PLACAR_VAZIO);
+  const [, forcar] = useState(0);
+  const total = fila.current.length;
+  const atual = pos.current; // 1-based do arquivo em tela
 
-  async function enviar(f: File | undefined) {
-    if (!f) return;
+  function iniciar(lista: FileList | null) {
+    if (!lista?.length) return;
+    fila.current = Array.from(lista).slice(0, 30);
+    pos.current = 0;
+    placar.current = { ...PLACAR_VAZIO, erros: [] };
+    if (entrada.current) entrada.current.value = "";
+    void proximo();
+  }
+
+  async function proximo() {
+    if (pos.current >= fila.current.length) return terminar();
+    const f = fila.current[pos.current++];
+    forcar((n) => n + 1);
     setEstado({ fase: "lendo", nome: f.name });
     try {
       const arquivo = await prepararArquivo(f);
@@ -57,9 +83,20 @@ export function EnviarExame() {
       if (!r.ok) throw new Error(corpo?.mensagem ?? "Não conseguimos ler este documento.");
       setEstado({ fase: "previa", previa: corpo as Previa });
     } catch (e) {
-      setEstado({ fase: "escolher", erro: e instanceof Error ? e.message : "Algo deu errado. Tente de novo." });
-    } finally {
-      if (entrada.current) entrada.current.value = "";
+      const msg = e instanceof Error ? e.message : "Algo deu errado. Tente de novo.";
+      if (fila.current.length === 1) return setEstado({ fase: "escolher", erro: msg });
+      placar.current.erros.push(`${f.name}: ${msg}`);
+      void proximo();
+    }
+  }
+
+  function terminar() {
+    const p = placar.current;
+    if (p.docs > 0) {
+      setEstado({ fase: "salvo" });
+      if (area) router.refresh(); // o /reunir mostra a área como enviada
+    } else {
+      setEstado({ fase: "escolher", erro: p.erros.length ? p.erros.join(" · ") : undefined });
     }
   }
 
@@ -75,23 +112,24 @@ export function EnviarExame() {
           {lendo ? (
             <>
               <span aria-hidden className="size-8 animate-spin rounded-full border-4 border-marca-fundo border-t-marca" />
-              <span className="font-bold">Lendo o exame…</span>
+              <span className="font-bold">Lendo o exame…{total > 1 ? ` (${atual} de ${total})` : ""}</span>
               <span className="text-sm text-suave">Costuma levar até 1 minuto. {estado.nome}</span>
             </>
           ) : (
             <>
               <span aria-hidden className="grid size-12 place-items-center rounded-full bg-marca-fundo text-2xl text-marca">+</span>
-              <span className="font-bold">Escolher PDF ou foto</span>
-              <span className="text-sm text-suave">No celular, dá para tirar a foto na hora. Até 4 MB.</span>
+              <span className="font-bold">Escolher PDFs ou fotos</span>
+              <span className="text-sm text-suave">Pode escolher vários de uma vez: a gente lê um por um. Até 4 MB cada.</span>
             </>
           )}
           <input
             ref={entrada}
             type="file"
             accept="application/pdf,image/*"
+            multiple
             className="sr-only"
             disabled={lendo}
-            onChange={(e) => enviar(e.target.files?.[0])}
+            onChange={(e) => iniciar(e.target.files)}
           />
         </label>
         {estado.fase === "escolher" && estado.erro ? (
@@ -107,25 +145,43 @@ export function EnviarExame() {
   }
 
   if (estado.fase === "salvo") {
-    const n = estado.exames || estado.doses;
-    const oque = estado.exames ? (n === 1 ? "resultado" : "resultados") : n === 1 ? "dose de vacina" : "doses de vacina";
+    const p = placar.current;
+    const partes = [
+      p.exames ? `${p.exames} ${p.exames === 1 ? "resultado" : "resultados"}` : "",
+      p.doses ? `${p.doses} ${p.doses === 1 ? "dose de vacina" : "doses de vacina"}` : "",
+    ].filter(Boolean);
     return (
       <div className="space-y-4 rounded-3xl border border-linha bg-cartao p-5 text-center">
-        <p className="text-lg font-bold">Pronto! {n} {oque} no seu histórico.</p>
-        <p className="text-sm text-suave">Os gráficos e os avisos já levam em conta este documento.</p>
+        <p className="text-lg font-bold">
+          Pronto! {p.docs} {p.docs === 1 ? "documento salvo" : "documentos salvos"} no seu histórico.
+        </p>
+        <p className="text-sm text-suave">
+          {partes.length ? `${partes.join(" e ")}. ` : ""}Os gráficos e os avisos já levam em conta.
+        </p>
+        {p.erros.length ? (
+          <ul className="space-y-1 rounded-2xl bg-atencao-fundo px-4 py-3 text-left text-sm text-atencao">
+            {p.erros.map((e) => (
+              <li key={e}>{e}</li>
+            ))}
+          </ul>
+        ) : null}
         <div className="flex flex-wrap justify-center gap-2">
-          <Link href="/" className="rounded-full bg-marca px-5 py-2.5 font-semibold text-white hover:bg-marca-hover">
-            Ver na Início
-          </Link>
-          <Link href="/exames" className="rounded-full border border-linha px-5 py-2.5 font-semibold text-marca hover:border-salvia">
-            Ver exames
-          </Link>
+          {!area && (
+            <>
+              <Link href="/" className="rounded-full bg-marca px-5 py-2.5 font-semibold text-white hover:bg-marca-hover">
+                Ver na Início
+              </Link>
+              <Link href="/exames" className="rounded-full border border-linha px-5 py-2.5 font-semibold text-marca hover:border-salvia">
+                Ver exames
+              </Link>
+            </>
+          )}
           <button
             type="button"
             onClick={() => setEstado({ fase: "escolher" })}
             className="rounded-full border border-linha px-5 py-2.5 font-semibold text-marca hover:border-salvia"
           >
-            Enviar outro
+            {area ? "Enviar mais desta área" : "Enviar outro"}
           </button>
         </div>
       </div>
@@ -138,20 +194,25 @@ export function EnviarExame() {
 
   async function aoSalvar() {
     setEstado({ fase: "previa", previa, ocupado: "salvar" });
-    const r = await salvar(previa.envioId);
-    if (r.ok) setEstado({ fase: "salvo", exames: r.exames, doses: r.doses });
-    else setEstado({ fase: "previa", previa, erro: r.mensagem });
+    const r = await salvar(previa.envioId, area);
+    if (!r.ok) return setEstado({ fase: "previa", previa, erro: r.mensagem });
+    placar.current.docs++;
+    placar.current.exames += r.exames;
+    placar.current.doses += r.doses;
+    void proximo();
   }
   async function aoDescartar() {
     setEstado({ fase: "previa", previa, ocupado: "descartar" });
     await descartar(previa.envioId);
-    setEstado({ fase: "escolher" });
+    void proximo();
   }
 
   return (
     <div className="space-y-4">
       <section className="rounded-3xl border border-linha bg-cartao p-5">
-        <p className="text-xs font-semibold uppercase tracking-wider text-suave">Confira antes de salvar</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-suave">
+          Confira antes de salvar{total > 1 ? ` · ${atual} de ${total}` : ""}
+        </p>
         <h2 className="mt-1 text-xl font-bold">{TIPO[previa.tipo]}</h2>
         <p className="mt-1 text-[15px] text-suave">
           {previa.emissor || "Emissor não identificado"} · {dataBr(previa.data)} · {previa.paginas}{" "}

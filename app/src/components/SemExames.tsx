@@ -36,10 +36,10 @@ export function SemExames({ variante = "curto", texto }: { variante?: "completo"
         </ol>
       )}
       <Link
-        href="/enviar"
+        href="/reunir"
         className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-marca px-4 py-2.5 text-sm font-semibold text-white hover:bg-marca-hover"
       >
-        <span aria-hidden>+</span> Enviar meu primeiro exame
+        <span aria-hidden>+</span> Reunir meus exames
       </Link>
     </section>
   );

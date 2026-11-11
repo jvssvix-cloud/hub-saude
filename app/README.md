@@ -102,3 +102,6 @@ build normal lê do banco sem aviso; `/`, `/exame/hba1c`, `/exame/ldl`, `/relogi
 Tipos, lint e build; as 18 páginas de exame; tocar no ponto abre o laudo certo (2016 → Delta, 2026 → Gama);
 os 12 PDFs respondem; exame inexistente mostra página em português; celular (375 px) sem rolagem lateral,
 temas claro e escuro.
+
+## Reunir meus exames (`/reunir`)
+Passo a passo por área (sangue, coração, estômago e intestino, rins, mulher, ossos, pulmão, outros, vacinas). Áreas e motivos em `src/lib/reunir.ts`; progresso em `perfil_saude.coleta` (`src/lib/coleta.ts`). O envio aceita vários arquivos e lê um por vez (`src/components/EnviarExame.tsx`).

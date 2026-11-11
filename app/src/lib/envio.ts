@@ -6,7 +6,7 @@
  * nunca os dados. Assim ninguém grava no histórico um valor que não saiu do documento.
  *
  * Cada função recebe o paciente da SESSÃO (quem chama resolve com pacienteDaSessao/pacienteAtual); nunca um id vindo
- * do navegador. Proteção de custo: no máximo ENVIO_LIMITE_HORA leituras por hora por paciente (padrão 10) e o
+ * do navegador. Proteção de custo: no máximo ENVIO_LIMITE_HORA leituras por hora por paciente (padrão 40) e o
  * interruptor ENVIO_DESLIGADO=1 (na Vercel) desliga o envio sem novo deploy de código.
  */
 import "server-only";
@@ -25,7 +25,7 @@ const BUCKET = "documentos";
 export function envioLigado(): boolean {
   return process.env.ENVIO_DESLIGADO !== "1" && !!process.env.ANTHROPIC_API_KEY && !!process.env.SUPABASE_SERVICE_ROLE_KEY;
 }
-const limitePorHora = () => Number(process.env.ENVIO_LIMITE_HORA) || 10;
+const limitePorHora = () => Number(process.env.ENVIO_LIMITE_HORA) || 40; // quem reúne a pasta toda passa de 10/h
 
 // ---------------------------------------------------------------- Storage (bucket privado)
 function cabecalhosStorage(extra: Record<string, string> = {}) {

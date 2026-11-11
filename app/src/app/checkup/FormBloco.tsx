@@ -59,7 +59,7 @@ export function FormBloco({
             disabled={salvando}
             className="w-full rounded-2xl bg-marca py-3 font-semibold text-white hover:bg-marca-hover disabled:opacity-60"
           >
-            {salvando ? "Salvando…" : "Enviar exames agora"}
+            {salvando ? "Salvando…" : "Reunir meus exames agora"}
           </button>
           <button
             name="destino"

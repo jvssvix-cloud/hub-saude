@@ -280,8 +280,8 @@ export function Campos({
         <div className="rounded-2xl bg-marca-fundo p-4 text-[15px]">
           <p className="font-semibold text-marca">Pronto, seu perfil está salvo.</p>
           <p className="mt-1 text-suave">
-            Envie um PDF ou uma foto dos seus exames de laboratório. O Zelo lê, você confere e ele monta a evolução de cada
-            exame ao longo dos anos. Pode ser agora ou quando quiser.
+            Agora vamos reunir os seus exames, uma área por vez: sangue, coração, estômago e intestino, rins, vacinas... Para
+            cada uma, o Zelo diz o que procurar na sua pasta. Você envia PDFs ou fotos, confere e pode parar quando quiser.
           </p>
         </div>
       );
