@@ -24,12 +24,3 @@ export async function marcarColeta(pacienteId: string, area: string, situacao: S
   });
 }
 
-/** Volta a área para "sem resposta" (o paciente quer rever). */
-export async function reabrirColeta(pacienteId: string, area: string): Promise<void> {
-  if (!AREA_IDS.has(area)) return;
-  const pid = encodeURIComponent(pacienteId);
-  const [p] = await getServidor<{ coleta: Record<string, SituacaoColeta> | null }[]>(`perfil_saude?paciente_id=eq.${pid}&select=coleta`);
-  const resto = { ...(p?.coleta ?? {}) };
-  delete resto[area];
-  await escreverServidor("PATCH", `perfil_saude?paciente_id=eq.${pid}`, { coleta: resto, atualizado_em: new Date().toISOString() });
-}

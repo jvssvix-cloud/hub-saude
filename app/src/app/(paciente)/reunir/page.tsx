@@ -9,7 +9,7 @@ import {
 import { pacienteAtual } from "@/lib/sessao";
 import { getServidor } from "@/lib/supabase";
 import type { SituacaoColeta } from "../../../../../lib/types";
-import { responderArea, reverArea } from "./acoes";
+import { responderArea } from "./acoes";
 
 export const metadata: Metadata = { title: "Reunir meus exames · Zelo" };
 
@@ -111,7 +111,8 @@ function PassoArea({
       </section>
 
       {envioLigado() ? (
-        <EnviarExame area={area.id} />
+        // key: cada área começa com o envio zerado (sem ela, o "Pronto!" da área anterior aparecia na próxima)
+        <EnviarExame key={area.id} area={area.id} />
       ) : (
         <p className="rounded-3xl border border-linha bg-cartao p-5 text-suave">O envio de exames está desligado no momento.</p>
       )}
@@ -158,19 +159,18 @@ function Resumo({
           const s = coleta[a.id];
           return (
             <li key={a.id} className={a.id === atual?.id ? "bg-marca-fundo" : ""}>
-              <form action={reverArea.bind(null, a.id)}>
-                <button className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-fundo">
-                  <span className="min-w-0">
-                    <span className="block font-semibold">{a.titulo}</span>
-                    <span className="block text-[13px] text-suave">
-                      {n ? `${n} ${n === 1 ? "documento" : "documentos"} no Zelo` : "nenhum documento ainda"}
-                    </span>
+              {/* abrir uma área não apaga a resposta dela: só mostra a tela (?area=) */}
+              <Link href={`/reunir?area=${a.id}`} className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-fundo">
+                <span className="min-w-0">
+                  <span className="block font-semibold">{a.titulo}</span>
+                  <span className="block text-[13px] text-suave">
+                    {n ? `${n} ${n === 1 ? "documento" : "documentos"} no Zelo` : "nenhum documento ainda"}
                   </span>
-                  <span className={`shrink-0 text-xs font-semibold ${s === "enviado" ? "text-marca" : "text-suave"}`}>
-                    {a.id === atual?.id ? "agora" : s ? SITUACAO_TEXTO[s] : "a fazer"} ›
-                  </span>
-                </button>
-              </form>
+                </span>
+                <span className={`shrink-0 text-xs font-semibold ${s === "enviado" ? "text-marca" : "text-suave"}`}>
+                  {a.id === atual?.id ? "agora" : s ? SITUACAO_TEXTO[s] : "a fazer"} ›
+                </span>
+              </Link>
             </li>
           );
         })}
