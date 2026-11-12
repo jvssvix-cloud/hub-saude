@@ -33,15 +33,17 @@ Treino em 2017-2020; **teste em 2021-2023**, outras pessoas e outro período.
 | Achado | Fórmulas clínicas | Modelo do Zelo | Ganho |
 |---|---|---|---|
 | Esteatose | HSI 0,813 · FLI 0,852 | **0,855** | +0,042 sobre o HSI; empate com o FLI, mas **sem precisar da cintura** (o FLI precisa) |
-| Fibrose F2+ | FIB-4 0,594 · NFS 0,700 | **0,793** | **+0,199** sobre o FIB-4, +0,093 sobre o NFS |
-| Fibrose avançada F3+ | FIB-4 0,625 · NFS 0,741 | **0,832** | **+0,207** sobre o FIB-4, +0,091 sobre o NFS |
+| Fibrose F2+ | FIB-4 0,594 · NFS 0,700 · **SAFE 0,733** | **0,793** | +0,199 sobre o FIB-4, +0,093 sobre o NFS, **+0,060 sobre o SAFE** |
+| Fibrose avançada F3+ | FIB-4 0,625 · NFS 0,741 · **SAFE 0,773** | **0,832** | +0,207 sobre o FIB-4, +0,091 sobre o NFS, **+0,059 sobre o SAFE** (IC 0,042 a 0,076) |
 
 **O número que interessa ao médico:** para achar 80% dos casos, que fração dos pacientes precisa ser encaminhada para elastografia? A sensibilidade foi igualada em 80% no teste.
 
-| Achado | FIB-4 | NFS | Modelo |
-|---|---|---|---|
-| Fibrose F2+ | 72% | 58% | **44%** |
-| Fibrose avançada F3+ | 67% | 51% | **34%** (metade do FIB-4) |
+| Achado | FIB-4 | NFS | SAFE | Modelo |
+|---|---|---|---|---|
+| Fibrose F2+ | 72% | 58% | 53% | **44%** |
+| Fibrose avançada F3+ | 67% | 51% | 44% | **34%** |
+
+**Leitura honesta:** a maior parte da vantagem sobre o FIB-4 **já é capturada pelo SAFE**, uma fórmula publicada. O modelo acrescenta um ganho real, mas moderado, sobre a melhor fórmula publicada (+0,06 de AUC; 44% → 34% encaminhados). Há também uma vantagem de casa: o modelo foi treinado na mesma pesquisa em que é testado (só muda o período), enquanto o SAFE foi desenvolvido em pacientes de clínica especializada.
 
 Com o corte definido no treino, sem olhar o teste, o modelo encaminha 29% e acha 76% das fibroses avançadas. Nesse cenário, é preciso encaminhar 5 pacientes para achar 1 caso; com o FIB-4, 12.
 
@@ -53,6 +55,22 @@ Com o corte definido no treino, sem olhar o teste, o modelo encaminha 29% e acha
 - **Calibração:** modelo final treinado nos dois ciclos e conferido por validação cruzada; quando diz 30%, acontece em ~30%.
 
 **O que mais pesa:** IMC, TGP, razão TGO/TGP, GGT, idade, diabetes, HDL e plaquetas (em `../saida/figado_relatorio.md`). Para o médico, o painel agrupa os pesos ("enzimas do fígado", "metabólico"), porque TGO, TGP e a razão entre elas são correlacionadas.
+
+## Isto já foi feito antes (e é por isso que confiamos no resultado)
+
+Prever fibrose por elastografia com exames de rotina **não é novidade científica**. Os números do Zelo batem com a literatura, o que indica que o pipeline está certo:
+
+- **LiverRisk score** (Serra-Burriel et al., *The Lancet* 2023): idade, sexo e 6 exames de rotina; AUC 0,83 contra 0,68 do FIB-4 para rigidez ≥ 10 kPa. Validado no NHANES. **A fórmula não é pública** (só a calculadora em liverriskscore.com), por isso não entra aqui.
+- **SAFE** (Sripongpun et al., *Hepatology* 2023, Stanford): fórmula publicada. Está **reproduzida aqui** e entra na comparação (tabela acima).
+- **Modelos de ML no NHANES com elastografia** (vários, 2024-2026): fibrose avançada com AUC ~0,84 a partir de dados de rotina; o nosso deu 0,832. Esses trabalhos também relatam que o ML não supera a regressão logística quando a comparação é justa, como vimos aqui.
+
+**Por que isso não chega ao consultório**, e onde o Zelo entra:
+
+- O NHANES mede tudo no mesmo dia, para cada pessoa. Na vida real, os exames estão espalhados por laboratórios e datas, e o médico raramente tem os ~20 valores juntos.
+- O plano de saúde paga o exame, mas **não recebe o resultado**.
+- O laboratório só vê os exames feitos nele.
+
+**Pitch honesto:** "a ciência para encaminhar melhor já existe e está publicada. Ela não chega ao consultório porque os exames estão espalhados. O Zelo junta o histórico com o consentimento do paciente, e então essas ferramentas passam a funcionar. Reproduzimos os resultados publicados para provar isso." **Não dizer** que o Zelo "superou a medicina".
 
 ## Limites (dizer no pitch)
 
@@ -71,4 +89,4 @@ Diferenças:
 - `cortes_faixas` = [baixo, alto], com a mesma sensibilidade e especificidade do índice clínico;
 - `corte_encaminhar` = corte que pega 80% dos casos no treino.
 
-Para o médico comparar, o app calcula ao lado as fórmulas clássicas: FIB-4 = idade × TGO / (plaquetas × √TGP), e HSI.
+`indices_clinicos` traz cada fórmula publicada (FIB-4, NFS, SAFE, HSI, FLI) com cortes, referência e os dados que o Zelo não extrai (albumina, globulina, cintura), além da nota sobre o LiverRisk. **O painel do médico deve mostrar o modelo ao lado do FIB-4**, que o Zelo sempre consegue calcular, **e do SAFE quando houver globulina**. Nunca o modelo sozinho.

@@ -46,10 +46,12 @@ ALVOS = {
     "esteatose": {"descricao": "Esteatose na elastografia (CAP >= 285 dB/m)",
                   "indices": ["hsi", "fli"], "cortes": {"hsi": (30, 36), "fli": (30, 60)}},
     "fibrose": {"descricao": "Fibrose significativa na elastografia (rigidez >= 8 kPa)",
-                "indices": ["fib4", "nfs"], "cortes": {"fib4": (1.3, 2.67), "nfs": (-1.455, 0.676)}},
+                "indices": ["fib4", "nfs", "safe"],
+                "cortes": {"fib4": (1.3, 2.67), "nfs": (-1.455, 0.676), "safe": (0, 100)}},
     # O FIB-4 e o NFS foram desenhados para fibrose AVANÇADA: comparação no terreno deles.
     "fibrose_avancada": {"descricao": "Fibrose avançada na elastografia (rigidez >= 9,7 kPa, F3 ou mais)",
-                         "indices": ["fib4", "nfs"], "cortes": {"fib4": (1.3, 2.67), "nfs": (-1.455, 0.676)}},
+                         "indices": ["fib4", "nfs", "safe"],
+                         "cortes": {"fib4": (1.3, 2.67), "nfs": (-1.455, 0.676), "safe": (0, 100)}},
 }
 NOMES = {
     "idade": "Idade", "masculino": "Sexo masculino", "imc": "IMC", "diabetes": "Diabetes",
@@ -69,6 +71,9 @@ def indices(df: pd.DataFrame) -> pd.DataFrame:
     glic_alterada = ((df.diabetes == 1) | (df.glicose >= 110)).astype(float)
     out["nfs"] = (-1.675 + 0.037 * df.idade + 0.094 * df.imc + 1.13 * glic_alterada          # Angulo 2007
                   + 0.99 * df.tgo / df.tgp - 0.013 * df.plaquetas - 0.66 * df.albumina)
+    # SAFE (Sripongpun 2023, Stanford): forma em pontos; globulina em g/dL; < 0 baixo, > 100 alto.
+    out["safe"] = (2.97 * df.idade + 5.99 * df.imc + 62.85 * (df.diabetes == 1) + 154.85 * np.log(df.tgo)
+                   - 58.23 * np.log(df.tgp) + 195.48 * np.log(df.globulina) - 141.61 * np.log(df.plaquetas) - 75)
     out["hsi"] = 8 * df.tgp / df.tgo + df.imc + 2 * (df.diabetes == 1) + 2 * (df.masculino == 0)  # Lee 2010
     y = (0.953 * np.log(df.triglicerides) + 0.139 * df.imc + 0.718 * np.log(df.ggt)          # Bedogni 2006
          + 0.053 * df.cintura - 15.745)
@@ -168,6 +173,31 @@ def main() -> None:
         "fonte": "NHANES 2017-2023 com elastografia hepática (CDC/EUA). Treino 2017-2020, teste 2021-2023.",
         "aviso": "Apoio à decisão do médico: probabilidade do achado na elastografia. Não é diagnóstico.",
         "transformacao_log": sorted(LOG), "nomes": NOMES, "exige": EXIGE, "alvos": {},
+        # Fórmulas publicadas para o painel mostrar AO LADO do modelo (o médico conhece e confia nelas).
+        "indices_clinicos": {
+            "fib4": {"nome": "FIB-4", "formula": "idade × TGO / (plaquetas[mil/mm³] × √TGP)",
+                     "cortes": [1.3, 2.67], "referencia": "Sterling et al., Hepatology 2006",
+                     "uso": "fibrose avançada; < 1,3 baixo risco, > 2,67 alto risco"},
+            "nfs": {"nome": "NAFLD Fibrosis Score",
+                    "formula": "-1,675 + 0,037·idade + 0,094·IMC + 1,13·(glicemia alterada ou diabetes) "
+                               "+ 0,99·TGO/TGP - 0,013·plaquetas - 0,66·albumina[g/dL]",
+                    "cortes": [-1.455, 0.676], "referencia": "Angulo et al., Hepatology 2007",
+                    "precisa_fora_do_zelo": ["albumina"]},
+            "safe": {"nome": "SAFE (Steatosis-Associated Fibrosis Estimator)",
+                     "formula": "2,97·idade + 5,99·IMC + 62,85·diabetes + 154,85·ln(TGO) - 58,23·ln(TGP) "
+                                "+ 195,48·ln(globulina[g/dL]) - 141,61·ln(plaquetas) - 75",
+                     "cortes": [0, 100], "referencia": "Sripongpun et al., Hepatology 2023 (Stanford)",
+                     "precisa_fora_do_zelo": ["globulina (proteínas totais - albumina)"]},
+            "hsi": {"nome": "Hepatic Steatosis Index", "formula": "8·TGP/TGO + IMC + 2·diabetes + 2·mulher",
+                    "cortes": [30, 36], "referencia": "Lee et al., Dig Liver Dis 2010"},
+            "fli": {"nome": "Fatty Liver Index",
+                    "formula": "logística de ln(triglicérides), IMC, ln(GGT) e cintura",
+                    "cortes": [30, 60], "referencia": "Bedogni et al., BMC Gastroenterol 2006",
+                    "precisa_fora_do_zelo": ["cintura"]},
+            "liverrisk": {"nome": "LiverRisk score", "formula": "não publicada (calculadora em liverriskscore.com)",
+                          "referencia": "Serra-Burriel et al., The Lancet 2023",
+                          "nota": "não reproduzido aqui; validação no NHANES: AUC 0,73 (>= 8 kPa) e 0,78 (>= 12 kPa)"},
+        },
     }
     md = ["# Fígado: apoio à decisão (esteatose e fibrose)", "",
           f"Gerado por `figado/treino.py` em {saida['gerado_em']}. {saida['fonte']}", ""]
