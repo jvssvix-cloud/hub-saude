@@ -1,0 +1,1818 @@
+{
+  "gerado_em": "2026-11-12",
+  "fonte": "NHANES 2011-2014 (CDC/EUA, dados públicos). Avaliação: treino 2011-2012, teste 2013-2014.",
+  "aviso": "Estimativa de risco para orientar a procurar um médico e pedir exame. Não é diagnóstico.",
+  "transformacao_log1p": [
+    "exercicio_h_semana",
+    "ggt",
+    "tgo",
+    "tgp",
+    "triglicerides"
+  ],
+  "nomes": {
+    "idade": "Idade",
+    "masculino": "Sexo masculino",
+    "imc": "IMC",
+    "familia_diabetes": "Diabetes na família",
+    "pressao_alta": "Pressão alta",
+    "exercicio_h_semana": "Atividade física (h/semana)",
+    "fumante": "Fuma",
+    "hdl": "HDL",
+    "triglicerides": "Triglicérides",
+    "colesterol_total": "Colesterol total",
+    "tgp": "TGP",
+    "tgo": "TGO",
+    "ggt": "GGT",
+    "acido_urico": "Ácido úrico",
+    "creatinina": "Creatinina",
+    "fc_repouso": "Frequência cardíaca de repouso",
+    "intensidade_percentil": "Movimento enquanto acordado",
+    "sono_h": "Horas de sono",
+    "sono_extremo_h": "Sono fora de 7-8 h",
+    "sono_irregular_h": "Irregularidade do sono",
+    "meio_sono_h": "Horário do meio do sono",
+    "meio_sono_irregular_h": "Variação do horário de dormir",
+    "amplitude_ritmo": "Contraste dia/noite",
+    "estabilidade_ritmo": "Regularidade da rotina",
+    "variabilidade_dias": "Variação do movimento entre dias"
+  },
+  "alvos": {
+    "alterado": {
+      "descricao": "Glicemia alterada (HbA1c >= 5,7%): pré-diabetes ou diabetes não diagnosticado",
+      "versoes": {
+        "perfil": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "familia_diabetes",
+            "pressao_alta",
+            "exercicio_h_semana",
+            "fumante"
+          ],
+          "medianas": {
+            "idade": 46.0,
+            "masculino": 0.0,
+            "imc": 27.4,
+            "familia_diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "exercicio_h_semana": 2.0,
+            "fumante": 0.0
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              17.7,
+              50.6
+            ],
+            "familia_diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "exercicio_h_semana": [
+              0.0,
+              35.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ]
+          },
+          "media": [
+            47.282496,
+            0.488736,
+            28.443354,
+            0.358527,
+            0.320005,
+            1.080082,
+            0.207704
+          ],
+          "desvio": [
+            17.367655,
+            0.499873,
+            6.497429,
+            0.479568,
+            0.466478,
+            1.015302,
+            0.405664
+          ],
+          "coeficientes": [
+            0.895467,
+            0.06993,
+            0.510767,
+            0.166573,
+            0.027393,
+            0.033286,
+            0.123688
+          ],
+          "intercepto": -0.949045,
+          "exige": [
+            "idade",
+            "imc"
+          ],
+          "limiar_procurar_medico": 0.2607,
+          "prevalencia": 0.3173,
+          "avaliacao": {
+            "teste_2013_2014": {
+              "n": 4603,
+              "positivos": 1383,
+              "auc": 0.77,
+              "auc_ic95": [
+                0.757,
+                0.784
+              ],
+              "auc_ada": 0.745,
+              "sensibilidade": 0.851,
+              "especificidade": 0.55
+            },
+            "calibracao_validacao_cruzada": [
+              {
+                "previsto": 0.084,
+                "observado": 0.057,
+                "n": 1776
+              },
+              {
+                "previsto": 0.172,
+                "observado": 0.171,
+                "n": 1775
+              },
+              {
+                "previsto": 0.283,
+                "observado": 0.319,
+                "n": 1776
+              },
+              {
+                "previsto": 0.426,
+                "observado": 0.447,
+                "n": 1775
+              },
+              {
+                "previsto": 0.621,
+                "observado": 0.592,
+                "n": 1776
+              }
+            ]
+          }
+        },
+        "perfil_exames": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "familia_diabetes",
+            "pressao_alta",
+            "exercicio_h_semana",
+            "fumante",
+            "hdl",
+            "triglicerides",
+            "colesterol_total",
+            "tgp",
+            "tgo",
+            "ggt",
+            "acido_urico",
+            "creatinina"
+          ],
+          "medianas": {
+            "idade": 46.0,
+            "masculino": 0.0,
+            "imc": 27.4,
+            "familia_diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "exercicio_h_semana": 2.0,
+            "fumante": 0.0,
+            "hdl": 51.0,
+            "triglicerides": 113.0,
+            "colesterol_total": 189.0,
+            "tgp": 20.0,
+            "tgo": 23.0,
+            "ggt": 19.0,
+            "acido_urico": 5.3,
+            "creatinina": 0.85
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              17.8,
+              50.492
+            ],
+            "familia_diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "exercicio_h_semana": [
+              0.0,
+              35.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ],
+            "hdl": [
+              27.0,
+              98.0
+            ],
+            "triglicerides": [
+              33.08,
+              546.92
+            ],
+            "colesterol_total": [
+              112.0,
+              301.0
+            ],
+            "tgp": [
+              9.0,
+              98.0
+            ],
+            "tgo": [
+              14.0,
+              81.0
+            ],
+            "ggt": [
+              7.0,
+              166.0
+            ],
+            "acido_urico": [
+              2.7,
+              9.1
+            ],
+            "creatinina": [
+              0.48,
+              1.74
+            ]
+          },
+          "media": [
+            47.206338,
+            0.490527,
+            28.441784,
+            0.357102,
+            0.318751,
+            1.0812,
+            0.207142,
+            53.092778,
+            4.77764,
+            191.886439,
+            3.123629,
+            3.204588,
+            3.076985,
+            5.405684,
+            0.878415
+          ],
+          "desvio": [
+            17.352221,
+            0.49991,
+            6.459665,
+            0.479145,
+            0.465992,
+            1.014749,
+            0.405258,
+            14.830798,
+            0.601791,
+            38.865285,
+            0.435415,
+            0.296445,
+            0.59046,
+            1.368515,
+            0.225055
+          ],
+          "coeficientes": [
+            0.950294,
+            -0.079599,
+            0.383637,
+            0.153509,
+            0.022014,
+            0.055539,
+            0.093146,
+            -0.312121,
+            -0.045813,
+            0.190272,
+            0.098599,
+            -0.061274,
+            0.159702,
+            0.073253,
+            -0.022974
+          ],
+          "intercepto": -1.00578,
+          "exige": [
+            "idade",
+            "imc",
+            "hdl",
+            "triglicerides"
+          ],
+          "limiar_procurar_medico": 0.2697,
+          "prevalencia": 0.3155,
+          "avaliacao": {
+            "teste_2013_2014": {
+              "n": 4548,
+              "positivos": 1360,
+              "auc": 0.784,
+              "auc_ic95": [
+                0.769,
+                0.797
+              ],
+              "auc_ada": 0.746,
+              "sensibilidade": 0.845,
+              "especificidade": 0.567
+            },
+            "calibracao_validacao_cruzada": [
+              {
+                "previsto": 0.066,
+                "observado": 0.049,
+                "n": 1742
+              },
+              {
+                "previsto": 0.16,
+                "observado": 0.166,
+                "n": 1742
+              },
+              {
+                "previsto": 0.285,
+                "observado": 0.309,
+                "n": 1741
+              },
+              {
+                "previsto": 0.433,
+                "observado": 0.443,
+                "n": 1742
+              },
+              {
+                "previsto": 0.632,
+                "observado": 0.61,
+                "n": 1742
+              }
+            ]
+          }
+        },
+        "perfil_relogio": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "familia_diabetes",
+            "pressao_alta",
+            "exercicio_h_semana",
+            "fumante",
+            "fc_repouso",
+            "intensidade_percentil",
+            "sono_h",
+            "sono_extremo_h",
+            "sono_irregular_h",
+            "meio_sono_h",
+            "meio_sono_irregular_h",
+            "amplitude_ritmo",
+            "estabilidade_ritmo",
+            "variabilidade_dias"
+          ],
+          "medianas": {
+            "idade": 48.0,
+            "masculino": 0.0,
+            "imc": 27.5,
+            "familia_diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "exercicio_h_semana": 1.75,
+            "fumante": 0.0,
+            "fc_repouso": 70.0,
+            "intensidade_percentil": 50.6218,
+            "sono_h": 7.7271,
+            "sono_extremo_h": 0.8778,
+            "sono_irregular_h": 1.4183,
+            "meio_sono_h": 26.6015,
+            "meio_sono_irregular_h": 1.1048,
+            "amplitude_ritmo": 0.8638,
+            "estabilidade_ritmo": 0.6056,
+            "variabilidade_dias": 0.1555
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              17.8,
+              50.668
+            ],
+            "familia_diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "exercicio_h_semana": [
+              0.0,
+              35.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ],
+            "fc_repouso": [
+              50.0,
+              104.0
+            ],
+            "intensidade_percentil": [
+              1.1623,
+              99.1714
+            ],
+            "sono_h": [
+              5.0407,
+              12.6309
+            ],
+            "sono_extremo_h": [
+              0.0143,
+              5.1309
+            ],
+            "sono_irregular_h": [
+              0.4107,
+              5.3839
+            ],
+            "meio_sono_h": [
+              23.3514,
+              29.7326
+            ],
+            "meio_sono_irregular_h": [
+              0.3051,
+              3.8775
+            ],
+            "amplitude_ritmo": [
+              0.3558,
+              0.9617
+            ],
+            "estabilidade_ritmo": [
+              0.2087,
+              0.8487
+            ],
+            "variabilidade_dias": [
+              0.0471,
+              0.5144
+            ]
+          },
+          "media": [
+            48.626413,
+            0.48123,
+            28.617904,
+            0.367556,
+            0.337705,
+            1.06569,
+            0.202322,
+            72.029248,
+            50.334357,
+            7.913648,
+            1.140431,
+            1.582506,
+            26.637851,
+            1.239376,
+            0.8249,
+            0.588168,
+            0.175428
+          ],
+          "desvio": [
+            17.325365,
+            0.499648,
+            6.478281,
+            0.48214,
+            0.472928,
+            1.010649,
+            0.401731,
+            11.120859,
+            29.230941,
+            1.462062,
+            1.017878,
+            0.845967,
+            1.248957,
+            0.654052,
+            0.121448,
+            0.138209,
+            0.088819
+          ],
+          "coeficientes": [
+            0.990317,
+            0.077661,
+            0.489842,
+            0.154218,
+            0.044048,
+            0.029695,
+            0.118988,
+            0.064575,
+            0.082699,
+            -0.230906,
+            0.060623,
+            0.101524,
+            0.023732,
+            -0.036668,
+            -0.107216,
+            0.086272,
+            0.036597
+          ],
+          "intercepto": -0.908416,
+          "exige": [
+            "idade",
+            "imc",
+            "intensidade_percentil",
+            "sono_h",
+            "amplitude_ritmo"
+          ],
+          "limiar_procurar_medico": 0.2765,
+          "prevalencia": 0.3285,
+          "avaliacao": {
+            "teste_2013_2014": {
+              "n": 3376,
+              "positivos": 1053,
+              "auc": 0.774,
+              "auc_ic95": [
+                0.757,
+                0.79
+              ],
+              "auc_ada": 0.742,
+              "sensibilidade": 0.858,
+              "especificidade": 0.551
+            },
+            "calibracao_validacao_cruzada": [
+              {
+                "previsto": 0.079,
+                "observado": 0.065,
+                "n": 1327
+              },
+              {
+                "previsto": 0.179,
+                "observado": 0.168,
+                "n": 1326
+              },
+              {
+                "previsto": 0.301,
+                "observado": 0.337,
+                "n": 1327
+              },
+              {
+                "previsto": 0.449,
+                "observado": 0.481,
+                "n": 1326
+              },
+              {
+                "previsto": 0.636,
+                "observado": 0.592,
+                "n": 1327
+              }
+            ]
+          }
+        },
+        "completo": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "familia_diabetes",
+            "pressao_alta",
+            "exercicio_h_semana",
+            "fumante",
+            "hdl",
+            "triglicerides",
+            "colesterol_total",
+            "tgp",
+            "tgo",
+            "ggt",
+            "acido_urico",
+            "creatinina",
+            "fc_repouso",
+            "intensidade_percentil",
+            "sono_h",
+            "sono_extremo_h",
+            "sono_irregular_h",
+            "meio_sono_h",
+            "meio_sono_irregular_h",
+            "amplitude_ritmo",
+            "estabilidade_ritmo",
+            "variabilidade_dias"
+          ],
+          "medianas": {
+            "idade": 48.0,
+            "masculino": 0.0,
+            "imc": 27.6,
+            "familia_diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "exercicio_h_semana": 1.75,
+            "fumante": 0.0,
+            "hdl": 51.0,
+            "triglicerides": 115.0,
+            "colesterol_total": 190.0,
+            "tgp": 20.0,
+            "tgo": 23.0,
+            "ggt": 19.0,
+            "acido_urico": 5.3,
+            "creatinina": 0.85,
+            "fc_repouso": 70.0,
+            "intensidade_percentil": 50.7431,
+            "sono_h": 7.725,
+            "sono_extremo_h": 0.8744,
+            "sono_irregular_h": 1.4186,
+            "meio_sono_h": 26.6023,
+            "meio_sono_irregular_h": 1.104,
+            "amplitude_ritmo": 0.8639,
+            "estabilidade_ritmo": 0.6055,
+            "variabilidade_dias": 0.1554
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              17.8,
+              50.5
+            ],
+            "familia_diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "exercicio_h_semana": [
+              0.0,
+              35.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ],
+            "hdl": [
+              27.0,
+              97.95
+            ],
+            "triglicerides": [
+              34.0,
+              561.65
+            ],
+            "colesterol_total": [
+              114.0,
+              302.0
+            ],
+            "tgp": [
+              9.0,
+              97.92
+            ],
+            "tgo": [
+              14.0,
+              78.0
+            ],
+            "ggt": [
+              7.0,
+              172.0
+            ],
+            "acido_urico": [
+              2.7,
+              9.2
+            ],
+            "creatinina": [
+              0.48,
+              1.769
+            ],
+            "fc_repouso": [
+              50.0,
+              104.0
+            ],
+            "intensidade_percentil": [
+              1.2451,
+              99.178
+            ],
+            "sono_h": [
+              5.0446,
+              12.639
+            ],
+            "sono_extremo_h": [
+              0.0143,
+              5.139
+            ],
+            "sono_irregular_h": [
+              0.4102,
+              5.2933
+            ],
+            "meio_sono_h": [
+              23.3643,
+              29.7339
+            ],
+            "meio_sono_irregular_h": [
+              0.3021,
+              3.8534
+            ],
+            "amplitude_ritmo": [
+              0.3589,
+              0.9617
+            ],
+            "estabilidade_ritmo": [
+              0.2094,
+              0.8485
+            ],
+            "variabilidade_dias": [
+              0.0471,
+              0.5153
+            ]
+          },
+          "media": [
+            48.583154,
+            0.483246,
+            28.617184,
+            0.365509,
+            0.33692,
+            1.06544,
+            0.201199,
+            53.147356,
+            4.785702,
+            192.666462,
+            3.121982,
+            3.204112,
+            3.078034,
+            5.400876,
+            0.880543,
+            72.048878,
+            50.393154,
+            7.91176,
+            1.13699,
+            1.578609,
+            26.63851,
+            1.237362,
+            0.825335,
+            0.588392,
+            0.175193
+          ],
+          "desvio": [
+            17.321651,
+            0.499719,
+            6.443604,
+            0.481573,
+            0.472657,
+            1.0097,
+            0.400896,
+            14.764875,
+            0.600702,
+            38.981599,
+            0.43,
+            0.291781,
+            0.594186,
+            1.371176,
+            0.22852,
+            11.138651,
+            29.192648,
+            1.458976,
+            1.016749,
+            0.83755,
+            1.248254,
+            0.651441,
+            0.120759,
+            0.137963,
+            0.088635
+          ],
+          "coeficientes": [
+            1.043974,
+            -0.094969,
+            0.368698,
+            0.141145,
+            0.036548,
+            0.052435,
+            0.087845,
+            -0.318251,
+            -0.023787,
+            0.192464,
+            0.132574,
+            -0.109105,
+            0.173701,
+            0.053237,
+            0.030583,
+            0.023588,
+            0.094161,
+            -0.234485,
+            0.053994,
+            0.102278,
+            0.010612,
+            -0.052869,
+            -0.114064,
+            0.066833,
+            0.019472
+          ],
+          "intercepto": -0.968251,
+          "exige": [
+            "idade",
+            "imc",
+            "hdl",
+            "triglicerides",
+            "intensidade_percentil",
+            "sono_h",
+            "amplitude_ritmo"
+          ],
+          "limiar_procurar_medico": 0.2872,
+          "prevalencia": 0.3266,
+          "avaliacao": {
+            "teste_2013_2014": {
+              "n": 3336,
+              "positivos": 1034,
+              "auc": 0.786,
+              "auc_ic95": [
+                0.772,
+                0.8
+              ],
+              "auc_ada": 0.743,
+              "sensibilidade": 0.852,
+              "especificidade": 0.57
+            },
+            "calibracao_validacao_cruzada": [
+              {
+                "previsto": 0.062,
+                "observado": 0.05,
+                "n": 1302
+              },
+              {
+                "previsto": 0.167,
+                "observado": 0.172,
+                "n": 1301
+              },
+              {
+                "previsto": 0.3,
+                "observado": 0.324,
+                "n": 1301
+              },
+              {
+                "previsto": 0.455,
+                "observado": 0.465,
+                "n": 1301
+              },
+              {
+                "previsto": 0.65,
+                "observado": 0.623,
+                "n": 1301
+              }
+            ]
+          }
+        }
+      },
+      "comparacoes_pareadas": [
+        {
+          "versao": "perfil",
+          "contra": "ada",
+          "delta_auc": 0.025,
+          "ic95": [
+            0.016,
+            0.035
+          ]
+        },
+        {
+          "versao": "perfil_exames",
+          "contra": "perfil",
+          "delta_auc": 0.013,
+          "ic95": [
+            0.006,
+            0.02
+          ]
+        },
+        {
+          "versao": "perfil_relogio",
+          "contra": "perfil",
+          "delta_auc": 0.007,
+          "ic95": [
+            0.002,
+            0.012
+          ]
+        },
+        {
+          "versao": "completo",
+          "contra": "perfil_exames",
+          "delta_auc": 0.005,
+          "ic95": [
+            -0.0,
+            0.01
+          ]
+        }
+      ]
+    },
+    "diabetes_oculto": {
+      "descricao": "Diabetes não diagnosticado (HbA1c >= 6,5%)",
+      "versoes": {
+        "perfil": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "familia_diabetes",
+            "pressao_alta",
+            "exercicio_h_semana",
+            "fumante"
+          ],
+          "medianas": {
+            "idade": 46.0,
+            "masculino": 0.0,
+            "imc": 27.4,
+            "familia_diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "exercicio_h_semana": 2.0,
+            "fumante": 0.0
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              17.7,
+              50.6
+            ],
+            "familia_diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "exercicio_h_semana": [
+              0.0,
+              35.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ]
+          },
+          "media": [
+            47.282496,
+            0.488736,
+            28.443354,
+            0.358527,
+            0.320005,
+            1.080082,
+            0.207704
+          ],
+          "desvio": [
+            17.367655,
+            0.499873,
+            6.497429,
+            0.479568,
+            0.466478,
+            1.015302,
+            0.405664
+          ],
+          "coeficientes": [
+            0.68121,
+            0.229963,
+            0.599749,
+            0.368403,
+            0.040645,
+            -0.092245,
+            -0.011564
+          ],
+          "intercepto": -3.817364,
+          "exige": [
+            "idade",
+            "imc"
+          ],
+          "limiar_procurar_medico": 0.0302,
+          "prevalencia": 0.035,
+          "avaliacao": {
+            "teste_2013_2014": {
+              "n": 4603,
+              "positivos": 145,
+              "auc": 0.773,
+              "auc_ic95": [
+                0.737,
+                0.807
+              ],
+              "auc_ada": 0.778,
+              "sensibilidade": 0.834,
+              "especificidade": 0.613
+            },
+            "calibracao_validacao_cruzada": [
+              {
+                "previsto": 0.005,
+                "observado": 0.002,
+                "n": 1776
+              },
+              {
+                "previsto": 0.012,
+                "observado": 0.013,
+                "n": 1775
+              },
+              {
+                "previsto": 0.022,
+                "observado": 0.017,
+                "n": 1776
+              },
+              {
+                "previsto": 0.039,
+                "observado": 0.047,
+                "n": 1775
+              },
+              {
+                "previsto": 0.096,
+                "observado": 0.096,
+                "n": 1776
+              }
+            ]
+          }
+        },
+        "perfil_exames": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "familia_diabetes",
+            "pressao_alta",
+            "exercicio_h_semana",
+            "fumante",
+            "hdl",
+            "triglicerides",
+            "colesterol_total",
+            "tgp",
+            "tgo",
+            "ggt",
+            "acido_urico",
+            "creatinina"
+          ],
+          "medianas": {
+            "idade": 46.0,
+            "masculino": 0.0,
+            "imc": 27.4,
+            "familia_diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "exercicio_h_semana": 2.0,
+            "fumante": 0.0,
+            "hdl": 51.0,
+            "triglicerides": 113.0,
+            "colesterol_total": 189.0,
+            "tgp": 20.0,
+            "tgo": 23.0,
+            "ggt": 19.0,
+            "acido_urico": 5.3,
+            "creatinina": 0.85
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              17.8,
+              50.492
+            ],
+            "familia_diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "exercicio_h_semana": [
+              0.0,
+              35.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ],
+            "hdl": [
+              27.0,
+              98.0
+            ],
+            "triglicerides": [
+              33.08,
+              546.92
+            ],
+            "colesterol_total": [
+              112.0,
+              301.0
+            ],
+            "tgp": [
+              9.0,
+              98.0
+            ],
+            "tgo": [
+              14.0,
+              81.0
+            ],
+            "ggt": [
+              7.0,
+              166.0
+            ],
+            "acido_urico": [
+              2.7,
+              9.1
+            ],
+            "creatinina": [
+              0.48,
+              1.74
+            ]
+          },
+          "media": [
+            47.206338,
+            0.490527,
+            28.441784,
+            0.357102,
+            0.318751,
+            1.0812,
+            0.207142,
+            53.092778,
+            4.77764,
+            191.886439,
+            3.123629,
+            3.204588,
+            3.076985,
+            5.405684,
+            0.878415
+          ],
+          "desvio": [
+            17.352221,
+            0.49991,
+            6.459665,
+            0.479145,
+            0.465992,
+            1.014749,
+            0.405258,
+            14.830798,
+            0.601791,
+            38.865285,
+            0.435415,
+            0.296445,
+            0.59046,
+            1.368515,
+            0.225055
+          ],
+          "coeficientes": [
+            0.94179,
+            0.108472,
+            0.529916,
+            0.33682,
+            0.04163,
+            -0.049089,
+            -0.078198,
+            -0.403868,
+            0.250577,
+            -0.003051,
+            0.393859,
+            -0.293245,
+            0.365796,
+            -0.132723,
+            -0.184563
+          ],
+          "intercepto": -4.235715,
+          "exige": [
+            "idade",
+            "imc",
+            "hdl",
+            "triglicerides"
+          ],
+          "limiar_procurar_medico": 0.0301,
+          "prevalencia": 0.0346,
+          "avaliacao": {
+            "teste_2013_2014": {
+              "n": 4548,
+              "positivos": 143,
+              "auc": 0.817,
+              "auc_ic95": [
+                0.785,
+                0.847
+              ],
+              "auc_ada": 0.778,
+              "sensibilidade": 0.797,
+              "especificidade": 0.675
+            },
+            "calibracao_validacao_cruzada": [
+              {
+                "previsto": 0.002,
+                "observado": 0.001,
+                "n": 1742
+              },
+              {
+                "previsto": 0.006,
+                "observado": 0.006,
+                "n": 1742
+              },
+              {
+                "previsto": 0.016,
+                "observado": 0.02,
+                "n": 1741
+              },
+              {
+                "previsto": 0.035,
+                "observado": 0.044,
+                "n": 1742
+              },
+              {
+                "previsto": 0.113,
+                "observado": 0.103,
+                "n": 1742
+              }
+            ]
+          }
+        },
+        "perfil_relogio": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "familia_diabetes",
+            "pressao_alta",
+            "exercicio_h_semana",
+            "fumante",
+            "fc_repouso",
+            "intensidade_percentil",
+            "sono_h",
+            "sono_extremo_h",
+            "sono_irregular_h",
+            "meio_sono_h",
+            "meio_sono_irregular_h",
+            "amplitude_ritmo",
+            "estabilidade_ritmo",
+            "variabilidade_dias"
+          ],
+          "medianas": {
+            "idade": 48.0,
+            "masculino": 0.0,
+            "imc": 27.5,
+            "familia_diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "exercicio_h_semana": 1.75,
+            "fumante": 0.0,
+            "fc_repouso": 70.0,
+            "intensidade_percentil": 50.6218,
+            "sono_h": 7.7271,
+            "sono_extremo_h": 0.8778,
+            "sono_irregular_h": 1.4183,
+            "meio_sono_h": 26.6015,
+            "meio_sono_irregular_h": 1.1048,
+            "amplitude_ritmo": 0.8638,
+            "estabilidade_ritmo": 0.6056,
+            "variabilidade_dias": 0.1555
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              17.8,
+              50.668
+            ],
+            "familia_diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "exercicio_h_semana": [
+              0.0,
+              35.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ],
+            "fc_repouso": [
+              50.0,
+              104.0
+            ],
+            "intensidade_percentil": [
+              1.1623,
+              99.1714
+            ],
+            "sono_h": [
+              5.0407,
+              12.6309
+            ],
+            "sono_extremo_h": [
+              0.0143,
+              5.1309
+            ],
+            "sono_irregular_h": [
+              0.4107,
+              5.3839
+            ],
+            "meio_sono_h": [
+              23.3514,
+              29.7326
+            ],
+            "meio_sono_irregular_h": [
+              0.3051,
+              3.8775
+            ],
+            "amplitude_ritmo": [
+              0.3558,
+              0.9617
+            ],
+            "estabilidade_ritmo": [
+              0.2087,
+              0.8487
+            ],
+            "variabilidade_dias": [
+              0.0471,
+              0.5144
+            ]
+          },
+          "media": [
+            48.626413,
+            0.48123,
+            28.617904,
+            0.367556,
+            0.337705,
+            1.06569,
+            0.202322,
+            72.029248,
+            50.334357,
+            7.913648,
+            1.140431,
+            1.582506,
+            26.637851,
+            1.239376,
+            0.8249,
+            0.588168,
+            0.175428
+          ],
+          "desvio": [
+            17.325365,
+            0.499648,
+            6.478281,
+            0.48214,
+            0.472928,
+            1.010649,
+            0.401731,
+            11.120859,
+            29.230941,
+            1.462062,
+            1.017878,
+            0.845967,
+            1.248957,
+            0.654052,
+            0.121448,
+            0.138209,
+            0.088819
+          ],
+          "coeficientes": [
+            0.848679,
+            0.253651,
+            0.574435,
+            0.377002,
+            0.078117,
+            -0.121369,
+            -0.052083,
+            0.23169,
+            -0.055687,
+            -0.316384,
+            -0.091854,
+            0.070274,
+            0.022978,
+            0.223886,
+            -0.016406,
+            -0.00692,
+            -0.141881
+          ],
+          "intercepto": -3.938242,
+          "exige": [
+            "idade",
+            "imc",
+            "intensidade_percentil",
+            "sono_h",
+            "amplitude_ritmo"
+          ],
+          "limiar_procurar_medico": 0.0355,
+          "prevalencia": 0.0365,
+          "avaliacao": {
+            "teste_2013_2014": {
+              "n": 3376,
+              "positivos": 113,
+              "auc": 0.81,
+              "auc_ic95": [
+                0.777,
+                0.844
+              ],
+              "auc_ada": 0.781,
+              "sensibilidade": 0.761,
+              "especificidade": 0.715
+            },
+            "calibracao_validacao_cruzada": [
+              {
+                "previsto": 0.004,
+                "observado": 0.002,
+                "n": 1327
+              },
+              {
+                "previsto": 0.01,
+                "observado": 0.007,
+                "n": 1326
+              },
+              {
+                "previsto": 0.019,
+                "observado": 0.015,
+                "n": 1327
+              },
+              {
+                "previsto": 0.038,
+                "observado": 0.053,
+                "n": 1326
+              },
+              {
+                "previsto": 0.11,
+                "observado": 0.106,
+                "n": 1327
+              }
+            ]
+          }
+        },
+        "completo": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "familia_diabetes",
+            "pressao_alta",
+            "exercicio_h_semana",
+            "fumante",
+            "hdl",
+            "triglicerides",
+            "colesterol_total",
+            "tgp",
+            "tgo",
+            "ggt",
+            "acido_urico",
+            "creatinina",
+            "fc_repouso",
+            "intensidade_percentil",
+            "sono_h",
+            "sono_extremo_h",
+            "sono_irregular_h",
+            "meio_sono_h",
+            "meio_sono_irregular_h",
+            "amplitude_ritmo",
+            "estabilidade_ritmo",
+            "variabilidade_dias"
+          ],
+          "medianas": {
+            "idade": 48.0,
+            "masculino": 0.0,
+            "imc": 27.6,
+            "familia_diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "exercicio_h_semana": 1.75,
+            "fumante": 0.0,
+            "hdl": 51.0,
+            "triglicerides": 115.0,
+            "colesterol_total": 190.0,
+            "tgp": 20.0,
+            "tgo": 23.0,
+            "ggt": 19.0,
+            "acido_urico": 5.3,
+            "creatinina": 0.85,
+            "fc_repouso": 70.0,
+            "intensidade_percentil": 50.7431,
+            "sono_h": 7.725,
+            "sono_extremo_h": 0.8744,
+            "sono_irregular_h": 1.4186,
+            "meio_sono_h": 26.6023,
+            "meio_sono_irregular_h": 1.104,
+            "amplitude_ritmo": 0.8639,
+            "estabilidade_ritmo": 0.6055,
+            "variabilidade_dias": 0.1554
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              17.8,
+              50.5
+            ],
+            "familia_diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "exercicio_h_semana": [
+              0.0,
+              35.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ],
+            "hdl": [
+              27.0,
+              97.95
+            ],
+            "triglicerides": [
+              34.0,
+              561.65
+            ],
+            "colesterol_total": [
+              114.0,
+              302.0
+            ],
+            "tgp": [
+              9.0,
+              97.92
+            ],
+            "tgo": [
+              14.0,
+              78.0
+            ],
+            "ggt": [
+              7.0,
+              172.0
+            ],
+            "acido_urico": [
+              2.7,
+              9.2
+            ],
+            "creatinina": [
+              0.48,
+              1.769
+            ],
+            "fc_repouso": [
+              50.0,
+              104.0
+            ],
+            "intensidade_percentil": [
+              1.2451,
+              99.178
+            ],
+            "sono_h": [
+              5.0446,
+              12.639
+            ],
+            "sono_extremo_h": [
+              0.0143,
+              5.139
+            ],
+            "sono_irregular_h": [
+              0.4102,
+              5.2933
+            ],
+            "meio_sono_h": [
+              23.3643,
+              29.7339
+            ],
+            "meio_sono_irregular_h": [
+              0.3021,
+              3.8534
+            ],
+            "amplitude_ritmo": [
+              0.3589,
+              0.9617
+            ],
+            "estabilidade_ritmo": [
+              0.2094,
+              0.8485
+            ],
+            "variabilidade_dias": [
+              0.0471,
+              0.5153
+            ]
+          },
+          "media": [
+            48.583154,
+            0.483246,
+            28.617184,
+            0.365509,
+            0.33692,
+            1.06544,
+            0.201199,
+            53.147356,
+            4.785702,
+            192.666462,
+            3.121982,
+            3.204112,
+            3.078034,
+            5.400876,
+            0.880543,
+            72.048878,
+            50.393154,
+            7.91176,
+            1.13699,
+            1.578609,
+            26.63851,
+            1.237362,
+            0.825335,
+            0.588392,
+            0.175193
+          ],
+          "desvio": [
+            17.321651,
+            0.499719,
+            6.443604,
+            0.481573,
+            0.472657,
+            1.0097,
+            0.400896,
+            14.764875,
+            0.600702,
+            38.981599,
+            0.43,
+            0.291781,
+            0.594186,
+            1.371176,
+            0.22852,
+            11.138651,
+            29.192648,
+            1.458976,
+            1.016749,
+            0.83755,
+            1.248254,
+            0.651441,
+            0.120759,
+            0.137963,
+            0.088635
+          ],
+          "coeficientes": [
+            1.14331,
+            0.104003,
+            0.521357,
+            0.358451,
+            0.08021,
+            -0.083691,
+            -0.107859,
+            -0.442184,
+            0.198685,
+            0.014028,
+            0.520453,
+            -0.459838,
+            0.343925,
+            -0.142197,
+            -0.160717,
+            0.140075,
+            -0.081376,
+            -0.324082,
+            -0.068891,
+            0.061444,
+            0.002584,
+            0.223774,
+            -0.043086,
+            -0.033968,
+            -0.136272
+          ],
+          "intercepto": -4.367208,
+          "exige": [
+            "idade",
+            "imc",
+            "hdl",
+            "triglicerides",
+            "intensidade_percentil",
+            "sono_h",
+            "amplitude_ritmo"
+          ],
+          "limiar_procurar_medico": 0.0353,
+          "prevalencia": 0.0361,
+          "avaliacao": {
+            "teste_2013_2014": {
+              "n": 3336,
+              "positivos": 111,
+              "auc": 0.833,
+              "auc_ic95": [
+                0.798,
+                0.866
+              ],
+              "auc_ada": 0.78,
+              "sensibilidade": 0.82,
+              "especificidade": 0.717
+            },
+            "calibracao_validacao_cruzada": [
+              {
+                "previsto": 0.001,
+                "observado": 0.001,
+                "n": 1302
+              },
+              {
+                "previsto": 0.005,
+                "observado": 0.003,
+                "n": 1301
+              },
+              {
+                "previsto": 0.014,
+                "observado": 0.015,
+                "n": 1301
+              },
+              {
+                "previsto": 0.034,
+                "observado": 0.046,
+                "n": 1301
+              },
+              {
+                "previsto": 0.126,
+                "observado": 0.116,
+                "n": 1301
+              }
+            ]
+          }
+        }
+      },
+      "comparacoes_pareadas": [
+        {
+          "versao": "perfil",
+          "contra": "ada",
+          "delta_auc": 0.005,
+          "ic95": [
+            -0.018,
+            0.028
+          ]
+        },
+        {
+          "versao": "perfil_exames",
+          "contra": "perfil",
+          "delta_auc": 0.029,
+          "ic95": [
+            -0.005,
+            0.06
+          ]
+        },
+        {
+          "versao": "perfil_relogio",
+          "contra": "perfil",
+          "delta_auc": 0.023,
+          "ic95": [
+            0.007,
+            0.04
+          ]
+        },
+        {
+          "versao": "completo",
+          "contra": "perfil_exames",
+          "delta_auc": 0.019,
+          "ic95": [
+            0.007,
+            0.032
+          ]
+        }
+      ]
+    }
+  },
+  "intensidade_percentis_mims_min": [
+    6.229,
+    9.776,
+    10.919,
+    11.634,
+    12.238,
+    12.781,
+    13.189,
+    13.576,
+    13.991,
+    14.308,
+    14.696,
+    15.138,
+    15.528,
+    15.925,
+    16.413,
+    16.894,
+    17.463,
+    18.142,
+    18.992,
+    20.375,
+    34.036
+  ]
+}

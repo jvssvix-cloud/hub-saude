@@ -32,6 +32,7 @@ wearable/             # relógio: dados sintéticos, 4 regras de alerta, cruzame
 supabase/             # banco: migrations, seed do Roberto, README com o contrato [PRONTO, aplicado no Supabase]
 lib/types.ts          # tipos das tabelas do banco (espelham as migrations)
 tools/gerador-laudos/ # laudos, carteiras de vacinação e casos sintéticos + gabaritos [PRONTO]
+risco/                # ML (Python): risco de glicemia alterada / diabetes não diagnosticado com perfil + exames + relógio, treinado no NHANES; exporta saida/modelo.json para o app [MODELO PRONTO, app pendente]
 dados-reais/          # NUNCA vai para o GitHub (.gitignore): laudos/carteiras reais do time + gabaritos manuais
 docs/                 # contexto, decisões, estado-e-proximos.md (o que temos / o que falta), prompts usados
 ```
@@ -41,11 +42,13 @@ Cada pasta pronta tem README com comandos. Resumo:
 - `cd insights && npm run insights` (gera `insights/saida/insights.json`, plano B do app), `npm run conferir-banco` (banco = JSON?)
 - `cd tools/gerador-laudos && python gerar.py` (determinístico)
 - `cd wearable && npm run gerar` (gera `relogio.json`), `npm run simular -- --inicio=2026-10-25 --intervalo=5`, `npm test`
+- `cd risco && .venv/Scripts/python baixar.py && .venv/Scripts/python montar.py && .venv/Scripts/python relogio_horas.py && .venv/Scripts/python treino.py` (venv e dados fora do Git; ver `risco/README.md`)
 
 ## Contrato entre as partes
 - Extração → app/banco: formato do gabarito (`tools/gerador-laudos/README.md`) + campos v5 (`qualificador`, `resultado_texto`, `data_coleta` por resultado) e `doses` de vacina.
 - Insights → app: o app roda as regras de `insights/src/regras.ts` sobre o banco (`insights/src/banco.ts`, via `app/src/lib/dados.ts`: `carregarInsights(pacienteId)`, etiqueta de cache **por paciente** `historico:<id>`); `insights/saida/insights.json` é o plano B, só do Roberto (tipos em `insights/src/tipos.ts`). Gravou no banco? `updateTag(tagHistorico(pacienteId))`.
 - Relógio → app: `wearable/saida/relogio.json` (tipo `RelogioJson` em `wearable/src/tipos.ts`). Rota futura `/api/relogio/sync` recebe um `Lote` (`{dias, eventos}`) e usa `mesclar` + `montarRelogio`.
+- Risco (ML) → app: `risco/saida/modelo.json` (alvos `alterado` e `diabetes_oculto`, versões `perfil`/`perfil_exames`/`perfil_relogio`/`completo`; cálculo em `risco/README.md`). É estimativa para "procurar um médico e pedir HbA1c", nunca diagnóstico.
 - Banco: entrada grava `documento` + `observacao`; médico, MCP e API leem **só** por `acessar_historico(token)`, que confere o consentimento e grava o log. Tipos em `lib/types.ts`, contrato em `supabase/README.md`.
 
 ## Divisão atual (09/11 à noite)
