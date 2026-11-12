@@ -5,6 +5,7 @@ import { NotaDoMedico } from "@/components/NotaDoMedico";
 import { PlanosDoPaciente } from "@/components/PlanosDoPaciente";
 import { meusInsights } from "@/lib/dados";
 import { mesAno } from "@/lib/insights";
+import type { ExameQueFalta } from "@insights/faltantes";
 
 export const metadata: Metadata = { title: "Plano · Zelo" };
 
@@ -58,7 +59,38 @@ export default async function Plano() {
           Calculado pelo intervalo de cada exame a partir do último resultado. Se o médico pediu antes, vale o que ele pediu.
         </p>
       </section>
+
+      {meses.length > 0 && <ExamesQueFaltam faltam={insights.exames_que_faltam ?? []} />}
     </div>
+  );
+}
+
+/** Regra 8 (insights/src/faltantes.ts): o que levar ao próximo pedido para o médico avaliar fígado e glicemia. */
+function ExamesQueFaltam({ faltam }: { faltam: ExameQueFalta[] }) {
+  const lista = faltam.filter((e) => e.prioridade <= 2);
+  if (!lista.length) return null;
+  return (
+    <section>
+      <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Para levar ao próximo pedido</h2>
+      <ul className="divide-y divide-linha overflow-hidden rounded-3xl border border-linha bg-cartao">
+        {lista.map((e) => (
+          <li key={e.pedido} className="px-4 py-3">
+            <p className="font-semibold">{e.nome}</p>
+            <p className="text-[13px] text-suave">
+              {e.desatualizados.length && !e.nunca_feitos.length
+                ? `Último em ${mesAno(e.desatualizados.map((d) => d.ultimo).sort()[0])}.`
+                : "Não aparece no seu histórico."}{" "}
+              {e.destrava.length
+                ? "Seu médico precisa dele para avaliar fígado e glicose."
+                : "Ajuda seu médico a avaliar o fígado."}
+            </p>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2 text-xs text-suave">
+        Exames que as ferramentas de apoio ao seu médico usam e que faltam ou têm mais de 12 meses. Quem decide o que pedir é o médico.
+      </p>
+    </section>
   );
 }
 

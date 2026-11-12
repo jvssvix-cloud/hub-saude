@@ -122,6 +122,8 @@ export type Insights = {
   areas: Area[];
   repeticoes: Repeticao[];
   proximos: ProximoExame[];
+  /** Regra 8: pedidos que faltam (ou estão velhos) para as ferramentas de apoio ao médico. */
+  exames_que_faltam: import("./faltantes").ExameQueFalta[];
   vacinacao: {
     fonte: string;
     doses: import("./vacinas").DoseVacina[];
