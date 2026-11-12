@@ -269,7 +269,14 @@ export function EnviarExame({ area }: { area?: string } = {}) {
           {previa.exames.map((x, i) => (
             <li key={i} className={`px-4 py-3 ${x.reconhecido ? "" : "opacity-55"}`}>
               <div className="flex items-baseline justify-between gap-3">
-                <span className="min-w-0 font-semibold">{x.nome}</span>
+                <span className="min-w-0 font-semibold">
+                  {x.nome}
+                  {x.outro && x.reconhecido ? (
+                    <span className="ml-2 rounded-full bg-bege px-2 py-0.5 align-middle text-[11px] font-semibold text-suave">
+                      outros exames
+                    </span>
+                  ) : null}
+                </span>
                 <span className={`num shrink-0 font-bold ${x.fora ? "text-atencao" : ""}`}>
                   {x.valor} <span className="text-sm font-normal text-suave">{x.unidade}</span>
                 </span>
@@ -280,7 +287,7 @@ export function EnviarExame({ area }: { area?: string } = {}) {
                   {x.fora ? <span className="font-semibold text-atencao">fora da faixa · </span> : null}pág. {x.pagina}
                 </span>
               </div>
-              {!x.reconhecido ? <p className="mt-0.5 text-xs text-suave">Não reconhecido: fica de fora dos gráficos.</p> : null}
+              {!x.reconhecido ? <p className="mt-0.5 text-xs text-suave">Sem data no documento: não será guardado.</p> : null}
               {x.alertas.length ? <p className="mt-0.5 text-xs text-atencao">Conferir: {x.alertas.join("; ")}</p> : null}
             </li>
           ))}

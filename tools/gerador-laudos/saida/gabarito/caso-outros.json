@@ -1,0 +1,126 @@
+{
+  "laudo_id": "caso-outros",
+  "arquivo_pdf": "laudos/caso-outros.pdf",
+  "fotos": [],
+  "origem": "Caso sintético: exames fora do dicionário (guardados como outros exames) e a armadilha da urina.",
+  "documento": {
+    "laboratorio": "LABORATÓRIO SIGMA DIAGNÓSTICOS (FICTÍCIO)",
+    "layout": "Y",
+    "data_coleta": "2026-05-18",
+    "nome_paciente_impresso": "MARIA HELENA DUARTE CAMPOS",
+    "paginas": 2,
+    "paciente": {
+      "sexo": "F",
+      "nascimento": "1962-09-30"
+    }
+  },
+  "resultados": [
+    {
+      "analito": "glicose",
+      "nome_impresso": "Glicose",
+      "valor_impresso": "94",
+      "valor_canonico": 94,
+      "unidade_impressa": "mg/dL",
+      "ref_min_canonico": 70,
+      "ref_max_canonico": 99,
+      "fora_da_faixa": false,
+      "pagina": 1,
+      "qualificador": null,
+      "resultado_texto": null,
+      "data_coleta": "2026-05-18"
+    },
+    {
+      "analito": "creatinina",
+      "nome_impresso": "Creatinina",
+      "valor_impresso": "0,82",
+      "valor_canonico": 0.82,
+      "unidade_impressa": "mg/dL",
+      "ref_min_canonico": 0.5,
+      "ref_max_canonico": 1.1,
+      "fora_da_faixa": false,
+      "pagina": 1,
+      "qualificador": null,
+      "resultado_texto": null,
+      "data_coleta": "2026-05-18"
+    }
+  ],
+  "outros": [
+    {
+      "nome_impresso": "Ureia",
+      "valor_impresso": "38",
+      "unidade_impressa": "mg/dL",
+      "pagina": 1,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "Sódio",
+      "valor_impresso": "139",
+      "unidade_impressa": "mEq/L",
+      "pagina": 1,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "Potássio",
+      "valor_impresso": "5,4",
+      "unidade_impressa": "mEq/L",
+      "pagina": 1,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "Proteína C Reativa (PCR)",
+      "valor_impresso": "0,8",
+      "unidade_impressa": "mg/dL",
+      "pagina": 1,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "VHS - 1ª hora",
+      "valor_impresso": "22",
+      "unidade_impressa": "mm",
+      "pagina": 1,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "Densidade",
+      "valor_impresso": "1,020",
+      "unidade_impressa": "",
+      "pagina": 2,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "pH",
+      "valor_impresso": "6,0",
+      "unidade_impressa": "",
+      "pagina": 2,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "Proteínas",
+      "valor_impresso": "Negativo",
+      "unidade_impressa": "",
+      "pagina": 2,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "Glicose",
+      "valor_impresso": "Negativo",
+      "unidade_impressa": "",
+      "pagina": 2,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "Leucócitos",
+      "valor_impresso": "3",
+      "unidade_impressa": "/campo",
+      "pagina": 2,
+      "data": "2026-05-18"
+    },
+    {
+      "nome_impresso": "Hemácias",
+      "valor_impresso": "1",
+      "unidade_impressa": "/campo",
+      "pagina": 2,
+      "data": "2026-05-18"
+    }
+  ]
+}

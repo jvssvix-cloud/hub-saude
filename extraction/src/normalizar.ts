@@ -236,3 +236,18 @@ export function normalizarDescritivo(d: Descritivo, nascimento?: string): Descri
   if (d.confianca === "baixa") alertas.push("leitura com baixa confiança");
   return { ...d, conclusao: d.conclusao.trim(), alertas };
 }
+
+/**
+ * Chave de um exame FORA do dicionário (analito "outro"), para juntar o mesmo exame em laudos diferentes:
+ * sem acento, minúsculo, sem prefixos/sufixos que mudam de laboratório para laboratório.
+ * "Dosagem de Sódio Sérico" e "SODIO" -> "sodio". Usada no app (outros exames) e no teste de acurácia.
+ */
+export function chaveNomeOutro(nome: string): string {
+  return nome
+    .normalize("NFD").replace(/\p{M}/gu, "").toLowerCase()
+    .replace(/\(.*?\)/g, " ")
+    .replace(/\b(dosagem|determinacao|pesquisa)( de| do| da)?\b/g, " ")
+    .replace(/\b(serico|serica|plasmatico|plasmatica|no sangue)\b/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}

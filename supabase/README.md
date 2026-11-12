@@ -33,7 +33,7 @@
 | Tabela | Para quê |
 |---|---|
 | `paciente` | A persona (`persona-roberto`) e os pacientes com conta. `usuario_id` (uuid, único, → `auth.users`, `on delete set null`) liga a conta do Supabase Auth ao paciente; o paciente só é criado no bloco 1 do check-up |
-| `documento` | Origem de cada dado: `tipo`, `origem` (canal de entrada), `emissor`, `data`, `arquivo` no Storage, `sha256` (envios do app: mesmo arquivo não entra duas vezes). Laudo descritivo (`tipo = laudo_descritivo`, ECG/eco/endoscopia/imagem): `area`, `exame_nome`, `conclusao` copiada do laudo e `conclusao_pagina`; não tem observação |
+| `documento` | Origem de cada dado: `tipo`, `origem` (canal de entrada), `emissor`, `data`, `arquivo` no Storage, `sha256` (envios do app: mesmo arquivo não entra duas vezes). Em `observacao`, `codigo = 'outro'` (categoria `exame`) é exame fora do dicionário, com valor/unidade/referência como impressos (as regras ignoram). Laudo descritivo (`tipo = laudo_descritivo`, ECG/eco/endoscopia/imagem): `area`, `exame_nome`, `conclusao` copiada do laudo e `conclusao_pagina`; não tem observação |
 | `observacao` | Fato atômico. `categoria` = exame / vacina / wearable; `codigo` = analito, vacina ou métrica. Colunas com os mesmos nomes de `extraction/src/schema.ts` e `insights/src/tipos.ts` |
 | `consentimento` | Grant: destinatário, escopo (`categorias`, `codigos`, `desde`; null = tudo), `expira_em`, `revogado_em`, `token` |
 | `log_acesso` | Toda tentativa, permitida ou negada, com motivo e quantas observações saíram |

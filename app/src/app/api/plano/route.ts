@@ -8,6 +8,7 @@ import { relogioDe } from "@/lib/relogio";
 import { escreverServidor, temChaveServidor } from "@/lib/supabase";
 import { perfilParaTexto } from "@/lib/checkup";
 import { descritivosDoPaciente } from "@/lib/descritivos-banco";
+import { outrosDoPaciente } from "@/lib/outros-banco";
 import { perfilDoPaciente } from "@/lib/perfil";
 import { pacienteDaSessao } from "@/lib/sessao";
 
@@ -36,12 +37,12 @@ export async function POST(req: Request) {
 
   let plano;
   try {
-    const [insights, perfil, descritivos] = await Promise.all([
-      carregarInsights(p.id), perfilDoPaciente(p.id).catch(() => null), descritivosDoPaciente(p.id),
+    const [insights, perfil, descritivos, outros] = await Promise.all([
+      carregarInsights(p.id), perfilDoPaciente(p.id).catch(() => null), descritivosDoPaciente(p.id), outrosDoPaciente(p.id),
     ]);
     plano = await montarPlano(
       {
-        insights, relogio: relogioDe(p.id), origem: new URL(req.url).origin, descritivos,
+        insights, relogio: relogioDe(p.id), origem: new URL(req.url).origin, descritivos, outros,
         perfil: perfil && perfilParaTexto(perfil.cad, perfil.perfil),
       },
       mensagens,

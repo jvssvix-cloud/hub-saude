@@ -904,6 +904,7 @@ def main():
     descritivos.gerar_todas(SAIDA, fotografar)
     import casos
     casos.gerar_caso_misto(SAIDA)
+    casos.gerar_caso_outros(SAIDA)
 
     # Gabaritos
     campos = None

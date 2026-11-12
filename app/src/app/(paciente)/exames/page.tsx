@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FiltroExames, type ExameFiltravel } from "@/components/FiltroExames";
 import { ConecteWearable } from "@/components/ConecteWearable";
+import { OutrosExames } from "@/components/OutrosExames";
+import { outrosDoPaciente } from "@/lib/outros-banco";
+import { pacienteAtual } from "@/lib/sessao";
 import { BarraContagem } from "@/components/LinhaIndice";
 import { SemExames } from "@/components/SemExames";
 import { meuRelogio, meusInsights } from "@/lib/dados";
@@ -16,8 +19,11 @@ export const metadata: Metadata = { title: "Exames · Zelo" };
 const avisosRelogio = (r: Relogio) => r.alertas.filter((a) => a.nivel === "atencao").length;
 
 export default async function Exames() {
-  const insights = await meusInsights();
-  const relogio = await meuRelogio();
+  const [insights, relogio, outros] = await Promise.all([
+    meusInsights(),
+    meuRelogio(),
+    pacienteAtual().then((p) => outrosDoPaciente(p.id)),
+  ]);
   const areas = areasOrdenadas(insights)
     .map((a) => {
       const series = seriesDaArea(insights, a);
@@ -145,6 +151,8 @@ export default async function Exames() {
       </Link>
       </>
       )}
+
+      <OutrosExames lista={outros} />
     </div>
   );
 }

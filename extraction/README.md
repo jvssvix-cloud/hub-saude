@@ -59,7 +59,7 @@ Nunca use `--refazer` sem necessidade.
 ## O que a extração entende (prompt v5)
 
 - Tipo de documento: laudo de exames, carteira de vacinação, **laudo descritivo** (ECG, eco, endoscopia, ultrassom, mamografia...: exame, área, data e a conclusão copiada com a página; prompt v6, teste `npm run acuracia-descritivos`) ou outro (receita, pedido, atestado).
-- 40 exames no dicionário (+ "outro", reconhecido pelo nome quando possível); 13 vacinas.
+- 40 exames no dicionário (+ "outro", reconhecido pelo nome quando possível; o app GUARDA os "outro" como impressos, em Outros exames, e o caso `caso-outros` testa isso, inclusive a urina tipo 1); 13 vacinas.
 - Resultado com sinal (`qualificador` "<"/">": "INFERIOR A 0,2") e só em texto (`resultado_texto`: "NÃO REAGENTE").
 - Data de coleta por exame (`data_coleta` do resultado) quando o laudo tem várias datas.
 - Unidade ausente na linha: deduzida pela ordem de grandeza, com aviso.

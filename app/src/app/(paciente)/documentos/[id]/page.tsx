@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { OutrosExames } from "@/components/OutrosExames";
 import { meusInsights } from "@/lib/dados";
-import { laudos, nomeLab } from "@/lib/documentos";
+import { laudos, nomeLab, type Laudo } from "@/lib/documentos";
 import { dataBr, faixa, linkLaudo, numero } from "@/lib/insights";
+import { outrosDoPaciente } from "@/lib/outros-banco";
+import { pacienteAtual } from "@/lib/sessao";
 
 // Os laudos são de cada paciente (sessão): nada é gerado no build e o título não depende dos dados.
 export const metadata: Metadata = { title: "Documento · Zelo" };
@@ -19,9 +22,17 @@ export default function Documento({ params }: PageProps<"/documentos/[id]">) {
 
 async function Conteudo({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const l = laudos(await meusInsights()).find((x) => x.id === id);
+  const p = await pacienteAtual();
+  const [insights, outros] = await Promise.all([meusInsights(), outrosDoPaciente(p.id, id)]);
+  // laudo só com exames fora da lista (ex.: urina tipo 1) não tem série: monta o cabeçalho pelos outros
+  const l: Laudo | undefined =
+    laudos(insights).find((x) => x.id === id) ??
+    (outros[0]?.documento?.arquivo
+      ? { id, arquivo: outros[0].documento.arquivo, laboratorio: outros[0].documento.emissor ?? "", data: outros[0].data, resultados: [] }
+      : undefined);
   if (!l) notFound();
-  const fora = l.resultados.filter((r) => r.fora).length;
+  const fora = l.resultados.filter((r) => r.fora).length + outros.filter((o) => o.fora_da_faixa).length;
+  const total = l.resultados.length + outros.length;
 
   return (
     <div className="space-y-5 pt-3">
@@ -33,7 +44,7 @@ async function Conteudo({ params }: { params: Promise<{ id: string }> }) {
         <p className="text-sm text-suave">{nomeLab(l.laboratorio)}</p>
         <h1 className="text-2xl font-bold tracking-tight">Laudo de {dataBr(l.data)}</h1>
         <p className="mt-1 text-sm">
-          {l.resultados.length} resultados
+          {total} resultados
           {fora > 0 ? <span className="font-semibold text-atencao"> · {fora} fora da faixa</span> : " · todos na faixa"}
         </p>
         <a
@@ -45,6 +56,7 @@ async function Conteudo({ params }: { params: Promise<{ id: string }> }) {
         </a>
       </section>
 
+      {l.resultados.length > 0 && (
       <section>
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">O que saiu deste laudo</h2>
         <ul className="space-y-2">
@@ -74,6 +86,9 @@ async function Conteudo({ params }: { params: Promise<{ id: string }> }) {
           ))}
         </ul>
       </section>
+      )}
+
+      <OutrosExames lista={outros} titulo="Outros exames deste laudo" />
     </div>
   );
 }

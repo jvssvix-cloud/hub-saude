@@ -1,12 +1,14 @@
 # Acurácia da extração
 
-Modelo claude-haiku-5-5, esforço `medium`, prompt `v6`. 17 extrações (13 laudos). Custo original das extrações: ~US$ 0.06 (pago uma vez; 0 vieram do cache, sem custo nesta rodada).
+Modelo claude-haiku-5-5, esforço `medium`, prompt `v6`. 18 extrações (14 laudos). Custo original das extrações: ~US$ 0.06 (pago uma vez; 17 vieram do cache, sem custo nesta rodada).
 
-**Valores corretos: 100.0%** (267 de 267). Todos os campos: 100.0%. Exames extras/duplicados: 0. Alertas da normalização: 0.
+**Valores corretos: 100.0%** (269 de 269). Todos os campos: 100.0%. Exames extras/duplicados: 0. Alertas da normalização: 0.
+
+**Outros exames (fora do dicionário): encontrados 11 de 11; valor, unidade e data certos em 11.**
 
 | Recorte | Exames | Encontrados | valor | unidade | nome | referencia | fora_da_faixa | pagina | data | Extras |
 |---|---|---|---|---|---|---|---|---|---|---|
-| total | 267 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
+| total | 269 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
 | layout A | 54 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
 | layout A / pdf | 54 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
 | layout B | 70 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
@@ -20,8 +22,10 @@ Modelo claude-haiku-5-5, esforço `medium`, prompt `v6`. 17 extrações (13 laud
 | layout D / pdf | 30 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
 | layout X | 14 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
 | layout X / pdf | 14 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
+| layout Y | 2 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
+| layout Y / pdf | 2 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
 | modo foto | 65 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
-| modo pdf | 202 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
+| modo pdf | 204 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 0 |
 
 ## Erros por resultado (0)
 

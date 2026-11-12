@@ -7,6 +7,7 @@
 import { montarEntrada, type LinhaDocumento, type LinhaObservacao } from "@insights/banco";
 import { gerarInsights, HOJE_PADRAO } from "@insights/regras";
 import { soDescritivos, type LaudoDescritivo } from "@/lib/descritivos";
+import type { OutroResultado } from "@/lib/outros";
 import type { Insights } from "@/lib/insights";
 import { relogioDe, type Relogio } from "@/lib/relogio";
 import { getServidor, rpcPublica, temChaveServidor } from "@/lib/supabase";
@@ -27,6 +28,8 @@ export type Acesso =
       situacao: "ok"; escopo: Escopo; insights: Insights; documentos: number; relogio: Relogio | null;
       /** ECG, eco, endoscopia, imagem: a conclusão copiada do laudo (não entra nos gráficos). */
       descritivos: LaudoDescritivo[];
+      /** Exames fora da lista padronizada (codigo "outro"), como impressos no laudo. */
+      outros: OutroResultado[];
     }
   | { situacao: "pendente"; prazo: string }
   | { situacao: Exclude<Situacao, "ok" | "pendente"> };
@@ -56,6 +59,17 @@ export async function acessar(token: string, consumidor: "visao_medico" | "mcp" 
       id: d.id, area: d.area ?? null, exame_nome: d.exame_nome ?? null, data: d.data, emissor: d.emissor,
       conclusao: d.conclusao ?? null, conclusao_pagina: d.conclusao_pagina ?? null, arquivo: d.arquivo,
     })),
+    outros: r.observacoes
+      .filter((o) => o.categoria === "exame" && o.codigo === "outro")
+      .map((o) => {
+        const d = r.documentos.find((x) => x.id === o.documento_id);
+        return {
+          documento_id: o.documento_id, data: o.data, nome_impresso: o.nome_impresso, valor_impresso: o.valor_impresso,
+          unidade_impressa: o.unidade_impressa, referencia_impressa: o.referencia_impressa,
+          resultado_texto: o.resultado_texto ?? null, fora_da_faixa: o.fora_da_faixa, pagina: o.pagina,
+          documento: d ? { emissor: d.emissor, arquivo: d.arquivo } : null,
+        };
+      }),
     relogio: liberaRelogio(r.consentimento) ? await relogioDoToken(token) : null,
   };
 }

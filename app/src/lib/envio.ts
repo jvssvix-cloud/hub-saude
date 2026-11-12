@@ -53,9 +53,13 @@ async function apagarArquivo(caminho: string) {
 }
 
 // ---------------------------------------------------------------- prévia (o que o paciente confere)
+/**
+ * reconhecido: vai para o histórico (tem data). outro: exame fora do dicionário, guardado em "Outros exames" com o
+ * valor e a referência impressos, sem gráfico e sem regra (a unidade e a faixa não são padronizadas).
+ */
 export type ItemExame = {
   nome: string; valor: string; unidade: string; referencia: string; pagina: number;
-  fora: boolean; reconhecido: boolean; alertas: string[];
+  fora: boolean; reconhecido: boolean; outro: boolean; alertas: string[];
 };
 export type ItemDose = { nome: string; dose: string; data: string | null; lote: string | null; pagina: number; valida: boolean; alertas: string[] };
 /** Laudo descritivo (ECG, eco, endoscopia, imagem): a conclusão copiada do laudo, com a página. */
@@ -86,7 +90,8 @@ export function montarPrevia(envio: Pick<Envio, "id" | "arquivo">, e: ExtracaoNo
   const dataDoc = e.documento.data_coleta;
   const exames: ItemExame[] = e.resultados.map((r) => ({
     nome: r.nome_impresso, valor: r.valor_impresso, unidade: r.unidade_impressa, referencia: r.referencia_impressa,
-    pagina: r.pagina, fora: r.fora_da_faixa, reconhecido: r.analito !== "outro" && !!(r.data_coleta ?? dataDoc), alertas: r.alertas,
+    pagina: r.pagina, fora: r.fora_da_faixa, reconhecido: !!(r.data_coleta ?? dataDoc), outro: r.analito === "outro",
+    alertas: r.alertas.filter((a) => a !== "exame fora do dicionário"), // o selo "outros exames" já diz isso
   }));
   const doses: ItemDose[] = e.doses.map((d) => ({
     nome: d.nome_impresso, dose: d.dose_impressa, data: d.data, lote: d.lote, pagina: d.pagina,
@@ -106,7 +111,11 @@ export function montarPrevia(envio: Pick<Envio, "id" | "arquivo">, e: ExtracaoNo
   if (d?.alertas.length) avisos.push(...d.alertas.map((a) => `Conferir: ${a}.`));
   if (e.tipo_documento === "laudo_exame" && !dataDoc) avisos.push("Não achamos a data da coleta no documento.");
   const ignorados = exames.filter((x) => !x.reconhecido).length + doses.filter((x) => !x.valida).length;
-  if (ignorados) avisos.push(`${ignorados} ${ignorados === 1 ? "item não foi reconhecido e fica" : "itens não foram reconhecidos e ficam"} de fora dos gráficos.`);
+  if (ignorados) avisos.push(`${ignorados} ${ignorados === 1 ? "item ficou sem data e não será guardado" : "itens ficaram sem data e não serão guardados"}.`);
+  const nOutros = !d ? exames.filter((x) => x.outro && x.reconhecido).length : 0;
+  if (nOutros) {
+    avisos.push(`${nOutros} ${nOutros === 1 ? "exame fora da nossa lista fica guardado" : "exames fora da nossa lista ficam guardados"} em Outros exames, com o valor e a referência do laudo, sem gráfico.`);
+  }
 
   const nExames = exames.filter((x) => x.reconhecido).length;
   const nDoses = doses.filter((x) => x.valida).length;
@@ -232,16 +241,23 @@ export async function salvarEnvio(
   const observacoes =
     tipo === "laudo_exame"
       ? e.resultados
-          .filter((r) => r.analito !== "outro" && (r.data_coleta ?? dataDoc))
-          .map((r) => ({
-            paciente_id: pacienteId, documento_id: documentoId, categoria: "exame", codigo: r.analito,
-            data: r.data_coleta ?? dataDoc,
-            nome_impresso: r.nome_impresso, valor_impresso: r.valor_impresso, unidade_impressa: r.unidade_impressa,
-            referencia_impressa: r.referencia_impressa || null, pagina: r.pagina,
-            valor_canonico: r.valor_canonico, unidade_canonica: r.unidade_canonica, qualificador: r.qualificador,
-            resultado_texto: r.resultado_texto, ref_min_canonico: r.ref_min_canonico, ref_max_canonico: r.ref_max_canonico,
-            fora_da_faixa: r.fora_da_faixa, confianca: r.confianca, alertas: r.alertas,
-          }))
+          .filter((r) => r.data_coleta ?? dataDoc)
+          .map((r) => {
+            // fora do dicionário ("outro"): guarda na unidade IMPRESSA (sem conversão) e as regras ignoram
+            const outro = r.analito === "outro";
+            return {
+              paciente_id: pacienteId, documento_id: documentoId, categoria: "exame", codigo: r.analito,
+              data: r.data_coleta ?? dataDoc,
+              nome_impresso: r.nome_impresso, valor_impresso: r.valor_impresso, unidade_impressa: r.unidade_impressa,
+              referencia_impressa: r.referencia_impressa || null, pagina: r.pagina,
+              valor_canonico: outro ? r.valor_numerico : r.valor_canonico,
+              unidade_canonica: outro ? r.unidade_impressa || null : r.unidade_canonica,
+              qualificador: r.qualificador, resultado_texto: r.resultado_texto,
+              ref_min_canonico: outro ? r.ref_min : r.ref_min_canonico,
+              ref_max_canonico: outro ? r.ref_max : r.ref_max_canonico,
+              fora_da_faixa: r.fora_da_faixa, confianca: r.confianca, alertas: r.alertas,
+            };
+          })
       : e.doses
           .filter((d) => d.vacina !== "outra" && d.data && /^\d{4}-\d{2}-\d{2}$/.test(d.data))
           .map((d) => ({

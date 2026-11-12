@@ -99,3 +99,98 @@ def gerar_caso_misto(saida: Path):
     with open(saida / "gabarito" / "caso-misto.json", "w", encoding="utf-8") as f:
         json.dump(doc, f, ensure_ascii=False, indent=2)
     print(f"  caso   caso-misto.pdf          {paginas} pág.  {len(gab)} resultados (lições de laudo real)")
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# caso-outros (11/11): exames FORA do dicionário, que agora são guardados ("outros exames", sem gráfico).
+# Laudo em tabela (Exame | Resultado | Unidade | Referência), 2 páginas, outra paciente fictícia:
+#   - bioquímica com ureia, sódio, potássio, PCR e VHS + 2 do dicionário (glicose e creatinina, não podem regredir)
+#   - urina tipo 1 com a ARMADILHA: "Glicose" e "Leucócitos" da urina têm o nome de exames de sangue do dicionário,
+#     mas são outro exame (outra amostra, outra unidade). Têm de sair como "outro", nunca como glicose/leucocitos.
+# ---------------------------------------------------------------------------------------------------------------
+PACIENTE_OUTROS = {"nome": "MARIA HELENA DUARTE CAMPOS", "sexo": "F", "nascimento": "1962-09-30"}
+DATA_OUTROS = ("18/05/2026", "2026-05-18")
+
+# (página, seção, nome impresso, resultado, unidade, referência, gabarito: analito do dicionário ou None = outro)
+EXAMES_OUTROS = [
+    (1, "BIOQUÍMICA", "Glicose", "94", "mg/dL", "70 a 99 mg/dL", dict(analito="glicose", valor_canonico=94, ref=(70, 99))),
+    (1, "BIOQUÍMICA", "Creatinina", "0,82", "mg/dL", "0,50 a 1,10 mg/dL", dict(analito="creatinina", valor_canonico=0.82, ref=(0.5, 1.1))),
+    (1, "BIOQUÍMICA", "Ureia", "38", "mg/dL", "15 a 45 mg/dL", None),
+    (1, "BIOQUÍMICA", "Sódio", "139", "mEq/L", "136 a 145 mEq/L", None),
+    (1, "BIOQUÍMICA", "Potássio", "5,4", "mEq/L", "3,5 a 5,1 mEq/L", None),
+    (1, "BIOQUÍMICA", "Proteína C Reativa (PCR)", "0,8", "mg/dL", "Inferior a 0,5 mg/dL", None),
+    (1, "HEMATOLOGIA", "VHS - 1ª hora", "22", "mm", "Até 20 mm", None),
+    (2, "URINA TIPO 1 (EAS)", "Densidade", "1,020", "", "1,005 a 1,030", None),
+    (2, "URINA TIPO 1 (EAS)", "pH", "6,0", "", "5,0 a 7,0", None),
+    (2, "URINA TIPO 1 (EAS)", "Proteínas", "Negativo", "", "Negativo", None),
+    (2, "URINA TIPO 1 (EAS)", "Glicose", "Negativo", "", "Negativo", None),
+    (2, "URINA TIPO 1 (EAS)", "Leucócitos", "3", "/campo", "Até 5 /campo", None),
+    (2, "URINA TIPO 1 (EAS)", "Hemácias", "1", "/campo", "Até 3 /campo", None),
+]
+
+
+def gerar_caso_outros(saida: Path):
+    pdf = saida / "laudos" / "caso-outros.pdf"
+    c = canvas.Canvas(str(pdf), pagesize=A4, invariant=1)
+    c.setTitle("Caso de teste: exames fora do dicionário (fictício)")
+    paginas = max(e[0] for e in EXAMES_OUTROS)
+    data_br, data_iso = DATA_OUTROS
+    for pag in range(1, paginas + 1):
+        c.setFont("Helvetica-Bold", 13)
+        c.drawString(48, H - 50, "LABORATÓRIO SIGMA DIAGNÓSTICOS (FICTÍCIO)")
+        c.setFont("Helvetica", 7.5)
+        c.drawString(48, H - 62, f"PACIENTE: {PACIENTE_OUTROS['nome']}   NASC.: 30/09/1962   COLETA: {data_br}   Documento de teste, sem validade")
+        c.line(48, H - 68, W - 48, H - 68)
+        y = H - 92
+        secao = None
+        for _p, sec, nome, res, un, ref, _g in [e for e in EXAMES_OUTROS if e[0] == pag]:
+            if sec != secao:
+                secao = sec
+                y -= 8
+                c.setFont("Helvetica-Bold", 10)
+                c.drawString(48, y, sec)
+                y -= 4
+                c.line(48, y, W - 48, y)
+                y -= 14
+                c.setFont("Helvetica-Oblique", 7.5)
+                c.drawString(52, y, "EXAME")
+                c.drawString(230, y, "RESULTADO")
+                c.drawString(320, y, "UNIDADE")
+                c.drawString(400, y, "VALORES DE REFERÊNCIA")
+                y -= 14
+            c.setFont("Helvetica", 9.5)
+            c.drawString(52, y, nome)
+            c.setFont("Helvetica-Bold", 9.5)
+            c.drawString(230, y, res)
+            c.setFont("Helvetica", 9.5)
+            c.drawString(320, y, un)
+            c.drawString(400, y, ref)
+            y -= 17
+        c.setFont("Helvetica", 7)
+        c.drawRightString(W - 48, 36, f"Página {pag} de {paginas}")
+        c.showPage()
+    c.save()
+
+    resultados, outros = [], []
+    for p, _sec, nome, res, un, ref, g in EXAMES_OUTROS:
+        if g:
+            mn, mx = g["ref"]
+            resultados.append({
+                "analito": g["analito"], "nome_impresso": nome, "valor_impresso": res, "valor_canonico": g["valor_canonico"],
+                "unidade_impressa": un, "ref_min_canonico": mn, "ref_max_canonico": mx, "fora_da_faixa": False, "pagina": p,
+                "qualificador": None, "resultado_texto": None, "data_coleta": data_iso,
+            })
+        else:
+            outros.append({"nome_impresso": nome, "valor_impresso": res, "unidade_impressa": un, "pagina": p, "data": data_iso})
+    doc = {
+        "laudo_id": "caso-outros", "arquivo_pdf": "laudos/caso-outros.pdf", "fotos": [],
+        "origem": "Caso sintético: exames fora do dicionário (guardados como outros exames) e a armadilha da urina.",
+        "documento": {"laboratorio": "LABORATÓRIO SIGMA DIAGNÓSTICOS (FICTÍCIO)", "layout": "Y", "data_coleta": data_iso,
+                      "nome_paciente_impresso": PACIENTE_OUTROS["nome"], "paginas": paginas,
+                      "paciente": {"sexo": PACIENTE_OUTROS["sexo"], "nascimento": PACIENTE_OUTROS["nascimento"]}},
+        "resultados": resultados,
+        "outros": outros,
+    }
+    with open(saida / "gabarito" / "caso-outros.json", "w", encoding="utf-8") as f:
+        json.dump(doc, f, ensure_ascii=False, indent=2)
+    print(f"  caso   caso-outros.pdf         {paginas} pág.  {len(resultados)} do dicionário + {len(outros)} outros")

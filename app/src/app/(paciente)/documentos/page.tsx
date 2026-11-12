@@ -4,6 +4,7 @@ import { meusInsights } from "@/lib/dados";
 import { ListaDescritivos } from "@/components/ListaDescritivos";
 import { SemExames } from "@/components/SemExames";
 import { descritivosDoPaciente } from "@/lib/descritivos-banco";
+import { outrosDoPaciente } from "@/lib/outros-banco";
 import { laudos, nomeLab } from "@/lib/documentos";
 import { dataBr, serie } from "@/lib/insights";
 import { pacienteAtual } from "@/lib/sessao";
@@ -15,11 +16,21 @@ export const metadata: Metadata = { title: "Documentos · Zelo" };
  * Cada laudo de laboratório abre a lista dos resultados que saíram dele; o laudo descritivo mostra a conclusão copiada.
  */
 export default async function Documentos() {
-  const [insights, descritivos] = await Promise.all([
-    meusInsights(),
-    pacienteAtual().then((p) => descritivosDoPaciente(p.id)),
+  const p = await pacienteAtual();
+  const [insights, descritivos, outros] = await Promise.all([
+    meusInsights(), descritivosDoPaciente(p.id), outrosDoPaciente(p.id),
   ]);
-  const lista = laudos(insights);
+  // exames fora da lista (urina, sódio...) contam no laudo; laudo só com eles entra na lista também
+  const outrosPorDoc = new Map<string, { n: number; fora: number }>();
+  for (const o of outros) {
+    const x = outrosPorDoc.get(o.documento_id) ?? { n: 0, fora: 0 };
+    outrosPorDoc.set(o.documento_id, { n: x.n + 1, fora: x.fora + (o.fora_da_faixa ? 1 : 0) });
+  }
+  const comSerie = laudos(insights);
+  const soOutros = [...new Map(outros.filter((o) => !comSerie.some((l) => l.id === o.documento_id))
+    .map((o) => [o.documento_id, o])).values()]
+    .map((o) => ({ id: o.documento_id, arquivo: o.documento?.arquivo ?? "", laboratorio: o.documento?.emissor ?? "", data: o.data, resultados: [] }));
+  const lista = [...comSerie, ...soOutros].sort((a, b) => b.data.localeCompare(a.data));
   // carteiras e comprovantes de vacinação: um por arquivo de origem das doses
   const porArquivo = new Map<string, { arquivo: string; doses: number; de: string; ate: string }>();
   for (const d of insights.vacinacao?.doses ?? []) {
@@ -82,7 +93,8 @@ export default async function Documentos() {
         </h2>
       <ul className="divide-y divide-linha overflow-hidden rounded-3xl border border-linha bg-cartao">
         {lista.map((l) => {
-          const fora = l.resultados.filter((r) => r.fora).length;
+          const extra = outrosPorDoc.get(l.id) ?? { n: 0, fora: 0 };
+          const fora = l.resultados.filter((r) => r.fora).length + extra.fora;
           return (
             <li key={l.id}>
               <Link href={`/documentos/${l.id}`} className="flex items-center gap-3 px-4 py-3 hover:bg-fundo">
@@ -95,7 +107,7 @@ export default async function Documentos() {
                 <span className="min-w-0 flex-1">
                   <span className="block font-semibold">{dataBr(l.data)}</span>
                   <span className="block truncate text-[13px] text-suave">
-                    {nomeLab(l.laboratorio)} · {l.resultados.length} resultados
+                    {nomeLab(l.laboratorio)} · {l.resultados.length + extra.n} resultados
                     {fora > 0 && <span className="text-atencao"> · {fora} fora</span>}
                   </span>
                 </span>

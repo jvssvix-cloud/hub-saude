@@ -66,6 +66,8 @@ export function montarEntrada(documentos: LinhaDocumento[], observacoes: LinhaOb
   const doses: DoseVacina[] = [];
   for (const o of observacoes) {
     if (o.categoria === "exame") {
+      // exame fora do dicionário (codigo "outro"): guardado, mas sem unidade/faixa padronizadas não entra nas regras
+      if (o.codigo === "outro") continue;
       const l = laudos.get(o.documento_id);
       if (!l) continue;
       const r: Resultado = {

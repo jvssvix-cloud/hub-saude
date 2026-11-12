@@ -34,7 +34,7 @@ async function chamarFerramenta(token: string, origem: string, params: Record<st
     const s = SITUACAO_TEXTO[a.situacao];
     return texto(`${s.titulo}. ${s.texto} Peça ao paciente uma nova conexão em Zelo > Mais > Conectar IA.`, true);
   }
-  const c: Contexto = { insights: a.insights, relogio: a.relogio, origem, descritivos: a.descritivos };
+  const c: Contexto = { insights: a.insights, relogio: a.relogio, origem, descritivos: a.descritivos, outros: a.outros };
   const args = (params.arguments ?? {}) as Record<string, unknown>;
   return texto(f.executar(c, args));
 }

@@ -6,6 +6,7 @@
  */
 import { descritivosEmTexto, type LaudoDescritivo } from "@/lib/descritivos";
 import { dataBr, faixa, numero, type Insights, type Serie } from "@/lib/insights";
+import { outrosEmTexto, type OutroResultado } from "@/lib/outros";
 import type { Relogio } from "@/lib/relogio";
 
 export type Contexto = {
@@ -21,6 +22,8 @@ export type Contexto = {
   perfil?: string | null;
   /** Laudos descritivos (ECG, eco, endoscopia, imagem) dentro do escopo, com a conclusão copiada do laudo. */
   descritivos?: LaudoDescritivo[];
+  /** Exames fora da lista padronizada (urina, sódio, PCR...), como impressos no laudo. */
+  outros?: OutroResultado[];
 };
 
 export type Ferramenta = {
@@ -144,6 +147,13 @@ export const FERRAMENTAS: Ferramenta[] = [
       "Laudos cujo resultado é um texto (eletrocardiograma, ecocardiograma, endoscopia, colonoscopia, ultrassom, mamografia, densitometria, raio-x): nome do exame, data, local e a conclusão copiada do laudo, com a página.",
     inputSchema: { type: "object", properties: {} },
     executar: ({ descritivos, origem }) => descritivosEmTexto(descritivos ?? [], origem),
+  },
+  {
+    name: "outros_exames",
+    description:
+      "Exames fora da lista padronizada (ex.: urina tipo 1, sódio, potássio, ureia, PCR, VHS), com o valor, a unidade e a referência como estão impressos em cada laudo, e a fonte. Não têm gráfico nem regras; compare só valores do mesmo laboratório e da mesma unidade.",
+    inputSchema: { type: "object", properties: {} },
+    executar: ({ outros }) => outrosEmTexto(outros ?? []),
   },
   {
     name: "relogio",

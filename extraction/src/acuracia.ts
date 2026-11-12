@@ -18,7 +18,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import path from "node:path";
 import { extrairDocumento, MODELO_PADRAO, mimeDoArquivo, type Esforco, type PacienteCadastro, type ResultadoExtracao } from "./extrair";
 import { PROMPT_VERSAO } from "./prompt";
-import { chaveUnidade, normalizar } from "./normalizar";
+import { chaveNomeOutro, chaveUnidade, normalizar } from "./normalizar";
 import type { ResultadoNormalizado } from "./schema";
 
 const args = process.argv.slice(2);
@@ -50,6 +50,8 @@ type Gabarito = {
   laudo_id: string; arquivo_pdf: string; fotos: { arquivo: string; pagina: number }[];
   documento: { layout: string; data_coleta: string; nome_paciente_impresso: string; paciente?: PacienteCadastro };
   resultados: ResultadoGabarito[];
+  /** Exames FORA do dicionário que a leitura tem de trazer como "outro" (guardados como outros exames). */
+  outros?: { nome_impresso: string; valor_impresso: string; unidade_impressa: string; pagina: number; data: string }[];
 };
 type Tarefa = { gab: Gabarito; modo: "pdf" | "foto"; arquivos: string[]; paciente?: PacienteCadastro };
 
@@ -148,6 +150,9 @@ async function main() {
   const docErros: string[] = [];
   let custo = 0;
   let alertas = 0;
+  // exames fora do dicionário: encontrados (nome + página) e com valor, unidade e data certos
+  const outros = { esperados: 0, encontrados: 0, certos: 0 };
+  const errosOutros: string[] = [];
 
   resultados.forEach((r, i) => {
     const t = tarefas[i];
@@ -159,9 +164,29 @@ async function main() {
     // Normaliza de novo a partir do que a IA leu: mudanças nas regras são medidas sem chamar a API
     const norm = normalizar(r.bruto);
     const obtidos = new Map<string, ResultadoNormalizado>();
+    // "outro" esperado pelo gabarito: casa por nome normalizado + página e não conta como extra
+    const outrosObtidos = norm.resultados.filter((o) => o.analito === "outro");
+    const usados = new Set<ResultadoNormalizado>();
+    for (const e of t.gab.outros ?? []) {
+      outros.esperados++;
+      const o = outrosObtidos.find((x) => !usados.has(x) && x.pagina === e.pagina && chaveNomeOutro(x.nome_impresso) === chaveNomeOutro(e.nome_impresso));
+      if (!o) { errosOutros.push(`${id}: NÃO ENCONTRADO "${e.nome_impresso}" (p. ${e.pagina})`); continue; }
+      usados.add(o);
+      outros.encontrados++;
+      const valorOk = texto(o.valor_impresso) === texto(e.valor_impresso);
+      const unidadeOk = chaveUnidade(o.unidade_impressa) === chaveUnidade(e.unidade_impressa);
+      const dataOk = (o.data_coleta ?? norm.documento.data_coleta) === e.data;
+      if (valorOk && unidadeOk && dataOk) outros.certos++;
+      else errosOutros.push(`${id}: "${e.nome_impresso}" esperado ${e.valor_impresso} ${e.unidade_impressa}, obtido ${o.valor_impresso} ${o.unidade_impressa}${dataOk ? "" : " (data errada)"}`);
+    }
     for (const o of norm.resultados) {
-      alertas += o.alertas.length;
-      if (o.analito === "outro" || obtidos.has(o.analito)) { chaves.forEach((k) => pegar(k).extras++); continue; }
+      alertas += o.analito === "outro" ? 0 : o.alertas.length; // "fora do dicionário" é esperado nos outros
+      if (usados.has(o)) continue;
+      if (o.analito === "outro" || obtidos.has(o.analito)) {
+        chaves.forEach((k) => pegar(k).extras++);
+        if (t.gab.outros) errosOutros.push(`${id}: EXTRA ${o.analito} "${o.nome_impresso}" = ${o.valor_impresso} (p. ${o.pagina})`);
+        continue;
+      }
       obtidos.set(o.analito, o);
     }
     for (const o of obtidos.keys()) {
@@ -199,6 +224,10 @@ async function main() {
     `${tarefas.length - falhas.length} extrações (${gabaritos.length} laudos). Custo original das extrações: ~US$ ${custo.toFixed(2)} (pago uma vez; ${tarefas.length - faltam.length} vieram do cache, sem custo nesta rodada).`, ``);
   L.push(`**Valores corretos: ${pct(tot.campos.valor, tot.esperados)}** (${tot.campos.valor} de ${tot.esperados}). ` +
     `Todos os campos: ${pct(camposOk, tot.esperados * CAMPOS.length)}. Exames extras/duplicados: ${tot.extras}. Alertas da normalização: ${alertas}.`, ``);
+  if (outros.esperados) {
+    L.push(`**Outros exames (fora do dicionário): encontrados ${outros.encontrados} de ${outros.esperados}; ` +
+      `valor, unidade e data certos em ${outros.certos}.**`, ``);
+  }
   L.push(`| Recorte | Exames | Encontrados | ${CAMPOS.join(" | ")} | Extras |`);
   L.push(`|---|---|---|${CAMPOS.map(() => "---").join("|")}|---|`);
   for (const [k, p] of [...placares.entries()].sort(([a], [b]) => (a === "total" ? -1 : b === "total" ? 1 : a.localeCompare(b)))) {
@@ -206,6 +235,7 @@ async function main() {
   }
   if (falhas.length) L.push(``, `## Falhas`, ...falhas.map((f) => `- ${f}`));
   if (docErros.length) L.push(``, `## Erros no cabeçalho do documento`, ...docErros.map((f) => `- ${f}`));
+  if (errosOutros.length) L.push(``, `## Outros exames: erros (${errosOutros.length})`, ...errosOutros.map((f) => `- ${f}`));
   L.push(``, `## Erros por resultado (${erros.length})`, ``);
   if (erros.length) {
     L.push(`| Laudo | Modo | Layout | Exame | Campo | Esperado | Obtido |`, `|---|---|---|---|---|---|---|`);
