@@ -11,6 +11,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 - **Entrega:** sábado 14/11/2026. **Sem demo ao vivo (decidido 10/11):** entregar a proposta mais completa possível (paciente, médico, consentimento, upload, timeline, onboarding/login, chat e conector MCP), sempre com a `main` funcionando.
 - **Time:** 2 pessoas, **construindo juntas** com o Claude Code. Cada parte entra pequena e funcionando antes da próxima (o simples primeiro, depois completar).
 - **Dados:** SOMENTE sintéticos ou do próprio time. **Dados de terceiros:** só com consentimento explícito, usados só para aprender e **apagados em seguida** (a lição vira código + caso sintético).
+- **Problema e usuário (12/11, ver `docs/contexto.md` 2.2 e 7):** "o exame morre no dia em que é lido". Quem sente a dor: doença crônica, diagnóstico novo e **quem cuida dos pais**. Direção: **o filho gere a conta dos pais** (vários perfis por conta) e **entrada pelo WhatsApp**; laboratórios automáticos só com escala; **relógio é adicional**. Não depender de hábito: servir quando o exame chega e quando a consulta chega.
 - **Diferencial:** qualidade da extração + rastreabilidade. Todo número aponta para o documento original. Alertas são regras explicáveis, nunca diagnóstico.
 
 ## Stack
@@ -81,4 +82,4 @@ Projeto `eimnpafybehiylzukoja` (organização LEPoli, São Paulo), o mesmo para 
 - Branch por tarefa, merge na `main` pelo menos 1x por dia, sempre funcionando.
 - Nunca commitar chaves: use `.env.local` (no `.gitignore`); na Vercel, a chave vai no painel.
 - Textos do app em português do Brasil.
-- Quinta 12/11 à noite: congelar funcionalidades. Depois disso, só correção e ensaio.
+- **Sem congelamento (decidido 12/11):** seguimos construindo até a entrega, sempre com a `main` funcionando.
