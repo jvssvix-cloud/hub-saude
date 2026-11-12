@@ -73,6 +73,8 @@ export type Insights = {
   repeticoes: Repeticao[];
   /** Próximo exame de rotina de cada analito, pelo intervalo a partir do último resultado. */
   proximos: { analito: string; nome: string; ultimo: string; previsto: string; situacao: string }[];
+  /** Regra 8 (insights/src/faltantes.ts): pedidos que faltam para as ferramentas de apoio ao médico. */
+  exames_que_faltam?: import("@insights/faltantes").ExameQueFalta[];
   /** Situação vacinal pelo calendário oficial (null quando o escopo não libera vacinas). */
   vacinacao?: {
     fonte: string;

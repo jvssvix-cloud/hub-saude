@@ -4704,6 +4704,53 @@
       "situacao": "em_dia"
     }
   ],
+  "exames_que_faltam": [
+    {
+      "pedido": "ggt",
+      "nome": "Gama-GT (GGT)",
+      "analitos": [
+        "ggt"
+      ],
+      "nunca_feitos": [
+        "ggt"
+      ],
+      "desatualizados": [],
+      "destrava": [],
+      "peso": 0.44,
+      "prioridade": 2,
+      "texto": "Gama-GT (GGT): nunca feito no histórico. Pesa muito na estimativa do fígado."
+    },
+    {
+      "pedido": "insulina",
+      "nome": "Insulina de jejum",
+      "analitos": [
+        "insulina"
+      ],
+      "nunca_feitos": [
+        "insulina"
+      ],
+      "desatualizados": [],
+      "destrava": [],
+      "peso": 0.3,
+      "prioridade": 2,
+      "texto": "Insulina de jejum: nunca feito no histórico. Pesa muito na estimativa do fígado."
+    },
+    {
+      "pedido": "bilirrubinas",
+      "nome": "Bilirrubinas",
+      "analitos": [
+        "bilirrubina_total"
+      ],
+      "nunca_feitos": [
+        "bilirrubina_total"
+      ],
+      "desatualizados": [],
+      "destrava": [],
+      "peso": 0.21,
+      "prioridade": 3,
+      "texto": "Bilirrubinas: nunca feito no histórico. Pesa na estimativa do fígado."
+    }
+  ],
   "vacinacao": {
     "fonte": "Calendário Nacional de Vacinação 2026 (Ministério da Saúde)",
     "doses": [
@@ -5249,6 +5296,10 @@
     "- COVID-19: Última dose em 10/04/2023 (4 no total). Vacinação por campanha.",
     "",
     "Exames de rotina em dia; próximo check-up previsto para mar/2027.",
+    "",
+    "Exames que faltam (ou têm mais de 12 meses) para as ferramentas de apoio (FIB-4, fígado, glicemia):",
+    "- Gama-GT (GGT): nunca feito no histórico. Pesa muito na estimativa do fígado.",
+    "- Insulina de jejum: nunca feito no histórico. Pesa muito na estimativa do fígado.",
     "",
     "Cada valor indica o laudo e a página de origem. Resumo gerado por regras a partir dos laudos; não é diagnóstico."
   ]

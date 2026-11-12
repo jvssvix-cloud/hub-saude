@@ -8,6 +8,7 @@ import type {
   ResultadoTexto,
   Area, Insights, Laudo, Paciente, Ponto, ProximoExame, Repeticao, Serie, StatusArea, Tendencia,
 } from "./tipos";
+import { examesQueFaltam } from "./faltantes";
 
 // ---------------- parâmetros aprovados (09/11) ----------------
 export const PARAMETROS = {
@@ -275,6 +276,11 @@ export function resumoMedico(i: Omit<Insights, "resumo_medico">): string[] {
   L.push("", pendentes.length
     ? `Exames de rotina vencidos: ${lista(pendentes.map((p) => `${p.nome} (último ${mesAno(p.ultimo)})`))}.`
     : `Exames de rotina em dia; próximo check-up previsto para ${mesAno(i.proximos.map((p) => p.previsto).sort()[0] ?? i.hoje)}.`);
+  const faltam = i.exames_que_faltam.filter((e) => e.prioridade <= 2);
+  if (faltam.length) {
+    L.push("", "Exames que faltam (ou têm mais de 12 meses) para as ferramentas de apoio (FIB-4, fígado, glicemia):");
+    for (const e of faltam) L.push(`- ${e.texto}`);
+  }
   L.push("", "Cada valor indica o laudo e a página de origem. Resumo gerado por regras a partir dos laudos; não é diagnóstico.");
   return L;
 }
@@ -300,6 +306,7 @@ export function gerarInsights(laudos: Laudo[], paciente: Paciente, hoje: string,
     areas: montarAreas(series, paciente, hoje, resultadosTexto(ordenados)),
     repeticoes: acharRepeticoes(series),
     proximos: proximosExames(series, paciente, hoje),
+    exames_que_faltam: examesQueFaltam(series, hoje),
     vacinacao: dosesVacina ? (() => {
       const doses = consolidar(dosesVacina);
       return { fonte: FONTE_CALENDARIO, doses, situacao: situacaoVacinal(doses, paciente, hoje) };
