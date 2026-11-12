@@ -21,7 +21,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 - IA: API do Claude para extração (visão + saída estruturada). **Modelo padrão: Claude Haiku 5.5** (~US$ 0,003/laudo).
 - Chat do app (aba Conversar): **Gemini** (`GEMINI_API_KEY`, cota gratuita; `app/src/lib/chat.ts`; padrão `gemini-3.5-flash`, com modelos reserva e limite de 25 s por tentativa). Sem a chave, o chat aparece desligado.
 - **Conector MCP** (`/api/mcp/[token]`): o assistente do próprio paciente (Claude, ChatGPT, Gemini) lê o histórico. O token é um consentimento `ia` criado em `/conectar-ia`; cada leitura passa por `acessar_historico(token, "mcp")` (escopo, log, revogação). Só leitura. As ferramentas ficam em `app/src/lib/ferramentas.ts` e o chat usa o mesmo texto.
-- Lovable (parceiro, 100 créditos até sábado): **recomendação** = usar só para a página de apresentação (landing do pitch), não para o app. Ver `docs/contexto.md`.
+- Lovable (parceiro, 100 créditos até sábado): **mudou em 12/11, agora também faz painéis.** Projeto "Zelo Risco Clínico" (`c87f3dc5-054b-4f77-92ec-2e347e16a513`, workspace do Felipe): painel do médico de **demonstração**, só tela, com dados fixos do Roberto em `src/data/paciente.json` (sem banco nem login). O app de verdade continua sendo `app/` (Next). Números de modelo no Lovable vêm de `risco/saida/*.json`; para mudar, gere o prompt em `docs/prompts/` (ex.: `lovable-painel-risco.md`) e nunca invente valores. Ver `docs/contexto.md`.
 
 ## Estrutura do repositório
 ```
