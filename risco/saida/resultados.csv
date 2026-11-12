@@ -1,0 +1,9 @@
+alvo,versao,n_teste,positivos_teste,auc,auc_ic95,auc_ada,auc_arvores,brier,sensibilidade,especificidade
+alterado,perfil,4603,1383,0.77,0.757-0.784,0.745,0.755,0.1733,0.851,0.55
+alterado,perfil_exames,4548,1360,0.784,0.769-0.797,0.746,0.771,0.1684,0.845,0.567
+alterado,perfil_relogio,3376,1053,0.774,0.757-0.790,0.742,0.753,0.175,0.858,0.551
+alterado,completo,3336,1034,0.786,0.772-0.800,0.743,0.774,0.1704,0.852,0.57
+diabetes_oculto,perfil,4603,145,0.773,0.737-0.807,0.778,0.743,0.0298,0.834,0.613
+diabetes_oculto,perfil_exames,4548,143,0.817,0.785-0.847,0.778,0.784,0.0286,0.797,0.675
+diabetes_oculto,perfil_relogio,3376,113,0.81,0.777-0.844,0.781,0.791,0.0312,0.761,0.715
+diabetes_oculto,completo,3336,111,0.833,0.798-0.866,0.78,0.816,0.0306,0.82,0.717
