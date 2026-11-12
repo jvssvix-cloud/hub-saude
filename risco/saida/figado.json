@@ -1,0 +1,1466 @@
+{
+  "gerado_em": "2026-11-12",
+  "fonte": "NHANES 2017-2023 com elastografia hepática (CDC/EUA). Treino 2017-2020, teste 2021-2023.",
+  "aviso": "Apoio à decisão do médico: probabilidade do achado na elastografia. Não é diagnóstico.",
+  "transformacao_log": [
+    "bilirrubina_total",
+    "ferritina",
+    "fosfatase_alcalina",
+    "ggt",
+    "insulina",
+    "razao_tgo_tgp",
+    "tgo",
+    "tgp",
+    "triglicerides"
+  ],
+  "nomes": {
+    "idade": "Idade",
+    "masculino": "Sexo masculino",
+    "imc": "IMC",
+    "diabetes": "Diabetes",
+    "pressao_alta": "Pressão alta",
+    "alcool": "Álcool",
+    "fumante": "Fuma",
+    "tgo": "TGO",
+    "tgp": "TGP",
+    "razao_tgo_tgp": "Razão TGO/TGP",
+    "ggt": "GGT",
+    "fosfatase_alcalina": "Fosfatase alcalina",
+    "bilirrubina_total": "Bilirrubina total",
+    "plaquetas": "Plaquetas",
+    "triglicerides": "Triglicérides",
+    "colesterol_total": "Colesterol total",
+    "hdl": "HDL",
+    "glicose": "Glicose",
+    "hba1c": "HbA1c",
+    "acido_urico": "Ácido úrico",
+    "creatinina": "Creatinina",
+    "ferritina": "Ferritina",
+    "insulina": "Insulina"
+  },
+  "exige": [
+    "idade",
+    "imc",
+    "tgo",
+    "tgp",
+    "plaquetas"
+  ],
+  "alvos": {
+    "esteatose": {
+      "descricao": "Esteatose na elastografia (CAP >= 285 dB/m)",
+      "versoes": {
+        "mesmos_dados_fib4": {
+          "sinais": [
+            "idade",
+            "tgo",
+            "tgp",
+            "plaquetas"
+          ],
+          "medianas": {
+            "idade": 53.0,
+            "tgo": 19.0,
+            "tgp": 18.0,
+            "plaquetas": 244.0
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "tgo": [
+              11.0,
+              67.0
+            ],
+            "tgp": [
+              7.0,
+              86.0
+            ],
+            "plaquetas": [
+              121.76,
+              445.48
+            ]
+          },
+          "media": [
+            51.702909,
+            3.007096,
+            2.928881,
+            250.017084
+          ],
+          "desvio": [
+            17.196397,
+            0.333912,
+            0.51264,
+            62.899994
+          ],
+          "coeficientes": [
+            0.396711,
+            -0.641012,
+            1.223259,
+            0.167824
+          ],
+          "intercepto": -0.652937,
+          "auc_teste": 0.714,
+          "auc_teste_ic95": [
+            0.697,
+            0.731
+          ],
+          "calibracao_validacao_cruzada": [
+            {
+              "previsto": 0.133,
+              "observado": 0.127,
+              "n": 2276
+            },
+            {
+              "previsto": 0.248,
+              "observado": 0.25,
+              "n": 2275
+            },
+            {
+              "previsto": 0.349,
+              "observado": 0.335,
+              "n": 2275
+            },
+            {
+              "previsto": 0.461,
+              "observado": 0.48,
+              "n": 2275
+            },
+            {
+              "previsto": 0.634,
+              "observado": 0.634,
+              "n": 2276
+            }
+          ],
+          "prevalencia": 0.3649,
+          "cortes_faixas": [
+            0.1181,
+            0.327
+          ],
+          "corte_encaminhar": 0.3054
+        },
+        "perfil_exames": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "diabetes",
+            "pressao_alta",
+            "alcool",
+            "fumante",
+            "tgo",
+            "tgp",
+            "razao_tgo_tgp",
+            "ggt",
+            "fosfatase_alcalina",
+            "bilirrubina_total",
+            "plaquetas",
+            "triglicerides",
+            "colesterol_total",
+            "hdl",
+            "glicose",
+            "hba1c",
+            "acido_urico",
+            "creatinina",
+            "ferritina",
+            "insulina"
+          ],
+          "medianas": {
+            "idade": 53.0,
+            "masculino": 0.0,
+            "imc": 28.5,
+            "diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "alcool": 1.0,
+            "fumante": 0.0,
+            "tgo": 19.0,
+            "tgp": 18.0,
+            "razao_tgo_tgp": 1.0909,
+            "ggt": 21.0,
+            "fosfatase_alcalina": 76.0,
+            "bilirrubina_total": 0.4,
+            "plaquetas": 244.0,
+            "triglicerides": 111.0,
+            "colesterol_total": 185.0,
+            "hdl": 52.0,
+            "glicose": 94.0,
+            "hba1c": 5.6,
+            "acido_urico": 5.2,
+            "creatinina": 0.84,
+            "ferritina": 98.05,
+            "insulina": 9.61
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              18.3,
+              51.624
+            ],
+            "diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "alcool": [
+              0.0,
+              3.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ],
+            "tgo": [
+              11.0,
+              67.0
+            ],
+            "tgp": [
+              7.0,
+              86.0
+            ],
+            "razao_tgo_tgp": [
+              0.4881,
+              2.5
+            ],
+            "ggt": [
+              7.0,
+              195.48
+            ],
+            "fosfatase_alcalina": [
+              37.0,
+              165.0
+            ],
+            "bilirrubina_total": [
+              0.1,
+              1.5
+            ],
+            "plaquetas": [
+              121.76,
+              445.48
+            ],
+            "triglicerides": [
+              40.0,
+              507.26
+            ],
+            "colesterol_total": [
+              107.0,
+              302.0
+            ],
+            "hdl": [
+              29.0,
+              100.28
+            ],
+            "glicose": [
+              72.0,
+              278.0
+            ],
+            "hba1c": [
+              4.6,
+              10.9
+            ],
+            "acido_urico": [
+              2.5,
+              9.2
+            ],
+            "creatinina": [
+              0.48,
+              1.82
+            ],
+            "ferritina": [
+              5.9079,
+              793.03
+            ],
+            "insulina": [
+              1.96,
+              72.9233
+            ]
+          },
+          "media": [
+            51.702909,
+            0.47429,
+            29.585421,
+            0.138613,
+            0.369078,
+            1.271161,
+            0.158829,
+            3.007096,
+            2.928881,
+            0.079097,
+            3.110322,
+            4.335097,
+            -0.895885,
+            250.017084,
+            4.750892,
+            188.340424,
+            53.872719,
+            101.876945,
+            5.799437,
+            5.287774,
+            0.878893,
+            4.514126,
+            2.277564
+          ],
+          "desvio": [
+            17.196397,
+            0.499339,
+            6.741672,
+            0.345542,
+            0.482555,
+            0.70424,
+            0.365517,
+            0.333912,
+            0.51264,
+            0.335995,
+            0.65329,
+            0.292443,
+            0.525693,
+            62.899994,
+            0.532944,
+            40.274649,
+            14.722875,
+            30.729211,
+            1.006247,
+            1.404026,
+            0.234175,
+            0.865157,
+            0.525948
+          ],
+          "coeficientes": [
+            0.351017,
+            0.202794,
+            0.950956,
+            0.055564,
+            0.02089,
+            0.030396,
+            0.015168,
+            -0.323269,
+            0.768149,
+            0.181726,
+            0.096103,
+            -0.047373,
+            0.034639,
+            0.050647,
+            0.393056,
+            0.036119,
+            -0.140816,
+            0.006304,
+            0.226714,
+            0.169536,
+            -0.307114,
+            0.01973,
+            0.301434
+          ],
+          "intercepto": -0.845723,
+          "auc_teste": 0.855,
+          "auc_teste_ic95": [
+            0.844,
+            0.866
+          ],
+          "calibracao_validacao_cruzada": [
+            {
+              "previsto": 0.041,
+              "observado": 0.034,
+              "n": 2276
+            },
+            {
+              "previsto": 0.138,
+              "observado": 0.145,
+              "n": 2275
+            },
+            {
+              "previsto": 0.296,
+              "observado": 0.299,
+              "n": 2275
+            },
+            {
+              "previsto": 0.528,
+              "observado": 0.534,
+              "n": 2275
+            },
+            {
+              "previsto": 0.821,
+              "observado": 0.812,
+              "n": 2276
+            }
+          ],
+          "prevalencia": 0.3649,
+          "cortes_faixas": [
+            0.0814,
+            0.2097
+          ],
+          "corte_encaminhar": 0.3434
+        }
+      },
+      "indices": {},
+      "comparacoes": [
+        {
+          "modelo": "mesmos_dados_fib4",
+          "contra": "hsi",
+          "delta_auc": -0.099,
+          "ic95": [
+            -0.115,
+            -0.083
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "perfil_exames",
+          "contra": "hsi",
+          "delta_auc": 0.042,
+          "ic95": [
+            0.033,
+            0.05
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "mesmos_dados_fib4",
+          "contra": "fli",
+          "delta_auc": -0.137,
+          "ic95": [
+            -0.152,
+            -0.121
+          ],
+          "n": 4553
+        },
+        {
+          "modelo": "perfil_exames",
+          "contra": "fli",
+          "delta_auc": 0.003,
+          "ic95": [
+            -0.003,
+            0.009
+          ],
+          "n": 4553
+        }
+      ],
+      "zona_cinzenta": {
+        "hsi": {
+          "cortes": [
+            30,
+            36
+          ],
+          "pct_baixo": 0.133,
+          "pct_indeterminado": 0.314,
+          "pct_alto": 0.553,
+          "sensibilidade_descartar": 0.985,
+          "vpn_baixo": 0.96,
+          "especificidade_confirmar": 0.606,
+          "vpp_alto": 0.536
+        },
+        "mesmos_dados_fib4": {
+          "cortes": [
+            0.1181,
+            0.327
+          ],
+          "pct_baixo": 0.072,
+          "pct_indeterminado": 0.364,
+          "pct_alto": 0.564,
+          "sensibilidade_descartar": 0.985,
+          "vpn_baixo": 0.929,
+          "especificidade_confirmar": 0.543,
+          "vpp_alto": 0.471
+        },
+        "perfil_exames": {
+          "cortes": [
+            0.0814,
+            0.2097
+          ],
+          "pct_baixo": 0.207,
+          "pct_indeterminado": 0.212,
+          "pct_alto": 0.58,
+          "sensibilidade_descartar": 0.978,
+          "vpn_baixo": 0.964,
+          "especificidade_confirmar": 0.591,
+          "vpp_alto": 0.541
+        }
+      },
+      "encaminhamento_80": {
+        "hsi": {
+          "corte": 37.5689,
+          "pct_encaminhados": 0.478,
+          "sensibilidade": 0.788,
+          "vpp": 0.574,
+          "encaminhar_para_achar_1": 1.7,
+          "pct_encaminhados_sens80_teste": 0.491
+        },
+        "fli": {
+          "corte": 59.6673,
+          "pct_encaminhados": 0.47,
+          "sensibilidade": 0.828,
+          "vpp": 0.609,
+          "encaminhar_para_achar_1": 1.6,
+          "pct_encaminhados_sens80_teste": 0.442
+        },
+        "mesmos_dados_fib4": {
+          "corte": 0.3054,
+          "pct_encaminhados": 0.606,
+          "sensibilidade": 0.799,
+          "vpp": 0.459,
+          "encaminhar_para_achar_1": 2.2,
+          "pct_encaminhados_sens80_teste": 0.607
+        },
+        "perfil_exames": {
+          "corte": 0.3434,
+          "pct_encaminhados": 0.435,
+          "sensibilidade": 0.787,
+          "vpp": 0.63,
+          "encaminhar_para_achar_1": 1.6,
+          "pct_encaminhados_sens80_teste": 0.45
+        }
+      }
+    },
+    "fibrose": {
+      "descricao": "Fibrose significativa na elastografia (rigidez >= 8 kPa)",
+      "versoes": {
+        "mesmos_dados_fib4": {
+          "sinais": [
+            "idade",
+            "tgo",
+            "tgp",
+            "plaquetas"
+          ],
+          "medianas": {
+            "idade": 53.0,
+            "tgo": 19.0,
+            "tgp": 18.0,
+            "plaquetas": 244.0
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "tgo": [
+              11.0,
+              67.0
+            ],
+            "tgp": [
+              7.0,
+              86.0
+            ],
+            "plaquetas": [
+              121.76,
+              445.48
+            ]
+          },
+          "media": [
+            51.702909,
+            3.007096,
+            2.928881,
+            250.017084
+          ],
+          "desvio": [
+            17.196397,
+            0.333912,
+            0.51264,
+            62.899994
+          ],
+          "coeficientes": [
+            0.395188,
+            0.119199,
+            0.470571,
+            -0.068348
+          ],
+          "intercepto": -2.293517,
+          "auc_teste": 0.662,
+          "auc_teste_ic95": [
+            0.64,
+            0.686
+          ],
+          "calibracao_validacao_cruzada": [
+            {
+              "previsto": 0.037,
+              "observado": 0.04,
+              "n": 2276
+            },
+            {
+              "previsto": 0.066,
+              "observado": 0.068,
+              "n": 2275
+            },
+            {
+              "previsto": 0.094,
+              "observado": 0.1,
+              "n": 2275
+            },
+            {
+              "previsto": 0.129,
+              "observado": 0.116,
+              "n": 2275
+            },
+            {
+              "previsto": 0.214,
+              "observado": 0.216,
+              "n": 2276
+            }
+          ],
+          "prevalencia": 0.108,
+          "cortes_faixas": [
+            0.1443,
+            0.2594
+          ],
+          "corte_encaminhar": 0.0756
+        },
+        "perfil_exames": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "diabetes",
+            "pressao_alta",
+            "alcool",
+            "fumante",
+            "tgo",
+            "tgp",
+            "razao_tgo_tgp",
+            "ggt",
+            "fosfatase_alcalina",
+            "bilirrubina_total",
+            "plaquetas",
+            "triglicerides",
+            "colesterol_total",
+            "hdl",
+            "glicose",
+            "hba1c",
+            "acido_urico",
+            "creatinina",
+            "ferritina",
+            "insulina"
+          ],
+          "medianas": {
+            "idade": 53.0,
+            "masculino": 0.0,
+            "imc": 28.5,
+            "diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "alcool": 1.0,
+            "fumante": 0.0,
+            "tgo": 19.0,
+            "tgp": 18.0,
+            "razao_tgo_tgp": 1.0909,
+            "ggt": 21.0,
+            "fosfatase_alcalina": 76.0,
+            "bilirrubina_total": 0.4,
+            "plaquetas": 244.0,
+            "triglicerides": 111.0,
+            "colesterol_total": 185.0,
+            "hdl": 52.0,
+            "glicose": 94.0,
+            "hba1c": 5.6,
+            "acido_urico": 5.2,
+            "creatinina": 0.84,
+            "ferritina": 98.05,
+            "insulina": 9.61
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              18.3,
+              51.624
+            ],
+            "diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "alcool": [
+              0.0,
+              3.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ],
+            "tgo": [
+              11.0,
+              67.0
+            ],
+            "tgp": [
+              7.0,
+              86.0
+            ],
+            "razao_tgo_tgp": [
+              0.4881,
+              2.5
+            ],
+            "ggt": [
+              7.0,
+              195.48
+            ],
+            "fosfatase_alcalina": [
+              37.0,
+              165.0
+            ],
+            "bilirrubina_total": [
+              0.1,
+              1.5
+            ],
+            "plaquetas": [
+              121.76,
+              445.48
+            ],
+            "triglicerides": [
+              40.0,
+              507.26
+            ],
+            "colesterol_total": [
+              107.0,
+              302.0
+            ],
+            "hdl": [
+              29.0,
+              100.28
+            ],
+            "glicose": [
+              72.0,
+              278.0
+            ],
+            "hba1c": [
+              4.6,
+              10.9
+            ],
+            "acido_urico": [
+              2.5,
+              9.2
+            ],
+            "creatinina": [
+              0.48,
+              1.82
+            ],
+            "ferritina": [
+              5.9079,
+              793.03
+            ],
+            "insulina": [
+              1.96,
+              72.9233
+            ]
+          },
+          "media": [
+            51.702909,
+            0.47429,
+            29.585421,
+            0.138613,
+            0.369078,
+            1.271161,
+            0.158829,
+            3.007096,
+            2.928881,
+            0.079097,
+            3.110322,
+            4.335097,
+            -0.895885,
+            250.017084,
+            4.750892,
+            188.340424,
+            53.872719,
+            101.876945,
+            5.799437,
+            5.287774,
+            0.878893,
+            4.514126,
+            2.277564
+          ],
+          "desvio": [
+            17.196397,
+            0.499339,
+            6.741672,
+            0.345542,
+            0.482555,
+            0.70424,
+            0.365517,
+            0.333912,
+            0.51264,
+            0.335995,
+            0.65329,
+            0.292443,
+            0.525693,
+            62.899994,
+            0.532944,
+            40.274649,
+            14.722875,
+            30.729211,
+            1.006247,
+            1.404026,
+            0.234175,
+            0.865157,
+            0.525948
+          ],
+          "coeficientes": [
+            0.312201,
+            0.100255,
+            0.824406,
+            0.180576,
+            0.075302,
+            0.003095,
+            0.00549,
+            -0.25745,
+            0.920472,
+            0.733226,
+            0.361423,
+            0.033203,
+            0.133086,
+            -0.131074,
+            0.04258,
+            -0.127491,
+            -0.143711,
+            0.079,
+            0.033691,
+            -0.017457,
+            -0.06321,
+            -0.022286,
+            0.051104
+          ],
+          "intercepto": -2.726572,
+          "auc_teste": 0.793,
+          "auc_teste_ic95": [
+            0.773,
+            0.813
+          ],
+          "calibracao_validacao_cruzada": [
+            {
+              "previsto": 0.012,
+              "observado": 0.02,
+              "n": 2276
+            },
+            {
+              "previsto": 0.03,
+              "observado": 0.031,
+              "n": 2275
+            },
+            {
+              "previsto": 0.059,
+              "observado": 0.055,
+              "n": 2275
+            },
+            {
+              "previsto": 0.114,
+              "observado": 0.113,
+              "n": 2275
+            },
+            {
+              "previsto": 0.324,
+              "observado": 0.322,
+              "n": 2276
+            }
+          ],
+          "prevalencia": 0.108,
+          "cortes_faixas": [
+            0.2799,
+            0.3938
+          ],
+          "corte_encaminhar": 0.0837
+        }
+      },
+      "indices": {},
+      "comparacoes": [
+        {
+          "modelo": "mesmos_dados_fib4",
+          "contra": "fib4",
+          "delta_auc": 0.068,
+          "ic95": [
+            0.045,
+            0.091
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "perfil_exames",
+          "contra": "fib4",
+          "delta_auc": 0.199,
+          "ic95": [
+            0.172,
+            0.226
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "mesmos_dados_fib4",
+          "contra": "nfs",
+          "delta_auc": -0.037,
+          "ic95": [
+            -0.065,
+            -0.012
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "perfil_exames",
+          "contra": "nfs",
+          "delta_auc": 0.093,
+          "ic95": [
+            0.073,
+            0.113
+          ],
+          "n": 4667
+        }
+      ],
+      "zona_cinzenta": {
+        "fib4": {
+          "cortes": [
+            1.3,
+            2.67
+          ],
+          "pct_baixo": 0.673,
+          "pct_indeterminado": 0.294,
+          "pct_alto": 0.033,
+          "sensibilidade_descartar": 0.442,
+          "vpn_baixo": 0.898,
+          "especificidade_confirmar": 0.974,
+          "vpp_alto": 0.299
+        },
+        "mesmos_dados_fib4": {
+          "cortes": [
+            0.1443,
+            0.2594
+          ],
+          "pct_baixo": 0.777,
+          "pct_indeterminado": 0.189,
+          "pct_alto": 0.034,
+          "sensibilidade_descartar": 0.414,
+          "vpn_baixo": 0.907,
+          "especificidade_confirmar": 0.975,
+          "vpp_alto": 0.348
+        },
+        "perfil_exames": {
+          "cortes": [
+            0.2799,
+            0.3938
+          ],
+          "pct_baixo": 0.917,
+          "pct_indeterminado": 0.038,
+          "pct_alto": 0.046,
+          "sensibilidade_descartar": 0.368,
+          "vpn_baixo": 0.915,
+          "especificidade_confirmar": 0.981,
+          "vpp_alto": 0.634
+        }
+      },
+      "encaminhamento_80": {
+        "fib4": {
+          "corte": 0.6554,
+          "pct_encaminhados": 0.758,
+          "sensibilidade": 0.831,
+          "vpp": 0.135,
+          "encaminhar_para_achar_1": 7.4,
+          "pct_encaminhados_sens80_teste": 0.719
+        },
+        "nfs": {
+          "corte": -1.7318,
+          "pct_encaminhados": 0.532,
+          "sensibilidade": 0.773,
+          "vpp": 0.179,
+          "encaminhar_para_achar_1": 5.6,
+          "pct_encaminhados_sens80_teste": 0.577
+        },
+        "mesmos_dados_fib4": {
+          "corte": 0.0756,
+          "pct_encaminhados": 0.608,
+          "sensibilidade": 0.784,
+          "vpp": 0.158,
+          "encaminhar_para_achar_1": 6.3,
+          "pct_encaminhados_sens80_teste": 0.625
+        },
+        "perfil_exames": {
+          "corte": 0.0837,
+          "pct_encaminhados": 0.332,
+          "sensibilidade": 0.721,
+          "vpp": 0.266,
+          "encaminhar_para_achar_1": 3.8,
+          "pct_encaminhados_sens80_teste": 0.443
+        }
+      }
+    },
+    "fibrose_avancada": {
+      "descricao": "Fibrose avançada na elastografia (rigidez >= 9,7 kPa, F3 ou mais)",
+      "versoes": {
+        "mesmos_dados_fib4": {
+          "sinais": [
+            "idade",
+            "tgo",
+            "tgp",
+            "plaquetas"
+          ],
+          "medianas": {
+            "idade": 53.0,
+            "tgo": 19.0,
+            "tgp": 18.0,
+            "plaquetas": 244.0
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "tgo": [
+              11.0,
+              67.0
+            ],
+            "tgp": [
+              7.0,
+              86.0
+            ],
+            "plaquetas": [
+              121.76,
+              445.48
+            ]
+          },
+          "media": [
+            51.702909,
+            3.007096,
+            2.928881,
+            250.017084
+          ],
+          "desvio": [
+            17.196397,
+            0.333912,
+            0.51264,
+            62.899994
+          ],
+          "coeficientes": [
+            0.457388,
+            0.203417,
+            0.420297,
+            -0.134498
+          ],
+          "intercepto": -2.946523,
+          "auc_teste": 0.686,
+          "auc_teste_ic95": [
+            0.657,
+            0.714
+          ],
+          "calibracao_validacao_cruzada": [
+            {
+              "previsto": 0.018,
+              "observado": 0.016,
+              "n": 2276
+            },
+            {
+              "previsto": 0.034,
+              "observado": 0.04,
+              "n": 2275
+            },
+            {
+              "previsto": 0.052,
+              "observado": 0.055,
+              "n": 2275
+            },
+            {
+              "previsto": 0.075,
+              "observado": 0.066,
+              "n": 2275
+            },
+            {
+              "previsto": 0.139,
+              "observado": 0.14,
+              "n": 2276
+            }
+          ],
+          "prevalencia": 0.0635,
+          "cortes_faixas": [
+            0.0803,
+            0.1702
+          ],
+          "corte_encaminhar": 0.0399
+        },
+        "perfil_exames": {
+          "sinais": [
+            "idade",
+            "masculino",
+            "imc",
+            "diabetes",
+            "pressao_alta",
+            "alcool",
+            "fumante",
+            "tgo",
+            "tgp",
+            "razao_tgo_tgp",
+            "ggt",
+            "fosfatase_alcalina",
+            "bilirrubina_total",
+            "plaquetas",
+            "triglicerides",
+            "colesterol_total",
+            "hdl",
+            "glicose",
+            "hba1c",
+            "acido_urico",
+            "creatinina",
+            "ferritina",
+            "insulina"
+          ],
+          "medianas": {
+            "idade": 53.0,
+            "masculino": 0.0,
+            "imc": 28.5,
+            "diabetes": 0.0,
+            "pressao_alta": 0.0,
+            "alcool": 1.0,
+            "fumante": 0.0,
+            "tgo": 19.0,
+            "tgp": 18.0,
+            "razao_tgo_tgp": 1.0909,
+            "ggt": 21.0,
+            "fosfatase_alcalina": 76.0,
+            "bilirrubina_total": 0.4,
+            "plaquetas": 244.0,
+            "triglicerides": 111.0,
+            "colesterol_total": 185.0,
+            "hdl": 52.0,
+            "glicose": 94.0,
+            "hba1c": 5.6,
+            "acido_urico": 5.2,
+            "creatinina": 0.84,
+            "ferritina": 98.05,
+            "insulina": 9.61
+          },
+          "limites": {
+            "idade": [
+              20.0,
+              80.0
+            ],
+            "masculino": [
+              0.0,
+              1.0
+            ],
+            "imc": [
+              18.3,
+              51.624
+            ],
+            "diabetes": [
+              0.0,
+              1.0
+            ],
+            "pressao_alta": [
+              0.0,
+              1.0
+            ],
+            "alcool": [
+              0.0,
+              3.0
+            ],
+            "fumante": [
+              0.0,
+              1.0
+            ],
+            "tgo": [
+              11.0,
+              67.0
+            ],
+            "tgp": [
+              7.0,
+              86.0
+            ],
+            "razao_tgo_tgp": [
+              0.4881,
+              2.5
+            ],
+            "ggt": [
+              7.0,
+              195.48
+            ],
+            "fosfatase_alcalina": [
+              37.0,
+              165.0
+            ],
+            "bilirrubina_total": [
+              0.1,
+              1.5
+            ],
+            "plaquetas": [
+              121.76,
+              445.48
+            ],
+            "triglicerides": [
+              40.0,
+              507.26
+            ],
+            "colesterol_total": [
+              107.0,
+              302.0
+            ],
+            "hdl": [
+              29.0,
+              100.28
+            ],
+            "glicose": [
+              72.0,
+              278.0
+            ],
+            "hba1c": [
+              4.6,
+              10.9
+            ],
+            "acido_urico": [
+              2.5,
+              9.2
+            ],
+            "creatinina": [
+              0.48,
+              1.82
+            ],
+            "ferritina": [
+              5.9079,
+              793.03
+            ],
+            "insulina": [
+              1.96,
+              72.9233
+            ]
+          },
+          "media": [
+            51.702909,
+            0.47429,
+            29.585421,
+            0.138613,
+            0.369078,
+            1.271161,
+            0.158829,
+            3.007096,
+            2.928881,
+            0.079097,
+            3.110322,
+            4.335097,
+            -0.895885,
+            250.017084,
+            4.750892,
+            188.340424,
+            53.872719,
+            101.876945,
+            5.799437,
+            5.287774,
+            0.878893,
+            4.514126,
+            2.277564
+          ],
+          "desvio": [
+            17.196397,
+            0.499339,
+            6.741672,
+            0.345542,
+            0.482555,
+            0.70424,
+            0.365517,
+            0.333912,
+            0.51264,
+            0.335995,
+            0.65329,
+            0.292443,
+            0.525693,
+            62.899994,
+            0.532944,
+            40.274649,
+            14.722875,
+            30.729211,
+            1.006247,
+            1.404026,
+            0.234175,
+            0.865157,
+            0.525948
+          ],
+          "coeficientes": [
+            0.399613,
+            0.099614,
+            0.918914,
+            0.237544,
+            0.094059,
+            0.045953,
+            0.053769,
+            -0.223177,
+            0.852931,
+            0.74079,
+            0.439679,
+            0.051373,
+            0.207428,
+            -0.166222,
+            0.000571,
+            -0.138024,
+            -0.167591,
+            0.07297,
+            -0.022519,
+            -0.047906,
+            -0.023279,
+            -0.010778,
+            0.081062
+          ],
+          "intercepto": -3.590702,
+          "auc_teste": 0.832,
+          "auc_teste_ic95": [
+            0.808,
+            0.856
+          ],
+          "calibracao_validacao_cruzada": [
+            {
+              "previsto": 0.004,
+              "observado": 0.007,
+              "n": 2276
+            },
+            {
+              "previsto": 0.012,
+              "observado": 0.011,
+              "n": 2275
+            },
+            {
+              "previsto": 0.025,
+              "observado": 0.028,
+              "n": 2275
+            },
+            {
+              "previsto": 0.056,
+              "observado": 0.052,
+              "n": 2275
+            },
+            {
+              "previsto": 0.22,
+              "observado": 0.219,
+              "n": 2276
+            }
+          ],
+          "prevalencia": 0.0635,
+          "cortes_faixas": [
+            0.1901,
+            0.2697
+          ],
+          "corte_encaminhar": 0.0472
+        }
+      },
+      "indices": {},
+      "comparacoes": [
+        {
+          "modelo": "mesmos_dados_fib4",
+          "contra": "fib4",
+          "delta_auc": 0.062,
+          "ic95": [
+            0.037,
+            0.086
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "perfil_exames",
+          "contra": "fib4",
+          "delta_auc": 0.207,
+          "ic95": [
+            0.172,
+            0.243
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "mesmos_dados_fib4",
+          "contra": "nfs",
+          "delta_auc": -0.055,
+          "ic95": [
+            -0.088,
+            -0.021
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "perfil_exames",
+          "contra": "nfs",
+          "delta_auc": 0.091,
+          "ic95": [
+            0.069,
+            0.115
+          ],
+          "n": 4667
+        }
+      ],
+      "zona_cinzenta": {
+        "fib4": {
+          "cortes": [
+            1.3,
+            2.67
+          ],
+          "pct_baixo": 0.673,
+          "pct_indeterminado": 0.294,
+          "pct_alto": 0.033,
+          "sensibilidade_descartar": 0.487,
+          "vpn_baixo": 0.943,
+          "especificidade_confirmar": 0.973,
+          "vpp_alto": 0.24
+        },
+        "mesmos_dados_fib4": {
+          "cortes": [
+            0.0803,
+            0.1702
+          ],
+          "pct_baixo": 0.755,
+          "pct_indeterminado": 0.211,
+          "pct_alto": 0.033,
+          "sensibilidade_descartar": 0.484,
+          "vpn_baixo": 0.949,
+          "especificidade_confirmar": 0.973,
+          "vpp_alto": 0.239
+        },
+        "perfil_exames": {
+          "cortes": [
+            0.1901,
+            0.2697
+          ],
+          "pct_baixo": 0.93,
+          "pct_indeterminado": 0.029,
+          "pct_alto": 0.041,
+          "sensibilidade_descartar": 0.424,
+          "vpn_baixo": 0.954,
+          "especificidade_confirmar": 0.979,
+          "vpp_alto": 0.523
+        }
+      },
+      "encaminhamento_80": {
+        "fib4": {
+          "corte": 0.7,
+          "pct_encaminhados": 0.717,
+          "sensibilidade": 0.827,
+          "vpp": 0.086,
+          "encaminhar_para_achar_1": 11.7,
+          "pct_encaminhados_sens80_teste": 0.674
+        },
+        "nfs": {
+          "corte": -1.3628,
+          "pct_encaminhados": 0.436,
+          "sensibilidade": 0.749,
+          "vpp": 0.128,
+          "encaminhar_para_achar_1": 7.8,
+          "pct_encaminhados_sens80_teste": 0.505
+        },
+        "mesmos_dados_fib4": {
+          "corte": 0.0399,
+          "pct_encaminhados": 0.603,
+          "sensibilidade": 0.804,
+          "vpp": 0.099,
+          "encaminhar_para_achar_1": 10.1,
+          "pct_encaminhados_sens80_teste": 0.593
+        },
+        "perfil_exames": {
+          "corte": 0.0472,
+          "pct_encaminhados": 0.293,
+          "sensibilidade": 0.761,
+          "vpp": 0.193,
+          "encaminhar_para_achar_1": 5.2,
+          "pct_encaminhados_sens80_teste": 0.338
+        }
+      }
+    }
+  }
+}

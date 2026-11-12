@@ -33,6 +33,7 @@ supabase/             # banco: migrations, seed do Roberto, README com o contrat
 lib/types.ts          # tipos das tabelas do banco (espelham as migrations)
 tools/gerador-laudos/ # laudos, carteiras de vacinação e casos sintéticos + gabaritos [PRONTO]
 risco/                # ML (Python): risco de glicemia alterada / diabetes não diagnosticado com perfil + exames + relógio, treinado no NHANES; exporta saida/modelo.json para o app [MODELO PRONTO, app pendente]
+  figado/             # ML para o MÉDICO: chance de esteatose e fibrose na elastografia a partir de exames de rotina, comparado a FIB-4/NFS/HSI/FLI; exporta saida/figado.json [MODELO PRONTO, painel pendente]
 dados-reais/          # NUNCA vai para o GitHub (.gitignore): laudos/carteiras reais do time + gabaritos manuais
 docs/                 # contexto, decisões, estado-e-proximos.md (o que temos / o que falta), prompts usados
 ```
@@ -49,6 +50,7 @@ Cada pasta pronta tem README com comandos. Resumo:
 - Insights → app: o app roda as regras de `insights/src/regras.ts` sobre o banco (`insights/src/banco.ts`, via `app/src/lib/dados.ts`: `carregarInsights(pacienteId)`, etiqueta de cache **por paciente** `historico:<id>`); `insights/saida/insights.json` é o plano B, só do Roberto (tipos em `insights/src/tipos.ts`). Gravou no banco? `updateTag(tagHistorico(pacienteId))`.
 - Relógio → app: `wearable/saida/relogio.json` (tipo `RelogioJson` em `wearable/src/tipos.ts`). Rota futura `/api/relogio/sync` recebe um `Lote` (`{dias, eventos}`) e usa `mesclar` + `montarRelogio`.
 - Risco (ML) → app: `risco/saida/modelo.json` (alvos `alterado` e `diabetes_oculto`, versões `perfil`/`perfil_exames`/`perfil_relogio`/`completo`; cálculo em `risco/README.md`). É estimativa para "procurar um médico e pedir HbA1c", nunca diagnóstico.
+- Fígado (ML) → painel do médico: `risco/saida/figado.json` (alvos `esteatose`, `fibrose`, `fibrose_avancada`; versões `mesmos_dados_fib4` e `perfil_exames`; cálculo em `risco/figado/README.md`). **Só no painel do médico**, como apoio à decisão (ao lado do FIB-4/HSI), nunca mostrado ao paciente como diagnóstico.
 - Banco: entrada grava `documento` + `observacao`; médico, MCP e API leem **só** por `acessar_historico(token)`, que confere o consentimento e grava o log. Tipos em `lib/types.ts`, contrato em `supabase/README.md`.
 
 ## Divisão atual (09/11 à noite)
