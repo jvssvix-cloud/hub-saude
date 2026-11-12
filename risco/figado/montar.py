@@ -44,7 +44,7 @@ def ciclo(padrao: str) -> pd.DataFrame:
         ler(padrao, "BMX", ["BMXBMI", "BMXWAIST"]),
         ler(padrao, "LUX", ["LUAXSTAT", "LUXSMED", "LUXCAPM"]),
         ler(padrao, "BIOPRO", ["LBXSATSI", "LBXSASSI", "LBXSGTSI", "LBXSAPSI", "LBXSTB", "LBXSAL",
-                               "LBXSTR", "LBXSCH", "LBXSUA", "LBXSCR", "LBXSGL"]),
+                               "LBXSTR", "LBXSCH", "LBXSUA", "LBXSCR", "LBXSGL", "LBXSGB"]),
         ler(padrao, "CBC", ["LBXPLTSI"]),
         ler(padrao, "GHB", ["LBXGH"]),
         ler(padrao, "HDL", ["LBDHDD"]),
@@ -99,6 +99,7 @@ def ciclo(padrao: str) -> pd.DataFrame:
         "ferritina": df["LBXFER"],
         "insulina": df["LBXIN"],
         "albumina": df["LBXSAL"],            # só para o NFS (fora do dicionário do Zelo)
+        "globulina": df["LBXSGB"],           # g/dL, só para o SAFE (fora do dicionário do Zelo)
     })
 
 

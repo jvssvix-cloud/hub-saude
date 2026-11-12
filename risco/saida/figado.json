@@ -878,8 +878,8 @@
           "contra": "fib4",
           "delta_auc": 0.068,
           "ic95": [
-            0.045,
-            0.091
+            0.047,
+            0.09
           ],
           "n": 4667
         },
@@ -889,7 +889,7 @@
           "delta_auc": 0.199,
           "ic95": [
             0.172,
-            0.226
+            0.228
           ],
           "n": 4667
         },
@@ -909,7 +909,27 @@
           "delta_auc": 0.093,
           "ic95": [
             0.073,
-            0.113
+            0.112
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "mesmos_dados_fib4",
+          "contra": "safe",
+          "delta_auc": -0.07,
+          "ic95": [
+            -0.092,
+            -0.048
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "perfil_exames",
+          "contra": "safe",
+          "delta_auc": 0.06,
+          "ic95": [
+            0.045,
+            0.077
           ],
           "n": 4667
         }
@@ -971,6 +991,14 @@
           "vpp": 0.179,
           "encaminhar_para_achar_1": 5.6,
           "pct_encaminhados_sens80_teste": 0.577
+        },
+        "safe": {
+          "corte": 2.0233,
+          "pct_encaminhados": 0.5,
+          "sensibilidade": 0.775,
+          "vpp": 0.19,
+          "encaminhar_para_achar_1": 5.3,
+          "pct_encaminhados_sens80_teste": 0.532
         },
         "mesmos_dados_fib4": {
           "corte": 0.0756,
@@ -1045,8 +1073,8 @@
           "intercepto": -2.946523,
           "auc_teste": 0.686,
           "auc_teste_ic95": [
-            0.657,
-            0.714
+            0.658,
+            0.716
           ],
           "calibracao_validacao_cruzada": [
             {
@@ -1306,7 +1334,7 @@
           "auc_teste": 0.832,
           "auc_teste_ic95": [
             0.808,
-            0.856
+            0.855
           ],
           "calibracao_validacao_cruzada": [
             {
@@ -1360,8 +1388,8 @@
           "contra": "fib4",
           "delta_auc": 0.207,
           "ic95": [
-            0.172,
-            0.243
+            0.177,
+            0.24
           ],
           "n": 4667
         },
@@ -1370,8 +1398,8 @@
           "contra": "nfs",
           "delta_auc": -0.055,
           "ic95": [
-            -0.088,
-            -0.021
+            -0.09,
+            -0.019
           ],
           "n": 4667
         },
@@ -1380,8 +1408,28 @@
           "contra": "nfs",
           "delta_auc": 0.091,
           "ic95": [
-            0.069,
+            0.067,
             0.115
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "mesmos_dados_fib4",
+          "contra": "safe",
+          "delta_auc": -0.087,
+          "ic95": [
+            -0.116,
+            -0.063
+          ],
+          "n": 4667
+        },
+        {
+          "modelo": "perfil_exames",
+          "contra": "safe",
+          "delta_auc": 0.059,
+          "ic95": [
+            0.042,
+            0.076
           ],
           "n": 4667
         }
@@ -1444,6 +1492,14 @@
           "encaminhar_para_achar_1": 7.8,
           "pct_encaminhados_sens80_teste": 0.505
         },
+        "safe": {
+          "corte": 24.1879,
+          "pct_encaminhados": 0.407,
+          "sensibilidade": 0.778,
+          "vpp": 0.142,
+          "encaminhar_para_achar_1": 7.0,
+          "pct_encaminhados_sens80_teste": 0.439
+        },
         "mesmos_dados_fib4": {
           "corte": 0.0399,
           "pct_encaminhados": 0.603,
@@ -1461,6 +1517,69 @@
           "pct_encaminhados_sens80_teste": 0.338
         }
       }
+    }
+  },
+  "indices_clinicos": {
+    "fib4": {
+      "nome": "FIB-4",
+      "formula": "idade × TGO / (plaquetas[mil/mm³] × √TGP)",
+      "cortes": [
+        1.3,
+        2.67
+      ],
+      "referencia": "Sterling et al., Hepatology 2006",
+      "uso": "fibrose avançada; < 1,3 baixo risco, > 2,67 alto risco"
+    },
+    "nfs": {
+      "nome": "NAFLD Fibrosis Score",
+      "formula": "-1,675 + 0,037·idade + 0,094·IMC + 1,13·(glicemia alterada ou diabetes) + 0,99·TGO/TGP - 0,013·plaquetas - 0,66·albumina[g/dL]",
+      "cortes": [
+        -1.455,
+        0.676
+      ],
+      "referencia": "Angulo et al., Hepatology 2007",
+      "precisa_fora_do_zelo": [
+        "albumina"
+      ]
+    },
+    "safe": {
+      "nome": "SAFE (Steatosis-Associated Fibrosis Estimator)",
+      "formula": "2,97·idade + 5,99·IMC + 62,85·diabetes + 154,85·ln(TGO) - 58,23·ln(TGP) + 195,48·ln(globulina[g/dL]) - 141,61·ln(plaquetas) - 75",
+      "cortes": [
+        0,
+        100
+      ],
+      "referencia": "Sripongpun et al., Hepatology 2023 (Stanford)",
+      "precisa_fora_do_zelo": [
+        "globulina (proteínas totais - albumina)"
+      ]
+    },
+    "hsi": {
+      "nome": "Hepatic Steatosis Index",
+      "formula": "8·TGP/TGO + IMC + 2·diabetes + 2·mulher",
+      "cortes": [
+        30,
+        36
+      ],
+      "referencia": "Lee et al., Dig Liver Dis 2010"
+    },
+    "fli": {
+      "nome": "Fatty Liver Index",
+      "formula": "logística de ln(triglicérides), IMC, ln(GGT) e cintura",
+      "cortes": [
+        30,
+        60
+      ],
+      "referencia": "Bedogni et al., BMC Gastroenterol 2006",
+      "precisa_fora_do_zelo": [
+        "cintura"
+      ]
+    },
+    "liverrisk": {
+      "nome": "LiverRisk score",
+      "formula": "não publicada (calculadora em liverriskscore.com)",
+      "referencia": "Serra-Burriel et al., The Lancet 2023",
+      "nota": "não reproduzido aqui; validação no NHANES: AUC 0,73 (>= 8 kPa) e 0,78 (>= 12 kPa)"
     }
   }
 }

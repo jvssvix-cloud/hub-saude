@@ -54,6 +54,7 @@ Teste: 4667 pessoas, 573 com o achado (12.3%).
 |---|---|
 | Índice FIB4 (fórmula clínica) | 0.594 (0.570-0.620) |
 | Índice NFS (fórmula clínica) | 0.700 (0.673-0.721) |
+| Índice SAFE (fórmula clínica) | 0.733 (0.711-0.754) |
 | Modelo `mesmos_dados_fib4` (regressão logística) | 0.662 (0.640-0.686) |
 | Modelo `mesmos_dados_fib4` (árvores, referência) | 0.628 |
 | Modelo `perfil_exames` (regressão logística) | 0.793 (0.773-0.813) |
@@ -61,10 +62,12 @@ Teste: 4667 pessoas, 573 com o achado (12.3%).
 
 | Comparação (mesmas pessoas) | ΔAUC | IC 95% |
 |---|---|---|
-| `mesmos_dados_fib4` vs FIB4 | +0.068 | +0.045 a +0.091 |
-| `perfil_exames` vs FIB4 | +0.199 | +0.172 a +0.226 |
+| `mesmos_dados_fib4` vs FIB4 | +0.068 | +0.047 a +0.090 |
+| `perfil_exames` vs FIB4 | +0.199 | +0.172 a +0.228 |
 | `mesmos_dados_fib4` vs NFS | -0.037 | -0.065 a -0.012 |
-| `perfil_exames` vs NFS | +0.093 | +0.073 a +0.113 |
+| `perfil_exames` vs NFS | +0.093 | +0.073 a +0.112 |
+| `mesmos_dados_fib4` vs SAFE | -0.070 | -0.092 a -0.048 |
+| `perfil_exames` vs SAFE | +0.060 | +0.045 a +0.077 |
 
 **Zona cinzenta** (cortes clássicos do FIB4: < 1.3 descarta, > 2.67 confirma; o modelo usa cortes com a mesma sensibilidade e especificidade, definidos no treino):
 
@@ -80,6 +83,7 @@ Teste: 4667 pessoas, 573 com o achado (12.3%).
 |---|---|---|---|---|---|
 | FIB4 | 75.8% | 83.1% | 13.5% | 7.4 | 71.9% |
 | NFS | 53.2% | 77.3% | 17.9% | 5.6 | 57.7% |
+| SAFE | 50.0% | 77.5% | 19.0% | 5.3 | 53.2% |
 | Modelo `mesmos_dados_fib4` | 60.8% | 78.4% | 15.8% | 6.3 | 62.5% |
 | Modelo `perfil_exames` | 33.2% | 72.1% | 26.6% | 3.8 | 44.3% |
 
@@ -96,19 +100,22 @@ Teste: 4667 pessoas, 347 com o achado (7.4%).
 
 | Método | AUC (IC 95%) |
 |---|---|
-| Índice FIB4 (fórmula clínica) | 0.625 (0.588-0.655) |
-| Índice NFS (fórmula clínica) | 0.741 (0.716-0.769) |
-| Modelo `mesmos_dados_fib4` (regressão logística) | 0.686 (0.657-0.714) |
+| Índice FIB4 (fórmula clínica) | 0.625 (0.595-0.657) |
+| Índice NFS (fórmula clínica) | 0.741 (0.715-0.770) |
+| Índice SAFE (fórmula clínica) | 0.773 (0.745-0.798) |
+| Modelo `mesmos_dados_fib4` (regressão logística) | 0.686 (0.658-0.716) |
 | Modelo `mesmos_dados_fib4` (árvores, referência) | 0.654 |
-| Modelo `perfil_exames` (regressão logística) | 0.832 (0.808-0.856) |
+| Modelo `perfil_exames` (regressão logística) | 0.832 (0.808-0.855) |
 | Modelo `perfil_exames` (árvores, referência) | 0.813 |
 
 | Comparação (mesmas pessoas) | ΔAUC | IC 95% |
 |---|---|---|
 | `mesmos_dados_fib4` vs FIB4 | +0.062 | +0.037 a +0.086 |
-| `perfil_exames` vs FIB4 | +0.207 | +0.172 a +0.243 |
-| `mesmos_dados_fib4` vs NFS | -0.055 | -0.088 a -0.021 |
-| `perfil_exames` vs NFS | +0.091 | +0.069 a +0.115 |
+| `perfil_exames` vs FIB4 | +0.207 | +0.177 a +0.240 |
+| `mesmos_dados_fib4` vs NFS | -0.055 | -0.090 a -0.019 |
+| `perfil_exames` vs NFS | +0.091 | +0.067 a +0.115 |
+| `mesmos_dados_fib4` vs SAFE | -0.087 | -0.116 a -0.063 |
+| `perfil_exames` vs SAFE | +0.059 | +0.042 a +0.076 |
 
 **Zona cinzenta** (cortes clássicos do FIB4: < 1.3 descarta, > 2.67 confirma; o modelo usa cortes com a mesma sensibilidade e especificidade, definidos no treino):
 
@@ -124,6 +131,7 @@ Teste: 4667 pessoas, 347 com o achado (7.4%).
 |---|---|---|---|---|---|
 | FIB4 | 71.7% | 82.7% | 8.6% | 11.7 | 67.4% |
 | NFS | 43.6% | 74.9% | 12.8% | 7.8 | 50.5% |
+| SAFE | 40.7% | 77.8% | 14.2% | 7.0 | 43.9% |
 | Modelo `mesmos_dados_fib4` | 60.3% | 80.4% | 9.9% | 10.1 | 59.3% |
 | Modelo `perfil_exames` | 29.3% | 76.1% | 19.3% | 5.2 | 33.8% |
 
