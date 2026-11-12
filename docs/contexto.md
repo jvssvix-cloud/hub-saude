@@ -40,6 +40,23 @@ Uma plataforma com IA que junta o histórico de saúde de cada pessoa, do exame 
 - **Confiança:** cada número rastreável até o documento original; a pessoa controla quem vê.
 - **Laboratórios guardam pouco:** a antiga RDC 302/2005 exigia 5 anos (substituída pela RDC 786/2023; confirmar prazo atual) → argumento de pitch.
 
+### 2.2 O problema, sem pensar em quem paga (alinhado em 12/11)
+**O exame morre no dia em que é lido.** Ele responde à pergunta de um médico num único dia e depois se perde. Só que o valor de um exame **cresce com o tempo**: sozinho ele é uma foto, junto com os outros mostra uma trajetória. O sistema joga fora justamente aquilo que fica mais valioso quanto mais tempo se guarda.
+
+Três camadas:
+1. **Desperdício visível:** exames espalhados, tempo e dinheiro gastos, exame repetido, e a pessoa refazendo a própria história a cada médico.
+2. **Sinal perdido:** "normal" esconde mudança. A faixa de referência vale para a população; **para a pessoa, o que importa é a própria linha de base**. Uma subida dentro da faixa só aparece quando os exames estão juntos.
+3. **Conexões que ninguém faz:** cada especialista vê um sistema (pressão, glicose, rim). O paciente é o único que passa por todos e é justamente quem não tem nada organizado.
+
+**Por que guardar o PDF não resolve:** cada laboratório usa um formato, uma unidade, um nome e uma faixa diferentes. A informação fica presa dentro do documento, e a pessoa precisa de medidas. Por isso o diferencial é extração (documento → série) + rastreabilidade (cada número aponta para o original).
+
+**Frase:** *"A saúde de uma pessoa é medida a vida inteira, mas lida um exame de cada vez. O Zelo transforma exames soltos numa história contínua, em que você é a sua própria referência."*
+
+**Conferência do Roberto (12/11):** a camada 2 está nos dados, mas o app não conta essa parte da história.
+- Glicose 88 → 90 → 93 → 96 (2016–2019), **toda dentro da referência**, e só passa do limite em set/2020. LDL (112 → 128) e triglicérides (125 → 147) seguem o mesmo padrão. Com os parâmetros atuais de `insights/src/regras.ts` (3 pontos, 2 anos), a regra de tendência **já dispararia em mar/2018, cerca de 2,5 anos antes** de o laudo dizer "alterado".
+- O app mostra só o estado atual ("subiu 27% em 10 anos; acima da referência desde set/2020"), o que dá a impressão de "já está alterado" e não de "dava para ver antes".
+- Hoje, subidas dentro da faixa (HDL caindo 12%, PSA subindo 69%) aparecem só na seta da lista, na página do exame e no painel do médico. **A Início não mostra nenhuma delas**: só conta o que está fora da faixa.
+
 ## 3. Sobre a Rivio (contexto para o pitch)
 - Startup brasileira (SP), 2025, Silvio Frison (CEO) e Ricardo Sales (ex-GA, cofundador do Isaac). Ambos Stanford.
 - Core: IA + especialistas no ciclo de receita hospitalar (auditoria → faturamento → glosas). +80 hospitais, > R$100 mi contratados.
