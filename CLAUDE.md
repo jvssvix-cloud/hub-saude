@@ -12,6 +12,7 @@ Um app com IA que junta o histórico de saúde de uma pessoa (exames e carteira 
 - **Time:** 2 pessoas, **construindo juntas** com o Claude Code. Cada parte entra pequena e funcionando antes da próxima (o simples primeiro, depois completar).
 - **Dados:** SOMENTE sintéticos ou do próprio time. **Dados de terceiros:** só com consentimento explícito, usados só para aprender e **apagados em seguida** (a lição vira código + caso sintético).
 - **Problema e usuário (12/11, ver `docs/contexto.md` 2.2 e 7):** "o exame morre no dia em que é lido". Quem sente a dor: doença crônica, diagnóstico novo e **quem cuida dos pais**. Direção: **o filho gere a conta dos pais** (vários perfis por conta) e **entrada pelo WhatsApp**; laboratórios automáticos só com escala; **relógio é adicional**. Não depender de hábito: servir quando o exame chega e quando a consulta chega.
+- **Tese (12/11):** família e WhatsApp são a porta de entrada, não o diferencial (há vários apps-pasta pequenos). O diferencial são duas ideias: **(1) a história da família como exame** (comparar a trajetória do filho com a dos pais, por idade) e **(2) agir antes do exame** (foto do pedido médico → o que já foi feito e quando). Sempre regra explicável, nunca diagnóstico.
 - **Diferencial:** qualidade da extração + rastreabilidade. Todo número aponta para o documento original. Alertas são regras explicáveis, nunca diagnóstico.
 
 ## Stack
