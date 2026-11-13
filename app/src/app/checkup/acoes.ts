@@ -10,7 +10,7 @@ import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import {
   ALCOOL, ATIVIDADE_MAX_HORAS, CONDICOES, CONDICOES_FAMILIA, FUMO, MEDICOS, MIN_POR_HORA, PARENTES, TERMOS_VERSAO,
-  TOTAL_BLOCOS, alturaCm, ano, derivarFamilia, escolhas, linhas, numero, sim, telefone, texto, uma,
+  TOTAL_BLOCOS, alturaCm, ano, derivarFamilia, escolhas, lerHorarios, linhas, numero, sim, telefone, texto, uma,
 } from "@/lib/checkup";
 import type { FamiliaParente, Parente } from "../../../../lib/types";
 import { tagHistorico } from "@/lib/dados";
@@ -66,8 +66,9 @@ export async function salvarBloco(modo: Modo, n: number, _: EstadoBloco, form: F
       await atualizarPerfil(pid, {
         condicoes: escolhas(form, "condicao", CONDICOES),
         condicoes_outras: texto(form.get("condicoes_outras"), 300),
-        remedios_lista: linhas(form, "remedio", ["nome", "dose", "para_que"]).map((l) => ({
+        remedios_lista: linhas(form, "remedio", ["nome", "dose", "para_que", "horarios"]).map((l) => ({
           nome: texto(l.nome, 80), dose: texto(l.dose, 40), para_que: texto(l.para_que, 80),
+          horarios: lerHorarios(l.horarios),
         })),
       });
       break;

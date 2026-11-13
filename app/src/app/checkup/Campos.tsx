@@ -3,7 +3,7 @@
  * Componente de servidor: só os pedaços interativos (IMC, contador de atividade) são de cliente.
  */
 import Link from "next/link";
-import { ALCOOL, CONDICOES, CONDICOES_FAMILIA, FUMO, MEDICOS, PARENTES } from "@/lib/checkup";
+import { ALCOOL, CONDICOES, CONDICOES_FAMILIA, FUMO, horariosTexto, MEDICOS, PARENTES } from "@/lib/checkup";
 import type { PerfilSaude } from "../../../../lib/types";
 import { CAMPO, CampoAtividade, CamposCorpo, ListaRepetida } from "./FormBloco";
 
@@ -53,7 +53,9 @@ const str = (v: unknown) => (v === null || v === undefined ? "" : String(v));
 /** Remédios para a lista: a lista salva ou, de quem preencheu antes, o texto antigo (um por linha). */
 function remediosIniciais(perfil: PerfilSaude | null): Record<string, string>[] {
   if (perfil?.remedios_lista?.length) {
-    return perfil.remedios_lista.map((r) => ({ nome: r.nome, dose: str(r.dose), para_que: str(r.para_que) }));
+    return perfil.remedios_lista.map((r) => ({
+      nome: r.nome, dose: str(r.dose), para_que: str(r.para_que), horarios: r.horarios?.length ? horariosTexto(r.horarios) : "",
+    }));
   }
   return (perfil?.remedios ?? "").split(/\n|;/).map((x) => x.trim()).filter(Boolean).map((nome) => ({ nome }));
 }
@@ -165,7 +167,7 @@ export function Campos({
             <input name="condicoes_outras" maxLength={300} defaultValue={perfil?.condicoes_outras ?? undefined} className={CAMPO} />
           </label>
           <div>
-            <Rotulo dica="Um por remédio. A dose está na caixa ou na receita; se não souber, deixe em branco.">
+            <Rotulo dica="Um por remédio. A dose está na caixa ou na receita; se não souber, deixe em branco. Com os horários, o Zelo lembra você pelo WhatsApp.">
               Remédios que você toma todo dia
             </Rotulo>
             <ListaRepetida
@@ -174,6 +176,7 @@ export function Campos({
                 { id: "nome", rotulo: "Remédio", placeholder: "Losartana" },
                 { id: "dose", rotulo: "Dose", placeholder: "50 mg", largura: "curto" },
                 { id: "para_que", rotulo: "Para quê", placeholder: "pressão" },
+                { id: "horarios", rotulo: "Horários", placeholder: "8h e 20h" },
               ]}
               iniciais={remediosIniciais(perfil)}
               adicionar="Adicionar remédio"
