@@ -29,7 +29,8 @@ export type CondicaoFamiliar =
 export type FamiliaParente = { condicoes: CondicaoFamiliar[]; cancer_qual?: string | null; observacao?: string | null };
 export type Internacao = { motivo: string; ano: number | null };
 export type Cirurgia = { nome: string; ano: number | null };
-export type Remedio = { nome: string; dose: string | null; para_que: string | null };
+/** horarios (12/11, lembretes): "HH:MM" em ordem; dentro do jsonb remedios_lista, sem migration. */
+export type Remedio = { nome: string; dose: string | null; para_que: string | null; horarios?: string[] | null };
 /** Progresso do "Reunir meus exames" (/reunir), por área. */
 export type SituacaoColeta = "enviado" | "nao_tenho" | "pulado";
 export type PerfilSaude = {

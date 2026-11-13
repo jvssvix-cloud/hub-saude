@@ -143,10 +143,32 @@ const comAno = (texto: string, ano: number | null | undefined) => (ano ? `${text
 function remediosTexto(p: PerfilSaudeLeitura): string | null {
   if (p.remedios_lista?.length) {
     return p.remedios_lista
-      .map((r) => [r.nome, r.dose].filter(Boolean).join(" ") + (r.para_que ? `, para ${r.para_que}` : ""))
+      .map((r) => [r.nome, r.dose].filter(Boolean).join(" ") + (r.para_que ? `, para ${r.para_que}` : "")
+        + (r.horarios?.length ? ` (${horariosTexto(r.horarios)})` : ""))
       .join("; ");
   }
   return p.remedios; // quem preencheu antes da lista
+}
+
+/**
+ * Horários de remédio digitados livremente ("8h e 20h", "08:00, 20:30", "21") -> ["08:00", "20:00"].
+ * Ignora o que não for hora válida; no máximo 6 por remédio; em ordem; sem repetir.
+ */
+export function lerHorarios(t: FormDataEntryValue | null | undefined): string[] | null {
+  if (typeof t !== "string") return null;
+  const out = new Set<string>();
+  for (const m of t.matchAll(/(\d{1,2})\s*(?:[:h]\s*(\d{2})?)?/gi)) {
+    const h = Number(m[1]), min = Number(m[2] ?? 0);
+    if (h <= 23 && min <= 59) out.add(`${String(h).padStart(2, "0")}:${String(min).padStart(2, "0")}`);
+  }
+  const lista = [...out].sort().slice(0, 6);
+  return lista.length ? lista : null;
+}
+
+/** ["08:00", "20:30"] -> "8h e 20h30" (como se fala). */
+export function horariosTexto(h: string[]): string {
+  const fala = h.map((x) => { const [hh, mm] = x.split(":"); return `${Number(hh)}h${mm === "00" ? "" : mm}`; });
+  return fala.length > 1 ? `${fala.slice(0, -1).join(", ")} e ${fala.at(-1)}` : fala[0] ?? "";
 }
 function listaComAno<T>(l: T[] | null | undefined, f: (x: T) => string): string | null {
   if (l === null || l === undefined) return null;

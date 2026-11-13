@@ -6,12 +6,15 @@ import { PlanosDoPaciente } from "@/components/PlanosDoPaciente";
 import { meusInsights } from "@/lib/dados";
 import { mesAno } from "@/lib/insights";
 import type { ExameQueFalta } from "@insights/faltantes";
+import { horariosTexto } from "@/lib/checkup";
+import { meuPerfil } from "@/lib/perfil";
 
 export const metadata: Metadata = { title: "Plano · Zelo" };
 
 /** O que fazer agora: as recomendações revisadas pelo médico e os próximos exames de rotina. */
 export default async function Plano() {
-  const insights = await meusInsights();
+  const [insights, perfil] = await Promise.all([meusInsights(), meuPerfil()]);
+  const remedios = perfil?.perfil.remedios_lista ?? [];
   // próximos exames agrupados pelo mês previsto
   const porMes = new Map<string, string[]>();
   for (const p of insights.proximos) {
@@ -34,6 +37,34 @@ export default async function Plano() {
       <Suspense fallback={null}>
         <PlanosDoPaciente />
       </Suspense>
+
+      <section>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Remédios e lembretes</h2>
+        {remedios.length === 0 ? (
+          <div className="rounded-3xl border border-dashed border-linha p-4 text-sm text-suave sm:p-5">
+            Nenhum remédio de uso contínuo no seu perfil.{" "}
+            <Link href="/perfil/editar?bloco=4" className="font-semibold text-marca hover:underline">Adicionar remédio e horários</Link>
+          </div>
+        ) : (
+          <ul className="divide-y divide-linha overflow-hidden rounded-3xl border border-linha bg-cartao">
+            {remedios.map((r, k) => (
+              <li key={k} className="flex items-center justify-between gap-3 px-4 py-3">
+                <div className="min-w-0">
+                  <p className="font-semibold">{[r.nome, r.dose].filter(Boolean).join(" ")}</p>
+                  <p className="text-[13px] text-suave">{r.para_que ? `Para ${r.para_que}` : "Uso contínuo"}</p>
+                </div>
+                <p className="shrink-0 text-right text-sm font-semibold">
+                  {r.horarios?.length ? horariosTexto(r.horarios) : <Link href="/perfil/editar?bloco=4" className="text-marca hover:underline">pôr horário</Link>}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )}
+        <p className="mt-2 text-xs text-suave">
+          Com os horários, o Zelo lembra você pelo WhatsApp e avisa a família se você não confirmar.{" "}
+          <Link href="/whatsapp" className="font-semibold text-marca hover:underline">Ver como funciona</Link>
+        </p>
+      </section>
 
       <section>
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-suave">Próximos exames de rotina</h2>

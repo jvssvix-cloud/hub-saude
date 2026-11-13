@@ -8,6 +8,7 @@ const GRUPOS: { titulo: string; itens: { href: string; nome: string; desc: strin
   {
     titulo: "Seus dados",
     itens: [
+      { href: "/whatsapp", nome: "Zelo no WhatsApp", desc: "Mandar exames, lembrar consultas e remédios, e a família junto (simulação)" },
       { href: "/reunir", nome: "Reunir meus exames", desc: "Passo a passo por área: sangue, coração, estômago, rins, vacinas..." },
       { href: "/perfil", nome: "Meu perfil de saúde", desc: "Altura, peso, hábitos, diagnósticos e família: o que você contou no check-up" },
       { href: "/relogio", nome: "Relógio", desc: "Batimento, ritmo, sono e passos dos últimos 6 meses" },
